@@ -1,0 +1,27 @@
+name: Publish to PyPI
+
+# Uses PyPI trusted publishing: no API token is stored in GitHub.
+# One-time setup on pypi.org: add a "pending publisher" for project
+# ko-pii-guard, owner back2zion, repo ko-pii-guard, workflow publish.yml,
+# environment pypi.
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build
+        run: |
+          pip install build
+          python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
