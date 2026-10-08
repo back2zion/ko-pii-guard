@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ko-pii-guard"
+version = "0.1.0"
+description = "Detect and mask Korean personal information (RRN, phone, business number, and more) with Microsoft Presidio, in one line."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Dooil Kwak" }]
+requires-python = ">=3.10"
+keywords = ["pii", "korean", "presidio", "guardrails", "llm", "privacy", "masking", "개인정보"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: Korean",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = [
+    "presidio-analyzer>=2.2.364",
+    "presidio-anonymizer>=2.2.364",
+]
+
+[project.optional-dependencies]
+guardrails = ["guardrails-ai>=0.11"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/back2zion/ko-pii-guard"
+Issues = "https://github.com/back2zion/ko-pii-guard/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ko_pii_guard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
