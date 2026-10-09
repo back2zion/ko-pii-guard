@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ko-pii-guard"
-version = "0.1.0"
+version = "0.2.0"
 description = "Detect and mask Korean personal information (RRN, phone, business number, and more) with Microsoft Presidio, in one line."
 readme = "README.md"
 license = "Apache-2.0"
