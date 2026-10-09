@@ -1,0 +1,546 @@
+{
+  "corpus": "curated synthetic development regression; not independent evaluation",
+  "measured_at_utc": "2026-10-09T15:47:38.842633+00:00",
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "benchmarks/name_address_benchmark.py",
+    "--data",
+    "benchmarks/data/business_korean.jsonl",
+    "--ner",
+    "--check-negatives",
+    "--output",
+    "benchmarks/results/business-korean.json"
+  ],
+  "data_sha256": "3c6a871257c6f817fcf06a160e5663146581adfa7e2a422db557be4c2332cf7c",
+  "benchmark_sha256": "8d2636ff8ad1a9ffba4344d2207c1528734f16e05dd4a2198e76c955ddeeef9f",
+  "source_sha256": "689e92f24f6708195a811d2b9f120a447befdc0575dabb0d0a610666b47f1b23",
+  "source_files_sha256": {
+    "__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "analyzer.py": "1c3cda4c3bf917ad58082fd14bba5f08bf6000c2d502aaab0f4357df4b60fae5",
+    "context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "names.py": "37a27de6a44ba227644a509f3a01b2ecfa4638779853d4aeb8b7172a19a3d39e",
+    "ner.py": "ffaf53d3317d5f769bbfdb009e4978bf7c7b0ec83371812f2eec1822f374b55d",
+    "normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+  },
+  "python": "3.12.13",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "dependency_versions": {
+    "ko-pii-guard": "0.2.0",
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "regex": "2026.9.29",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0"
+  },
+  "entities": [
+    "KR_RRN",
+    "KR_FRN",
+    "KR_BRN",
+    "KR_DRIVER_LICENSE",
+    "KR_PASSPORT",
+    "PHONE_NUMBER",
+    "EMAIL_ADDRESS",
+    "CREDIT_CARD",
+    "KR_ACCOUNT",
+    "KR_NAME",
+    "KR_ADDRESS"
+  ],
+  "guard_score_threshold": 0.4,
+  "coverage_definition": "actual stars masking covers every character of each gold span",
+  "per_entity_negative_definition": "sentences without gold spans of that entity type",
+  "timing_definition": "wall time for analyze and mask; excludes model loading",
+  "models": {
+    "name_address_rules": null,
+    "name_address_ner": {
+      "model_id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "score_threshold": 0.9,
+      "device": "cpu",
+      "max_length": 512,
+      "stride": 64,
+      "batch_size": 4,
+      "torch_threads": 2,
+      "local_files_only": true,
+      "load_seconds": 19.745470849000412
+    }
+  },
+  "results": {
+    "name_address_rules": {
+      "counts": {
+        "sentences": 82,
+        "true_positive": 12,
+        "false_positive": 0,
+        "false_negative": 9,
+        "sensitive_spans": 21,
+        "fully_covered_spans": 12,
+        "negative_sentences": 62,
+        "false_positive_sentences": 0
+      },
+      "exact_span_precision": 1.0,
+      "exact_span_recall": 0.5714285714285714,
+      "exact_span_f1": 0.7272727272727273,
+      "full_sensitive_span_coverage": 0.5714285714285714,
+      "negative_sentence_false_positive_rate": 0.0,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 82,
+            "true_positive": 12,
+            "false_positive": 0,
+            "false_negative": 9,
+            "sensitive_spans": 21,
+            "fully_covered_spans": 12,
+            "negative_sentences": 62,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.5714285714285714,
+          "exact_span_f1": 0.7272727272727273,
+          "full_sensitive_span_coverage": 0.5714285714285714,
+          "negative_sentence_false_positive_rate": 0.0
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 82,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 82,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "business_negative": {
+          "counts": {
+            "sentences": 62,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 62,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 62,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 62,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 62,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 62,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "free_prose": {
+          "counts": {
+            "sentences": 8,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 9,
+            "sensitive_spans": 9,
+            "fully_covered_spans": 0,
+            "negative_sentences": 0,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 8,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 9,
+                "sensitive_spans": 9,
+                "fully_covered_spans": 0,
+                "negative_sentences": 0,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 8,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 8,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "structured": {
+          "counts": {
+            "sentences": 12,
+            "true_positive": 12,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 12,
+            "fully_covered_spans": 12,
+            "negative_sentences": 0,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 12,
+                "true_positive": 12,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 12,
+                "fully_covered_spans": 12,
+                "negative_sentences": 0,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 12,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 12,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 0.016428721999545814,
+      "error_ids": {
+        "exact_span": [
+          "person-manager-prose",
+          "person-wish-prose",
+          "person-sang-prose",
+          "person-two-reviewers",
+          "person-copula",
+          "person-hana-prose",
+          "person-transliterated",
+          "person-latin-prose"
+        ],
+        "uncovered_sensitive_span": [
+          "person-manager-prose",
+          "person-wish-prose",
+          "person-sang-prose",
+          "person-two-reviewers",
+          "person-copula",
+          "person-hana-prose",
+          "person-transliterated",
+          "person-latin-prose"
+        ],
+        "negative_false_positive": []
+      }
+    },
+    "name_address_ner": {
+      "counts": {
+        "sentences": 82,
+        "true_positive": 20,
+        "false_positive": 0,
+        "false_negative": 1,
+        "sensitive_spans": 21,
+        "fully_covered_spans": 20,
+        "negative_sentences": 62,
+        "false_positive_sentences": 0
+      },
+      "exact_span_precision": 1.0,
+      "exact_span_recall": 0.9523809523809523,
+      "exact_span_f1": 0.975609756097561,
+      "full_sensitive_span_coverage": 0.9523809523809523,
+      "negative_sentence_false_positive_rate": 0.0,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 82,
+            "true_positive": 20,
+            "false_positive": 0,
+            "false_negative": 1,
+            "sensitive_spans": 21,
+            "fully_covered_spans": 20,
+            "negative_sentences": 62,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.9523809523809523,
+          "exact_span_f1": 0.975609756097561,
+          "full_sensitive_span_coverage": 0.9523809523809523,
+          "negative_sentence_false_positive_rate": 0.0
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 82,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 82,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "business_negative": {
+          "counts": {
+            "sentences": 62,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 62,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 62,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 62,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 62,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 62,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "free_prose": {
+          "counts": {
+            "sentences": 8,
+            "true_positive": 8,
+            "false_positive": 0,
+            "false_negative": 1,
+            "sensitive_spans": 9,
+            "fully_covered_spans": 8,
+            "negative_sentences": 0,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.8888888888888888,
+          "exact_span_f1": 0.9411764705882353,
+          "full_sensitive_span_coverage": 0.8888888888888888,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 8,
+                "true_positive": 8,
+                "false_positive": 0,
+                "false_negative": 1,
+                "sensitive_spans": 9,
+                "fully_covered_spans": 8,
+                "negative_sentences": 0,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 0.8888888888888888,
+              "exact_span_f1": 0.9411764705882353,
+              "full_sensitive_span_coverage": 0.8888888888888888,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 8,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 8,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "structured": {
+          "counts": {
+            "sentences": 12,
+            "true_positive": 12,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 12,
+            "fully_covered_spans": 12,
+            "negative_sentences": 0,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 12,
+                "true_positive": 12,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 12,
+                "fully_covered_spans": 12,
+                "negative_sentences": 0,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 12,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 12,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 41.303565285999866,
+      "error_ids": {
+        "exact_span": [
+          "person-wish-prose"
+        ],
+        "uncovered_sensitive_span": [
+          "person-wish-prose"
+        ],
+        "negative_false_positive": []
+      }
+    }
+  },
+  "source_changed_during_run": false,
+  "structured_rules_check_passed": true
+}

@@ -1,0 +1,514 @@
+{
+  "corpus": "curated synthetic development regression; not independent evaluation",
+  "counts": {
+    "sentences": 95,
+    "true_positive": 46,
+    "false_positive": 16,
+    "false_negative": 11,
+    "sensitive_spans": 57,
+    "fully_covered_spans": 46,
+    "negative_sentences": 39,
+    "false_positive_sentences": 16
+  },
+  "categories": {
+    "account": 23,
+    "negative": 39,
+    "legacy": 10,
+    "collision": 7,
+    "unicode": 15,
+    "mixed": 1
+  },
+  "exact_span_precision": 0.7419354838709677,
+  "exact_span_recall": 0.8070175438596491,
+  "exact_span_f1": 0.7731092436974789,
+  "full_sensitive_span_coverage": 0.8070175438596491,
+  "errors": [
+    {
+      "id": "label-adjacent",
+      "category": "account",
+      "text": "계좌번호3333011234567",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 4,
+          "end": 17
+        }
+      ],
+      "masked": "계좌번호3333011234567",
+      "uncovered_spans": [
+        {
+          "start": 4,
+          "end": 17
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "label-adjacent-dashed",
+      "category": "account",
+      "text": "계좌번호3333-01-1234567",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 4,
+          "end": 19
+        }
+      ],
+      "masked": "계좌번호3333-01-1234567",
+      "uncovered_spans": [
+        {
+          "start": 4,
+          "end": 19
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "ascii-suffix",
+      "category": "negative",
+      "text": "계좌번호 3333011234567X",
+      "expected": [],
+      "masked": "계좌번호 *************X",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 5,
+          "end": 18,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "underscore-suffix",
+      "category": "negative",
+      "text": "계좌번호 3333011234567_x",
+      "expected": [],
+      "masked": "계좌번호 *************_x",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 5,
+          "end": 18,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "too-short-6",
+      "category": "negative",
+      "text": "버전 12-34-56",
+      "expected": [],
+      "masked": "버전 ********",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 3,
+          "end": 11,
+          "text": "12-34-56"
+        }
+      ]
+    },
+    {
+      "id": "too-short-9",
+      "category": "negative",
+      "text": "버전 123-456-789",
+      "expected": [],
+      "masked": "버전 ***********",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 3,
+          "end": 14,
+          "text": "123-456-789"
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-we",
+      "category": "negative",
+      "text": "우리 상품 3333011234567",
+      "expected": [],
+      "masked": "우리 상품 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 6,
+          "end": 19,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-one",
+      "category": "negative",
+      "text": "하나 남은 상품 3333011234567",
+      "expected": [],
+      "masked": "하나 남은 상품 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 9,
+          "end": 22,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-company",
+      "category": "negative",
+      "text": "기업 매출 3333011234567",
+      "expected": [],
+      "masked": "기업 매출 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 6,
+          "end": 19,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "embedded-bank-name",
+      "category": "negative",
+      "text": "민간기업 3333011234567",
+      "expected": [],
+      "masked": "민간기업 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 5,
+          "end": 18,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "embedded-one",
+      "category": "negative",
+      "text": "또하나 3333011234567",
+      "expected": [],
+      "masked": "또하나 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 4,
+          "end": 17,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "product-label",
+      "category": "negative",
+      "text": "우리 제품번호 3333011234567",
+      "expected": [],
+      "masked": "우리 제품번호 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 8,
+          "end": 21,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "order-id-label",
+      "category": "negative",
+      "text": "주문 ID 110-123-456789",
+      "expected": [],
+      "masked": "주문 ID **************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 6,
+          "end": 20,
+          "text": "110-123-456789"
+        }
+      ]
+    },
+    {
+      "id": "sentence-period",
+      "category": "negative",
+      "text": "계좌 안내. 3333011234567",
+      "expected": [],
+      "masked": "계좌 안내. *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 7,
+          "end": 20,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "sentence-period-code",
+      "category": "negative",
+      "text": "계좌 없음. 코드 3333011234567",
+      "expected": [],
+      "masked": "계좌 없음. 코드 *************",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 10,
+          "end": 23,
+          "text": "3333011234567"
+        }
+      ]
+    },
+    {
+      "id": "phone-ascii-prefix",
+      "category": "negative",
+      "text": "품번 foo01012345678bar",
+      "expected": [],
+      "masked": "품번 foo***********bar",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 6,
+          "end": 17,
+          "text": "01012345678"
+        }
+      ]
+    },
+    {
+      "id": "phone-ascii-suffix",
+      "category": "negative",
+      "text": "품번 01012345678A",
+      "expected": [],
+      "masked": "품번 ***********A",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 3,
+          "end": 14,
+          "text": "01012345678"
+        }
+      ]
+    },
+    {
+      "id": "phone-long-hyphen",
+      "category": "negative",
+      "text": "버전 010-1234-5678-9999",
+      "expected": [],
+      "masked": "버전 *************-9999",
+      "uncovered_spans": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 3,
+          "end": 16,
+          "text": "010-1234-5678"
+        }
+      ]
+    },
+    {
+      "id": "fullwidth-digits-KR_RRN",
+      "category": "unicode",
+      "text": "📩 주민번호 ９００１０１-１２３４５６８ 확인",
+      "expected": [
+        {
+          "entity": "KR_RRN",
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "masked": "📩 주민번호 ９００１０１-１２３４５６８ 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "fullwidth-hyphen-KR_ACCOUNT",
+      "category": "unicode",
+      "text": "📩 계좌번호 3333－01－1234567 확인",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "masked": "📩 계좌번호 3333－01－1234567 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "fullwidth-hyphen-KR_RRN",
+      "category": "unicode",
+      "text": "📩 주민번호 900101－1234568 확인",
+      "expected": [
+        {
+          "entity": "KR_RRN",
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "masked": "📩 주민번호 900101－1234568 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "unicode-minus-KR_ACCOUNT",
+      "category": "unicode",
+      "text": "📩 계좌번호 3333−01−1234567 확인",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "masked": "📩 계좌번호 3333−01−1234567 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "unicode-minus-KR_RRN",
+      "category": "unicode",
+      "text": "📩 주민번호 900101−1234568 확인",
+      "expected": [
+        {
+          "entity": "KR_RRN",
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "masked": "📩 주민번호 900101−1234568 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "unicode-hyphen-KR_ACCOUNT",
+      "category": "unicode",
+      "text": "📩 계좌번호 3333‐01‐1234567 확인",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "masked": "📩 계좌번호 3333‐01‐1234567 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 22
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "unicode-hyphen-KR_RRN",
+      "category": "unicode",
+      "text": "📩 주민번호 900101‐1234568 확인",
+      "expected": [
+        {
+          "entity": "KR_RRN",
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "masked": "📩 주민번호 900101‐1234568 확인",
+      "uncovered_spans": [
+        {
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "zero-width-KR_ACCOUNT15",
+      "category": "unicode",
+      "text": "계좌번호 3333-​01-1234567 확인",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 5,
+          "end": 21
+        }
+      ],
+      "masked": "계좌번호 3333-​01-1234567 확인",
+      "uncovered_spans": [
+        {
+          "start": 5,
+          "end": 21
+        }
+      ],
+      "predicted": []
+    },
+    {
+      "id": "zero-width-KR_ACCOUNT13",
+      "category": "unicode",
+      "text": "계좌번호 33330​11234567 확인",
+      "expected": [
+        {
+          "entity": "KR_ACCOUNT",
+          "start": 5,
+          "end": 19
+        }
+      ],
+      "masked": "계좌번호 33330​11234567 확인",
+      "uncovered_spans": [
+        {
+          "start": 5,
+          "end": 19
+        }
+      ],
+      "predicted": []
+    }
+  ],
+  "data_sha256": "1d2119b4cdc4076db52dbd272737ac1ff14c5c9daef6c667ed583784de27cf10",
+  "provenance": {
+    "baseline_version": "0.2.0",
+    "source_commit": "80487bad53a9c54b49f209eb4b555d243f7c96fa",
+    "base_commit": "80487bad53a9c54b49f209eb4b555d243f7c96fa",
+    "source_description": "isolated source restored from release commit",
+    "python": "3.12.13",
+    "corpus_path": "benchmarks/data/robustness.jsonl",
+    "command": "uv run python benchmarks/robustness_benchmark.py --output report.json",
+    "note": "Baseline uses PYTHONPATH pointing to source restored from the release commit. Current results are development regression metrics, not held-out evaluation."
+  }
+}

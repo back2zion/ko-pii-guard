@@ -1,0 +1,302 @@
+{
+  "scope": "whole API calls; synthetic separated mobile numbers; warm guard",
+  "measured_at_utc": "2026-10-09T15:51:43.536607+00:00",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "repeats": 3,
+  "baseline_ref": "v0.2.0",
+  "baseline_commit": "80487bad53a9c54b49f209eb4b555d243f7c96fa",
+  "current_head": "80487bad53a9c54b49f209eb4b555d243f7c96fa",
+  "current_includes_uncommitted_source": true,
+  "baseline": {
+    "imported_from": "/tmp/ko-pii-guard-performance-v072s19z/baseline/src/ko_pii_guard/__init__.py",
+    "python_executable": "/home/woodcross/projects/ko-pii-guard/.venv/bin/python3",
+    "python": "3.12.13",
+    "presidio_analyzer": "2.2.364",
+    "presidio_anonymizer": "2.2.364",
+    "results": [
+      {
+        "operation": "analyze",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 22.209,
+        "sample_ms": [
+          22.209,
+          22.0843,
+          22.8774
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 24.3256,
+        "sample_ms": [
+          24.3256,
+          24.462,
+          23.9914
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 24.0508,
+        "sample_ms": [
+          24.0508,
+          24.085,
+          23.921
+        ]
+      },
+      {
+        "operation": "analyze",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 275.5691,
+        "sample_ms": [
+          271.0672,
+          376.6505,
+          275.5691
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 314.9472,
+        "sample_ms": [
+          314.9472,
+          314.2428,
+          318.8712
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 318.6371,
+        "sample_ms": [
+          318.6371,
+          317.7553,
+          324.6491
+        ]
+      },
+      {
+        "operation": "analyze",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 947.612,
+        "sample_ms": [
+          951.8282,
+          941.9335,
+          947.612
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 1141.8313,
+        "sample_ms": [
+          1139.8342,
+          1141.8313,
+          1146.114
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 1162.8436,
+        "sample_ms": [
+          1260.9725,
+          1136.2074,
+          1162.8436
+        ]
+      }
+    ],
+    "source_sha256": "73f2d9dc70eb3825d06b4395581f4a91b175a294df2d9b2a5d97c1575b64f3c8"
+  },
+  "current": {
+    "imported_from": "/tmp/ko-pii-guard-performance-v072s19z/current/src/ko_pii_guard/__init__.py",
+    "python_executable": "/home/woodcross/projects/ko-pii-guard/.venv/bin/python3",
+    "python": "3.12.13",
+    "presidio_analyzer": "2.2.364",
+    "presidio_anonymizer": "2.2.364",
+    "results": [
+      {
+        "operation": "analyze",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 10.531,
+        "sample_ms": [
+          10.4755,
+          10.6011,
+          10.531
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 10.914,
+        "sample_ms": [
+          10.4402,
+          11.2734,
+          10.914
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 100,
+        "characters": 2100,
+        "median_ms": 10.4975,
+        "sample_ms": [
+          10.4945,
+          10.4975,
+          10.544
+        ]
+      },
+      {
+        "operation": "analyze",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 53.1708,
+        "sample_ms": [
+          53.8842,
+          52.8639,
+          53.1708
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 52.633,
+        "sample_ms": [
+          53.0621,
+          52.5226,
+          52.633
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 500,
+        "characters": 10500,
+        "median_ms": 51.9794,
+        "sample_ms": [
+          52.0271,
+          51.7695,
+          51.9794
+        ]
+      },
+      {
+        "operation": "analyze",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 106.9001,
+        "sample_ms": [
+          105.4114,
+          108.6128,
+          106.9001
+        ]
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 105.7473,
+        "sample_ms": [
+          106.1249,
+          105.7473,
+          104.9683
+        ]
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 1000,
+        "characters": 21000,
+        "median_ms": 107.0284,
+        "sample_ms": [
+          107.0284,
+          213.8902,
+          106.7173
+        ]
+      }
+    ],
+    "source_sha256": "10197310640970bdb68f9acb8ceb3ba4cd03f08a0e92acd694ec23e04f5a6357"
+  },
+  "comparison": [
+    {
+      "operation": "analyze",
+      "findings": 100,
+      "characters": 2100,
+      "baseline_median_ms": 22.209,
+      "current_median_ms": 10.531,
+      "speedup": 2.11
+    },
+    {
+      "operation": "mask_tag",
+      "findings": 100,
+      "characters": 2100,
+      "baseline_median_ms": 24.3256,
+      "current_median_ms": 10.914,
+      "speedup": 2.23
+    },
+    {
+      "operation": "mask_stars",
+      "findings": 100,
+      "characters": 2100,
+      "baseline_median_ms": 24.0508,
+      "current_median_ms": 10.4975,
+      "speedup": 2.29
+    },
+    {
+      "operation": "analyze",
+      "findings": 500,
+      "characters": 10500,
+      "baseline_median_ms": 275.5691,
+      "current_median_ms": 53.1708,
+      "speedup": 5.18
+    },
+    {
+      "operation": "mask_tag",
+      "findings": 500,
+      "characters": 10500,
+      "baseline_median_ms": 314.9472,
+      "current_median_ms": 52.633,
+      "speedup": 5.98
+    },
+    {
+      "operation": "mask_stars",
+      "findings": 500,
+      "characters": 10500,
+      "baseline_median_ms": 318.6371,
+      "current_median_ms": 51.9794,
+      "speedup": 6.13
+    },
+    {
+      "operation": "analyze",
+      "findings": 1000,
+      "characters": 21000,
+      "baseline_median_ms": 947.612,
+      "current_median_ms": 106.9001,
+      "speedup": 8.86
+    },
+    {
+      "operation": "mask_tag",
+      "findings": 1000,
+      "characters": 21000,
+      "baseline_median_ms": 1141.8313,
+      "current_median_ms": 105.7473,
+      "speedup": 10.8
+    },
+    {
+      "operation": "mask_stars",
+      "findings": 1000,
+      "characters": 21000,
+      "baseline_median_ms": 1162.8436,
+      "current_median_ms": 107.0284,
+      "speedup": 10.86
+    }
+  ]
+}

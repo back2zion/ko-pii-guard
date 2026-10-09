@@ -1,0 +1,27 @@
+{
+  "corpus": "curated synthetic development regression; not independent evaluation",
+  "counts": {
+    "sentences": 95,
+    "true_positive": 57,
+    "false_positive": 0,
+    "false_negative": 0,
+    "sensitive_spans": 57,
+    "fully_covered_spans": 57,
+    "negative_sentences": 39,
+    "false_positive_sentences": 0
+  },
+  "categories": {
+    "account": 23,
+    "negative": 39,
+    "legacy": 10,
+    "collision": 7,
+    "unicode": 15,
+    "mixed": 1
+  },
+  "exact_span_precision": 1.0,
+  "exact_span_recall": 1.0,
+  "exact_span_f1": 1.0,
+  "full_sensitive_span_coverage": 1.0,
+  "errors": [],
+  "data_sha256": "1d2119b4cdc4076db52dbd272737ac1ff14c5c9daef6c667ed583784de27cf10"
+}

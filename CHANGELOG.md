@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+- Add opt-in KR_NAME and KR_ADDRESS; keep the default nine identifier entities unchanged.
+- Add explicit name fields, bounded road/lot address grammar, reference parentheses and wrapped address lines.
+- Separate detection from replacement with the optional should_mask callback; preserve name detection in filenames.
+- Add a business Korean boilerplate corpus and a separate optional-NER CI job.
+- Add optional local contextual name/address NER with pinned safetensors, offline loading by default and overlapping windows for long documents.
+- Preserve one name character and mask all address letters/digits in partial masking.
+- Add independent name/address fixture annotations, per-track exact-span and actual full-masking evaluation, including common-word/name contrasts.
+- Add documented four-group account candidates with mandatory local context; correct the NH synthetic layout.
+- Fix Korean labels touching account numbers and Korean particles following emails/cards.
+- Reject short numeric codes, ASCII token fragments, misleading bank words and cross-sentence context.
+- Normalize identifier typography and interior invisible characters while preserving original offsets.
+- Check RRN/FRN calendar dates without losing explicitly labeled mistyped identifiers.
+- Use Presidio validators with O(n log n) deduplication/overlap handling; render masks directly.
+- Fully mask spans longer than 1,000 characters and preserve separators between adjacent findings.
+- Disable public-suffix network fetching; propagate regex timeouts instead of silently skipping rules.
+- Add source-backed format documentation, curated regression cases, external evaluation and reproducible performance reports.
+- Add benchmark failure gates to CI and derive the package version from installed metadata.
+
 ## 0.2.0 — 2026-10-09
 
 - Add KR_ACCOUNT for hyphenated bank accounts and context-required 10–14-digit runs.

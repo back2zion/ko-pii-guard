@@ -1,0 +1,268 @@
+{
+  "seed": 2026,
+  "collision_seed": 20261009,
+  "samples_per_case": 200,
+  "rows": [
+    {
+      "entity": "KR_RRN",
+      "case": "주민번호 {} 로 본인확인 부탁드립니다",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_RRN",
+      "case": "번호는 {} 입니다",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_FRN",
+      "case": "외국인등록번호 {} 확인",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_FRN",
+      "case": "등록번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_BRN",
+      "case": "사업자등록번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_BRN",
+      "case": "거래처 번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "PHONE_NUMBER",
+      "case": "연락처 {} 로 전화주세요",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "PHONE_NUMBER",
+      "case": "내일 {} 로 보내 주세요",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "PHONE_NUMBER",
+      "case": "사무실 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_DRIVER_LICENSE",
+      "case": "운전면허번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_DRIVER_LICENSE",
+      "case": "번호 {} 확인",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_PASSPORT",
+      "case": "여권번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_PASSPORT",
+      "case": "코드 {}",
+      "samples": 200,
+      "exact_hits": 0,
+      "fully_masked": 0,
+      "other_findings": 0
+    },
+    {
+      "entity": "EMAIL_ADDRESS",
+      "case": "메일 {} 로 회신",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "CREDIT_CARD",
+      "case": "카드번호 {} 결제",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "신한 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "국민 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 199,
+      "fully_masked": 200,
+      "other_findings": 1
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "우리 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 184,
+      "fully_masked": 200,
+      "other_findings": 16
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "하나 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "농협 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "기업 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 193,
+      "fully_masked": 200,
+      "other_findings": 7
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "카카오뱅크 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "토스뱅크 계좌번호 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "신한 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "국민 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 192,
+      "fully_masked": 200,
+      "other_findings": 8
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "우리 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 154,
+      "fully_masked": 200,
+      "other_findings": 46
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "하나 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 198,
+      "fully_masked": 200,
+      "other_findings": 2
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "농협 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 177,
+      "fully_masked": 200,
+      "other_findings": 23
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "기업 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 197,
+      "fully_masked": 200,
+      "other_findings": 3
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "카카오뱅크 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 185,
+      "fully_masked": 200,
+      "other_findings": 15
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "토스뱅크 입금 계좌 {}",
+      "samples": 200,
+      "exact_hits": 200,
+      "fully_masked": 200,
+      "other_findings": 0
+    },
+    {
+      "entity": "KR_ACCOUNT",
+      "case": "코드 {}",
+      "samples": 200,
+      "exact_hits": 0,
+      "fully_masked": 19,
+      "other_findings": 19
+    }
+  ],
+  "negative_sentences": 2200,
+  "false_positive_sentences": 0,
+  "false_positive_findings": 0,
+  "collision_cases": 1600,
+  "account_misclassifications": 0
+}

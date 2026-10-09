@@ -1,0 +1,109 @@
+{"id": "person-ordinary", "track": "structured", "category": "person", "text": "성명: 오지은", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "person-common-noun-sang", "track": "structured", "category": "person", "text": "성명: 이상", "expected": [{"entity": "KR_NAME", "start": 4, "end": 6}]}
+{"id": "person-common-noun-wish", "track": "structured", "category": "person", "text": "이름: 소망", "expected": [{"entity": "KR_NAME", "start": 4, "end": 6}]}
+{"id": "person-compound-surname", "track": "structured", "category": "person", "text": "담당자: 남궁민수", "expected": [{"entity": "KR_NAME", "start": 5, "end": 9}]}
+{"id": "person-compound-surname-two", "track": "structured", "category": "person", "text": "예금주: 황보라윤", "expected": [{"entity": "KR_NAME", "start": 5, "end": 9}]}
+{"id": "person-two-syllables", "track": "structured", "category": "person", "text": "수취인: 허솔", "expected": [{"entity": "KR_NAME", "start": 5, "end": 7}]}
+{"id": "person-uncommon-surname", "track": "structured", "category": "person", "text": "성명: 빙나래", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "person-no-surname-gate", "track": "structured", "category": "person", "text": "성명: 별하늘빛", "expected": [{"entity": "KR_NAME", "start": 4, "end": 8}]}
+{"id": "person-five-syllables", "track": "structured", "category": "person", "text": "성명: 황금빛나래", "expected": [{"entity": "KR_NAME", "start": 4, "end": 9}]}
+{"id": "person-particle-ending", "track": "structured", "category": "person", "text": "고객명: 김하나", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}
+{"id": "person-recipient", "track": "structured", "category": "person", "text": "수령인: 제갈다윤", "expected": [{"entity": "KR_NAME", "start": 5, "end": 9}]}
+{"id": "person-receiver", "track": "structured", "category": "person", "text": "받는 분: 선우라온", "expected": [{"entity": "KR_NAME", "start": 6, "end": 10}]}
+{"id": "person-transliterated-short", "track": "structured", "category": "person", "text": "성명: 리웨이", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "person-transliterated-long", "track": "structured", "category": "person", "text": "성명: 아나스타시아", "expected": [{"entity": "KR_NAME", "start": 4, "end": 10}]}
+{"id": "person-latin-two", "track": "structured", "category": "person", "text": "성명: Mina Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 16}]}
+{"id": "person-latin-three", "track": "structured", "category": "person", "text": "성명: Jean Luc Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 20}]}
+{"id": "person-latin-hyphen", "track": "structured", "category": "person", "text": "성명: Ana-Marie Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 21}]}
+{"id": "person-equals", "track": "structured", "category": "person", "text": "성명=오지은", "expected": [{"entity": "KR_NAME", "start": 3, "end": 6}]}
+{"id": "person-fullwidth-colon", "track": "structured", "category": "person", "text": "성명：오지은", "expected": [{"entity": "KR_NAME", "start": 3, "end": 6}]}
+{"id": "person-space-label", "track": "structured", "category": "person", "text": "성명 오지은", "expected": [{"entity": "KR_NAME", "start": 3, "end": 6}]}
+{"id": "person-adjacent-label", "track": "structured", "category": "person", "text": "성명:오지은", "expected": [{"entity": "KR_NAME", "start": 3, "end": 6}]}
+{"id": "person-json-value", "track": "structured", "category": "person", "text": "{\"성명\": \"오지은\"}", "expected": [{"entity": "KR_NAME", "start": 8, "end": 11}]}
+{"id": "person-newline-field", "track": "structured", "category": "person", "text": "성명:\n오지은", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "person-honorific-separated", "track": "structured", "category": "person", "text": "예금주: 오지은 님", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}
+{"id": "person-honorific-attached", "track": "structured", "category": "person", "text": "수취인: 남궁민수님", "expected": [{"entity": "KR_NAME", "start": 5, "end": 9}]}
+{"id": "person-emoji-offset", "track": "structured", "category": "person", "text": "👤 성명: 오지은", "expected": [{"entity": "KR_NAME", "start": 6, "end": 9}]}
+{"id": "negative-name-company", "track": "structured", "category": "negative", "text": "회사명: 가상테크", "expected": []}
+{"id": "negative-name-product", "track": "structured", "category": "negative", "text": "상품명: 소망", "expected": []}
+{"id": "negative-name-project", "track": "structured", "category": "negative", "text": "프로젝트명: 오지은", "expected": []}
+{"id": "negative-name-common-noun", "track": "structured", "category": "negative", "text": "이상 없습니다.", "expected": []}
+{"id": "negative-name-wish", "track": "structured", "category": "negative", "text": "소망을 담은 문장입니다.", "expected": []}
+{"id": "negative-name-empty", "track": "structured", "category": "negative", "text": "성명:", "expected": []}
+{"id": "negative-name-missing", "track": "structured", "category": "negative", "text": "성명: 미기재", "expected": []}
+{"id": "negative-name-none", "track": "structured", "category": "negative", "text": "성명: 없음", "expected": []}
+{"id": "negative-name-anonymous", "track": "structured", "category": "negative", "text": "성명: 익명", "expected": []}
+{"id": "negative-name-prose", "track": "structured", "category": "negative", "text": "이름을 입력하세요.", "expected": []}
+{"id": "negative-name-placeholder", "track": "structured", "category": "negative", "text": "성명: [입력 필요]", "expected": []}
+{"id": "negative-name-template", "track": "structured", "category": "negative", "text": "이름: {{name}}", "expected": []}
+{"id": "negative-name-latin-code", "track": "structured", "category": "negative", "text": "품번: Mina-Example", "expected": []}
+{"id": "address-road-full", "track": "structured", "category": "address", "text": "주소: 서울특별시 강남구 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 24}]}
+{"id": "address-road-short-province", "track": "structured", "category": "address", "text": "배송지: 서울 강남구 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 5, "end": 22}]}
+{"id": "address-road-gu-less", "track": "structured", "category": "address", "text": "주소: 세종특별자치시 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 22}]}
+{"id": "address-road-special-jeju", "track": "structured", "category": "address", "text": "주소: 제주특별자치도 제주시 가상누리길 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 26}]}
+{"id": "address-road-special-gangwon", "track": "structured", "category": "address", "text": "주소: 강원특별자치도 춘천시 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 26}]}
+{"id": "address-road-special-jeonbuk", "track": "structured", "category": "address", "text": "주소: 전북특별자치도 전주시 완산구 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 30}]}
+{"id": "address-road-daero", "track": "structured", "category": "address", "text": "주소: 부산광역시 해운대구 가상누리대로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 26}]}
+{"id": "address-road-branch", "track": "structured", "category": "address", "text": "주소: 대전광역시 유성구 가상누리로12길 99-1", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 27}]}
+{"id": "address-road-labeled-short", "track": "structured", "category": "address", "text": "주소: 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 14}]}
+{"id": "address-lot", "track": "structured", "category": "address", "text": "주소: 경기도 수원시 팔달구 가상동 999-1", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 25}]}
+{"id": "address-lot-rural", "track": "structured", "category": "address", "text": "주소: 경상북도 가상군 가상면 가상리 999-1", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 26}]}
+{"id": "address-lot-mountain", "track": "structured", "category": "address", "text": "주소: 경상남도 가상군 가상읍 가상리 산 999-1", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 28}]}
+{"id": "address-units", "track": "structured", "category": "address", "text": "배송지: 세종특별자치시 가상누리로 9999 101동 202호", "expected": [{"entity": "KR_ADDRESS", "start": 5, "end": 33}]}
+{"id": "address-floor-unit", "track": "structured", "category": "address", "text": "주소: 서울특별시 강남구 가상누리로 9999 3층 202호", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 32}]}
+{"id": "address-apartment-comma", "track": "structured", "category": "address", "text": "주소: 서울특별시 강남구 가상누리로 9999, 테스트아파트 101동 202호", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 42}]}
+{"id": "address-officetel", "track": "structured", "category": "address", "text": "배송지: 서울특별시 강남구 가상누리로 9999 테스트오피스텔 202호", "expected": [{"entity": "KR_ADDRESS", "start": 5, "end": 38}]}
+{"id": "address-numeric-units-comma", "track": "structured", "category": "address", "text": "주소: 서울특별시 강남구 가상누리로 9999, 101동 202호", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 35}]}
+{"id": "address-particle", "track": "structured", "category": "address", "text": "주소: 서울특별시 강남구 가상누리로 9999로 배송해 주세요.", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 24}]}
+{"id": "address-json", "track": "structured", "category": "address", "text": "{\"주소\": \"서울특별시 강남구 가상누리로 9999\"}", "expected": [{"entity": "KR_ADDRESS", "start": 8, "end": 28}]}
+{"id": "address-newline", "track": "structured", "category": "address", "text": "주소:\n서울특별시 강남구 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 24}]}
+{"id": "address-emoji-offset", "track": "structured", "category": "address", "text": "📦 주소: 서울특별시 강남구 가상누리로 9999", "expected": [{"entity": "KR_ADDRESS", "start": 6, "end": 26}]}
+{"id": "negative-place-city", "track": "structured", "category": "negative", "text": "서울", "expected": []}
+{"id": "negative-place-district", "track": "structured", "category": "negative", "text": "서울특별시 강남구", "expected": []}
+{"id": "negative-place-trip", "track": "structured", "category": "negative", "text": "서울에서 만나요.", "expected": []}
+{"id": "negative-place-road-no-building", "track": "structured", "category": "negative", "text": "주소: 가상누리로", "expected": []}
+{"id": "negative-address-empty", "track": "structured", "category": "negative", "text": "주소:", "expected": []}
+{"id": "negative-address-missing", "track": "structured", "category": "negative", "text": "주소: 미기재", "expected": []}
+{"id": "negative-address-none", "track": "structured", "category": "negative", "text": "주소: 없음", "expected": []}
+{"id": "negative-address-digital", "track": "structured", "category": "negative", "text": "서버 주소: localhost", "expected": []}
+{"id": "negative-address-memory", "track": "structured", "category": "negative", "text": "메모리 주소: 0xABCD", "expected": []}
+{"id": "negative-address-menu", "track": "structured", "category": "negative", "text": "주소록 메뉴를 선택하세요.", "expected": []}
+{"id": "negative-address-unit-only", "track": "structured", "category": "negative", "text": "101동 202호", "expected": []}
+{"id": "negative-address-number-only", "track": "structured", "category": "negative", "text": "주소: 9999", "expected": []}
+{"id": "mixed-person-address", "track": "structured", "category": "mixed", "text": "성명: 오지은, 주소: 서울특별시 강남구 가상누리로 9999", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}, {"entity": "KR_ADDRESS", "start": 13, "end": 33}]}
+{"id": "mixed-person-two-fields", "track": "structured", "category": "mixed", "text": "보내는 사람 성명: 이상; 받는 분: 소망", "expected": [{"entity": "KR_NAME", "start": 11, "end": 13}, {"entity": "KR_NAME", "start": 21, "end": 23}]}
+{"id": "prose-name-subject", "track": "free_prose", "category": "person", "text": "오지은은 안내문을 작성했다.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 3}]}
+{"id": "prose-name-object", "track": "free_prose", "category": "person", "text": "팀장은 오지은을 회의에 초대했다.", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "prose-name-companion", "track": "free_prose", "category": "person", "text": "남궁민수와 함께 점검을 진행했다.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 4}]}
+{"id": "prose-name-genitive", "track": "free_prose", "category": "person", "text": "황보라윤의 보고서를 읽었다.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 4}]}
+{"id": "prose-name-role-sang", "track": "free_prose", "category": "person", "text": "신입 이상은 서류를 제출했다.", "expected": [{"entity": "KR_NAME", "start": 3, "end": 5}]}
+{"id": "prose-name-role-wish", "track": "free_prose", "category": "person", "text": "동료 소망은 새 팀으로 옮겼다.", "expected": [{"entity": "KR_NAME", "start": 3, "end": 5}]}
+{"id": "prose-name-common-ending", "track": "free_prose", "category": "person", "text": "신입 김하나는 문서를 검토했다.", "expected": [{"entity": "KR_NAME", "start": 3, "end": 6}]}
+{"id": "prose-name-honorific", "track": "free_prose", "category": "person", "text": "오지은님께 전달해 주세요.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 3}]}
+{"id": "prose-name-said", "track": "free_prose", "category": "person", "text": "담당자는 오지은이라고 말했다.", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}
+{"id": "prose-name-copula", "track": "free_prose", "category": "person", "text": "제 이름은 오지은입니다.", "expected": [{"entity": "KR_NAME", "start": 6, "end": 9}]}
+{"id": "prose-name-uncommon", "track": "free_prose", "category": "person", "text": "새로 온 빙나래가 인사를 했다.", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}
+{"id": "prose-name-transliterated", "track": "free_prose", "category": "person", "text": "새 팀원 아나스타시아가 소개를 마쳤다.", "expected": [{"entity": "KR_NAME", "start": 5, "end": 11}]}
+{"id": "prose-name-latin", "track": "free_prose", "category": "person", "text": "외부 담당자인 Mina Example과 일정에 관해 이야기했다.", "expected": [{"entity": "KR_NAME", "start": 8, "end": 20}]}
+{"id": "prose-name-two", "track": "free_prose", "category": "person", "text": "오지은은 남궁민수에게 문서를 전달했다.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 3}, {"entity": "KR_NAME", "start": 5, "end": 9}]}
+{"id": "prose-address-shipment", "track": "free_prose", "category": "address", "text": "물건은 서울특별시 강남구 가상누리로 9999로 보내 주세요.", "expected": [{"entity": "KR_ADDRESS", "start": 4, "end": 24}]}
+{"id": "prose-address-lot", "track": "free_prose", "category": "address", "text": "경기도 수원시 팔달구 가상동 999-1에서 만나기로 했다.", "expected": [{"entity": "KR_ADDRESS", "start": 0, "end": 21}]}
+{"id": "prose-address-parentheses", "track": "free_prose", "category": "address", "text": "서울특별시 강남구 가상누리로 9999 (가상동, 테스트아파트) 101동 202호에 도착했다.", "expected": [{"entity": "KR_ADDRESS", "start": 0, "end": 44}]}
+{"id": "prose-address-short", "track": "free_prose", "category": "address", "text": "가상누리로 9999에서 택배를 받았다.", "expected": [{"entity": "KR_ADDRESS", "start": 0, "end": 10}]}
+{"id": "prose-address-line-wrap", "track": "free_prose", "category": "address", "text": "배송 장소는 서울특별시 강남구\n가상누리로 9999 101동 202호입니다.", "expected": [{"entity": "KR_ADDRESS", "start": 7, "end": 37}]}
+{"id": "prose-negative-sang", "track": "free_prose", "category": "negative", "text": "더 이상 변경할 내용은 없습니다.", "expected": []}
+{"id": "prose-negative-sang-subject", "track": "free_prose", "category": "negative", "text": "점검 중 이상이 발견됐다.", "expected": []}
+{"id": "prose-negative-wish", "track": "free_prose", "category": "negative", "text": "올해의 소망은 건강입니다.", "expected": []}
+{"id": "prose-negative-wish-object", "track": "free_prose", "category": "negative", "text": "모두의 소망을 담았습니다.", "expected": []}
+{"id": "prose-negative-one", "track": "free_prose", "category": "negative", "text": "문서 하나를 확인했다.", "expected": []}
+{"id": "prose-negative-org", "track": "free_prose", "category": "negative", "text": "가상테크가 새 제품을 출시했다.", "expected": []}
+{"id": "prose-negative-product", "track": "free_prose", "category": "negative", "text": "소망이라는 상품을 주문했다.", "expected": []}
+{"id": "prose-negative-city", "track": "free_prose", "category": "negative", "text": "서울과 부산 사이를 이동했다.", "expected": []}
+{"id": "prose-negative-gu", "track": "free_prose", "category": "negative", "text": "강남구 주민을 위한 공지입니다.", "expected": []}
+{"id": "prose-negative-road", "track": "free_prose", "category": "negative", "text": "가상누리로 일대의 교통이 혼잡하다.", "expected": []}
+{"id": "prose-negative-station", "track": "free_prose", "category": "negative", "text": "강남역에서 지하철을 탔다.", "expected": []}
+{"id": "prose-negative-incomplete-address", "track": "free_prose", "category": "negative", "text": "가상동 근처에서 기다렸다.", "expected": []}
+{"id": "prose-negative-admin-discussion", "track": "free_prose", "category": "negative", "text": "경기도 수원시와 서울특별시의 정책을 비교했다.", "expected": []}
+{"id": "prose-mixed", "track": "free_prose", "category": "mixed", "text": "오지은은 서울특별시 강남구 가상누리로 9999에 도착했다.", "expected": [{"entity": "KR_NAME", "start": 0, "end": 3}, {"entity": "KR_ADDRESS", "start": 5, "end": 25}]}
+{"id": "prose-name-resume-file", "track": "free_prose", "category": "person", "text": "첨부: 김철수_이력서.pdf", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "prose-name-resume-path", "track": "free_prose", "category": "person", "text": "/지원서/오지은_이력서.pdf", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}

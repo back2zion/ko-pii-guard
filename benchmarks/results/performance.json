@@ -1,0 +1,257 @@
+{
+  "scope": "overlap operations only; synthetic spans; not end-to-end",
+  "measured_at_utc": "2026-10-09T14:56:04.308922+00:00",
+  "reference": "installed Presidio dedupe; v0.2.0 greedy/veto copied in this script",
+  "benchmark_sha256": "e6cd0120bdcb1e64b010f502ddee43e333d8a9fc065ba987d8444ed7300cc4de",
+  "spans_sha256": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+  "python": "3.12.13",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "presidio_analyzer": "2.2.364",
+  "seed": 20261009,
+  "repeats": 5,
+  "results": [
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "separated",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.7383,
+      "optimized_median_ms": 0.1918,
+      "speedup": 3.85
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "separated",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.239,
+      "optimized_median_ms": 0.1576,
+      "speedup": 1.52
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "separated",
+      "candidate_count": 100,
+      "protected_count": 100,
+      "previous_median_ms": 0.3657,
+      "optimized_median_ms": 0.0305,
+      "speedup": 11.99
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "separated",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 66.9635,
+      "optimized_median_ms": 2.455,
+      "speedup": 27.28
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "separated",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 20.0822,
+      "optimized_median_ms": 2.4397,
+      "speedup": 8.23
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "separated",
+      "candidate_count": 1000,
+      "protected_count": 1000,
+      "previous_median_ms": 37.3152,
+      "optimized_median_ms": 0.501,
+      "speedup": 74.48
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "separated",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 1707.7491,
+      "optimized_median_ms": 15.3391,
+      "speedup": 111.33
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "separated",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 515.2605,
+      "optimized_median_ms": 15.9477,
+      "speedup": 32.31
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "separated",
+      "candidate_count": 5000,
+      "protected_count": 5000,
+      "previous_median_ms": 916.6322,
+      "optimized_median_ms": 2.4801,
+      "speedup": 369.6
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "mixed",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.7126,
+      "optimized_median_ms": 0.1811,
+      "speedup": 3.93
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "mixed",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.1174,
+      "optimized_median_ms": 0.0984,
+      "speedup": 1.19
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "mixed",
+      "candidate_count": 100,
+      "protected_count": 16,
+      "previous_median_ms": 0.0639,
+      "optimized_median_ms": 0.0145,
+      "speedup": 4.41
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "mixed",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 69.0936,
+      "optimized_median_ms": 2.3972,
+      "speedup": 28.82
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "mixed",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 7.9413,
+      "optimized_median_ms": 1.438,
+      "speedup": 5.52
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "mixed",
+      "candidate_count": 1000,
+      "protected_count": 166,
+      "previous_median_ms": 4.4338,
+      "optimized_median_ms": 0.1867,
+      "speedup": 23.75
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "mixed",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 1798.3755,
+      "optimized_median_ms": 16.2711,
+      "speedup": 110.53
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "mixed",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 209.5664,
+      "optimized_median_ms": 12.0125,
+      "speedup": 17.45
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "mixed",
+      "candidate_count": 5000,
+      "protected_count": 833,
+      "previous_median_ms": 109.8102,
+      "optimized_median_ms": 1.2393,
+      "speedup": 88.61
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "overlapping",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.7155,
+      "optimized_median_ms": 0.1815,
+      "speedup": 3.94
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "overlapping",
+      "candidate_count": 100,
+      "protected_count": 0,
+      "previous_median_ms": 0.0546,
+      "optimized_median_ms": 0.0425,
+      "speedup": 1.28
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "overlapping",
+      "candidate_count": 100,
+      "protected_count": 1,
+      "previous_median_ms": 0.0333,
+      "optimized_median_ms": 0.0083,
+      "speedup": 4.01
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "overlapping",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 69.9863,
+      "optimized_median_ms": 2.8268,
+      "speedup": 24.76
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "overlapping",
+      "candidate_count": 1000,
+      "protected_count": 0,
+      "previous_median_ms": 0.6812,
+      "optimized_median_ms": 0.5511,
+      "speedup": 1.24
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "overlapping",
+      "candidate_count": 1000,
+      "protected_count": 1,
+      "previous_median_ms": 0.3496,
+      "optimized_median_ms": 0.0937,
+      "speedup": 3.73
+    },
+    {
+      "operation": "presidio_duplicate_removal",
+      "scenario": "overlapping",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 1855.3113,
+      "optimized_median_ms": 15.874,
+      "speedup": 116.88
+    },
+    {
+      "operation": "greedy_selection",
+      "scenario": "overlapping",
+      "candidate_count": 5000,
+      "protected_count": 0,
+      "previous_median_ms": 3.9495,
+      "optimized_median_ms": 3.907,
+      "speedup": 1.01
+    },
+    {
+      "operation": "account_overlap_veto",
+      "scenario": "overlapping",
+      "candidate_count": 5000,
+      "protected_count": 1,
+      "previous_median_ms": 1.7895,
+      "optimized_median_ms": 0.5004,
+      "speedup": 3.58
+    }
+  ]
+}

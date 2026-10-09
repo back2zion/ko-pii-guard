@@ -26,4 +26,41 @@ jobs:
       - name: Test
         run: uv run --frozen pytest -q
       - name: Benchmark
-        run: uv run --frozen python benchmarks/synthetic_benchmark.py
+        run: uv run --frozen python benchmarks/synthetic_benchmark.py --check
+      - name: Robustness regression
+        run: uv run --frozen python benchmarks/robustness_benchmark.py --check
+      - name: Name and address regression
+        run: uv run --frozen python benchmarks/name_address_benchmark.py --check
+      - name: Business Korean negative regression
+        run: uv run --frozen python benchmarks/name_address_benchmark.py --data benchmarks/data/business_korean.jsonl --check-negatives
+
+  contextual-ner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install optional local NER
+        run: uv sync --frozen --extra dev --extra ner
+      - name: Cache pinned model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: ner-e5-a308c54b4407819624a5661e31e162a269f39818
+      - name: Download pinned model explicitly
+        run: uv run --frozen python -m ko_pii_guard.ner --download
+      - name: Real model and long-input integration
+        run: KO_PII_TEST_NER=1 uv run --frozen pytest -q tests/test_ner.py
+      - name: Contextual name and business-language regressions
+        run: |
+          uv run --frozen python benchmarks/name_address_benchmark.py --ner --check --check-negatives --output /tmp/name-address.json
+          uv run --frozen python benchmarks/name_address_benchmark.py --data benchmarks/data/business_korean.jsonl --ner --check-negatives --output /tmp/business-korean.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contextual-ner-evaluation
+          path: |
+            /tmp/name-address.json
+            /tmp/business-korean.json

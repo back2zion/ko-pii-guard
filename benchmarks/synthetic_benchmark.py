@@ -7,6 +7,8 @@ to be unassigned. Run: uv run python benchmarks/synthetic_benchmark.py
 
 from __future__ import annotations
 
+import argparse
+import json
 import random
 import sys
 from collections import defaultdict
@@ -73,23 +75,39 @@ NEGATIVE_TEMPLATES = [
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--check", action="store_true", help="Fail on FP/collision regressions")
+    args = parser.parse_args()
     rng = random.Random(2026)
     guard = KoreanPIIGuard()
+    rows = []
     print("| Entity | Case | Detected | Recall |")
     print("|---|---|---|---|")
     for entity, cases in POSITIVE_CASES.items():
         for template, gen in cases:
             hit = 0
+            covered = 0
+            extra = 0
             for _ in range(N):
                 number = gen(rng)
                 text = template.format(number)
                 start = text.index(number)
+                findings = guard.analyze(text)
                 if any(
                     f.entity == entity and f.start == start and f.end == start + len(number)
-                    for f in guard.analyze(text)
+                    for f in findings
                 ):
                     hit += 1
+                masked = guard.mask(text, style="stars")
+                covered += masked[start:start + len(number)] == "*" * len(number)
+                extra += sum(
+                    (f.entity, f.start, f.end) != (entity, start, start + len(number))
+                    for f in findings
+                )
             print(f"| {entity} | `{template.format('…')}` | {hit}/{N} | {hit / N:.1%} |")
+            rows.append({"entity": entity, "case": template, "samples": N, "exact_hits": hit,
+                         "fully_masked": covered, "other_findings": extra})
 
     print()
     fp = defaultdict(int)
@@ -124,6 +142,15 @@ def main() -> None:
             total_collisions += 1
             account_errors += any(f.entity == "KR_ACCOUNT" for f in guard.analyze(text))
     print(f"Existing identifiers mislabeled KR_ACCOUNT: {account_errors}/{total_collisions}")
+    if args.output:
+        report = {"seed": 2026, "collision_seed": 20261009, "samples_per_case": N,
+                  "rows": rows, "negative_sentences": total, "false_positive_sentences":
+                  flagged_sentences, "false_positive_findings": flagged,
+                  "collision_cases": total_collisions, "account_misclassifications": account_errors}
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    if args.check and (flagged_sentences or account_errors):
+        raise SystemExit("False-positive/collision regression")
 
 
 if __name__ == "__main__":

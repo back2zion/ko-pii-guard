@@ -1,0 +1,2 @@
+{"id": "negative-name-file", "track": "ambiguous", "category": "negative", "text": "파일명: 이상", "reason": "파일 이름만으로 실제 인물 참조 여부를 확정할 수 없어 정밀도/재현율 분모에서 제외. 모델 출력은 참고용으로 별도 기록한다."}
+{"id": "prose-negative-file", "track": "ambiguous", "category": "negative", "text": "오지은이라는 파일을 열었다.", "reason": "파일 이름만으로 실제 인물 참조 여부를 확정할 수 없어 정밀도/재현율 분모에서 제외. 모델 출력은 참고용으로 별도 기록한다."}

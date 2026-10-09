@@ -1,0 +1,95 @@
+{"id": "label-spaced", "category": "account", "text": "계좌번호 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 18}]}
+{"id": "label-adjacent", "category": "account", "text": "계좌번호3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 4, "end": 17}]}
+{"id": "label-adjacent-dashed", "category": "account", "text": "계좌번호3333-01-1234567", "expected": [{"entity": "KR_ACCOUNT", "start": 4, "end": 19}]}
+{"id": "label-colon", "category": "account", "text": "입금계좌:3333-01-1234567", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 20}]}
+{"id": "trailing-particle", "category": "account", "text": "계좌번호 3333-01-1234567로 보내 주세요", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 20}]}
+{"id": "trailing-bare-particle", "category": "account", "text": "계좌번호 3333011234567로 보내 주세요", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 18}]}
+{"id": "ascii-punctuation", "category": "account", "text": "계좌번호 (3333-01-1234567)", "expected": [{"entity": "KR_ACCOUNT", "start": 6, "end": 21}]}
+{"id": "json-value", "category": "account", "text": "{\"계좌번호\":\"3333011234567\"}", "expected": [{"entity": "KR_ACCOUNT", "start": 9, "end": 22}]}
+{"id": "english-code-before-label", "category": "account", "text": "주문번호 확인 후 계좌번호 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 15, "end": 28}]}
+{"id": "name-between", "category": "account", "text": "입금 계좌 홍길동 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 10, "end": 23}]}
+{"id": "legacy-no-label", "category": "account", "text": "번호 110-123-456789", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 17}]}
+{"id": "emoji-offset", "category": "account", "text": "📩 계좌번호 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 20}]}
+{"id": "combining-offset", "category": "account", "text": "é 계좌번호 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 8, "end": 21}]}
+{"id": "bank-label-농협", "category": "account", "text": "농협 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-국민", "category": "account", "text": "국민 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-신한", "category": "account", "text": "신한 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-우리", "category": "account", "text": "우리 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-하나", "category": "account", "text": "하나 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-기업", "category": "account", "text": "기업 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 3, "end": 16}]}
+{"id": "bank-label-카카오뱅크", "category": "account", "text": "카카오뱅크 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 6, "end": 19}]}
+{"id": "bank-label-토스뱅크", "category": "account", "text": "토스뱅크 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 18}]}
+{"id": "bank-label-새마을금고", "category": "account", "text": "새마을금고 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 6, "end": 19}]}
+{"id": "bank-label-우체국", "category": "account", "text": "우체국 3333011234567", "expected": [{"entity": "KR_ACCOUNT", "start": 4, "end": 17}]}
+{"id": "ascii-prefix", "category": "negative", "text": "계좌번호 X3333011234567", "expected": []}
+{"id": "ascii-suffix", "category": "negative", "text": "계좌번호 3333011234567X", "expected": []}
+{"id": "underscore-prefix", "category": "negative", "text": "계좌번호 _3333011234567", "expected": []}
+{"id": "underscore-suffix", "category": "negative", "text": "계좌번호 3333011234567_x", "expected": []}
+{"id": "hyphen-prefix", "category": "negative", "text": "계좌번호 X-3333-01-1234567", "expected": []}
+{"id": "four-group-fragment", "category": "negative", "text": "계좌번호 3333-01-1234567-99", "expected": []}
+{"id": "too-short-6", "category": "negative", "text": "버전 12-34-56", "expected": []}
+{"id": "too-short-9", "category": "negative", "text": "버전 123-456-789", "expected": []}
+{"id": "date", "category": "negative", "text": "은행 기준일 2026-10-09", "expected": []}
+{"id": "iso-date-time", "category": "negative", "text": "2026-10-09T12:30:00", "expected": []}
+{"id": "unknown-code", "category": "negative", "text": "코드 3333011234567", "expected": []}
+{"id": "ambiguous-we", "category": "negative", "text": "우리 상품 3333011234567", "expected": []}
+{"id": "ambiguous-one", "category": "negative", "text": "하나 남은 상품 3333011234567", "expected": []}
+{"id": "ambiguous-company", "category": "negative", "text": "기업 매출 3333011234567", "expected": []}
+{"id": "embedded-bank-name", "category": "negative", "text": "민간기업 3333011234567", "expected": []}
+{"id": "embedded-one", "category": "negative", "text": "또하나 3333011234567", "expected": []}
+{"id": "product-label", "category": "negative", "text": "우리 제품번호 3333011234567", "expected": []}
+{"id": "order-label", "category": "negative", "text": "은행 주문번호 3333011234567", "expected": []}
+{"id": "order-id-label", "category": "negative", "text": "주문 ID 110-123-456789", "expected": []}
+{"id": "tracking-label", "category": "negative", "text": "은행 송장번호 3333011234567", "expected": []}
+{"id": "reference-label", "category": "negative", "text": "계좌 안내; 참조번호 3333-01-1234567", "expected": []}
+{"id": "product-code-label", "category": "negative", "text": "은행 상품코드 3333-01-1234567", "expected": []}
+{"id": "sentence-period", "category": "negative", "text": "계좌 안내. 3333011234567", "expected": []}
+{"id": "sentence-period-code", "category": "negative", "text": "계좌 없음. 코드 3333011234567", "expected": []}
+{"id": "sentence-newline", "category": "negative", "text": "은행 안내\n3333011234567", "expected": []}
+{"id": "sentence-semicolon", "category": "negative", "text": "계좌 안내; 3333011234567", "expected": []}
+{"id": "sentence-comma", "category": "negative", "text": "계좌 안내, 3333011234567", "expected": []}
+{"id": "sentence-question", "category": "negative", "text": "계좌 안내? 3333011234567", "expected": []}
+{"id": "context-after", "category": "negative", "text": "코드 3333011234567 계좌번호", "expected": []}
+{"id": "context-too-far", "category": "negative", "text": "계좌번호 가가가가가가가가가가가가가가가가가가가가가 3333011234567", "expected": []}
+{"id": "phone-ascii-prefix", "category": "negative", "text": "품번 foo01012345678bar", "expected": []}
+{"id": "phone-ascii-suffix", "category": "negative", "text": "품번 01012345678A", "expected": []}
+{"id": "phone-long-hyphen", "category": "negative", "text": "버전 010-1234-5678-9999", "expected": []}
+{"id": "zero-width-code", "category": "negative", "text": "상품코드 X3333​011234567", "expected": []}
+{"id": "zero-width-suffix", "category": "negative", "text": "상품코드 3333011234567​X", "expected": []}
+{"id": "plain-prose", "category": "negative", "text": "개인정보가 없는 문장입니다", "expected": []}
+{"id": "amount", "category": "negative", "text": "매출은 1,234,567원입니다", "expected": []}
+{"id": "version-dot", "category": "negative", "text": "버전 3.11.4로 업데이트했습니다", "expected": []}
+{"id": "empty", "category": "negative", "text": "", "expected": []}
+{"id": "legacy-rrn", "category": "legacy", "text": "주민번호 900101-1234568", "expected": [{"entity": "KR_RRN", "start": 5, "end": 19}]}
+{"id": "collision-rrn", "category": "collision", "text": "은행 계좌 확인: 900101-1234568", "expected": [{"entity": "KR_RRN", "start": 10, "end": 24}]}
+{"id": "legacy-rrn-bare", "category": "legacy", "text": "주민번호 6507041449743", "expected": [{"entity": "KR_RRN", "start": 5, "end": 18}]}
+{"id": "collision-rrn-bare", "category": "collision", "text": "은행 계좌 확인: 6507041449743", "expected": [{"entity": "KR_RRN", "start": 10, "end": 23}]}
+{"id": "legacy-frn", "category": "legacy", "text": "외국인등록번호 820519-6736018", "expected": [{"entity": "KR_FRN", "start": 8, "end": 22}]}
+{"id": "collision-frn", "category": "collision", "text": "은행 계좌 확인: 820519-6736018", "expected": [{"entity": "KR_FRN", "start": 10, "end": 24}]}
+{"id": "legacy-brn", "category": "legacy", "text": "사업자등록번호 123-45-67891", "expected": [{"entity": "KR_BRN", "start": 8, "end": 20}]}
+{"id": "collision-brn", "category": "collision", "text": "은행 계좌 확인: 123-45-67891", "expected": [{"entity": "KR_BRN", "start": 10, "end": 22}]}
+{"id": "legacy-phone", "category": "legacy", "text": "연락처 010-1234-5678", "expected": [{"entity": "PHONE_NUMBER", "start": 4, "end": 17}]}
+{"id": "collision-phone", "category": "collision", "text": "은행 계좌 확인: 010-1234-5678", "expected": [{"entity": "PHONE_NUMBER", "start": 10, "end": 23}]}
+{"id": "legacy-phone-bare", "category": "legacy", "text": "연락처 01012345678", "expected": [{"entity": "PHONE_NUMBER", "start": 4, "end": 15}]}
+{"id": "collision-phone-bare", "category": "collision", "text": "은행 계좌 확인: 01012345678", "expected": [{"entity": "PHONE_NUMBER", "start": 10, "end": 21}]}
+{"id": "legacy-card", "category": "legacy", "text": "카드번호 4111-1111-1111-1111", "expected": [{"entity": "CREDIT_CARD", "start": 5, "end": 24}]}
+{"id": "collision-card", "category": "collision", "text": "은행 계좌 확인: 4111-1111-1111-1111", "expected": [{"entity": "CREDIT_CARD", "start": 10, "end": 29}]}
+{"id": "legacy-email", "category": "legacy", "text": "이메일 user@example.com", "expected": [{"entity": "EMAIL_ADDRESS", "start": 4, "end": 20}]}
+{"id": "legacy-passport", "category": "legacy", "text": "여권번호 M123A4567", "expected": [{"entity": "KR_PASSPORT", "start": 5, "end": 14}]}
+{"id": "legacy-driver-license", "category": "legacy", "text": "운전면허번호 11-22-123456-78", "expected": [{"entity": "KR_DRIVER_LICENSE", "start": 7, "end": 22}]}
+{"id": "fullwidth-digits-KR_ACCOUNT", "category": "unicode", "text": "📩 계좌번호 ３３３３-０１-１２３４５６７ 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 22}]}
+{"id": "fullwidth-digits-PHONE_NUMBER", "category": "unicode", "text": "📩 연락처 ０１０-１２３４-５６７８ 확인", "expected": [{"entity": "PHONE_NUMBER", "start": 6, "end": 19}]}
+{"id": "fullwidth-digits-KR_RRN", "category": "unicode", "text": "📩 주민번호 ９００１０１-１２３４５６８ 확인", "expected": [{"entity": "KR_RRN", "start": 7, "end": 21}]}
+{"id": "fullwidth-hyphen-KR_ACCOUNT", "category": "unicode", "text": "📩 계좌번호 3333－01－1234567 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 22}]}
+{"id": "fullwidth-hyphen-PHONE_NUMBER", "category": "unicode", "text": "📩 연락처 010－1234－5678 확인", "expected": [{"entity": "PHONE_NUMBER", "start": 6, "end": 19}]}
+{"id": "fullwidth-hyphen-KR_RRN", "category": "unicode", "text": "📩 주민번호 900101－1234568 확인", "expected": [{"entity": "KR_RRN", "start": 7, "end": 21}]}
+{"id": "unicode-minus-KR_ACCOUNT", "category": "unicode", "text": "📩 계좌번호 3333−01−1234567 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 22}]}
+{"id": "unicode-minus-PHONE_NUMBER", "category": "unicode", "text": "📩 연락처 010−1234−5678 확인", "expected": [{"entity": "PHONE_NUMBER", "start": 6, "end": 19}]}
+{"id": "unicode-minus-KR_RRN", "category": "unicode", "text": "📩 주민번호 900101−1234568 확인", "expected": [{"entity": "KR_RRN", "start": 7, "end": 21}]}
+{"id": "unicode-hyphen-KR_ACCOUNT", "category": "unicode", "text": "📩 계좌번호 3333‐01‐1234567 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 22}]}
+{"id": "unicode-hyphen-PHONE_NUMBER", "category": "unicode", "text": "📩 연락처 010‐1234‐5678 확인", "expected": [{"entity": "PHONE_NUMBER", "start": 6, "end": 19}]}
+{"id": "unicode-hyphen-KR_RRN", "category": "unicode", "text": "📩 주민번호 900101‐1234568 확인", "expected": [{"entity": "KR_RRN", "start": 7, "end": 21}]}
+{"id": "zero-width-KR_ACCOUNT15", "category": "unicode", "text": "계좌번호 3333-​01-1234567 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 21}]}
+{"id": "zero-width-KR_ACCOUNT13", "category": "unicode", "text": "계좌번호 33330​11234567 확인", "expected": [{"entity": "KR_ACCOUNT", "start": 5, "end": 19}]}
+{"id": "zero-width-PHONE_NUMBER13", "category": "unicode", "text": "연락처 010-1​234-5678 확인", "expected": [{"entity": "PHONE_NUMBER", "start": 4, "end": 18}]}
+{"id": "multiple-spans", "category": "mixed", "text": "📩 계좌번호 3333-01-1234567, 연락처 010-1234-5678", "expected": [{"entity": "KR_ACCOUNT", "start": 7, "end": 22}, {"entity": "PHONE_NUMBER", "start": 28, "end": 41}]}

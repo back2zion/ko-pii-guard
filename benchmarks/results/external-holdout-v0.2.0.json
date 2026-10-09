@@ -1,0 +1,2937 @@
+{
+  "label": "v0.2.0",
+  "source_url": "https://huggingface.co/datasets/woohyun212/k-pii-bench/resolve/844f92f7beba98fa964f957ba324017e82451701/data/test_track_a.jsonl",
+  "revision": "844f92f7beba98fa964f957ba324017e82451701",
+  "license": "CC-BY-4.0",
+  "attribution": "Park, Oh and Cha, K-PII-Bench (2026)",
+  "sampling": "contiguous records in published test_track_a order",
+  "offset": 10000,
+  "records": 500,
+  "slice_sha256": "03230d3a3d1c2aa6a17a1340bbd1f5f44ae99f9fb7229fa24cea1814aacdc159",
+  "python": "3.12.13",
+  "domains": {
+    "document": 42,
+    "chat": 46,
+    "employment": 40,
+    "email_thread": 54,
+    "insurance": 40,
+    "financial": 45,
+    "education": 29,
+    "support_ticket": 29,
+    "government": 47,
+    "medical": 40,
+    "legal": 50,
+    "telecommunications": 38
+  },
+  "type_mapping": {
+    "KR_RRN": "KR_RRN",
+    "KR_PHONE_NUMBER": "PHONE_NUMBER",
+    "KR_BANK_ACCOUNT": "KR_ACCOUNT",
+    "KR_DRIVER_LICENSE": "KR_DRIVER_LICENSE",
+    "KR_PASSPORT": "KR_PASSPORT",
+    "EMAIL_ADDRESS": "EMAIL_ADDRESS",
+    "CREDIT_CARD": "CREDIT_CARD"
+  },
+  "out_of_scope_gold": {
+    "PERSON": 724,
+    "KR_VEHICLE_PLATE": 48,
+    "ORGANIZATION": 151,
+    "KR_LOCATION": 102,
+    "URL": 88,
+    "USERNAME": 39,
+    "NRP": 35,
+    "DATE_OF_BIRTH": 52,
+    "IP_ADDRESS": 29,
+    "KR_NHIS": 34
+  },
+  "per_entity": {
+    "KR_RRN": {
+      "tp": 207,
+      "fp": 0,
+      "fn": 0
+    },
+    "PHONE_NUMBER": {
+      "tp": 186,
+      "fn": 6,
+      "fp": 0
+    },
+    "KR_ACCOUNT": {
+      "tp": 80,
+      "fp": 13,
+      "fn": 0
+    },
+    "KR_DRIVER_LICENSE": {
+      "tp": 30,
+      "fp": 0,
+      "fn": 0
+    },
+    "KR_PASSPORT": {
+      "fn": 81,
+      "tp": 0,
+      "fp": 0
+    },
+    "EMAIL_ADDRESS": {
+      "fn": 149,
+      "tp": 43,
+      "fp": 0
+    },
+    "CREDIT_CARD": {
+      "fn": 49,
+      "tp": 0,
+      "fp": 0
+    }
+  },
+  "total": {
+    "tp": 546,
+    "fn": 285,
+    "fp": 13
+  },
+  "precision": 0.9767441860465116,
+  "recall": 0.6570397111913358,
+  "f1": 0.7856115107913669,
+  "full_span_coverage": 0.6606498194945848,
+  "seconds": 0.2713332170005742,
+  "errors": [
+    {
+      "doc_id": "D79b0ad523",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          170,
+          189
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D508ee3d97",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          122,
+          141
+        ],
+        [
+          "CREDIT_CARD",
+          173,
+          192
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db30802d25",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          268,
+          288
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dab54f1a86",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          177,
+          193
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De6e010442",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          103,
+          122
+        ],
+        [
+          "EMAIL_ADDRESS",
+          216,
+          236
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dad2bf307c",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          106,
+          115
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db378734e8",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D7e786a68d",
+      "missing": [
+        [
+          "PHONE_NUMBER",
+          116,
+          129
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D68364a977",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          194
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dedac65e24",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          160
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ddaea03163",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De45310cc8",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          123
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D51eaae46e",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          168
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D78cf0bfbd",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          251,
+          271
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dfc6cb6ecc",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          107,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8a0d1316e",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          107,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D92116dfa5",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          156,
+          176
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          117,
+          128
+        ]
+      ]
+    },
+    {
+      "doc_id": "Df4af84cc5",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          155,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D892216cd6",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          137,
+          150
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D085555510",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D1e3724bdf",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "EMAIL_ADDRESS",
+          215,
+          245
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ddaa89b1c9",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          132,
+          151
+        ],
+        [
+          "CREDIT_CARD",
+          183,
+          202
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Debd65ad34",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          120,
+          138
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D411c6d6ad",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          251,
+          268
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D7556dc708",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          172,
+          189
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df54c2ec1d",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          172
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D78cb1adbd",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          190
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dcf18d0528",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          253,
+          266
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D4920148d6",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df4875991b",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          162
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Daac30df11",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          255,
+          279
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D1b17d88a1",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          128,
+          150
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db164660e2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          128,
+          152
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db66b5ec68",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          144,
+          166
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8ae078af6",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          204,
+          221
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D4789350f7",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          122,
+          141
+        ],
+        [
+          "CREDIT_CARD",
+          173,
+          192
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8513f5f57",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          155,
+          175
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Def99dfd13",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          92,
+          101
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3c01e2d17",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          156,
+          176
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          117,
+          128
+        ]
+      ]
+    },
+    {
+      "doc_id": "D3d8401316",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          153,
+          167
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2ab5526eb",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          173,
+          193
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5985cffba",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          139,
+          148
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D453271440",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          249,
+          267
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3d0c8fe53",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          118,
+          136
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D094fe53fe",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          119,
+          142
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D834abf208",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          120,
+          140
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9c14a8a2a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          116,
+          141
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd1da75664",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          172,
+          195
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df7f6df456",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          129,
+          143
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dc675ca30b",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          123,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2f26e2ac4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          128,
+          153
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De320be5e2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          153,
+          167
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8909f964a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          185
+        ],
+        [
+          "KR_PASSPORT",
+          30,
+          39
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbece4d72c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          165,
+          182
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dfe13191ac",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          194
+        ],
+        [
+          "KR_PASSPORT",
+          30,
+          39
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2a68060d8",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          101,
+          120
+        ],
+        [
+          "CREDIT_CARD",
+          152,
+          171
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dc1abf1d2c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          193
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D403b30853",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          109,
+          118
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9bf3b9a1f",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          92,
+          101
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D79fded9a3",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          116,
+          135
+        ],
+        [
+          "CREDIT_CARD",
+          167,
+          186
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D11e2ade71",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          153,
+          175
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          114,
+          125
+        ]
+      ]
+    },
+    {
+      "doc_id": "Df06afc5d4",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          106,
+          115
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D0f024146e",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          115,
+          138
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df8d8951d2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          186
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9b5845695",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          109,
+          118
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Daf3acd87a",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          155,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D25525c56a",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          120,
+          139
+        ],
+        [
+          "CREDIT_CARD",
+          171,
+          190
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D49654392d",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          118,
+          137
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dba5ee7ed2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          173,
+          196
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D86474f5dc",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          129,
+          152
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9c0ef9103",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          158,
+          177
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D155f894a9",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          172,
+          190
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2f9e4310d",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8c3f988e4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          204,
+          220
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd787d4476",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          106,
+          115
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D4b02c6b3e",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          114,
+          135
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dce818d5c0",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          203,
+          221
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D93f82fe5b",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5fe766634",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          264,
+          286
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Daf5108aeb",
+      "missing": [
+        [
+          "PHONE_NUMBER",
+          125,
+          138
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          125,
+          138
+        ]
+      ]
+    },
+    {
+      "doc_id": "Dad2229a58",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          159
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D913771bb2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          252,
+          273
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D05595b8d2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          184
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db08d9973f",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          193
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D0f88f7d1e",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          128,
+          137
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd75ca1cac",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          160
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D39ed58583",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          181
+        ],
+        [
+          "KR_PASSPORT",
+          30,
+          39
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3c350bceb",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          156,
+          180
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          117,
+          128
+        ]
+      ]
+    },
+    {
+      "doc_id": "D287693809",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          157,
+          176
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbdb8d6f37",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          117,
+          139
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9ad705310",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          129,
+          151
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dcaa6a982a",
+      "missing": [
+        [
+          "PHONE_NUMBER",
+          176,
+          189
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da2e82f92a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          158
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D829ea3f21",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          115,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5d825e481",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          157,
+          171
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          118,
+          129
+        ]
+      ]
+    },
+    {
+      "doc_id": "Dd0804ffc4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          117,
+          133
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8002a1c89",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          131,
+          140
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbf3491c33",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          173,
+          189
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dccb373dd8",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "CREDIT_CARD",
+          153,
+          172
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3f160f57e",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          170,
+          184
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9b640d7b6",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          172,
+          189
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5cf6b753a",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D51db52b0c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          249,
+          263
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D70134b9c3",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          118,
+          139
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ddac3640d6",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8f987b70f",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          166
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df383d07db",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "EMAIL_ADDRESS",
+          215,
+          239
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D43cb80905",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          156,
+          175
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D86ff4495c",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          123,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dfc980e0f9",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          249,
+          262
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da3d509018",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Deea77ced4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          266,
+          287
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D71d9929a1",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          126
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D132d7e6b0",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          124,
+          133
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9dc3c9518",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2659157aa",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          129,
+          151
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5db2dda8a",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          101,
+          120
+        ],
+        [
+          "CREDIT_CARD",
+          152,
+          171
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D867d01731",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          136,
+          155
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D1cd46509c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          153,
+          171
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D674b20b9d",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          173,
+          186
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da87e8a9bc",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          204,
+          219
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da60b8c8f0",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D042a30637",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          164,
+          181
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3ae267f05",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          173,
+          186
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D4d6380f73",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          205,
+          231
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D2a0ac3079",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          139,
+          157
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbe746a15e",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          157,
+          171
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D994a684d5",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          171,
+          190
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbbfb40583",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          156,
+          173
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D64fae4924",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          120,
+          140
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dc5de5b7c4",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5e8f2246d",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          158,
+          177
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df9e9602f2",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          103,
+          117
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Deb0ea9c82",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          92,
+          101
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df28ce29e5",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          155,
+          176
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          116,
+          127
+        ]
+      ]
+    },
+    {
+      "doc_id": "Db4dbde233",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          122,
+          131
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dce62d3128",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          133,
+          142
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9ca652dbd",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da70b0cdee",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          194
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbd3ec4aef",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          155,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9f4853806",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          191
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De1e8d6b7d",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          92,
+          101
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df8daf21fd",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          206,
+          231
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Deeaab1dc5",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          118,
+          137
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ded5ea4179",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          127
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ddeaa8b454",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D6f86a74bf",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D941a665dd",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          143,
+          152
+        ],
+        [
+          "PHONE_NUMBER",
+          190,
+          203
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          190,
+          203
+        ]
+      ]
+    },
+    {
+      "doc_id": "Dff6c10288",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          129,
+          148
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db622a0900",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          135,
+          149
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da472d064d",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          156,
+          175
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dc5017ce15",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          172,
+          191
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D356ec81a6",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          192
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dadfd473ea",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          154,
+          174
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          115,
+          126
+        ]
+      ]
+    },
+    {
+      "doc_id": "Dcc4a75049",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          103,
+          129
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dee9aeaf60",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          191
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Def3939fb7",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          167,
+          186
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8a7bf9666",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          117,
+          138
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D74b853aca",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "EMAIL_ADDRESS",
+          215,
+          238
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9e4085d09",
+      "missing": [
+        [
+          "PHONE_NUMBER",
+          168,
+          180
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D88a1a8c97",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          108,
+          117
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dec5c5b672",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          115,
+          131
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D43b5a0051",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          205,
+          225
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5c7b1342b",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          250,
+          274
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dc87a02c75",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          114,
+          137
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dfe2a77023",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          155,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df7c39f287",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          174
+        ],
+        [
+          "PHONE_NUMBER",
+          111,
+          123
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          111,
+          123
+        ]
+      ]
+    },
+    {
+      "doc_id": "D9f55f0382",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          165
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De03ce7c75",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          118
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Ddfdae159a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          192
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8bd0691c8",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          123,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D47456dc25",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          165,
+          188
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          71,
+          80
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db5a9ce355",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          121,
+          140
+        ],
+        [
+          "CREDIT_CARD",
+          172,
+          191
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D0945f667f",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          134,
+          143
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dec660d4b5",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          252,
+          266
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D206f2aac9",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          118,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8a10508eb",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db21b1d0b6",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "EMAIL_ADDRESS",
+          215,
+          235
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df2facaf0c",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          104,
+          123
+        ],
+        [
+          "CREDIT_CARD",
+          155,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd7e91abbe",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          152,
+          174
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd527d2243",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          107,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D242671fad",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          155,
+          172
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          116,
+          127
+        ]
+      ]
+    },
+    {
+      "doc_id": "Ddecaa0ad1",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          164,
+          178
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D7534100c3",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          168,
+          184
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5c8cd017c",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          101,
+          120
+        ],
+        [
+          "CREDIT_CARD",
+          152,
+          171
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D43e3704e6",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          91,
+          100
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D29643c5ad",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "CREDIT_CARD",
+          153,
+          172
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbfaefa0b1",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          125
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dfa2d2b4c8",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          103,
+          122
+        ],
+        [
+          "EMAIL_ADDRESS",
+          217,
+          240
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db45d4552a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          134,
+          155
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D9ca1ad0e9",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          102,
+          121
+        ],
+        [
+          "EMAIL_ADDRESS",
+          215,
+          231
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da101d5407",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D62c051ecf",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          120
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da23cba5d3",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          251,
+          267
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D325c5c900",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          107,
+          116
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D198d7776e",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          156,
+          175
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D248208c89",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          116,
+          135
+        ],
+        [
+          "CREDIT_CARD",
+          167,
+          186
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D00183344a",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          255,
+          278
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D872de5cc4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          192
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D087cfcc94",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          130,
+          139
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D3be957f41",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          175,
+          192
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D7b2041b18",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          126,
+          145
+        ],
+        [
+          "CREDIT_CARD",
+          177,
+          196
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D899a3eeeb",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          142,
+          168
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Db9ad53829",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          117,
+          133
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8e5d6860a",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          28,
+          37
+        ],
+        [
+          "KR_PASSPORT",
+          92,
+          101
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D408160b73",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          115,
+          132
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D8a9624754",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          105,
+          114
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D21c7fa19c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          134,
+          154
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dbaaac6544",
+      "missing": [
+        [
+          "KR_PASSPORT",
+          126,
+          135
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D6b5281bde",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          202,
+          221
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Dd20576ba4",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          163,
+          183
+        ],
+        [
+          "KR_PASSPORT",
+          29,
+          38
+        ],
+        [
+          "KR_PASSPORT",
+          70,
+          79
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Df57b592ea",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          119,
+          139
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D39a0f672c",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          126
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De2d001690",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          126,
+          145
+        ],
+        [
+          "CREDIT_CARD",
+          177,
+          196
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "Da4a54b287",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          154,
+          170
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          115,
+          126
+        ]
+      ]
+    },
+    {
+      "doc_id": "D15389c7b8",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          116,
+          138
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D7c3185095",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          121,
+          140
+        ],
+        [
+          "CREDIT_CARD",
+          172,
+          191
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D723cc19e0",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          114,
+          127
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D5cea645f1",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          155,
+          172
+        ]
+      ],
+      "extra": [
+        [
+          "KR_ACCOUNT",
+          116,
+          127
+        ]
+      ]
+    },
+    {
+      "doc_id": "D60aa55584",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          102,
+          118
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D4ff2ad46f",
+      "missing": [
+        [
+          "CREDIT_CARD",
+          158,
+          177
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "D6886607bb",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          250,
+          263
+        ]
+      ],
+      "extra": []
+    },
+    {
+      "doc_id": "De2e15c8c3",
+      "missing": [
+        [
+          "EMAIL_ADDRESS",
+          202,
+          223
+        ]
+      ],
+      "extra": []
+    }
+  ]
+}

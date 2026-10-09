@@ -250,4 +250,4 @@ def test_nearest_account_label_wins(guard):
 def test_synthetic_account_layout(bank, rng):
     number = s.account(rng, bank)
     assert 10 <= len(number.replace("-", "")) <= 14
-    assert len(number.split("-")) == 3
+    assert len(number.split("-")) == (4 if bank == "농협" else 3)
