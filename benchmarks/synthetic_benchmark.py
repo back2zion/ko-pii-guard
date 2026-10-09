@@ -1,7 +1,8 @@
 """Recall / false-positive check on synthetic Korean sentences.
 
 All identifiers are randomly generated with valid checksums and do not belong
-to real people. Run:  python benchmarks/synthetic_benchmark.py
+to real people. Account values are unverified random test data, not guaranteed
+to be unassigned. Run: uv run python benchmarks/synthetic_benchmark.py
 """
 
 from __future__ import annotations
@@ -44,6 +45,13 @@ POSITIVE_CASES = {
     "KR_PASSPORT": [("여권번호 {}", lambda r: s.passport(r)), ("코드 {}", lambda r: s.passport(r))],
     "EMAIL_ADDRESS": [("메일 {} 로 회신", lambda r: s.email(r))],
     "CREDIT_CARD": [("카드번호 {} 결제", lambda r: s.card(r))],
+    "KR_ACCOUNT": [
+        (f"{bank} 계좌번호 {{}}", lambda r, bank=bank: s.account(r, bank))
+        for bank in s.ACCOUNT_LAYOUTS
+    ] + [
+        (f"{bank} 입금 계좌 {{}}", lambda r, bank=bank: s.account(r, bank, dash=False))
+        for bank in s.ACCOUNT_LAYOUTS
+    ] + [("코드 {}", lambda r: s.account(r, "카카오뱅크", dash=False))],
 }
 
 NEGATIVE_TEMPLATES = [
@@ -55,6 +63,12 @@ NEGATIVE_TEMPLATES = [
     lambda r: f"버전 {r.randint(1, 9)}.{r.randint(0, 20)}.{r.randint(0, 99)}로 업데이트했습니다",
     lambda r: f"재고 {r.randint(1, 99999)}개, 단가 {r.randint(100, 99999)}원",
     lambda r: f"송장번호 {r.randint(10**11, 10**12 - 1)}",
+    # A fixed non-identifier prefix avoids accidentally valid RRN/BRN values.
+    lambda r: f"참조번호 777777{r.randrange(10**8):08d}",
+    lambda r: f"상품코드 X{r.randrange(10**14):014d}",
+    lambda r: f"상품코드 X3333-{r.randrange(100):02d}-{r.randrange(10**7):07d}",
+    lambda r: f"은행 주문번호 777777{r.randrange(10**8):08d}",
+    lambda r: f"은행 상품코드 3333-{r.randrange(100):02d}-{r.randrange(10**7):07d}",
 ]
 
 
@@ -67,25 +81,49 @@ def main() -> None:
         for template, gen in cases:
             hit = 0
             for _ in range(N):
-                text = template.format(gen(rng))
-                if entity in {f.entity for f in guard.analyze(text)}:
+                number = gen(rng)
+                text = template.format(number)
+                start = text.index(number)
+                if any(
+                    f.entity == entity and f.start == start and f.end == start + len(number)
+                    for f in guard.analyze(text)
+                ):
                     hit += 1
-            print(f"| {entity} | `{template.format('…')}` | {hit}/{N} | {hit / N:.0%} |")
+            print(f"| {entity} | `{template.format('…')}` | {hit}/{N} | {hit / N:.1%} |")
 
     print()
     fp = defaultdict(int)
     total = 0
+    flagged_sentences = 0
     for make in NEGATIVE_TEMPLATES:
         for _ in range(N):
             text = make(rng)
             total += 1
-            for f in guard.analyze(text):
+            findings = guard.analyze(text)
+            flagged_sentences += bool(findings)
+            for f in findings:
                 fp[f.entity] += 1
     flagged = sum(fp.values())
     print(
-        f"False positives on {total} PII-free sentences: {flagged} "
-        f"({flagged / total:.1%}) {dict(fp) if fp else ''}"
+        f"False positives on {total} PII-free sentences: {flagged_sentences} sentences "
+        f"({flagged_sentences / total:.1%}), {flagged} findings {dict(fp) if fp else ''}"
     )
+
+    # Separate collision probe: these are PII, so they are not FP negatives.
+    collision_rng = random.Random(20261009)
+    account_errors = 0
+    total_collisions = 0
+    for gen in (
+        lambda r: s.rrn(r), lambda r: s.rrn(r, dash=False),
+        lambda r: s.brn(r), lambda r: s.brn(r, dash=False),
+        lambda r: s.mobile(r), lambda r: s.mobile(r, dash=False),
+        lambda r: s.card(r), lambda r: s.card(r).replace("-", ""),
+    ):
+        for _ in range(N):
+            text = f"은행 계좌 확인: {gen(collision_rng)}"
+            total_collisions += 1
+            account_errors += any(f.entity == "KR_ACCOUNT" for f in guard.analyze(text))
+    print(f"Existing identifiers mislabeled KR_ACCOUNT: {account_errors}/{total_collisions}")
 
 
 if __name__ == "__main__":

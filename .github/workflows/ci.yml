@@ -13,16 +13,17 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
+          enable-cache: true
       - name: Disable Guardrails telemetry
         run: printf "id=ci\nenable_metrics=false\n" > ~/.guardrailsrc
       - name: Install
-        run: pip install -e ".[dev,guardrails]"
+        run: uv sync --frozen --extra dev --extra guardrails
       - name: Lint
-        run: ruff check .
+        run: uv run --frozen ruff check .
       - name: Test
-        run: pytest -q
+        run: uv run --frozen pytest -q
       - name: Benchmark
-        run: python benchmarks/synthetic_benchmark.py
+        run: uv run --frozen python benchmarks/synthetic_benchmark.py

@@ -8,6 +8,8 @@ before each match. The check is simple and needs no model.
 
 from __future__ import annotations
 
+import re
+
 from presidio_analyzer import RecognizerResult
 
 KOREAN_CONTEXT: dict[str, tuple[str, ...]] = {
@@ -19,6 +21,11 @@ KOREAN_CONTEXT: dict[str, tuple[str, ...]] = {
     "PHONE_NUMBER": ("전화번호", "휴대폰", "핸드폰", "연락처", "전화", "휴대전화"),
     "EMAIL_ADDRESS": ("이메일", "메일", "전자우편"),
     "CREDIT_CARD": ("카드번호", "신용카드", "체크카드", "카드"),
+    "KR_ACCOUNT": (
+        "계좌", "계좌번호", "입금", "송금", "이체", "예금주", "통장", "은행",
+        "농협", "국민", "신한", "우리", "하나", "기업", "카카오뱅크", "토스뱅크",
+        "새마을금고", "우체국",
+    ),
 }
 
 WINDOW = 20
@@ -51,8 +58,20 @@ def boost_with_korean_context(
 
 # Long digit runs without separators are often invoice or order numbers. These
 # entities only count when written with separators or preceded by context.
-UNDELIMITED_NEEDS_CONTEXT = ("KR_DRIVER_LICENSE",)
+UNDELIMITED_NEEDS_CONTEXT = ("KR_DRIVER_LICENSE", "KR_ACCOUNT")
 UNDELIMITED_SCORE = 0.3
+
+
+def _account_context(text: str, start: int, window: int) -> tuple[bool, bool]:
+    """Use the closest label in the current clause to limit context leakage."""
+    before = re.split(r"[\n,;!?]", text[max(0, start - window):start])[-1]
+    positive = max((before.rfind(k) for k in KOREAN_CONTEXT["KR_ACCOUNT"]), default=-1)
+    negative = max((before.rfind(k) for k in (
+        "주문번호", "송장번호", "참조번호", "상품코드", "거래번호", "승인번호",
+        "주민번호", "주민등록번호", "사업자번호", "사업자등록번호", "카드번호",
+        "전화번호", "연락처", "운전면허번호", "날짜",
+    )), default=-1)
+    return positive >= 0 and positive > negative, negative >= 0 and negative > positive
 
 
 def require_context_for_undelimited(
@@ -62,6 +81,10 @@ def require_context_for_undelimited(
     adjusted: list[RecognizerResult] = []
     for r in results:
         span = text[r.start : r.end]
+        if r.entity_type == "KR_ACCOUNT":
+            has_context, blocked = _account_context(text, r.start, window)
+            if blocked or (span.isdigit() and not has_context):
+                continue
         needs_context = (r.entity_type in UNDELIMITED_NEEDS_CONTEXT and span.isdigit()) or (
             # A bare digit run like "8217..." is read as +82 by phonenumbers,
             # but domestic Korean numbers start with 0.
@@ -71,6 +94,8 @@ def require_context_for_undelimited(
             before = text[max(0, r.start - window) : r.start]
             keywords = KOREAN_CONTEXT.get(r.entity_type, ())
             if not any(k in before for k in keywords):
+                if r.entity_type == "KR_ACCOUNT":
+                    continue
                 r = RecognizerResult(
                     entity_type=r.entity_type,
                     start=r.start,

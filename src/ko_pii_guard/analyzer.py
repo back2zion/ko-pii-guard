@@ -12,6 +12,7 @@ words. This module wires them together so they work in one line:
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from typing import Literal
@@ -54,12 +55,13 @@ DEFAULT_ENTITIES: tuple[str, ...] = (
     "PHONE_NUMBER",
     "EMAIL_ADDRESS",
     "CREDIT_CARD",
+    "KR_ACCOUNT",
 )
 
 MaskStyle = Literal["tag", "stars", "partial"]
 
 # Characters kept visible by ``mask(style="partial")``.
-_PARTIAL_KEEP = {"KR_RRN": 6, "KR_FRN": 6, "PHONE_NUMBER": 3}
+_PARTIAL_KEEP = {"KR_RRN": 6, "KR_FRN": 6, "PHONE_NUMBER": 3, "KR_ACCOUNT": 3}
 
 
 @dataclass(frozen=True)
@@ -81,6 +83,12 @@ KR_MOBILE_PATTERN = Pattern(
     r"(?<!\d)01[016789][-. ]?\d{3,4}[-. ]?\d{4}(?!\d)",
     0.5,
 )
+
+# Do not consume a fragment of a longer digit run or hyphenated identifier.
+KR_ACCOUNT_PATTERNS = [
+    Pattern("KR account with separators", r"(?<![\w-])\d{2,6}-\d{2,6}-\d{2,8}(?![\d-])", 0.4),
+    Pattern("KR account without separators", r"(?<![\w-])\d{10,14}(?![\d-])", 0.1),
+]
 
 
 def _build_analyzer() -> AnalyzerEngine:
@@ -104,6 +112,12 @@ def _build_analyzer() -> AnalyzerEngine:
         ),
         EmailRecognizer(supported_language=LANGUAGE),
         CreditCardRecognizer(supported_language=LANGUAGE),
+        PatternRecognizer(
+            supported_entity="KR_ACCOUNT",
+            patterns=KR_ACCOUNT_PATTERNS,
+            supported_language=LANGUAGE,
+            name="KrAccountRecognizer",
+        ),
     ):
         registry.add_recognizer(recognizer)
 
@@ -165,11 +179,28 @@ class KoreanPIIGuard:
         results = self._analyzer.analyze(
             text=text,
             language=LANGUAGE,
-            entities=self.entities,
+            # Even account-only detection must reject recognizable identifiers.
+            entities=list(DEFAULT_ENTITIES) if "KR_ACCOUNT" in self.entities else self.entities,
             score_threshold=0.0,
         )
         boosted = require_context_for_undelimited(text, boost_with_korean_context(text, results))
-        filtered = [r for r in boosted if r.score >= self.score_threshold]
+        protected = [r for r in boosted if r.entity_type != "KR_ACCOUNT" and r.score >= 0.4]
+        boosted = [
+            r for r in boosted
+            if r.entity_type != "KR_ACCOUNT" or not any(
+                r.start < p.end and r.end > p.start for p in protected
+            )
+        ]
+        # ISO dates fit the broad three-group account pattern.
+        boosted = [
+            r for r in boosted
+            if r.entity_type != "KR_ACCOUNT"
+            or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", text[r.start:r.end])
+        ]
+        filtered = [
+            r for r in boosted
+            if r.entity_type in self.entities and r.score >= self.score_threshold
+        ]
         return _remove_overlaps(filtered)
 
     def analyze(self, text: str) -> list[Finding]:
@@ -191,7 +222,7 @@ class KoreanPIIGuard:
             ``stars``: every character replaced with ``*``
             ``partial``: keep a short prefix: 6 characters for RRN/FRN
                 (``900101-*******``), 3 for phone numbers (``010-****-****``),
-                and 2 for everything else
+                3 for account numbers, and 2 for everything else
         """
         if style not in ("tag", "stars", "partial"):
             raise ValueError(f"Unknown mask style: {style}")

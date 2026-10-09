@@ -26,6 +26,27 @@ DL_REGIONS = [
     "28",
 ]
 
+# Representative layouts, not an exhaustive bank-format validator. Random
+# values are unverified test data, not guaranteed to be unassigned accounts.
+ACCOUNT_LAYOUTS = {
+    "신한": ("110", 3, 6),
+    "국민": (None, 6, 2, 6),
+    "우리": ("1002", 3, 6),
+    "하나": (None, 3, 6, 5),
+    "농협": ("302", 4, 4),
+    "기업": (None, 3, 6, 2),
+    "카카오뱅크": ("3333", 2, 7),
+    "토스뱅크": ("1000", 4, 4),
+}
+
+
+def account(rng: random.Random, bank: str = "신한", dash: bool = True) -> str:
+    """Generate an unverified synthetic account with a representative layout."""
+    prefix, *widths = ACCOUNT_LAYOUTS[bank]
+    parts = [prefix] if prefix is not None else []
+    parts.extend(f"{rng.randrange(10**width):0{width}d}" for width in widths)
+    return ("-" if dash else "").join(parts)
+
 
 def rrn(rng: random.Random, gender_digit: int = 1, dash: bool = True) -> str:
     """Pre-2020-style RRN with a valid checksum and region code."""

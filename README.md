@@ -83,12 +83,13 @@ Guardrails AI sends usage telemetry unless it is disabled. To turn it off, run `
 | `PHONE_NUMBER` | Korean phone numbers | Presidio (`KR` region) plus a Korean mobile pattern (this package) |
 | `EMAIL_ADDRESS` | Email | Presidio |
 | `CREDIT_CARD` | Card number | Presidio, Luhn check |
+| `KR_ACCOUNT` | Korean bank account number (계좌번호) | Custom pattern. Bare 10–14-digit runs require preceding Korean context |
 
-Not covered: personal names, addresses, bank account numbers (formats vary by bank), and health insurance numbers. Names and addresses need a Korean NER model.
+Not covered: personal names, addresses, and health insurance numbers. Names and addresses need a Korean NER model. Account detection recognizes candidate formats; it does not verify bank ownership or account validity.
 
 ## Accuracy
 
-Results on **synthetic** sentences from `benchmarks/synthetic_benchmark.py`, 200 samples per row. Identifiers are randomly generated with valid checksums and belong to no real person.
+Results measured on 2026-10-09 on **synthetic** sentences from `benchmarks/synthetic_benchmark.py`, seed 2026, 200 samples per case, with the default threshold 0.4. A hit requires both the entity and the exact span to match. Checksums are generated where applicable. Account values use representative bank layouts, are unverified random test data, and are not guaranteed to be unassigned.
 
 | Entity | Case | Recall |
 |---|---|---|
@@ -103,14 +104,32 @@ Results on **synthetic** sentences from `benchmarks/synthetic_benchmark.py`, 200
 | KR_PASSPORT | `코드 …` (no context) | 0%, by design |
 | EMAIL_ADDRESS, CREDIT_CARD | with context | 100% |
 
-False positives: 0 out of 1,200 PII-free sentences (amounts, dates, order numbers, version strings, tracking numbers).
+Account recall below is measured on synthetic data, 200 samples per bank and format (seed 2026, threshold 0.4), using `은행명 계좌번호 …` with dashes and `은행명 입금 계좌 …` without dashes. Each cell reports detected/200 and exact-span recall.
 
-**Read these numbers with care.** The two false-positive rules and the tie-break were developed against this same synthetic set, so real-world accuracy will be lower. Issues and PRs with realistic (anonymized) failure cases are very welcome.
+| KR_ACCOUNT layout | With dashes | Without dashes |
+|---|---|---|
+| 신한 | 200/200 (100.0%) | 200/200 (100.0%) |
+| 국민 | 199/200 (99.5%) | 193/200 (96.5%) |
+| 우리 | 184/200 (92.0%) | 147/200 (73.5%) |
+| 하나 | 200/200 (100.0%) | 196/200 (98.0%) |
+| 농협 | 200/200 (100.0%) | 200/200 (100.0%) |
+| 기업 | 196/200 (98.0%) | 194/200 (97.0%) |
+| 카카오뱅크 | 200/200 (100.0%) | 187/200 (93.5%) |
+| 토스뱅크 | 200/200 (100.0%) | 200/200 (100.0%) |
+
+The no-context account case (`코드 …`, undelimited) detects 0/200 as KR_ACCOUNT, by design. Some account candidates match existing identifier recognizers; these are deliberately classified as those identifiers rather than KR_ACCOUNT, reducing account recall. Representative layouts are not an exhaustive catalog of each bank's formats.
+
+False positives: 0 flagged sentences and 0 findings out of 2,200 PII-free sentences (amounts, dates, order numbers, version strings, tracking numbers, account-like references, and product codes).
+
+A separate collision probe (seed 20261009) prepends `은행 계좌 확인:` to synthetic RRN, BRN, mobile, and card numbers, with and without separators: 0/1,600 were mislabeled KR_ACCOUNT. These are positive PII cases, not part of the PII-free denominator.
+
+**Read these numbers with care.** Rules were developed against this same synthetic set. This is a regression benchmark, not an independent real-world accuracy estimate. Issues and PRs with realistic (anonymized) failure cases are very welcome.
 
 ## Design notes
 
 - **No NLP model.** Korean context matching looks only at the 20 characters before each match, not after, and uses no lemmas. This avoids a morphological-analyzer dependency.
-- **Partial masking.** `style="partial"` keeps the birth-date part of RRN and FRN numbers (6 digits), the first 3 digits of phone numbers, and the first 2 characters of everything else.
+- **Account false positives.** Undelimited accounts require a preceding account keyword in the same clause. A nearer explicit label such as `주문번호` or `카드번호` rejects an account candidate. Date-shaped strings and fragments of longer identifiers are excluded. Existing identifier detections at score 0.4 or higher veto overlapping accounts, including when only KR_ACCOUNT is requested. Ambiguous values favor existing identifiers; account-like hyphenated codes without explicit labels can still be false positives.
+- **Partial masking.** `style="partial"` keeps the birth-date part of RRN and FRN numbers (6 digits), the first 3 digits of phone and account numbers, and the first 2 characters of everything else.
 - **Safety first for RRNs.** RRNs issued after October 2020 have no checksum, so any `YYMMDD-[1-4]XXXXXX` string is flagged at score 0.5. Set `score_threshold=0.6` to require a valid checksum or Korean context.
 - **Tie-break.** When spans overlap with equal scores, Korean identifiers win over generic ones. For example, a 13-digit RRN can also pass the Luhn check for a card number.
 - **Known gaps.** Identifiers glued together with no separator (for example `010-1234-5678010-2345-6789`) can be partly missed or mislabeled. Analysis time grows faster than input size on texts with thousands of matches.
@@ -123,11 +142,16 @@ This library reduces the risk of leaking personal information. It does not guara
 ## Development
 
 ```bash
-pip install -e ".[dev,guardrails]"
-pytest -q
-ruff check .
-python benchmarks/synthetic_benchmark.py
+uv venv
+uv sync --frozen --extra dev --extra guardrails
+uv run pytest -q
+uv run ruff check .
+uv run python benchmarks/synthetic_benchmark.py
 ```
+
+Keep `uv.lock` under version control. CI uses the same locked dependencies. For test runs with Guardrails telemetry disabled through OpenTelemetry, use `OTEL_SDK_DISABLED=true uv run pytest -q`.
+
+Further reading: [CAPID (2026)](https://arxiv.org/abs/2602.10074) and [SPY (NAACL 2025)](https://aclanthology.org/2025.naacl-srw.23/). Their methods are not implemented in this package, and their results do not establish Korean bank-account accuracy.
 
 ## License
 
@@ -137,7 +161,7 @@ Apache-2.0. Built on [Microsoft Presidio](https://github.com/microsoft/presidio)
 
 ## 한국어 안내
 
-LLM 서비스의 입력과 출력, 로그에서 주민등록번호, 외국인등록번호, 사업자등록번호, 운전면허번호, 여권번호, 전화번호, 이메일, 카드번호를 찾아 마스킹합니다.
+LLM 서비스의 입력과 출력, 로그에서 주민등록번호, 외국인등록번호, 사업자등록번호, 운전면허번호, 여권번호, 전화번호, 이메일, 카드번호, 계좌번호를 찾아 마스킹합니다.
 
 Microsoft Presidio에는 한국 식별번호 탐지기가 이미 들어 있습니다. 하지만 기본으로 꺼져 있고, 한국어 처리 설정이 따로 필요하며, 일부 `010` 번호를 놓치고, 한국어 문맥 단어(`주민번호`, `연락처` 등)를 인식하지 못합니다. 이 패키지는 이런 설정을 한 줄로 끝내 줍니다.
 
@@ -149,6 +173,7 @@ guard.mask("주민번호 900101-1234567, 연락처 010-0000-0000")
 # '주민번호 <KR_RRN>, 연락처 <PHONE_NUMBER>'
 ```
 
-- 이름, 주소, 계좌번호, 건강보험증 번호는 아직 탐지하지 않습니다.
+- 이름, 주소, 건강보험증 번호는 아직 탐지하지 않습니다.
+- 계좌번호는 형식과 앞쪽 문맥으로 탐지하며 실제 계좌의 유효성을 검증하지 않습니다. 구분자 없는 숫자는 문맥이 필수이고, 기존 식별번호와 겹치면 기존 유형을 우선합니다.
 - 정확도 표는 합성 데이터 기준이며, 규칙을 같은 데이터로 다듬었기 때문에 실제 환경에서는 더 낮을 수 있습니다.
 - 개인정보 보호법 준수를 보장하지 않습니다. 유출 위험을 줄이는 보조 도구로 사용하세요.
