@@ -71,13 +71,19 @@ uv run python benchmarks/external_benchmark.py --offset 10000 --limit 500 \
 원본: [기준선](../benchmarks/results/external-holdout-v0.2.0.json),
 [개발 버전](../benchmarks/results/external-holdout-current.json).
 
-## 선택 프로필: 이름·주소 포함
+## 선택 프로필: 개발 중인 이름·주소의 기술 회귀 결과
 
 기본 `DEFAULT_ENTITIES`는 기존 9종이다. 이름·주소를 포함하려면
 `KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=KoreanNER.from_pretrained())`처럼
 명시적으로 켠다. NER 없이 같은 entities를 선택하면 필드·주소 규칙만 동작한다.
 아래 두 자료는 사람이 만든 **합성 개발 회귀 세트**이며 모델 선택·규칙 수정·임계값 선택에
 사용했다. 별도의 실사용 독립 평가나 논문 방법의 재현 성능이 아니다.
+
+아래 이름·주소 수치는 **작은 개발 회귀 세트의 진단 기록**이다. 특히 업무 문장 `0/62`는
+해당 부류의 재발 방지 검사이고, 자유 문장 이름 `15/18`은 공개 재현율을 추정할 표본이 아니다.
+README 성능표나 대외 소개에는 이 값을 싣지 않는다. 문장 수를 늘려도 같은 틀을 반복하면
+독립적인 표본 수가 늘어난 것은 아니다. [추가 문맥 대조 평가](name-context-evaluation.md)도
+이름·문장 틀·분할별 진단으로 보고하며, 기본 식별번호 지표와 합산하지 않는다.
 
 기본 식별번호 프로필의 수치는 이름 모델과 합산하지 않는다:
 
@@ -155,7 +161,7 @@ uv run python benchmarks/performance_benchmark.py --output /tmp/intervals.json
 
 ## 남은 범위
 
-최종 검증은 프로젝트 Python 3.12.13에서 실제 로컬 NER·긴 입력·파일명 마스킹을 포함해
+커밋 `8e60c89` 시점 검증은 프로젝트 Python 3.12.13에서 실제 로컬 NER·긴 입력·파일명 마스킹을 포함해
 **691개 테스트 통과**다. 기본 의존성의 Python 3.10.12·3.11.15·3.13.14는 각각 uv 격리 환경에서
 **689개 통과·선택 NER 테스트2개 생략**을 확인했다. Ruff와 `git diff --check`도 통과했다.
 `uv build`로 생성한 wheel을 프로젝트 밖 별도 uv 환경(Python 3.13)에 설치해

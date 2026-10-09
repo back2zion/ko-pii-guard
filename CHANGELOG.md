@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Document the KR_NAME span contract and keep small name/address diagnostics out of README accuracy claims.
+- Add a frozen synthetic name-context contrast evaluation and benchmark-only lexicon score ablation before considering retraining.
 - Add opt-in KR_NAME and KR_ADDRESS; keep the default nine identifier entities unchanged.
 - Add explicit name fields, bounded road/lot address grammar, reference parentheses and wrapped address lines.
 - Separate detection from replacement with the optional should_mask callback; preserve name detection in filenames.

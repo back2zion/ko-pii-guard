@@ -89,16 +89,18 @@ Guardrails AI sends usage telemetry unless it is disabled. To turn it off, run `
 | `EMAIL_ADDRESS` | Email | Presidio |
 | `CREDIT_CARD` | Card number | Presidio, Luhn check |
 | `KR_ACCOUNT` | Korean bank account number (계좌번호) | 10–14 digits; generic 3-group candidates plus documented 4-group layouts. Bare and 4-group values require preceding Korean context |
-| `KR_NAME` (opt-in) | Personal name (이름) | Explicit person fields; optional local NER for names inside sentences |
-| `KR_ADDRESS` (opt-in) | Korean street/lot address (주소) | Administrative hierarchy or an address field, street/lot number and bounded unit details; optional local NER |
+| `KR_NAME` (experimental, opt-in) | Personal name (이름) | Explicit person fields; optional local NER for names inside sentences |
+| `KR_ADDRESS` (experimental, opt-in) | Korean street/lot address (주소) | Administrative hierarchy or an address field, street/lot number and bounded unit details; optional local NER |
 
 Health insurance numbers are not covered. Account and address detection recognizes
 candidates; it does not verify bank ownership, account validity or address existence.
 
-### Names and addresses in sentences
+### Experimental names and addresses in sentences
 
 The default profile keeps the nine identifier types above. Names and addresses
-require explicit opt-in, including when a NER backend is supplied:
+are under development and require explicit opt-in, including when a NER backend
+is supplied. Their current evaluations are development regressions, not evidence
+of production accuracy:
 
 ```python
 from ko_pii_guard import DEFAULT_ENTITIES, KoreanPIIGuard
@@ -135,8 +137,9 @@ Setup explicitly downloads pinned model weights (about 555 MB); model loading is
 offline by default and document text stays local. This checkout uses CPU PyTorch.
 NER is more expensive than the default rules: create and reuse the model once.
 Long inputs use overlapping token windows. Model confidence is not a calibrated
-probability. See [sources and model license declarations](docs/name-address-sources.md)
-and [name/address evaluation](docs/name-address-evaluation.md) for measured limits.
+probability. See [sources and model license declarations](docs/name-address-sources.md),
+[name span annotation contract](docs/name-span-contract.md), and
+[technical regression evaluation](docs/name-address-evaluation.md) for scope and limits.
 The default model is `FrameByFrame/korean-pii-e5-base` at a fixed revision. We do
 not apply its model card's suffix-removal heuristic: characters such as `은` can
 belong to the name itself. Explicit non-person fields and missing-value markers
@@ -197,40 +200,20 @@ A separate collision probe (seed 20261009) prepends `은행 계좌 확인:` to s
 
 A separate **external synthetic slice** from K-PII-Bench contains 500 documents and 831 annotated spans across seven supported types (published test rows 10,000–10,499, zero-based; fixed revision and hashes in the [reports](benchmarks/results)). These documents were reserved until the detection changes were complete. Exact-span precision / recall / F1 changed from **97.67% / 65.70% / 78.56%** in v0.2.0 to **99.58% / 84.96% / 91.69%**. This is not a real-world false-positive rate, nor a comparison against other libraries. The authors' data includes format/checksum mismatches; all original labels remain in the denominator. See [methodology and limitations](docs/evaluation.md).
 
-## Accuracy — opt-in name/address profile
+## Experimental name/address evaluation
 
-**Synthetic development regression, 109 sentences (74 structured, 35 free prose),
-75 gold spans, measured 2026-10-10.** Rule threshold 0.4; pinned E5 NER threshold
-0.9. These cases were used for development/model selection, not held-out production
-validation. Two ambiguous filename cases are reported separately without scoring;
-see [annotation policy](docs/name-address-evaluation.md).
+Name and address detection remains under development. Small synthetic regression
+sets help diagnose missed names, ordinary-word false positives and incorrect span
+boundaries; they do not establish real-world accuracy. Current model selection
+and thresholds used these development cases.
 
-| Entity | Opt-in profile | Exact precision | Exact recall | F1 | Fully masked |
-|---|---|---:|---:|---:|---:|
-| KR_NAME | Rules | 100% | 61.70% | 76.32% | 29/47 |
-| KR_NAME | Rules + local NER | 100% | 93.62% | 96.70% | 44/47 |
-| KR_ADDRESS | Rules | 100% | 96.43% | 98.18% | 27/28 |
-| KR_ADDRESS | Rules + local NER | 100% | 100% | 100% | 28/28 |
-
-Both opt-in profiles flag **0/38 negative sentences** in this corpus. On the
-**free-prose subset alone**, NER names are 15/18 exact/full masks (recall 83.33%);
-addresses are 6/6. Missed names include a rare compound name below the conservative
-threshold, `소망` in one colleague context, and a Latin name. These remain failures.
-
-A separate **82-sentence business-language regression** contains 62 negative
-sentences and 21 name spans in 20 positive sentences:
-
-| Opt-in profile | Negative sentences flagged | Name precision | Name recall | Fully masked |
-|---|---:|---:|---:|---:|
-| Rules | 0/62 | 100% | 57.14% | 12/21 |
-| Rules + local NER | 0/62 | 100% | 95.24% | 20/21 |
-
-These are small, curated development sets. Their zero counts do not establish a
-zero real-world false-positive rate. The extended NER profile also flagged 0/2,200
-on the exact numeric negative corpus used above; numeric negatives do not measure
-name ambiguity. [Raw name/address report](benchmarks/results/name-address.json),
-[business report](benchmarks/results/business-korean.json), and
-[reproduction and limitations](docs/evaluation.md) keep the profiles separate.
+The [technical regression report](docs/name-address-evaluation.md) records results
+and reproduction details. The [name span contract](docs/name-span-contract.md)
+defines what counts as a name, while the
+[context evaluation protocol](docs/name-context-evaluation.md) freezes the challenge
+set before baseline evaluation and controlled scoring experiments. See the
+[research sources](docs/name-address-sources.md) for methods considered and the
+distinction between reading a paper and implementing its method.
 
 ## Design notes
 
@@ -277,7 +260,7 @@ Apache-2.0. Built on [Microsoft Presidio](https://github.com/microsoft/presidio)
 
 ## 한국어 안내
 
-LLM 서비스의 입력과 출력, 로그에서 주민등록번호, 외국인등록번호, 사업자등록번호, 운전면허번호, 여권번호, 전화번호, 이메일, 카드번호, 계좌번호, 이름, 주소를 찾아 마스킹합니다.
+LLM 서비스의 입력과 출력, 로그에서 주민등록번호, 외국인등록번호, 사업자등록번호, 운전면허번호, 여권번호, 전화번호, 이메일, 카드번호, 계좌번호를 찾아 마스킹합니다. 이름·주소 탐지는 별도로 켜는 실험적 기능으로 개발 중입니다.
 
 Microsoft Presidio에는 한국 식별번호 탐지기가 이미 들어 있습니다. 하지만 기본으로 꺼져 있고, 한국어 처리 설정이 따로 필요하며, 일부 `010` 번호를 놓치고, 한국어 문맥 단어(`주민번호`, `연락처` 등)를 인식하지 못합니다. 이 패키지는 이런 설정을 한 줄로 끝내 줍니다.
 
@@ -289,8 +272,8 @@ guard.mask("주민번호 900101-1234567, 연락처 010-0000-0000")
 # '주민번호 <KR_RRN>, 연락처 <PHONE_NUMBER>'
 ```
 
-- 이름·주소는 기본값에서 제외되어 있으며 명시적으로 켜야 합니다. 이름 규칙은 명시적인 이름 필드를 탐지합니다. 일반 문장에는 선택적인 로컬 NER 모델을 연결해야 합니다. `이상`, `소망`처럼 일반 단어와 같은 이름은 문맥으로 판단하며, 모델도 오탐·미탐과 조사 경계 오류가 있습니다.
+- 이름·주소는 개발 중인 실험적 기능이며 명시적으로 켜야 합니다. 이름 규칙은 명시적인 이름 필드를 탐지합니다. 일반 문장에는 선택적인 로컬 NER 모델을 연결해야 합니다. `이상`, `소망`처럼 일반 단어와 같은 이름은 문맥으로 판단하며, 모델도 오탐·미탐과 조사 경계 오류가 있습니다. [주석 계약](docs/name-span-contract.md)과 [문맥 평가 계획](docs/name-context-evaluation.md)을 참고하세요.
 - 주소는 도로명/지번·건물번호·일부 상세주소를 탐지하며 전국 주소의 존재 여부를 검증하지 않습니다. 이름·주소 기능은 현재 작업 트리에 포함된 미배포 기능입니다. 건강보험증 번호는 지원하지 않습니다.
 - 계좌번호는 형식과 앞쪽 문맥으로 탐지하며 실제 계좌의 유효성을 검증하지 않습니다. 구분자 없는 숫자는 문맥이 필수이고, 기존 식별번호와 겹치면 기존 유형을 우선합니다.
-- 정확도 표는 합성 데이터 기준이며, 규칙을 같은 데이터로 다듬었기 때문에 실제 환경에서는 더 낮을 수 있습니다.
+- 식별번호 정확도 표는 합성 데이터 기준이며, 규칙을 같은 데이터로 다듬었기 때문에 실제 환경에서는 더 낮을 수 있습니다. 이름·주소의 소규모 개발 회귀 결과는 [기술 평가 문서](docs/name-address-evaluation.md)에 기록하며 일반적인 정확도로 제시하지 않습니다.
 - 개인정보 보호법 준수를 보장하지 않습니다. 유출 위험을 줄이는 보조 도구로 사용하세요.

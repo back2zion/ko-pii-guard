@@ -1,5 +1,9 @@
 # 이름·주소 평가 데이터와 판정 범위
 
+이름·주소는 **개발 중인 opt-in 기능**이다. 여기서 정의한 작은 세트는 회귀 진단에 사용하며,
+README나 대외 소개의 정확도 표에는 쓰지 않는다. 모델 변경 전에는 별도로 동결한
+[문맥 대조 세트](name-context-evaluation.md)를 먼저 측정한다.
+
 [`benchmarks/data/name_address.jsonl`](../benchmarks/data/name_address.jsonl)은
 직접 만든 한국어 **합성 개발 회귀 데이터**다. 개인정보가 포함된 실제 문서나
 개인 주소록을 가져오지 않았다. 이름은 예시로 조합했으며 도로·동네·건물 이름은
@@ -34,6 +38,7 @@
 각 줄에는 `id`, `track`, `category`, `text`, `expected`가 있다.
 `expected`의 각 항목은 `entity`, `start`, `end`를 가지며, 구간은 원문
 Python 문자열의 시작 포함·끝 제외 인덱스다. 바이트 위치가 아니다.
+이름 구간의 API 의미는 [KR_NAME 구간 계약](name-span-contract.md)을 따른다.
 
 - 이름 엔티티는 `KR_NAME`이다. 성과 이름 전체를 포함하고 필드 라벨,
   공백 구분자, 뒤따르는 조사·`님` 등의 호칭은 제외한다. 이름 자체가

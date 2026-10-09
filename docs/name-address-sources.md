@@ -3,7 +3,10 @@
 확인일: **2026-10-10**. 모델 선택의 근거와 재현에 필요한 버전을 기록합니다.
 모델 저자의 점수는 ko-pii-guard의 측정 결과가 아닙니다. 이 프로젝트의 성능은
 자체 실행한 평가 결과와 함께 확인해야 합니다. 이름(`KR_NAME`)과 주소(`KR_ADDRESS`)는
-명시적으로 선택하는 엔티티이며, 기본 탐지 대상은 기존 식별번호 등 9종입니다.
+명시적으로 선택하는 **개발 중인 실험적 엔티티**이며, 기본 탐지 대상은 기존 식별번호 등
+9종입니다. 소규모 개발 결과는 [기술 회귀 평가](name-address-evaluation.md)에 기록합니다.
+평가 기준은 [이름 span 주석 계약](name-span-contract.md)과
+[문맥 평가 계획](name-context-evaluation.md)을 따릅니다.
 
 ## 선택한 로컬 NER 모델
 
@@ -110,26 +113,53 @@ KcELECTRA를 제외한 위 후보는 모델 카드와 파일만 검토했으며 
 
 ## 중국어 NER에서 참고할 방법과 한국어 적용 범위
 
-중국어 연구에서 참고할 수 있는 것은 사전·경계·문맥을 결합하는 학습 방식이다.
-중국어 모델 가중치나 분절기를 그대로 한국어에 적용하면 같은 성능이 나온다는 근거는 아니다.
+중국어 연구에서 참고할 수 있는 것은 사전·경계·문맥을 결합하는 학습 방식입니다.
+중국어 모델 가중치나 분절기를 그대로 한국어에 적용하면 같은 성능이 나온다는 근거는
+아닙니다. 특히 중국어 단어 분절과 한국어 이름·조사 경계는 같은 문제가 아닙니다.
 
-- [SoftLexicon (ACL 2020)](https://aclanthology.org/2020.acl-main.528/)은 사전에서
-  일치한 후보를 문자 표현에 추가한다. 사전 일치를 곧 인명이라는 확정 규칙으로 쓰지 않는다.
-- [FLAT (ACL 2020)](https://aclanthology.org/2020.acl-main.611/)은 겹치는 문자·단어
-  후보와 상대 위치를 함께 학습한다. 한국어 형태소·조사 후보를 넣는 것은 별도 실험 과제다.
-- [NerCo (IJCAI 2023)](https://www.ijcai.org/proceedings/2023/587)는 의미 범주에 따른
-  대조 학습과 후속 NER 학습을 사용한다. 한국어 업무 상용구 오탐 감소가 검증된 결과는 아니다.
-- [Name Regularity Bias (TACL 2021)](https://aclanthology.org/2021.tacl-1.36/)는
-  이름 표면형에 의존하는 편향을 진단하고 문맥 신호를 더 사용하도록 학습하는 방법을 다룬다.
-- [한국어 언어 특성을 이용한 NER](https://arxiv.org/abs/2305.06330)는 조사 등 기능
-  형태소와 이름 본체의 경계를 구분하는 주석 형식을 연구한다. 형태소 분석 출력으로 이름
-  끝글자를 무조건 제거하라는 근거가 아니다.
+**SoftLexicon**은 사전에서 일치한 단어 후보를 문자별 B/M/E/S 집합으로 나누고, 단어
+임베딩을 모아 문자 표현에 결합하는 모델 구조입니다. 사전 일치를 인명이라는 확정 규칙으로
+사용하지 않습니다. 현재 E5에 이 방식을 도입하려면 표현 계층을 바꾸고 재학습해야 합니다.
+사전 일치 여부로 이미 나온 NER 점수만 더하거나 빼는 휴리스틱은 별개의 **점수 보정 실험**이며
+SoftLexicon 구현이라고 부를 수 없습니다.
 
-후속 실험에서는 같은 표면형이 인명/일반명사로 쓰인 대조 문장, 업무 역할명, 조사로 끝나는
-이름을 포함하고 **이름과 문장 틀을 함께 분리한** 미사용 평가 자료를 확보하는 것이 우선이다.
-현재의 합성 회귀 세트를 학습에도 사용한다면 그 점수를 독립 평가로 내세울 수 없다.
+**Name Regularity Bias(NRB)** 연구는 이름 표면형에 의존하는 편향을 진단하고,
+학습 가능한 adversarial noise 등을 사용해 문맥 의존을 높이는 훈련 방법을 제안합니다.
+이 프로젝트가 먼저 참고하는 부분은 같은 표면형을 다른 문맥에 넣는 대조 진단입니다.
+이를 한국어 업무 문장으로 구성하는 것은 NRB에서 착안한 평가이며, 원래 NRB 데이터셋이나
+논문 결과를 재현했다는 뜻이 아닙니다. 해당 adversarial training은 구현하지 않았습니다.
 
-이 논문들은 참고 문헌이다. 현재 패키지는 사전 lattice, 대조 학습, adversarial training을
-구현하거나 새 모델을 재학습하지 않았다. 현재 구현은 고정 공개 모델, 문맥별 보수적 규칙,
-원문 구간 검증과 프로필별 회귀 평가다. 한국어에서의 개선 효과는 실제 비교 실험 전에는
-주장하지 않는다.
+후속 작업의 순서는 다음과 같습니다.
+
+1. [주석 계약](name-span-contract.md)에 따라 인명/일반명사 대조 문장, 업무 역할명,
+   조사로 끝나는 이름을 포함한 challenge set을 확정하고 동결합니다. 이름과 문장 틀을
+   함께 분리하며, 모델 출력에 맞춰 정답을 고치지 않습니다.
+2. 동결한 자료에서 고정 공개 모델과 현재 규칙을 기준선으로 평가하고,
+   오탐·미탐·경계 오류를 분리합니다. 기존의 작은 개발 세트는 기술 회귀 기록으로 유지합니다.
+3. [문맥 평가 계획](name-context-evaluation.md)에 따라 점수 보정이 없는 기준선과
+   사전·문맥별 보정을 하나씩 비교합니다. 보정 설정은 별도의 개발 자료에서 정하고,
+   동결한 평가 자료에서 오탐 감소와 누락·마스킹 범위의 손실을 함께 확인합니다.
+4. 남은 오류와 비교 결과가 구조 변경의 필요성을 뒷받침할 때만 SoftLexicon 등의
+   재학습을 검토합니다. 재학습에는 별도의 학습 자료와 사용 권한, 평가 분리가 필요합니다.
+
+현재 구현은 고정 공개 모델, 문맥별 보수적 규칙, 원문 구간 검증과 프로필별 회귀 평가입니다.
+사전 lattice, 논문의 대조 학습이나 adversarial training을 구현하거나 새 모델을 재학습하지
+않았습니다. 한국어에서의 개선 효과는 실제 비교 실험 전에는 주장하지 않습니다.
+
+### 핵심 참고 문헌
+
+- Ruotian Ma, Minlong Peng, Qi Zhang, Zhongyu Wei, and Xuanjing Huang. 2020.
+  **Simplify the Usage of Lexicon in Chinese NER.** Proceedings of the 58th Annual
+  Meeting of the Association for Computational Linguistics, pp. 5951–5960.
+  [ACL 2020](https://aclanthology.org/2020.acl-main.528/),
+  [arXiv:1908.05969](https://arxiv.org/abs/1908.05969).
+- Abbas Ghaddar, Philippe Langlais, Ahmad Rashid, and Mehdi Rezagholizadeh. 2021.
+  **Context-aware Adversarial Training for Name Regularity Bias in Named Entity
+  Recognition.** Transactions of the Association for Computational Linguistics,
+  9:586–604. [TACL 2021](https://aclanthology.org/2021.tacl-1.36/),
+  [arXiv:2107.11610](https://arxiv.org/abs/2107.11610).
+
+추가로 [FLAT (ACL 2020)](https://aclanthology.org/2020.acl-main.611/)의 겹치는 문자·단어
+후보 표현, [NerCo (IJCAI 2023)](https://www.ijcai.org/proceedings/2023/587)의 대조 학습,
+[한국어 언어 특성을 이용한 NER](https://arxiv.org/abs/2305.06330)의 기능 형태소와 이름
+경계 주석을 검토했습니다. 이들도 참고 문헌이며 현재 패키지에 구현한 방법이 아닙니다.
