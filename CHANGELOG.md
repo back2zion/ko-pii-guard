@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Complete the interrupted KDPII heldout evaluation for the multisource-v2 checkpoint (PS_NAME F1 0.86, PS_NAME+NICKNAME F1 0.71, both passing); the automatic release gate still fails on a single KLUE NSMC name regression ("가르시아"), so `quality_gate_passed` stays false and the checkpoint ships only via a documented human operational decision, not a gate change. See [name-multisource-v2.md](docs/name-multisource-v2.md#운영-배포-결정-게이트-통과가-아닌-사람의-승인).
 - Fix five v9 missed names and two false spans with exact masking regressions. Reject v10 after a fresh evaluation loses a correct name; adopt opt-in v11 with preserved decoders, an expanded filter and hard-example replay. All 1,391 tests pass; 3,222 historical correct spans are preserved with no new false span. New synthetic evaluation retains all 211 correct spans and reduces FP19→17; FN23/FP17 remain. Add CI per-span gates and document the rejected runs.
 
 - Fix the six known v7 missed names and four false spans as ten named Red/Green contracts; original evaluation now TP234/FP0/FN0 and all 1,381 integration tests pass.

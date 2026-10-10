@@ -149,14 +149,69 @@ veto model predictions; address predictions need a numeric component. Filename
 context does not suppress names: `김철수_이력서.pdf` contains a detectable name.
 
 An opt-in [contextual name model v11](artifacts/name-context-v11/README.md)
-is available in this unreleased checkout:
+is preserved for reproducing the synthetic regression experiments. **It is not
+recommended as an improvement for general prose:** an external KLUE sample
+showed lower accuracy than the original E5 runtime.
+
+| Previously inspected KLUE sample: 1,000 sentences, 908 names | Exact F1 | False spans | Missed exact spans | Names not fully covered |
+|---|---:|---:|---:|---:|
+| Original E5, threshold 0.9 | 85.05% | 126 | 143 | 96 |
+| Contextual v11 | 73.75% | 179 | 273 | 255 |
+
+These are separate measurements: an incorrect boundary can still cover the
+whole name. Coverage here was calculated from predicted span unions. See the
+[external report](benchmarks/results/name-span-v1-external.json). This sample
+is now development data and cannot establish the generalization of subsequent
+changes. The new [real-text and character-boundary experiment](docs/name-generalization-v1.md)
+separates training, selection, fresh evaluation, and actual masking checks.
+
+The new LoRA/character candidate **failed the adoption gate**. With the candidate
+and cutoff frozen before evaluation, results were:
+
+| Evaluation | Original E5 → candidate exact F1 | False spans | Names not fully masked |
+|---|---:|---:|---:|
+| Fresh KLUE, 999 sentences / 876 names | 84.58% → 89.14% | 138 → 99 | 80 → 73 |
+| KDPII, 500 sentences / 18 `PS_NAME` names | 85.71% → 22.52% | 2 → 116 | 2 → 0 |
+
+One training-overlap sentence was excluded from the original 1,000 KLUE IDs
+before inference, without replacement. KLUE still had 12 previously masked names
+newly exposed. KDPII had 101 non-person sentences incorrectly masked versus one
+for E5. These name-only experiments use guard `score_threshold=0.0` (the library
+default is 0.4); they do not describe default-setting accuracy. The candidate is
+not promoted. See the [full results and gate](docs/name-generalization-v1.md).
+The completed integration run passed 1,726 tests; model-quality gates are separate.
+The [multisource experiment](docs/name-multisource-v2.md) separates whole-span evidence
+from character coverage and requires every development source to pass before
+opening a fresh evaluation split. All 40 policies using the fixed LoRA weights
+failed that gate. A separate head trained with conversational data also failed
+all 20 initial policies. Of 20 further selective policies, one
+(`selective:addition=1.0:removal=0.9999`) passed development and
+actual-inference replay. Its completed fresh heldout evaluation **still fails
+the automatic release gate**: KDPII heldout (1,992 sentences) passes
+(`PS_NAME` F1 85.71%, `PS_NAME+PS_NICKNAME` F1 71.28%, both at or above the
+original E5), but KLUE NSMC heldout loses one previously correct name
+("가르시아", a foreign surname already gold-tagged `PS` in KLUE-NER) out of 449,
+holding KLUE WikiTree at 418/418. `quality_gate_passed` is `false` in
+[`name-multisource-v2-release-decision.json`](benchmarks/results/name-multisource-v2-release-decision.json)
+and the gate code is unchanged: per-case regressions are not auto-waived. The
+checkpoint ([`artifacts/name-multisource-v2-verified`](artifacts/name-multisource-v2-verified))
+ships only through a documented human operational decision, not a gate pass —
+see [the release-decision memo](docs/name-multisource-v2.md#운영-배포-결정-게이트-통과가-아닌-사람의-승인)
+for the dated approval, rejection detail and the open watchlist item for the
+missed name. These experiments are name-only at guard threshold 0.0 (default 0.4).
+Upstream E5 training exposure has not been independently audited. General prose
+name-recognition errors remain unresolved; passing software tests does not imply
+model accuracy.
+
+To reproduce v11 explicitly:
 
 ```python
 ner = KoreanNER.from_pretrained(name_context_path="artifacts/name-context-v11")
 ```
 
 It fixes the five known v9 missed names and two false spans; that original
-192-sentence split now scores TP234/FP0/FN0. All 1,391 integration tests pass.
+192-sentence split scores TP234/FP0/FN0. Its historical integration run passed
+1,391 tests; this did not predict external name-recognition accuracy.
 Historical acceptance protects all 3,222 correct spans across 3,049 sentences.
 A separate, frozen 192-sentence synthetic evaluation preserves all 211
 baseline-correct spans with no new false span (TP/FP/FN 211/19/23 → 211/17/23).
