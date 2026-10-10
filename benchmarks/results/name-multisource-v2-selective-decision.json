@@ -1,0 +1,469 @@
+{
+  "scope": "multisource development selection only",
+  "status": "selected",
+  "selected_id": "selective:addition=1.0:removal=0.9999",
+  "selected_policy": {
+    "algorithm": "selective_whole_span",
+    "addition_threshold": 1.0,
+    "removal_threshold": 0.9999,
+    "class_logit_correction": 0.0
+  },
+  "required_sources": [
+    "kdpii/PS_NAME",
+    "kdpii/PS_NAME+PS_NICKNAME",
+    "nsmc",
+    "wikitree"
+  ],
+  "ranking_rule": "Maximize minimum source coverage-rate gain, mean coverage-rate gain, mean F1 gain, total negative-FP reduction, total extra-character reduction; lexical ID tie",
+  "feasible_ids": [
+    "selective:addition=1.0:removal=0.9999"
+  ],
+  "feasible_ranks": {
+    "selective:addition=1.0:removal=0.9999": [
+      0.0,
+      0.0,
+      0.0004953661809217746,
+      2,
+      7
+    ]
+  },
+  "global_reasons": [],
+  "rejections": {
+    "selective:addition=0.9999:removal=0.9": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.9999:removal=0.99": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.9999:removal=0.999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.9999:removal=0.9999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      }
+    ],
+    "selective:addition=0.9999:removal=1.0": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      }
+    ],
+    "selective:addition=0.999:removal=0.9": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.999:removal=0.99": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.999:removal=0.999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=0.999:removal=0.9999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=0.999:removal=1.0": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=0.99:removal=0.9": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.99:removal=0.99": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=0.99:removal=0.999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=0.99:removal=0.9999": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=0.99:removal=1.0": [
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "kdpii/PS_NAME",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+      },
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: unnecessary_masked_characters"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      }
+    ],
+    "selective:addition=1.0:removal=0.9": [
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=1.0:removal=0.99": [
+      {
+        "source": "nsmc",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "nsmc",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      },
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=1.0:removal=0.999": [
+      {
+        "source": "wikitree",
+        "check": "strict_regression_gate",
+        "detail": "Missing/failed gate or regressions"
+      },
+      {
+        "source": "wikitree",
+        "check": "aggregate_constraints",
+        "detail": "Worse than baseline: fully_covered_names"
+      }
+    ],
+    "selective:addition=1.0:removal=1.0": [
+      {
+        "source": null,
+        "check": "strict_improvement",
+        "detail": "No required source strictly improves over baseline"
+      }
+    ]
+  },
+  "automatic_runtime_promotion": false,
+  "development_report_sha256": "76e424f78c1523ba3eda8e462ea18b3d50f18da26a25f55c8b442962c9c953b2",
+  "checker_sha256": "cb31fdb13d1852acbc47c523e7f02bc544bbcc48d3359dcd8bb61bec50276799"
+}

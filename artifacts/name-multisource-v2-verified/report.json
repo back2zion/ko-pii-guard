@@ -1,0 +1,336 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.2774569394387072,
+      "validation": {
+        "kdpii_v1_valid": {
+          "0.5": {
+            "tp": 165,
+            "fp": 104,
+            "fn": 14,
+            "fully_covered_names": 169,
+            "f1": 0.7366071428571429
+          },
+          "0.7": {
+            "tp": 163,
+            "fp": 72,
+            "fn": 16,
+            "fully_covered_names": 167,
+            "f1": 0.7874396135265701
+          },
+          "0.9": {
+            "tp": 156,
+            "fp": 23,
+            "fn": 23,
+            "fully_covered_names": 159,
+            "f1": 0.8715083798882681
+          },
+          "0.95": {
+            "tp": 149,
+            "fp": 16,
+            "fn": 30,
+            "fully_covered_names": 150,
+            "f1": 0.8662790697674418
+          }
+        },
+        "nsmc": {
+          "0.5": {
+            "tp": 567,
+            "fp": 47,
+            "fn": 10,
+            "fully_covered_names": 572,
+            "f1": 0.9521410579345088
+          },
+          "0.7": {
+            "tp": 565,
+            "fp": 36,
+            "fn": 12,
+            "fully_covered_names": 569,
+            "f1": 0.9592529711375212
+          },
+          "0.9": {
+            "tp": 552,
+            "fp": 25,
+            "fn": 25,
+            "fully_covered_names": 556,
+            "f1": 0.9566724436741768
+          },
+          "0.95": {
+            "tp": 544,
+            "fp": 21,
+            "fn": 33,
+            "fully_covered_names": 548,
+            "f1": 0.9527145359019265
+          }
+        },
+        "wikitree": {
+          "0.5": {
+            "tp": 913,
+            "fp": 35,
+            "fn": 8,
+            "fully_covered_names": 916,
+            "f1": 0.9769930444087748
+          },
+          "0.7": {
+            "tp": 912,
+            "fp": 26,
+            "fn": 9,
+            "fully_covered_names": 914,
+            "f1": 0.9811726734803657
+          },
+          "0.9": {
+            "tp": 901,
+            "fp": 20,
+            "fn": 20,
+            "fully_covered_names": 901,
+            "f1": 0.9782844733984799
+          },
+          "0.95": {
+            "tp": 885,
+            "fp": 20,
+            "fn": 36,
+            "fully_covered_names": 885,
+            "f1": 0.9693318729463308
+          }
+        }
+      },
+      "prior_scale": 0.2693355977535248
+    },
+    {
+      "epoch": 2,
+      "loss": 1.012768632688676,
+      "validation": {
+        "kdpii_v1_valid": {
+          "0.5": {
+            "tp": 154,
+            "fp": 35,
+            "fn": 25,
+            "fully_covered_names": 155,
+            "f1": 0.8369565217391305
+          },
+          "0.7": {
+            "tp": 147,
+            "fp": 20,
+            "fn": 32,
+            "fully_covered_names": 148,
+            "f1": 0.8497109826589595
+          },
+          "0.9": {
+            "tp": 124,
+            "fp": 4,
+            "fn": 55,
+            "fully_covered_names": 124,
+            "f1": 0.8078175895765473
+          },
+          "0.95": {
+            "tp": 108,
+            "fp": 3,
+            "fn": 71,
+            "fully_covered_names": 108,
+            "f1": 0.7448275862068966
+          }
+        },
+        "nsmc": {
+          "0.5": {
+            "tp": 555,
+            "fp": 17,
+            "fn": 22,
+            "fully_covered_names": 559,
+            "f1": 0.9660574412532638
+          },
+          "0.7": {
+            "tp": 538,
+            "fp": 14,
+            "fn": 39,
+            "fully_covered_names": 542,
+            "f1": 0.9530558015943312
+          },
+          "0.9": {
+            "tp": 507,
+            "fp": 9,
+            "fn": 70,
+            "fully_covered_names": 508,
+            "f1": 0.9277218664226898
+          },
+          "0.95": {
+            "tp": 481,
+            "fp": 8,
+            "fn": 96,
+            "fully_covered_names": 482,
+            "f1": 0.9024390243902439
+          }
+        },
+        "wikitree": {
+          "0.5": {
+            "tp": 903,
+            "fp": 20,
+            "fn": 18,
+            "fully_covered_names": 905,
+            "f1": 0.9793926247288504
+          },
+          "0.7": {
+            "tp": 896,
+            "fp": 13,
+            "fn": 25,
+            "fully_covered_names": 898,
+            "f1": 0.9792349726775956
+          },
+          "0.9": {
+            "tp": 866,
+            "fp": 6,
+            "fn": 55,
+            "fully_covered_names": 866,
+            "f1": 0.965978806469604
+          },
+          "0.95": {
+            "tp": 838,
+            "fp": 4,
+            "fn": 83,
+            "fully_covered_names": 838,
+            "f1": 0.9506522972206466
+          }
+        }
+      },
+      "prior_scale": 0.26778483390808105
+    },
+    {
+      "epoch": 3,
+      "loss": 0.9560386410666979,
+      "validation": {
+        "kdpii_v1_valid": {
+          "0.5": {
+            "tp": 167,
+            "fp": 108,
+            "fn": 12,
+            "fully_covered_names": 170,
+            "f1": 0.73568281938326
+          },
+          "0.7": {
+            "tp": 166,
+            "fp": 64,
+            "fn": 13,
+            "fully_covered_names": 167,
+            "f1": 0.8117359413202934
+          },
+          "0.9": {
+            "tp": 154,
+            "fp": 12,
+            "fn": 25,
+            "fully_covered_names": 155,
+            "f1": 0.8927536231884058
+          },
+          "0.95": {
+            "tp": 141,
+            "fp": 5,
+            "fn": 38,
+            "fully_covered_names": 141,
+            "f1": 0.8676923076923077
+          }
+        },
+        "nsmc": {
+          "0.5": {
+            "tp": 563,
+            "fp": 36,
+            "fn": 14,
+            "fully_covered_names": 567,
+            "f1": 0.9574829931972789
+          },
+          "0.7": {
+            "tp": 552,
+            "fp": 28,
+            "fn": 25,
+            "fully_covered_names": 556,
+            "f1": 0.9541918755401901
+          },
+          "0.9": {
+            "tp": 523,
+            "fp": 14,
+            "fn": 54,
+            "fully_covered_names": 526,
+            "f1": 0.9389587073608617
+          },
+          "0.95": {
+            "tp": 501,
+            "fp": 11,
+            "fn": 76,
+            "fully_covered_names": 502,
+            "f1": 0.9201101928374655
+          }
+        },
+        "wikitree": {
+          "0.5": {
+            "tp": 911,
+            "fp": 29,
+            "fn": 10,
+            "fully_covered_names": 914,
+            "f1": 0.9790435249865663
+          },
+          "0.7": {
+            "tp": 900,
+            "fp": 19,
+            "fn": 21,
+            "fully_covered_names": 902,
+            "f1": 0.9782608695652174
+          },
+          "0.9": {
+            "tp": 874,
+            "fp": 8,
+            "fn": 47,
+            "fully_covered_names": 874,
+            "f1": 0.9694952856350527
+          },
+          "0.95": {
+            "tp": 852,
+            "fp": 5,
+            "fn": 69,
+            "fully_covered_names": 852,
+            "f1": 0.9583802024746907
+          }
+        }
+      },
+      "prior_scale": 0.264955997467041
+    }
+  ],
+  "selected_epoch": 1,
+  "threshold": 0.9,
+  "macro_validation_f1": 0.9354884323203083,
+  "validation": {
+    "kdpii_v1_valid": {
+      "tp": 156,
+      "fp": 23,
+      "fn": 23,
+      "fully_covered_names": 159,
+      "f1": 0.8715083798882681
+    },
+    "nsmc": {
+      "tp": 552,
+      "fp": 25,
+      "fn": 25,
+      "fully_covered_names": 556,
+      "f1": 0.9566724436741768
+    },
+    "wikitree": {
+      "tp": 901,
+      "fp": 20,
+      "fn": 20,
+      "fully_covered_names": 901,
+      "f1": 0.9782844733984799
+    }
+  },
+  "synthetic_validation": {
+    "0.9": {
+      "tp": 97,
+      "fp": 0,
+      "fn": 11,
+      "fully_covered_names": 97,
+      "f1": 0.9463414634146341
+    }
+  },
+  "elapsed_seconds": 749.2640506730022,
+  "reused_feature_rows": 14196,
+  "encoded_feature_rows": 14825,
+  "novel_cache_sha256": "5e048ec2a58426832ac6f55756cadae274f4f78cb50f2b182e70bbcb282c1041",
+  "source_changed": false,
+  "runtime_promotion": false
+}

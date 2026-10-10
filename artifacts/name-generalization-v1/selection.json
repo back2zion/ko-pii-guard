@@ -1,0 +1,18 @@
+{
+  "finalized": true,
+  "selection_basis": "Fixed seed 20261011, six epochs; highest real training-split validation exact F1, fewer FP, higher threshold, earlier epoch. No external result used to select epoch/threshold.",
+  "candidate": {
+    "checkpoint": "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1",
+    "device": "cuda"
+  },
+  "training_text_hashes_json": "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/training-text-hashes.json",
+  "frozen_sha256": {
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/config.json": "802097c1d7d65a56f7cb344056318201e8460a636f5d1db41b653a889766d815",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/head.safetensors": "1bc5665c9a21ca85b5c0b6d538e9c2293905e9fc1dda09ae8da64dfa47b07316",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/report.json": "573e00babc5f0a92e79b6913016d81ef469216a394e5b2e537a34b3eb6808ad2",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_adapter.py": "7587dc58aee36f140838bfd65664cc7cd78558106935e891973f73f0b26bebe5",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de"
+  }
+}

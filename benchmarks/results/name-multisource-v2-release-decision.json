@@ -1,0 +1,130 @@
+{
+  "scope": "multisource external evaluation gate only",
+  "status": "quality_gate_failed",
+  "quality_gate_passed": false,
+  "reasons": [
+    {
+      "domain": "heldout/klue",
+      "check": "completed_report",
+      "detail": "Incomplete/failed run, changed inputs, or resampling"
+    },
+    {
+      "domain": "nsmc",
+      "check": "strict_regression_gate",
+      "detail": "Missing/failed concrete per-case masking gate"
+    },
+    {
+      "domain": "nsmc",
+      "check": "aggregate_constraints",
+      "detail": "Source reports a failed quality gate"
+    },
+    {
+      "domain": "nsmc",
+      "check": "aggregate_constraints",
+      "detail": "Worse than baseline: fully_covered_names, f1"
+    },
+    {
+      "domain": "heldout/kdpii",
+      "check": "completed_report",
+      "detail": "Incomplete/failed run, changed inputs, or resampling"
+    },
+    {
+      "domain": "heldout/kdpii",
+      "check": "runtime",
+      "detail": "Actual devices or runtime versions differ"
+    },
+    {
+      "domain": "heldout/kdpii",
+      "check": "source_complete",
+      "detail": "Every domain source/policy must be present exactly once"
+    },
+    {
+      "domain": null,
+      "check": "fresh_quality",
+      "detail": "Baselines must contain exactly every required source"
+    }
+  ],
+  "selected_id": "selective:addition=1.0:removal=0.9999",
+  "selected_policy": {
+    "algorithm": "selective_whole_span",
+    "addition_threshold": 1.0,
+    "removal_threshold": 0.9999,
+    "class_logit_correction": 0.0
+  },
+  "amendment_sha256": "1324b2b86220869b610773e968aaa93736ae7052d739882342d83505c9a63d3d",
+  "evaluated_selected_counts": {
+    "klue": 1000,
+    "kdpii": 1992
+  },
+  "confidence_intervals": {
+    "nsmc": {
+      "method": "paired sentence percentile bootstrap",
+      "repetitions": 500,
+      "seed": 20261010,
+      "delta_95_intervals": {
+        "f1": [
+          -0.003931213130251798,
+          0.002617107345957659
+        ],
+        "precision": [
+          -0.001097723126397887,
+          0.005544938225081508
+        ],
+        "recall": [
+          -0.007009345794392607,
+          0.0
+        ],
+        "full_name_coverage": [
+          -0.007009345794392496,
+          0.0
+        ]
+      }
+    },
+    "wikitree": {
+      "method": "paired sentence percentile bootstrap",
+      "repetitions": 500,
+      "seed": 20261010,
+      "delta_95_intervals": {
+        "f1": [
+          0.0,
+          0.0
+        ],
+        "precision": [
+          0.0,
+          0.0
+        ],
+        "recall": [
+          0.0,
+          0.0
+        ],
+        "full_name_coverage": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "input_sha256": {
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-selective-decision.json": "76094ad4d29596146e652ea1ce8951773a6e78089c76d788407a0033e77301ea",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-selective-development.json": "76e424f78c1523ba3eda8e462ea18b3d50f18da26a25f55c8b442962c9c953b2",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-reserve.json": "e620c0bbab8dfa6664d893770f2a1318c9dcddc1c188b13ba852c108bb81300a",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-live-klue-development.json": "d37acb087d871a7914d6e0b84e146463ce4c654a7697d2c9538f2c52b9a08521",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-live-kdpii-development.json": "888a6ec939c53c77f0cf754e93e01fa999a4c34f115906215c1d26e2bbef9908",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-text-amendment.json": "1324b2b86220869b610773e968aaa93736ae7052d739882342d83505c9a63d3d",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-fresh-klue.json": "44278d26e5171cbbf55acf30422319b1d853a09753c7e1d8e471d98c74027975",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-fresh-kdpii-lossless.json": "a3b263b8dd801bc1070a1ae6180ae19a453884cfc5fc106d897748c1f3a6b856",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-fresh-klue.manifest.json": "c4df3df7e57ba731fdf1ac966b38ff9540364ab05879824ff3a9cefcf8a5ac5e",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-fresh-kdpii.manifest.json": "3848905c944a9a77d5a88cf6823dea79993d091375ef1adc3935b1bc21190dae",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-fresh-kdpii-lossless.manifest.json": "909e696d4ad63927bba79739e4aded30d389a7a2f49dc8cacfbc476f7a5b2e15"
+  },
+  "historical_contracts_checked": false,
+  "automatic_runtime_promotion": false,
+  "kdpii_lossless_parser_authorized": true,
+  "limitations": [
+    "Only the supplied external evaluation gates are checked",
+    "Confidence intervals are reported without a new significance gate",
+    "Sentence resampling does not establish dialogue independence",
+    "Upstream encoder training exposure is not proven absent"
+  ],
+  "checker_sha256": "74de5587284c87fd122043a0a4d8d08f4177e3eabd9a772b98aa8ce9f2541929"
+}

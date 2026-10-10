@@ -1,0 +1,54 @@
+{
+  "scope": "external evaluation gate only",
+  "checked_domains": [
+    "development",
+    "heldout",
+    "kdpii/PS_NAME",
+    "kdpii/PS_NAME+PS_NICKNAME"
+  ],
+  "external_gate_passed": false,
+  "reasons": [
+    {
+      "domain": "development",
+      "check": "strict_regression_gate",
+      "detail": "Gate failed, required checks are absent, or concrete regressions remain"
+    },
+    {
+      "domain": "heldout",
+      "check": "strict_regression_gate",
+      "detail": "Gate failed, required checks are absent, or concrete regressions remain"
+    },
+    {
+      "domain": "kdpii/PS_NAME",
+      "check": "strict_regression_gate",
+      "detail": "Gate failed, required checks are absent, or concrete regressions remain"
+    },
+    {
+      "domain": "kdpii/PS_NAME",
+      "check": "aggregate_constraints",
+      "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+    },
+    {
+      "domain": "kdpii/PS_NAME+PS_NICKNAME",
+      "check": "strict_regression_gate",
+      "detail": "Gate failed, required checks are absent, or concrete regressions remain"
+    },
+    {
+      "domain": "kdpii/PS_NAME+PS_NICKNAME",
+      "check": "aggregate_constraints",
+      "detail": "Worse than baseline: f1, negative_false_positive_sentences, unnecessary_masked_characters"
+    }
+  ],
+  "historical_contracts_checked": false,
+  "release_qualified": false,
+  "automatic_runtime_promotion": false,
+  "remaining_release_requirements": [
+    "Existing historical regression contracts not evaluated"
+  ],
+  "checker_sha256": "0f110c14db3fe9f23538867155f69644ab8f850a353775bb5ab9b7f44b2857e5",
+  "report_sha256": {
+    "benchmarks/results/name-generalization-final-v1-nonoverlap-development.json": "6d80cd2bae2f315aa3f16d7d861245dace7a84fbfb019e597b2c59fc39b5987f",
+    "benchmarks/results/name-generalization-final-v1-nonoverlap-heldout.json": "d513a603d0840242ed85ca1732c8ac8897bd42a75f50a16143e3a7be08f6af1c",
+    "benchmarks/results/name-generalization-final-v1-nonoverlap-kdpii.json": "d975551c5f8c8699d560faa6644d9dd6e4bc59f993d33e76f93df087cae40ced"
+  }
+}

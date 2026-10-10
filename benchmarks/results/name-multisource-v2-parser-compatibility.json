@@ -1,0 +1,37 @@
+{
+  "scope": "annotation_parser_compatibility_only",
+  "created_at_utc": "2026-10-10T11:08:54.576641+00:00",
+  "version": "identical_annotation_duplicates_v1",
+  "development_cases": 500,
+  "development_all_original_fields_equal": true,
+  "selected_cases": 1992,
+  "all_selected_cases_validated": true,
+  "selected_order_unchanged": true,
+  "dropped_records": 0,
+  "duplicate_records": [
+    {
+      "id": "Data1.680_5_4",
+      "duplicates": [
+        {
+          "label": "CV_POSITION",
+          "start": 37,
+          "end": 39,
+          "indices": [
+            0,
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "model_inference": false,
+  "predictions_read": false,
+  "gold_policy_changed": false,
+  "source_sha256": {
+    "/tmp/ko-pii-kdpii-v1/test.json": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-multisource-v2-text-amendment.json": "1324b2b86220869b610773e968aaa93736ae7052d739882342d83505c9a63d3d",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-final-v1-nonoverlap-kdpii.json": "d975551c5f8c8699d560faa6644d9dd6e4bc59f993d33e76f93df087cae40ced",
+    "/home/woodcross/projects/ko-pii-guard/scripts/kdpii_lossless_annotations.py": "0c981716aaa777c4095d46f833ea14d2cb9ffcd4a9f17b19912cefac92f030fe",
+    "/home/woodcross/projects/ko-pii-guard/scripts/fetch_kdpii_evaluation.py": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376"
+  }
+}

@@ -1,0 +1,4491 @@
+{
+  "scope": "second_source_KDPII_frozen_candidate",
+  "source": {
+    "record_id": 10968609,
+    "doi": "10.5281/zenodo.10968609",
+    "url": "https://zenodo.org/records/10968609",
+    "version": "original v1 official test split",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "creators": [
+      {
+        "name": "Yonsei University HamSaeM Kim's Lab",
+        "affiliation": null
+      },
+      {
+        "name": "TSCIENTIFIC Co.,Ltd",
+        "affiliation": null
+      },
+      {
+        "name": "KIM, HANSAEM",
+        "affiliation": "Yonsei University"
+      },
+      {
+        "name": "Li, Fei",
+        "affiliation": "Yonsei University",
+        "orcid": "0000-0002-7366-1817"
+      },
+      {
+        "name": "KANG, YEJEE",
+        "affiliation": "Yonsei University"
+      },
+      {
+        "name": "PARK, SEOYOON",
+        "affiliation": "Yonsei University"
+      },
+      {
+        "name": "YEONJI, YEONJI",
+        "affiliation": "Yonsei University"
+      }
+    ],
+    "files": {
+      "test.json": {
+        "url": "https://zenodo.org/records/10968609/files/test.json?download=1",
+        "sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+        "md5": "08eebd98593c1bad23fbf29053b3f9d2",
+        "bytes": 6124918
+      },
+      "record-metadata.json": {
+        "url": "https://zenodo.org/api/records/10968609",
+        "sha256": "4e05e7761c061e5507f1bb9107a7d10f85cb4bf1f96041b6d897e3f94a4b1029"
+      },
+      "selection.json": {
+        "sha256": "d9644c70d1fadfdc3e57d8046d5b8d6a7a5b38f185548d3323856f129336cb94"
+      },
+      "cases.jsonl": {
+        "sha256": "23c02a730efe88eae363fdf51e119823778f81cbe251b508fe7ec943b92f7a87"
+      }
+    },
+    "preparation_script_sha256": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+    "population": 4891,
+    "selected_rows": 500,
+    "annotation_counts": {
+      "CV_MILITARY_CAMP": 5,
+      "CV_POSITION": 16,
+      "CV_SEX": 6,
+      "DT_BIRTH": 11,
+      "FD_MAJOR": 5,
+      "LCP_COUNTRY": 6,
+      "LC_ADDRESS": 18,
+      "LC_PLACE": 11,
+      "OGG_CLUB": 9,
+      "OGG_EDUCATION": 12,
+      "OGG_RELIGION": 6,
+      "OG_DEPARTMENT": 9,
+      "OG_WORKPLACE": 14,
+      "PS_ID": 6,
+      "PS_NAME": 18,
+      "PS_NICKNAME": 14,
+      "QT_ACCOUNT_NUMBER": 9,
+      "QT_AGE": 3,
+      "QT_ALIEN_NUMBER": 2,
+      "QT_CARD_NUMBER": 6,
+      "QT_DRIVER_NUMBER": 1,
+      "QT_GRADE": 3,
+      "QT_IP": 1,
+      "QT_LENGTH": 4,
+      "QT_MOBILE": 2,
+      "QT_PASSPORT_NUMBER": 3,
+      "QT_PHONE": 7,
+      "QT_PLATE_NUMBER": 6,
+      "QT_RESIDENT_NUMBER": 1,
+      "QT_WEIGHT": 3,
+      "TMI_EMAIL": 8,
+      "TMI_SITE": 3,
+      "TM_BLOOD_TYPE": 3
+    },
+    "primary_gold_names": 18,
+    "primary_negative_sentences": 482,
+    "alternate_gold_names_and_nicknames": 32,
+    "policy": {
+      "primary": "PS_NAME -> KR_NAME",
+      "alternate": "PS_NAME + PS_NICKNAME -> KR_NAME",
+      "handles": "PS_ID excluded; original annotations preserved",
+      "nickname_false_positives": "Primary exact scorer counts nickname predictions as FP; report alternate broad policy separately, never silently relabel"
+    },
+    "limitations": "Different conversational source from KLUE. E5 publisher used KDPII, but source version and training membership are not independently known. Do not claim upstream E5-unseen. ID sampling includes negatives; no label/error selection.",
+    "no_training_or_inference": true,
+    "raw_data_redistributed_in_repository": false
+  },
+  "selection": {
+    "finalized": true,
+    "selection_basis": "Compare frozen and adapted encoders only on prior development. Fixed posterior cutoffs; full coverage/F1 no lower and negative FP/extra characters no higher than original E5. Maximize covered names, minimize extra characters, then maximize F1; retain frozen incumbent on a tie. Strict per-case regressions remain separate and cannot be waived by this ranking.",
+    "candidate_factory": "name_adapted_adapter:build_ner",
+    "candidate": {
+      "checkpoint": "artifacts/name-generalization-lora-v1",
+      "device": "cuda",
+      "decoder": "coverage",
+      "threshold": 0.01
+    },
+    "training_text_hashes_json": "artifacts/name-generalization-v1/training-text-hashes.json",
+    "frozen_sha256": {
+      "artifacts/name-generalization-lora-v1/head.safetensors": "991a7434334f7bb7c63c0fdf9cd5f0c9c40e888df9ababee7b0df924dec7004b",
+      "artifacts/name-generalization-lora-v1/lora.safetensors": "2791a505b4bf4b5924b551c2cb620d8429a5947b4754460ca02bac374241fc28",
+      "artifacts/name-generalization-lora-v1/config.json": "185c7555118302e50bbcd41e5dddcc3b1f9567e8fa9aaf28838d3eecb21b7e24",
+      "artifacts/name-generalization-lora-v1/report.json": "dbc1efcfc44484c2fe48ffe35c5a73d8880adea621033ce17771b6f79b624a8f",
+      "artifacts/name-generalization-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+      "benchmarks/results/name-generalization-v1-development.json": "e9d08cf2f21ab05ea191aa275590106d13062a6b66ec22a5795baeffee88e761",
+      "benchmarks/results/name-generalization-v1-coverage-selection.json": "cb6cc6e7a69d15fb7c90e4712f4986d20415bd93e0fdb8efd8fce06de45b2d22",
+      "benchmarks/results/name-generalization-lora-v1-coverage-selection.json": "0a3f491e6cac95609f84e95e5d319585cdfe220b0916d2d7b1b91ae93206aadf",
+      "artifacts/name-generalization-lora-v1/validate_name_generalization_pipeline.py.source.txt": "8999399785c8531aad84dd778074b0cbe16c13fefa527a999f68589f5e094db3",
+      "scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+      "scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+      "scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+      "scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+      "scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+      "scripts/select_name_coverage.py": "f8e5f71dfdfbfcaa223f7e4fb27811b17dc278acccf58e48f99582cb7dcbed0b",
+      "/home/woodcross/projects/ko-pii-guard/scripts/validate_name_generalization_pipeline.py": "e0451786fa18e47382c1ac673f2cae3d76973de353d9e50caaa8189f4dcf3a5b",
+      "benchmarks/results/name-generalization-final-v1-selection.json": "c24e39ebbda475c63d39187565ab05b438d6de09b657f35d2c7bc4373fef2e9b",
+      "benchmarks/results/name-generalization-final-v1-heldout.json": "905e8e881b28865e6fa7d834dddf6b7994d9adf8b8c900f8ee2a225cab8b2539",
+      "scripts/evaluate_name_generalization_nonoverlap.py": "0b1bff69584ac28454e4a8bd727f5cc5921b8af8c8da35f8939ba2eee47e2428"
+    },
+    "amendment": "Original 1000-ID evaluation stopped before inference on exact training text overlap. Keep identical model/decoder/threshold and original IDs; exclude only exact overlap, without replacement. This is not retuning."
+  },
+  "selected_ids": [
+    "Data4.3205_3_4",
+    "Data4.3248_3_4",
+    "Data5.3988_3_3",
+    "Data4.3787_9_9",
+    "Data2.1817_4_3",
+    "Data4.3298_4_4",
+    "Data5.4351_7_13",
+    "Data3.2516_2_1",
+    "Data2.1151_2_2",
+    "Data2.1917_4_5",
+    "Data2.1187_6_9",
+    "Data3.2973_2_1",
+    "Data4.3396_7_10",
+    "Data3.2909_6_6",
+    "Data4.3609_7_6",
+    "Data4.3609_9_9",
+    "Data5.4467_5_7",
+    "Data2.1321_1_0",
+    "Data4.3607_2_2",
+    "Data4.3335_2_1",
+    "Data2.1399_6_5",
+    "Data4.3753_3_3",
+    "Data1.246_2_2",
+    "Data4.3373_4_5",
+    "Data2.1996_5_10",
+    "Data2.1240_1_1",
+    "Data3.2290_2_1",
+    "Data5.4521_1_0",
+    "Data2.1882_1_1",
+    "Data4.3110_3_5",
+    "Data2.1933_4_6",
+    "Data4.3816_6_6",
+    "Data2.1388_4_4",
+    "Data1.469_5_5",
+    "Data4.3215_4_3",
+    "Data2.1348_5_8",
+    "Data2.1263_2_1",
+    "Data3.2946_5_5",
+    "Data3.2121_5_6",
+    "Data2.1703_3_3",
+    "Data3.2484_6_11",
+    "Data3.2692_3_2",
+    "Data4.3346_3_4",
+    "Data4.3345_3_2",
+    "Data2.1392_7_7",
+    "Data4.3091_7_6",
+    "Data5.4392_5_4",
+    "Data1.436_2_1",
+    "Data1.145_7_7",
+    "Data3.2185_9_9",
+    "Data2.1321_7_9",
+    "Data4.3400_3_3",
+    "Data3.2170_2_3",
+    "Data5.4304_6_6",
+    "Data3.2828_2_1",
+    "Data2.1817_1_0",
+    "Data3.2057_3_5",
+    "Data3.2121_2_2",
+    "Data3.2133_8_10",
+    "Data3.2199_8_11",
+    "Data4.3650_6_5",
+    "Data2.1247_2_2",
+    "Data2.1273_2_1",
+    "Data3.2516_3_2",
+    "Data4.3002_4_5",
+    "Data3.2618_7_8",
+    "Data3.2602_7_8",
+    "Data2.1373_3_4",
+    "Data1.246_4_5",
+    "Data1.769_3_3",
+    "Data1.141_1_0",
+    "Data5.3926_8_8",
+    "Data4.3401_5_7",
+    "Data1.609_4_4",
+    "Data3.2954_4_6",
+    "Data1.767_11_17",
+    "Data4.3709_6_7",
+    "Data4.3373_7_9",
+    "Data2.1651_6_5",
+    "Data4.3172_6_7",
+    "Data5.4351_1_1",
+    "Data5.4527_2_2",
+    "Data2.1750_2_1",
+    "Data1.497_6_6",
+    "Data1.644_1_0",
+    "Data3.2233_7_12",
+    "Data2.1870_6_7",
+    "Data1.406_4_5",
+    "Data2.1094_1_0",
+    "Data3.2232_9_9",
+    "Data4.3617_6_6",
+    "Data4.3617_8_8",
+    "Data4.3165_8_8",
+    "Data1.447_4_3",
+    "Data2.1750_4_7",
+    "Data2.1220_7_9",
+    "Data4.3043_5_5",
+    "Data5.4070_1_1",
+    "Data4.3863_6_5",
+    "Data5.4259_2_3",
+    "Data2.1993_7_12",
+    "Data1.108_9_8",
+    "Data1.884_8_8",
+    "Data4.3175_3_5",
+    "Data3.2529_2_1",
+    "Data4.3051_5_5",
+    "Data5.3965_1_1",
+    "Data2.1399_10_10",
+    "Data1.281_7_8",
+    "Data1.644_4_5",
+    "Data4.3639_7_8",
+    "Data3.2945_1_0",
+    "Data1.246_6_7",
+    "Data5.4237_6_7",
+    "Data2.1400_5_6",
+    "Data5.4286_4_3",
+    "Data2.1176_6_7",
+    "Data3.2868_1_0",
+    "Data1.106_5_6",
+    "Data4.3753_1_0",
+    "Data4.3202_5_7",
+    "Data4.3401_2_1",
+    "Data2.1110_4_6",
+    "Data4.3215_1_0",
+    "Data1.565_8_8",
+    "Data2.1066_4_4",
+    "Data3.2622_4_3",
+    "Data5.4316_5_10",
+    "Data4.3160_3_2",
+    "Data3.2812_3_2",
+    "Data3.2185_8_7",
+    "Data3.2577_3_2",
+    "Data1.680_6_6",
+    "Data1.884_5_5",
+    "Data4.3165_7_6",
+    "Data2.1750_6_9",
+    "Data2.1776_4_3",
+    "Data4.3197_3_3",
+    "Data3.2178_7_7",
+    "Data4.3609_3_2",
+    "Data1.57_5_7",
+    "Data1.228_4_3",
+    "Data4.3165_8_7",
+    "Data3.2541_4_3",
+    "Data4.3903_5_7",
+    "Data1.168_3_3",
+    "Data3.2082_8_10",
+    "Data2.1348_5_7",
+    "Data2.1850_1_0",
+    "Data4.3069_7_7",
+    "Data1.25_7_8",
+    "Data5.4555_5_8",
+    "Data4.3175_4_6",
+    "Data1.886_3_3",
+    "Data2.1264_4_7",
+    "Data5.3965_6_11",
+    "Data3.2329_2_2",
+    "Data4.3569_6_7",
+    "Data1.767_7_8",
+    "Data5.4153_6_6",
+    "Data2.1373_7_9",
+    "Data4.3165_2_1",
+    "Data2.1176_2_1",
+    "Data5.4238_2_1",
+    "Data4.3650_3_2",
+    "Data2.1850_6_7",
+    "Data4.3614_3_2",
+    "Data3.2376_2_2",
+    "Data2.1354_6_7",
+    "Data4.3893_8_8",
+    "Data5.4020_6_11",
+    "Data1.202_4_4",
+    "Data3.2189_2_1",
+    "Data1.195_7_13",
+    "Data1.108_7_6",
+    "Data4.3015_7_7",
+    "Data1.173_5_4",
+    "Data4.3069_11_11",
+    "Data3.2759_2_2",
+    "Data3.2082_8_11",
+    "Data4.3594_4_3",
+    "Data3.2195_3_3",
+    "Data4.3424_2_2",
+    "Data3.2828_4_4",
+    "Data4.3377_2_2",
+    "Data1.578_2_1",
+    "Data1.614_5_5",
+    "Data2.1348_4_5",
+    "Data3.2227_5_6",
+    "Data2.1829_6_7",
+    "Data1.957_7_11",
+    "Data4.3233_1_1",
+    "Data4.3411_3_2",
+    "Data1.947_4_5",
+    "Data2.1882_6_9",
+    "Data4.3172_4_4",
+    "Data3.2945_7_8",
+    "Data2.1776_3_2",
+    "Data1.447_3_2",
+    "Data4.3707_4_3",
+    "Data4.3325_9_12",
+    "Data2.1354_3_2",
+    "Data3.2328_3_3",
+    "Data1.860_6_6",
+    "Data2.1084_2_1",
+    "Data2.1609_5_6",
+    "Data4.3151_7_11",
+    "Data5.4474_5_5",
+    "Data5.4105_8_8",
+    "Data1.952_5_6",
+    "Data4.3607_4_5",
+    "Data1.106_8_10",
+    "Data2.1554_8_9",
+    "Data2.1774_3_3",
+    "Data4.3175_5_7",
+    "Data3.2313_1_0",
+    "Data4.3325_1_0",
+    "Data5.4565_3_3",
+    "Data1.906_4_4",
+    "Data3.2227_2_1",
+    "Data1.145_4_3",
+    "Data1.709_5_7",
+    "Data2.1362_7_7",
+    "Data3.2376_3_4",
+    "Data5.4045_10_12",
+    "Data1.692_3_2",
+    "Data3.2543_7_8",
+    "Data1.215_5_9",
+    "Data2.1245_3_4",
+    "Data1.767_3_4",
+    "Data1.378_2_1",
+    "Data4.3710_5_7",
+    "Data4.3816_6_8",
+    "Data2.1993_3_3",
+    "Data4.3282_5_5",
+    "Data2.1954_7_9",
+    "Data2.1914_6_10",
+    "Data1.215_2_2",
+    "Data1.264_3_2",
+    "Data2.1579_1_0",
+    "Data2.1001_7_11",
+    "Data5.4050_6_7",
+    "Data1.25_6_7",
+    "Data2.1220_5_7",
+    "Data5.4527_3_5",
+    "Data3.2390_9_12",
+    "Data4.3834_4_3",
+    "Data1.56_6_5",
+    "Data4.3043_8_8",
+    "Data2.1870_2_1",
+    "Data5.4467_4_4",
+    "Data3.2233_4_4",
+    "Data2.1337_7_12",
+    "Data1.578_1_0",
+    "Data2.1176_5_5",
+    "Data3.2710_4_5",
+    "Data1.947_3_3",
+    "Data4.3244_2_1",
+    "Data1.507_1_0",
+    "Data3.2328_4_4",
+    "Data5.4286_3_2",
+    "Data1.767_7_12",
+    "Data1.66_3_2",
+    "Data4.3197_1_1",
+    "Data4.3753_6_8",
+    "Data4.3332_2_1",
+    "Data3.2602_6_7",
+    "Data2.1373_9_13",
+    "Data4.3205_5_8",
+    "Data1.136_8_8",
+    "Data1.539_5_6",
+    "Data5.3988_2_2",
+    "Data4.3541_5_6",
+    "Data2.1447_8_8",
+    "Data1.469_1_0",
+    "Data4.3365_4_7",
+    "Data5.4050_7_10",
+    "Data2.1850_8_9",
+    "Data4.3740_7_9",
+    "Data4.3282_3_3",
+    "Data4.3345_5_5",
+    "Data3.2692_5_4",
+    "Data4.3816_3_2",
+    "Data1.952_4_4",
+    "Data3.2945_3_3",
+    "Data2.1265_4_4",
+    "Data5.4096_3_3",
+    "Data2.1247_1_0",
+    "Data1.731_1_1",
+    "Data1.816_3_3",
+    "Data1.871_5_7",
+    "Data2.1151_3_4",
+    "Data4.3915_1_0",
+    "Data4.3607_7_8",
+    "Data1.195_2_1",
+    "Data2.1579_7_7",
+    "Data2.1283_7_7",
+    "Data1.804_3_2",
+    "Data2.1446_7_8",
+    "Data2.1516_3_4",
+    "Data4.3594_1_0",
+    "Data1.862_1_0",
+    "Data1.141_2_1",
+    "Data4.3151_1_0",
+    "Data5.4162_3_2",
+    "Data4.3215_9_9",
+    "Data5.4565_7_10",
+    "Data2.1447_2_1",
+    "Data1.680_7_11",
+    "Data2.1264_10_15",
+    "Data4.3244_7_8",
+    "Data1.977_2_2",
+    "Data4.3103_3_3",
+    "Data3.2954_6_9",
+    "Data4.3175_5_8",
+    "Data1.767_4_5",
+    "Data2.1106_1_0",
+    "Data5.4020_5_8",
+    "Data2.1829_7_8",
+    "Data1.566_2_1",
+    "Data3.2692_8_7",
+    "Data2.1263_4_3",
+    "Data5.4555_3_5",
+    "Data2.1774_6_8",
+    "Data3.2954_5_8",
+    "Data4.3089_4_3",
+    "Data3.2326_2_1",
+    "Data1.85_1_0",
+    "Data3.2304_3_4",
+    "Data2.1001_7_10",
+    "Data1.395_6_7",
+    "Data2.2000_5_9",
+    "Data3.2596_5_4",
+    "Data1.957_2_2",
+    "Data2.1475_3_3",
+    "Data3.2513_3_4",
+    "Data3.2019_5_5",
+    "Data5.3941_3_3",
+    "Data1.145_3_2",
+    "Data1.24_5_5",
+    "Data3.2971_1_0",
+    "Data3.2712_3_2",
+    "Data2.1755_4_4",
+    "Data2.1106_5_7",
+    "Data1.276_4_3",
+    "Data5.4159_1_0",
+    "Data4.3089_2_1",
+    "Data1.984_1_0",
+    "Data2.1262_3_3",
+    "Data2.1027_4_5",
+    "Data2.1914_1_0",
+    "Data1.207_6_8",
+    "Data1.202_2_1",
+    "Data2.1870_1_0",
+    "Data3.2895_8_9",
+    "Data1.447_5_4",
+    "Data1.866_8_9",
+    "Data4.3156_5_6",
+    "Data4.3147_5_6",
+    "Data5.4446_5_7",
+    "Data2.1202_3_3",
+    "Data3.2328_6_8",
+    "Data1.906_3_2",
+    "Data4.3550_4_3",
+    "Data1.558_1_0",
+    "Data4.3773_6_7",
+    "Data4.3614_2_1",
+    "Data4.3110_2_2",
+    "Data4.3787_8_8",
+    "Data3.2040_1_0",
+    "Data1.952_10_20",
+    "Data3.2075_7_7",
+    "Data1.132_6_5",
+    "Data1.558_3_2",
+    "Data2.1399_3_2",
+    "Data2.1640_3_4",
+    "Data1.681_2_1",
+    "Data1.538_4_4",
+    "Data3.2057_1_1",
+    "Data3.2415_2_1",
+    "Data5.4070_5_5",
+    "Data4.3365_5_9",
+    "Data5.4155_2_2",
+    "Data2.1238_9_12",
+    "Data3.2617_2_2",
+    "Data1.195_6_12",
+    "Data4.3260_3_3",
+    "Data1.804_6_7",
+    "Data5.4179_3_3",
+    "Data3.2185_5_4",
+    "Data1.174_7_12",
+    "Data3.2404_5_11",
+    "Data5.4555_6_9",
+    "Data1.507_2_1",
+    "Data1.378_1_0",
+    "Data4.3215_7_6",
+    "Data4.3290_2_1",
+    "Data2.1176_1_0",
+    "Data4.3740_2_1",
+    "Data1.82_5_4",
+    "Data3.2840_3_2",
+    "Data4.3151_2_3",
+    "Data3.2032_3_3",
+    "Data4.3160_5_6",
+    "Data3.2195_7_13",
+    "Data2.1878_5_6",
+    "Data4.3118_6_7",
+    "Data2.1373_3_5",
+    "Data4.3245_5_6",
+    "Data1.681_7_7",
+    "Data2.1142_1_0",
+    "Data1.658_6_5",
+    "Data4.3018_6_5",
+    "Data4.3915_8_9",
+    "Data1.541_5_4",
+    "Data1.475_4_3",
+    "Data2.1176_7_8",
+    "Data3.2390_6_7",
+    "Data1.232_6_9",
+    "Data4.3417_6_8",
+    "Data2.1446_2_1",
+    "Data2.1392_6_6",
+    "Data3.2424_1_1",
+    "Data2.1594_6_9",
+    "Data3.2091_3_3",
+    "Data2.1262_5_6",
+    "Data2.1354_7_8",
+    "Data4.3467_4_6",
+    "Data1.106_4_4",
+    "Data2.1917_6_11",
+    "Data1.207_6_10",
+    "Data2.1240_8_11",
+    "Data1.82_9_9",
+    "Data2.1759_10_14",
+    "Data2.1966_1_0",
+    "Data3.2032_5_6",
+    "Data4.3594_6_6",
+    "Data1.477_5_6",
+    "Data2.1882_4_5",
+    "Data2.1914_3_3",
+    "Data1.469_6_7",
+    "Data4.3043_11_11",
+    "Data3.2092_7_7",
+    "Data4.3277_7_10",
+    "Data1.188_6_8",
+    "Data3.2596_5_5",
+    "Data4.3051_7_9",
+    "Data4.3295_5_8",
+    "Data2.1739_6_5",
+    "Data3.2019_2_1",
+    "Data3.2357_7_8",
+    "Data2.1325_6_10",
+    "Data3.2596_6_6",
+    "Data2.1027_3_3",
+    "Data5.4446_1_1",
+    "Data5.4316_6_12",
+    "Data5.4435_6_5",
+    "Data5.4286_2_1",
+    "Data4.3572_6_5",
+    "Data1.605_5_4",
+    "Data3.2814_1_0",
+    "Data1.276_6_6",
+    "Data4.3377_1_0",
+    "Data1.471_3_2",
+    "Data4.3707_6_5",
+    "Data5.4259_3_4",
+    "Data3.2326_1_0",
+    "Data2.1263_3_2",
+    "Data4.3639_1_0",
+    "Data4.3903_7_9",
+    "Data2.1732_6_5",
+    "Data5.4105_3_2",
+    "Data2.1962_6_6",
+    "Data2.1446_9_10",
+    "Data2.1677_5_5",
+    "Data5.4105_1_0",
+    "Data1.339_8_8",
+    "Data3.2415_1_0",
+    "Data2.1594_4_6",
+    "Data1.609_1_0",
+    "Data3.2326_9_13",
+    "Data2.1027_5_7",
+    "Data4.3063_1_0",
+    "Data4.3607_3_3",
+    "Data4.3165_4_3",
+    "Data1.168_8_11",
+    "Data3.2261_7_8",
+    "Data2.1909_7_10",
+    "Data3.2628_3_2",
+    "Data3.2195_5_7",
+    "Data2.1636_2_2",
+    "Data2.1149_5_9",
+    "Data1.207_4_5",
+    "Data1.639_4_4",
+    "Data4.3730_8_10",
+    "Data2.1263_7_7",
+    "Data5.4483_8_11",
+    "Data2.1084_1_0",
+    "Data3.2328_6_7",
+    "Data3.2075_2_1"
+  ],
+  "frozen_sha256": {
+    "artifacts/name-generalization-lora-v1/head.safetensors": "991a7434334f7bb7c63c0fdf9cd5f0c9c40e888df9ababee7b0df924dec7004b",
+    "artifacts/name-generalization-lora-v1/lora.safetensors": "2791a505b4bf4b5924b551c2cb620d8429a5947b4754460ca02bac374241fc28",
+    "artifacts/name-generalization-lora-v1/config.json": "185c7555118302e50bbcd41e5dddcc3b1f9567e8fa9aaf28838d3eecb21b7e24",
+    "artifacts/name-generalization-lora-v1/report.json": "dbc1efcfc44484c2fe48ffe35c5a73d8880adea621033ce17771b6f79b624a8f",
+    "artifacts/name-generalization-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "benchmarks/results/name-generalization-v1-development.json": "e9d08cf2f21ab05ea191aa275590106d13062a6b66ec22a5795baeffee88e761",
+    "benchmarks/results/name-generalization-v1-coverage-selection.json": "cb6cc6e7a69d15fb7c90e4712f4986d20415bd93e0fdb8efd8fce06de45b2d22",
+    "benchmarks/results/name-generalization-lora-v1-coverage-selection.json": "0a3f491e6cac95609f84e95e5d319585cdfe220b0916d2d7b1b91ae93206aadf",
+    "artifacts/name-generalization-lora-v1/validate_name_generalization_pipeline.py.source.txt": "8999399785c8531aad84dd778074b0cbe16c13fefa527a999f68589f5e094db3",
+    "scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+    "scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "scripts/select_name_coverage.py": "f8e5f71dfdfbfcaa223f7e4fb27811b17dc278acccf58e48f99582cb7dcbed0b",
+    "/home/woodcross/projects/ko-pii-guard/scripts/validate_name_generalization_pipeline.py": "e0451786fa18e47382c1ac673f2cae3d76973de353d9e50caaa8189f4dcf3a5b",
+    "benchmarks/results/name-generalization-final-v1-selection.json": "c24e39ebbda475c63d39187565ab05b438d6de09b657f35d2c7bc4373fef2e9b",
+    "benchmarks/results/name-generalization-final-v1-heldout.json": "905e8e881b28865e6fa7d834dddf6b7994d9adf8b8c900f8ee2a225cab8b2539",
+    "scripts/evaluate_name_generalization_nonoverlap.py": "0b1bff69584ac28454e4a8bd727f5cc5921b8af8c8da35f8939ba2eee47e2428",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_kdpii.py": "00a2c91a7ed93cfa37816b37a2541393a4a29369064bc59c57bc3e6a30da9025",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-final-v1-nonoverlap-selection.json": "19bc345844e266bf3ea41c643a4ffbdf84a460bd149e83f88d949b00a996e302",
+    "/tmp/ko-pii-kdpii-v1/source.json": "d90c89cef825aa355ea73d7f6b25653b9cbc1dd3867a8646c11a40f41db3ffc0",
+    "/tmp/ko-pii-kdpii-v1/validation.json": "4cedb3b1816b285845461ac82caaeda2ca11f260538863f3dfbb8f5626023e64",
+    "/tmp/ko-pii-kdpii-v1/test.json": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+    "/tmp/ko-pii-kdpii-v1/record-metadata.json": "4e05e7761c061e5507f1bb9107a7d10f85cb4bf1f96041b6d897e3f94a4b1029",
+    "/tmp/ko-pii-kdpii-v1/selection.json": "d9644c70d1fadfdc3e57d8046d5b8d6a7a5b38f185548d3323856f129336cb94",
+    "/tmp/ko-pii-kdpii-v1/cases.jsonl": "23c02a730efe88eae363fdf51e119823778f81cbe251b508fe7ec943b92f7a87",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_generalization.py": "9af3cd76fe9c4d6bc75fa58de6671ae95795a059a3fc47dc85bbe578bd6483e6",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_span_external.py": "cd3ebe2938a0e76e6e4ee80c57ab58dd3ae40d59ca8a8e114947588e5d60d1c3",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_span_experiment.py": "6f5cabfb46379aa29098516965311f7e7b3b4fe63e67227b46dd2a8abe4e37ba",
+    "/home/woodcross/projects/ko-pii-guard/scripts/fetch_kdpii_evaluation.py": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+  },
+  "candidate_factory": "name_adapted_adapter:build_ner",
+  "guard_score_threshold": 0.0,
+  "baseline_ner_score_threshold": 0.9,
+  "runtime_promotion": false,
+  "policies": {
+    "primary": "PS_NAME -> KR_NAME",
+    "alternate": "PS_NAME + PS_NICKNAME -> KR_NAME",
+    "handles": "PS_ID excluded; original annotations preserved",
+    "nickname_false_positives": "Primary exact scorer counts nickname predictions as FP; report alternate broad policy separately, never silently relabel"
+  },
+  "pipeline": "Actual public analyze and stars mask; both policies share predictions/masks",
+  "limitations": "Different conversational source from KLUE. E5 publisher used KDPII, but source version and training membership are not independently known. Do not claim upstream E5-unseen. ID sampling includes negatives; no label/error selection. Only 18 primary names and 32 including nicknames in this sample: recall uncertainty is large. Sentence bootstrap may understate dependence; this evaluation cannot establish zero-error reliability.",
+  "exact_training_or_validation_text_overlap_ids": [],
+  "runtime": {
+    "python": "3.10.12",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.6",
+    "devices": {
+      "baseline": "cuda:0",
+      "candidate": "cuda:0"
+    }
+  },
+  "baseline": {
+    "model_id": "FrameByFrame/korean-pii-e5-base",
+    "revision": "a308c54b4407819624a5661e31e162a269f39818",
+    "metrics": {
+      "PS_NAME": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 3,
+        "f1": 0.8571428571428571,
+        "fully_covered_names": 16,
+        "unnecessary_masked_characters": 5,
+        "errors": [
+          {
+            "id": "Data2.1273_2_1",
+            "missed": [
+              [
+                4,
+                5
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3202_5_7",
+            "missed": [],
+            "false": [
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2313_1_0",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1636_2_2",
+            "missed": [
+              [
+                16,
+                18
+              ]
+            ],
+            "false": [
+              [
+                16,
+                19
+              ]
+            ]
+          }
+        ],
+        "precision": 0.8823529411764706,
+        "recall": 0.8333333333333334,
+        "full_name_coverage": 0.8888888888888888,
+        "negative_sentences": 482,
+        "negative_false_positive_sentences": 1,
+        "sentences": 500,
+        "gold_names": 18,
+        "by_source": {
+          "kdpii_v1_test": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          }
+        }
+      },
+      "PS_NAME+PS_NICKNAME": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 17,
+        "f1": 0.6122448979591837,
+        "fully_covered_names": 16,
+        "unnecessary_masked_characters": 5,
+        "errors": [
+          {
+            "id": "Data2.1321_1_0",
+            "missed": [
+              [
+                0,
+                2
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1273_2_1",
+            "missed": [
+              [
+                4,
+                5
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data1.406_4_5",
+            "missed": [
+              [
+                13,
+                16
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3202_5_7",
+            "missed": [],
+            "false": [
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1776_3_2",
+            "missed": [
+              [
+                18,
+                21
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data1.952_5_6",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data3.2313_1_0",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3915_1_0",
+            "missed": [
+              [
+                0,
+                1
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3594_1_0",
+            "missed": [
+              [
+                0,
+                2
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3175_5_8",
+            "missed": [
+              [
+                7,
+                11
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1106_1_0",
+            "missed": [
+              [
+                0,
+                4
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data1.984_1_0",
+            "missed": [
+              [
+                3,
+                5
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1914_1_0",
+            "missed": [
+              [
+                4,
+                6
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1870_1_0",
+            "missed": [
+              [
+                0,
+                3
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data1.952_10_20",
+            "missed": [
+              [
+                7,
+                9
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data3.2185_5_4",
+            "missed": [
+              [
+                0,
+                2
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1594_6_9",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1636_2_2",
+            "missed": [
+              [
+                16,
+                18
+              ]
+            ],
+            "false": [
+              [
+                16,
+                19
+              ]
+            ]
+          }
+        ],
+        "precision": 0.8823529411764706,
+        "recall": 0.46875,
+        "full_name_coverage": 0.5,
+        "negative_sentences": 468,
+        "negative_false_positive_sentences": 1,
+        "sentences": 500,
+        "gold_names": 32,
+        "by_source": {
+          "kdpii_v1_test": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          }
+        }
+      }
+    }
+  },
+  "candidate": {
+    "metrics": {
+      "PS_NAME": {
+        "tp": 17,
+        "fp": 116,
+        "fn": 1,
+        "f1": 0.2251655629139073,
+        "fully_covered_names": 18,
+        "unnecessary_masked_characters": 168,
+        "errors": [
+          {
+            "id": "Data4.3248_3_4",
+            "missed": [],
+            "false": [
+              [
+                9,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data5.3988_3_3",
+            "missed": [],
+            "false": [
+              [
+                43,
+                44
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4351_7_13",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1321_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1933_4_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1703_3_3",
+            "missed": [],
+            "false": [
+              [
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3091_7_6",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2828_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2618_7_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3172_6_7",
+            "missed": [],
+            "false": [
+              [
+                18,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data1.497_6_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.644_1_0",
+            "missed": [],
+            "false": [
+              [
+                25,
+                27
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1870_6_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3165_8_8",
+            "missed": [],
+            "false": [
+              [
+                13,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2529_2_1",
+            "missed": [],
+            "false": [
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data1.644_4_5",
+            "missed": [],
+            "false": [
+              [
+                15,
+                19
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3202_5_7",
+            "missed": [],
+            "false": [
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3401_2_1",
+            "missed": [],
+            "false": [
+              [
+                13,
+                14
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1750_6_9",
+            "missed": [],
+            "false": [
+              [
+                3,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data1.57_5_7",
+            "missed": [],
+            "false": [
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Data1.168_3_3",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1348_5_7",
+            "missed": [],
+            "false": [
+              [
+                7,
+                11
+              ],
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3175_4_6",
+            "missed": [],
+            "false": [
+              [
+                36,
+                37
+              ]
+            ]
+          },
+          {
+            "id": "Data1.767_7_8",
+            "missed": [],
+            "false": [
+              [
+                18,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1176_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4238_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3893_8_8",
+            "missed": [],
+            "false": [
+              [
+                23,
+                24
+              ]
+            ]
+          },
+          {
+            "id": "Data1.108_7_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3015_7_7",
+            "missed": [],
+            "false": [
+              [
+                29,
+                30
+              ]
+            ]
+          },
+          {
+            "id": "Data1.173_5_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3594_4_3",
+            "missed": [],
+            "false": [
+              [
+                35,
+                36
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1829_6_7",
+            "missed": [],
+            "false": [
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1776_3_2",
+            "missed": [],
+            "false": [
+              [
+                18,
+                21
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2328_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data1.860_6_6",
+            "missed": [],
+            "false": [
+              [
+                10,
+                12
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1609_5_6",
+            "missed": [],
+            "false": [
+              [
+                9,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1774_3_3",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1954_7_9",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.25_6_7",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1337_7_12",
+            "missed": [],
+            "false": [
+              [
+                10,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3244_2_1",
+            "missed": [],
+            "false": [
+              [
+                16,
+                17
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3332_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.539_5_6",
+            "missed": [],
+            "false": [
+              [
+                12,
+                13
+              ],
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data5.3988_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1850_8_9",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3816_3_2",
+            "missed": [],
+            "false": [
+              [
+                14,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1265_4_4",
+            "missed": [],
+            "false": [
+              [
+                1,
+                2
+              ],
+              [
+                12,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data1.871_5_7",
+            "missed": [],
+            "false": [
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3915_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3607_7_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.195_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          },
+          {
+            "id": "Data1.804_3_2",
+            "missed": [],
+            "false": [
+              [
+                25,
+                26
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3594_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "Data1.862_1_0",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.977_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3175_5_8",
+            "missed": [],
+            "false": [
+              [
+                10,
+                11
+              ],
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1106_1_0",
+            "missed": [],
+            "false": [
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1263_4_3",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1774_6_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2326_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.85_1_0",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2019_5_5",
+            "missed": [],
+            "false": [
+              [
+                16,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data1.24_5_5",
+            "missed": [],
+            "false": [
+              [
+                12,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1106_5_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1914_1_0",
+            "missed": [],
+            "false": [
+              [
+                4,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1870_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3550_4_3",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3110_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2040_1_0",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.952_10_20",
+            "missed": [],
+            "false": [
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2057_1_1",
+            "missed": [],
+            "false": [
+              [
+                11,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2185_5_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2404_5_11",
+            "missed": [],
+            "false": [
+              [
+                15,
+                21
+              ]
+            ]
+          },
+          {
+            "id": "Data1.507_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3290_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1878_5_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1373_3_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.232_6_9",
+            "missed": [],
+            "false": [
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3417_6_8",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                10,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1594_6_9",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1262_5_6",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2032_5_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1882_4_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1914_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2092_7_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3277_7_10",
+            "missed": [],
+            "false": [
+              [
+                25,
+                26
+              ],
+              [
+                29,
+                30
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2596_5_5",
+            "missed": [],
+            "false": [
+              [
+                22,
+                23
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3051_7_9",
+            "missed": [],
+            "false": [
+              [
+                15,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1739_6_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2357_7_8",
+            "missed": [],
+            "false": [
+              [
+                3,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4435_6_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4286_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.605_5_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.276_6_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.471_3_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4259_3_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2326_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1594_4_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3607_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2628_3_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1636_2_2",
+            "missed": [
+              [
+                16,
+                18
+              ]
+            ],
+            "false": [
+              [
+                16,
+                19
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1084_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                15,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2328_6_7",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ],
+              [
+                11,
+                12
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2075_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        ],
+        "precision": 0.12781954887218044,
+        "recall": 0.9444444444444444,
+        "full_name_coverage": 1.0,
+        "negative_sentences": 482,
+        "negative_false_positive_sentences": 101,
+        "sentences": 500,
+        "gold_names": 18,
+        "by_source": {
+          "kdpii_v1_test": {
+            "tp": 17,
+            "fp": 116,
+            "fn": 1,
+            "f1": 0.2251655629139073,
+            "fully_covered_names": 18,
+            "unnecessary_masked_characters": 168,
+            "precision": 0.12781954887218044,
+            "recall": 0.9444444444444444,
+            "full_name_coverage": 1.0,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 101,
+            "sentences": 500,
+            "gold_names": 18
+          }
+        }
+      },
+      "PS_NAME+PS_NICKNAME": {
+        "tp": 21,
+        "fp": 112,
+        "fn": 11,
+        "f1": 0.2545454545454545,
+        "fully_covered_names": 23,
+        "unnecessary_masked_characters": 151,
+        "errors": [
+          {
+            "id": "Data4.3248_3_4",
+            "missed": [],
+            "false": [
+              [
+                9,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data5.3988_3_3",
+            "missed": [],
+            "false": [
+              [
+                43,
+                44
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4351_7_13",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1933_4_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1703_3_3",
+            "missed": [],
+            "false": [
+              [
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3091_7_6",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2828_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2618_7_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3172_6_7",
+            "missed": [],
+            "false": [
+              [
+                18,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data1.497_6_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.644_1_0",
+            "missed": [],
+            "false": [
+              [
+                25,
+                27
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1870_6_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.406_4_5",
+            "missed": [
+              [
+                13,
+                16
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data4.3165_8_8",
+            "missed": [],
+            "false": [
+              [
+                13,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2529_2_1",
+            "missed": [],
+            "false": [
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data1.644_4_5",
+            "missed": [],
+            "false": [
+              [
+                15,
+                19
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3202_5_7",
+            "missed": [],
+            "false": [
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3401_2_1",
+            "missed": [],
+            "false": [
+              [
+                13,
+                14
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1750_6_9",
+            "missed": [],
+            "false": [
+              [
+                3,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data1.57_5_7",
+            "missed": [],
+            "false": [
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Data1.168_3_3",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1348_5_7",
+            "missed": [],
+            "false": [
+              [
+                7,
+                11
+              ],
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3175_4_6",
+            "missed": [],
+            "false": [
+              [
+                36,
+                37
+              ]
+            ]
+          },
+          {
+            "id": "Data1.767_7_8",
+            "missed": [],
+            "false": [
+              [
+                18,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1176_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4238_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3893_8_8",
+            "missed": [],
+            "false": [
+              [
+                23,
+                24
+              ]
+            ]
+          },
+          {
+            "id": "Data1.108_7_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3015_7_7",
+            "missed": [],
+            "false": [
+              [
+                29,
+                30
+              ]
+            ]
+          },
+          {
+            "id": "Data1.173_5_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3594_4_3",
+            "missed": [],
+            "false": [
+              [
+                35,
+                36
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1829_6_7",
+            "missed": [],
+            "false": [
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2328_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data1.860_6_6",
+            "missed": [],
+            "false": [
+              [
+                10,
+                12
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1609_5_6",
+            "missed": [],
+            "false": [
+              [
+                9,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data1.952_5_6",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1774_3_3",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1954_7_9",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.25_6_7",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1337_7_12",
+            "missed": [],
+            "false": [
+              [
+                10,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3244_2_1",
+            "missed": [],
+            "false": [
+              [
+                16,
+                17
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3332_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.539_5_6",
+            "missed": [],
+            "false": [
+              [
+                12,
+                13
+              ],
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data5.3988_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1850_8_9",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3816_3_2",
+            "missed": [],
+            "false": [
+              [
+                14,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1265_4_4",
+            "missed": [],
+            "false": [
+              [
+                1,
+                2
+              ],
+              [
+                12,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data1.871_5_7",
+            "missed": [],
+            "false": [
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3607_7_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.195_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          },
+          {
+            "id": "Data1.804_3_2",
+            "missed": [],
+            "false": [
+              [
+                25,
+                26
+              ]
+            ]
+          },
+          {
+            "id": "Data1.862_1_0",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.977_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3175_5_8",
+            "missed": [
+              [
+                7,
+                11
+              ]
+            ],
+            "false": [
+              [
+                10,
+                11
+              ],
+              [
+                21,
+                22
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1106_1_0",
+            "missed": [
+              [
+                0,
+                4
+              ]
+            ],
+            "false": [
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1263_4_3",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1774_6_8",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2326_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.85_1_0",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2019_5_5",
+            "missed": [],
+            "false": [
+              [
+                16,
+                20
+              ]
+            ]
+          },
+          {
+            "id": "Data1.24_5_5",
+            "missed": [],
+            "false": [
+              [
+                12,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1106_5_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.984_1_0",
+            "missed": [
+              [
+                3,
+                5
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "Data2.1914_1_0",
+            "missed": [
+              [
+                4,
+                6
+              ]
+            ],
+            "false": [
+              [
+                4,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1870_1_0",
+            "missed": [
+              [
+                0,
+                3
+              ]
+            ],
+            "false": [
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3550_4_3",
+            "missed": [],
+            "false": [
+              [
+                7,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3110_2_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2040_1_0",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.952_10_20",
+            "missed": [
+              [
+                7,
+                9
+              ]
+            ],
+            "false": [
+              [
+                8,
+                9
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2057_1_1",
+            "missed": [],
+            "false": [
+              [
+                11,
+                13
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2185_5_4",
+            "missed": [
+              [
+                0,
+                2
+              ]
+            ],
+            "false": [
+              [
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2404_5_11",
+            "missed": [],
+            "false": [
+              [
+                15,
+                21
+              ]
+            ]
+          },
+          {
+            "id": "Data1.507_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3290_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1878_5_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1373_3_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.232_6_9",
+            "missed": [],
+            "false": [
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3417_6_8",
+            "missed": [],
+            "false": [
+              [
+                6,
+                7
+              ],
+              [
+                8,
+                9
+              ],
+              [
+                10,
+                11
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1594_6_9",
+            "missed": [
+              [
+                6,
+                8
+              ]
+            ],
+            "false": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1262_5_6",
+            "missed": [],
+            "false": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2032_5_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1882_4_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1914_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2092_7_7",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3277_7_10",
+            "missed": [],
+            "false": [
+              [
+                25,
+                26
+              ],
+              [
+                29,
+                30
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2596_5_5",
+            "missed": [],
+            "false": [
+              [
+                22,
+                23
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3051_7_9",
+            "missed": [],
+            "false": [
+              [
+                15,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1739_6_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2357_7_8",
+            "missed": [],
+            "false": [
+              [
+                3,
+                5
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4435_6_5",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4286_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.605_5_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                7
+              ]
+            ]
+          },
+          {
+            "id": "Data1.276_6_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data1.471_3_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data5.4259_3_4",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2326_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1594_4_6",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "id": "Data4.3607_3_3",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2628_3_2",
+            "missed": [],
+            "false": [
+              [
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1636_2_2",
+            "missed": [
+              [
+                16,
+                18
+              ]
+            ],
+            "false": [
+              [
+                16,
+                19
+              ]
+            ]
+          },
+          {
+            "id": "Data2.1084_1_0",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ],
+              [
+                15,
+                16
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2328_6_7",
+            "missed": [],
+            "false": [
+              [
+                9,
+                10
+              ],
+              [
+                11,
+                12
+              ]
+            ]
+          },
+          {
+            "id": "Data3.2075_2_1",
+            "missed": [],
+            "false": [
+              [
+                0,
+                1
+              ]
+            ]
+          }
+        ],
+        "precision": 0.15789473684210525,
+        "recall": 0.65625,
+        "full_name_coverage": 0.71875,
+        "negative_sentences": 468,
+        "negative_false_positive_sentences": 90,
+        "sentences": 500,
+        "gold_names": 32,
+        "by_source": {
+          "kdpii_v1_test": {
+            "tp": 21,
+            "fp": 112,
+            "fn": 11,
+            "f1": 0.2545454545454545,
+            "fully_covered_names": 23,
+            "unnecessary_masked_characters": 151,
+            "precision": 0.15789473684210525,
+            "recall": 0.65625,
+            "full_name_coverage": 0.71875,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 90,
+            "sentences": 500,
+            "gold_names": 32
+          }
+        }
+      }
+    },
+    "comparisons": {
+      "PS_NAME": {
+        "regression_gate": {
+          "lost_correct_spans": [],
+          "introduced_false_spans": [
+            [
+              "Data4.3248_3_4",
+              9,
+              11
+            ],
+            [
+              "Data5.3988_3_3",
+              43,
+              44
+            ],
+            [
+              "Data5.4351_7_13",
+              0,
+              1
+            ],
+            [
+              "Data2.1321_1_0",
+              0,
+              2
+            ],
+            [
+              "Data2.1933_4_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1933_4_6",
+              3,
+              4
+            ],
+            [
+              "Data2.1703_3_3",
+              16,
+              18
+            ],
+            [
+              "Data4.3091_7_6",
+              9,
+              10
+            ],
+            [
+              "Data3.2828_2_1",
+              0,
+              1
+            ],
+            [
+              "Data3.2618_7_8",
+              0,
+              1
+            ],
+            [
+              "Data4.3172_6_7",
+              18,
+              20
+            ],
+            [
+              "Data1.497_6_6",
+              0,
+              1
+            ],
+            [
+              "Data1.644_1_0",
+              25,
+              27
+            ],
+            [
+              "Data2.1870_6_7",
+              0,
+              1
+            ],
+            [
+              "Data4.3165_8_8",
+              13,
+              15
+            ],
+            [
+              "Data3.2529_2_1",
+              12,
+              16
+            ],
+            [
+              "Data1.644_4_5",
+              15,
+              19
+            ],
+            [
+              "Data4.3401_2_1",
+              13,
+              14
+            ],
+            [
+              "Data2.1750_6_9",
+              3,
+              5
+            ],
+            [
+              "Data1.57_5_7",
+              3,
+              4
+            ],
+            [
+              "Data1.168_3_3",
+              14,
+              15
+            ],
+            [
+              "Data2.1348_5_7",
+              7,
+              11
+            ],
+            [
+              "Data2.1348_5_7",
+              12,
+              16
+            ],
+            [
+              "Data4.3175_4_6",
+              36,
+              37
+            ],
+            [
+              "Data1.767_7_8",
+              18,
+              20
+            ],
+            [
+              "Data2.1176_2_1",
+              0,
+              1
+            ],
+            [
+              "Data5.4238_2_1",
+              0,
+              1
+            ],
+            [
+              "Data4.3893_8_8",
+              23,
+              24
+            ],
+            [
+              "Data1.108_7_6",
+              0,
+              1
+            ],
+            [
+              "Data4.3015_7_7",
+              29,
+              30
+            ],
+            [
+              "Data1.173_5_4",
+              0,
+              1
+            ],
+            [
+              "Data4.3594_4_3",
+              35,
+              36
+            ],
+            [
+              "Data2.1829_6_7",
+              8,
+              9
+            ],
+            [
+              "Data2.1776_3_2",
+              18,
+              21
+            ],
+            [
+              "Data3.2328_3_3",
+              9,
+              10
+            ],
+            [
+              "Data1.860_6_6",
+              10,
+              12
+            ],
+            [
+              "Data2.1609_5_6",
+              9,
+              11
+            ],
+            [
+              "Data2.1774_3_3",
+              7,
+              8
+            ],
+            [
+              "Data2.1954_7_9",
+              0,
+              1
+            ],
+            [
+              "Data1.25_6_7",
+              6,
+              7
+            ],
+            [
+              "Data2.1337_7_12",
+              10,
+              11
+            ],
+            [
+              "Data4.3244_2_1",
+              16,
+              17
+            ],
+            [
+              "Data4.3332_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.539_5_6",
+              12,
+              13
+            ],
+            [
+              "Data1.539_5_6",
+              21,
+              22
+            ],
+            [
+              "Data5.3988_2_2",
+              0,
+              1
+            ],
+            [
+              "Data2.1850_8_9",
+              0,
+              1
+            ],
+            [
+              "Data4.3816_3_2",
+              14,
+              18
+            ],
+            [
+              "Data2.1265_4_4",
+              1,
+              2
+            ],
+            [
+              "Data2.1265_4_4",
+              12,
+              13
+            ],
+            [
+              "Data1.871_5_7",
+              21,
+              22
+            ],
+            [
+              "Data4.3915_1_0",
+              0,
+              1
+            ],
+            [
+              "Data4.3607_7_8",
+              0,
+              1
+            ],
+            [
+              "Data1.195_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.195_2_1",
+              3,
+              4
+            ],
+            [
+              "Data1.195_2_1",
+              5,
+              6
+            ],
+            [
+              "Data1.804_3_2",
+              25,
+              26
+            ],
+            [
+              "Data4.3594_1_0",
+              0,
+              2
+            ],
+            [
+              "Data1.862_1_0",
+              6,
+              7
+            ],
+            [
+              "Data1.977_2_2",
+              0,
+              1
+            ],
+            [
+              "Data4.3175_5_8",
+              10,
+              11
+            ],
+            [
+              "Data4.3175_5_8",
+              21,
+              22
+            ],
+            [
+              "Data2.1106_1_0",
+              2,
+              3
+            ],
+            [
+              "Data2.1263_4_3",
+              14,
+              15
+            ],
+            [
+              "Data2.1774_6_8",
+              0,
+              1
+            ],
+            [
+              "Data3.2326_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.85_1_0",
+              7,
+              8
+            ],
+            [
+              "Data3.2019_5_5",
+              16,
+              20
+            ],
+            [
+              "Data1.24_5_5",
+              12,
+              13
+            ],
+            [
+              "Data2.1106_5_7",
+              0,
+              1
+            ],
+            [
+              "Data2.1914_1_0",
+              4,
+              5
+            ],
+            [
+              "Data2.1870_1_0",
+              0,
+              2
+            ],
+            [
+              "Data4.3550_4_3",
+              7,
+              8
+            ],
+            [
+              "Data4.3110_2_2",
+              0,
+              1
+            ],
+            [
+              "Data3.2040_1_0",
+              6,
+              7
+            ],
+            [
+              "Data1.952_10_20",
+              8,
+              9
+            ],
+            [
+              "Data3.2057_1_1",
+              11,
+              13
+            ],
+            [
+              "Data3.2185_5_4",
+              0,
+              3
+            ],
+            [
+              "Data3.2404_5_11",
+              15,
+              21
+            ],
+            [
+              "Data1.507_2_1",
+              0,
+              1
+            ],
+            [
+              "Data4.3290_2_1",
+              0,
+              1
+            ],
+            [
+              "Data2.1878_5_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1373_3_5",
+              0,
+              1
+            ],
+            [
+              "Data1.232_6_9",
+              2,
+              3
+            ],
+            [
+              "Data4.3417_6_8",
+              6,
+              7
+            ],
+            [
+              "Data4.3417_6_8",
+              8,
+              9
+            ],
+            [
+              "Data4.3417_6_8",
+              10,
+              11
+            ],
+            [
+              "Data2.1594_6_9",
+              6,
+              7
+            ],
+            [
+              "Data2.1262_5_6",
+              14,
+              15
+            ],
+            [
+              "Data3.2032_5_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1882_4_5",
+              0,
+              1
+            ],
+            [
+              "Data2.1914_3_3",
+              9,
+              10
+            ],
+            [
+              "Data3.2092_7_7",
+              0,
+              1
+            ],
+            [
+              "Data4.3277_7_10",
+              25,
+              26
+            ],
+            [
+              "Data4.3277_7_10",
+              29,
+              30
+            ],
+            [
+              "Data3.2596_5_5",
+              22,
+              23
+            ],
+            [
+              "Data4.3051_7_9",
+              15,
+              16
+            ],
+            [
+              "Data2.1739_6_5",
+              0,
+              1
+            ],
+            [
+              "Data3.2357_7_8",
+              3,
+              5
+            ],
+            [
+              "Data5.4435_6_5",
+              0,
+              1
+            ],
+            [
+              "Data5.4286_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.605_5_4",
+              0,
+              7
+            ],
+            [
+              "Data1.276_6_6",
+              0,
+              1
+            ],
+            [
+              "Data1.471_3_2",
+              0,
+              1
+            ],
+            [
+              "Data5.4259_3_4",
+              0,
+              1
+            ],
+            [
+              "Data3.2326_1_0",
+              0,
+              1
+            ],
+            [
+              "Data2.1594_4_6",
+              0,
+              1
+            ],
+            [
+              "Data4.3607_3_3",
+              9,
+              10
+            ],
+            [
+              "Data3.2628_3_2",
+              0,
+              3
+            ],
+            [
+              "Data2.1084_1_0",
+              0,
+              1
+            ],
+            [
+              "Data2.1084_1_0",
+              15,
+              16
+            ],
+            [
+              "Data3.2328_6_7",
+              9,
+              10
+            ],
+            [
+              "Data3.2328_6_7",
+              11,
+              12
+            ],
+            [
+              "Data3.2075_2_1",
+              0,
+              1
+            ]
+          ],
+          "newly_exposed_names": [],
+          "passed": false,
+          "actual_stars_newly_exposed_names": []
+        },
+        "bootstrap": {
+          "method": "paired sentence percentile bootstrap",
+          "repetitions": 500,
+          "seed": 20261010,
+          "delta_95_intervals": {
+            "f1": [
+              -0.7857889237199582,
+              -0.47458983593437376
+            ],
+            "precision": [
+              -0.8947368421052632,
+              -0.5882352941176471
+            ],
+            "recall": [
+              0.0,
+              0.2777777777777778
+            ],
+            "full_name_coverage": [
+              0.0,
+              0.2777777777777778
+            ]
+          }
+        }
+      },
+      "PS_NAME+PS_NICKNAME": {
+        "regression_gate": {
+          "lost_correct_spans": [],
+          "introduced_false_spans": [
+            [
+              "Data4.3248_3_4",
+              9,
+              11
+            ],
+            [
+              "Data5.3988_3_3",
+              43,
+              44
+            ],
+            [
+              "Data5.4351_7_13",
+              0,
+              1
+            ],
+            [
+              "Data2.1933_4_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1933_4_6",
+              3,
+              4
+            ],
+            [
+              "Data2.1703_3_3",
+              16,
+              18
+            ],
+            [
+              "Data4.3091_7_6",
+              9,
+              10
+            ],
+            [
+              "Data3.2828_2_1",
+              0,
+              1
+            ],
+            [
+              "Data3.2618_7_8",
+              0,
+              1
+            ],
+            [
+              "Data4.3172_6_7",
+              18,
+              20
+            ],
+            [
+              "Data1.497_6_6",
+              0,
+              1
+            ],
+            [
+              "Data1.644_1_0",
+              25,
+              27
+            ],
+            [
+              "Data2.1870_6_7",
+              0,
+              1
+            ],
+            [
+              "Data4.3165_8_8",
+              13,
+              15
+            ],
+            [
+              "Data3.2529_2_1",
+              12,
+              16
+            ],
+            [
+              "Data1.644_4_5",
+              15,
+              19
+            ],
+            [
+              "Data4.3401_2_1",
+              13,
+              14
+            ],
+            [
+              "Data2.1750_6_9",
+              3,
+              5
+            ],
+            [
+              "Data1.57_5_7",
+              3,
+              4
+            ],
+            [
+              "Data1.168_3_3",
+              14,
+              15
+            ],
+            [
+              "Data2.1348_5_7",
+              7,
+              11
+            ],
+            [
+              "Data2.1348_5_7",
+              12,
+              16
+            ],
+            [
+              "Data4.3175_4_6",
+              36,
+              37
+            ],
+            [
+              "Data1.767_7_8",
+              18,
+              20
+            ],
+            [
+              "Data2.1176_2_1",
+              0,
+              1
+            ],
+            [
+              "Data5.4238_2_1",
+              0,
+              1
+            ],
+            [
+              "Data4.3893_8_8",
+              23,
+              24
+            ],
+            [
+              "Data1.108_7_6",
+              0,
+              1
+            ],
+            [
+              "Data4.3015_7_7",
+              29,
+              30
+            ],
+            [
+              "Data1.173_5_4",
+              0,
+              1
+            ],
+            [
+              "Data4.3594_4_3",
+              35,
+              36
+            ],
+            [
+              "Data2.1829_6_7",
+              8,
+              9
+            ],
+            [
+              "Data3.2328_3_3",
+              9,
+              10
+            ],
+            [
+              "Data1.860_6_6",
+              10,
+              12
+            ],
+            [
+              "Data2.1609_5_6",
+              9,
+              11
+            ],
+            [
+              "Data2.1774_3_3",
+              7,
+              8
+            ],
+            [
+              "Data2.1954_7_9",
+              0,
+              1
+            ],
+            [
+              "Data1.25_6_7",
+              6,
+              7
+            ],
+            [
+              "Data2.1337_7_12",
+              10,
+              11
+            ],
+            [
+              "Data4.3244_2_1",
+              16,
+              17
+            ],
+            [
+              "Data4.3332_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.539_5_6",
+              12,
+              13
+            ],
+            [
+              "Data1.539_5_6",
+              21,
+              22
+            ],
+            [
+              "Data5.3988_2_2",
+              0,
+              1
+            ],
+            [
+              "Data2.1850_8_9",
+              0,
+              1
+            ],
+            [
+              "Data4.3816_3_2",
+              14,
+              18
+            ],
+            [
+              "Data2.1265_4_4",
+              1,
+              2
+            ],
+            [
+              "Data2.1265_4_4",
+              12,
+              13
+            ],
+            [
+              "Data1.871_5_7",
+              21,
+              22
+            ],
+            [
+              "Data4.3607_7_8",
+              0,
+              1
+            ],
+            [
+              "Data1.195_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.195_2_1",
+              3,
+              4
+            ],
+            [
+              "Data1.195_2_1",
+              5,
+              6
+            ],
+            [
+              "Data1.804_3_2",
+              25,
+              26
+            ],
+            [
+              "Data1.862_1_0",
+              6,
+              7
+            ],
+            [
+              "Data1.977_2_2",
+              0,
+              1
+            ],
+            [
+              "Data4.3175_5_8",
+              10,
+              11
+            ],
+            [
+              "Data4.3175_5_8",
+              21,
+              22
+            ],
+            [
+              "Data2.1106_1_0",
+              2,
+              3
+            ],
+            [
+              "Data2.1263_4_3",
+              14,
+              15
+            ],
+            [
+              "Data2.1774_6_8",
+              0,
+              1
+            ],
+            [
+              "Data3.2326_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.85_1_0",
+              7,
+              8
+            ],
+            [
+              "Data3.2019_5_5",
+              16,
+              20
+            ],
+            [
+              "Data1.24_5_5",
+              12,
+              13
+            ],
+            [
+              "Data2.1106_5_7",
+              0,
+              1
+            ],
+            [
+              "Data2.1914_1_0",
+              4,
+              5
+            ],
+            [
+              "Data2.1870_1_0",
+              0,
+              2
+            ],
+            [
+              "Data4.3550_4_3",
+              7,
+              8
+            ],
+            [
+              "Data4.3110_2_2",
+              0,
+              1
+            ],
+            [
+              "Data3.2040_1_0",
+              6,
+              7
+            ],
+            [
+              "Data1.952_10_20",
+              8,
+              9
+            ],
+            [
+              "Data3.2057_1_1",
+              11,
+              13
+            ],
+            [
+              "Data3.2185_5_4",
+              0,
+              3
+            ],
+            [
+              "Data3.2404_5_11",
+              15,
+              21
+            ],
+            [
+              "Data1.507_2_1",
+              0,
+              1
+            ],
+            [
+              "Data4.3290_2_1",
+              0,
+              1
+            ],
+            [
+              "Data2.1878_5_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1373_3_5",
+              0,
+              1
+            ],
+            [
+              "Data1.232_6_9",
+              2,
+              3
+            ],
+            [
+              "Data4.3417_6_8",
+              6,
+              7
+            ],
+            [
+              "Data4.3417_6_8",
+              8,
+              9
+            ],
+            [
+              "Data4.3417_6_8",
+              10,
+              11
+            ],
+            [
+              "Data2.1594_6_9",
+              6,
+              7
+            ],
+            [
+              "Data2.1262_5_6",
+              14,
+              15
+            ],
+            [
+              "Data3.2032_5_6",
+              0,
+              1
+            ],
+            [
+              "Data2.1882_4_5",
+              0,
+              1
+            ],
+            [
+              "Data2.1914_3_3",
+              9,
+              10
+            ],
+            [
+              "Data3.2092_7_7",
+              0,
+              1
+            ],
+            [
+              "Data4.3277_7_10",
+              25,
+              26
+            ],
+            [
+              "Data4.3277_7_10",
+              29,
+              30
+            ],
+            [
+              "Data3.2596_5_5",
+              22,
+              23
+            ],
+            [
+              "Data4.3051_7_9",
+              15,
+              16
+            ],
+            [
+              "Data2.1739_6_5",
+              0,
+              1
+            ],
+            [
+              "Data3.2357_7_8",
+              3,
+              5
+            ],
+            [
+              "Data5.4435_6_5",
+              0,
+              1
+            ],
+            [
+              "Data5.4286_2_1",
+              0,
+              1
+            ],
+            [
+              "Data1.605_5_4",
+              0,
+              7
+            ],
+            [
+              "Data1.276_6_6",
+              0,
+              1
+            ],
+            [
+              "Data1.471_3_2",
+              0,
+              1
+            ],
+            [
+              "Data5.4259_3_4",
+              0,
+              1
+            ],
+            [
+              "Data3.2326_1_0",
+              0,
+              1
+            ],
+            [
+              "Data2.1594_4_6",
+              0,
+              1
+            ],
+            [
+              "Data4.3607_3_3",
+              9,
+              10
+            ],
+            [
+              "Data3.2628_3_2",
+              0,
+              3
+            ],
+            [
+              "Data2.1084_1_0",
+              0,
+              1
+            ],
+            [
+              "Data2.1084_1_0",
+              15,
+              16
+            ],
+            [
+              "Data3.2328_6_7",
+              9,
+              10
+            ],
+            [
+              "Data3.2328_6_7",
+              11,
+              12
+            ],
+            [
+              "Data3.2075_2_1",
+              0,
+              1
+            ]
+          ],
+          "newly_exposed_names": [],
+          "passed": false,
+          "actual_stars_newly_exposed_names": []
+        },
+        "bootstrap": {
+          "method": "paired sentence percentile bootstrap",
+          "repetitions": 500,
+          "seed": 20261010,
+          "delta_95_intervals": {
+            "f1": [
+              -0.49736450871739424,
+              -0.2077310924369748
+            ],
+            "precision": [
+              -0.8712121212121212,
+              -0.5603864734299517
+            ],
+            "recall": [
+              0.06666666666666665,
+              0.33333333333333337
+            ],
+            "full_name_coverage": [
+              0.07407407407407407,
+              0.375
+            ]
+          }
+        }
+      }
+    }
+  },
+  "source_changed_during_run": false
+}

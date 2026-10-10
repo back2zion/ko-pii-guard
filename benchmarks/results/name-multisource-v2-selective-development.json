@@ -1,0 +1,3478 @@
+{
+  "scope": "multisource_development_only",
+  "algorithm": "selective_whole_span",
+  "policies": [
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.99,
+      "removal_threshold": 0.9,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.99,
+      "removal_threshold": 0.99,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.99,
+      "removal_threshold": 0.999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.99,
+      "removal_threshold": 0.9999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.99,
+      "removal_threshold": 1.0,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.999,
+      "removal_threshold": 0.9,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.999,
+      "removal_threshold": 0.99,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.999,
+      "removal_threshold": 0.999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.999,
+      "removal_threshold": 0.9999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.999,
+      "removal_threshold": 1.0,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.9999,
+      "removal_threshold": 0.9,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.9999,
+      "removal_threshold": 0.99,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.9999,
+      "removal_threshold": 0.999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.9999,
+      "removal_threshold": 0.9999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 0.9999,
+      "removal_threshold": 1.0,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 1.0,
+      "removal_threshold": 0.9,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 1.0,
+      "removal_threshold": 0.99,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 1.0,
+      "removal_threshold": 0.999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 1.0,
+      "removal_threshold": 0.9999,
+      "class_logit_correction": 0.0
+    },
+    {
+      "algorithm": "selective_whole_span",
+      "addition_threshold": 1.0,
+      "removal_threshold": 1.0,
+      "class_logit_correction": 0.0
+    }
+  ],
+  "addition_thresholds": [
+    0.99,
+    0.999,
+    0.9999,
+    1.0
+  ],
+  "removal_thresholds": [
+    0.9,
+    0.99,
+    0.999,
+    0.9999,
+    1.0
+  ],
+  "class_logit_correction": 0.0,
+  "required_sources": [
+    "nsmc",
+    "wikitree",
+    "kdpii/PS_NAME",
+    "kdpii/PS_NAME+PS_NICKNAME"
+  ],
+  "protect_anchors": "Except anchors with P(all O over full interval) > removal",
+  "address_policy": "Retained baseline anchors survive; proposals use address veto",
+  "inputs": "Frozen multisource-v2-trained CPU FP32 consumed KLUE1000/KDPII500",
+  "frozen_sha256": {
+    "artifacts/name-generalization-lora-v1/head.safetensors": "991a7434334f7bb7c63c0fdf9cd5f0c9c40e888df9ababee7b0df924dec7004b",
+    "artifacts/name-generalization-lora-v1/lora.safetensors": "2791a505b4bf4b5924b551c2cb620d8429a5947b4754460ca02bac374241fc28",
+    "artifacts/name-generalization-lora-v1/config.json": "185c7555118302e50bbcd41e5dddcc3b1f9567e8fa9aaf28838d3eecb21b7e24",
+    "artifacts/name-generalization-lora-v1/report.json": "dbc1efcfc44484c2fe48ffe35c5a73d8880adea621033ce17771b6f79b624a8f",
+    "artifacts/name-generalization-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "benchmarks/results/name-generalization-v1-development.json": "e9d08cf2f21ab05ea191aa275590106d13062a6b66ec22a5795baeffee88e761",
+    "benchmarks/results/name-generalization-v1-coverage-selection.json": "cb6cc6e7a69d15fb7c90e4712f4986d20415bd93e0fdb8efd8fce06de45b2d22",
+    "benchmarks/results/name-generalization-lora-v1-coverage-selection.json": "0a3f491e6cac95609f84e95e5d319585cdfe220b0916d2d7b1b91ae93206aadf",
+    "artifacts/name-generalization-lora-v1/validate_name_generalization_pipeline.py.source.txt": "8999399785c8531aad84dd778074b0cbe16c13fefa527a999f68589f5e094db3",
+    "scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+    "scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "scripts/select_name_coverage.py": "f8e5f71dfdfbfcaa223f7e4fb27811b17dc278acccf58e48f99582cb7dcbed0b",
+    "/home/woodcross/projects/ko-pii-guard/scripts/validate_name_generalization_pipeline.py": "e0451786fa18e47382c1ac673f2cae3d76973de353d9e50caaa8189f4dcf3a5b",
+    "benchmarks/results/name-generalization-final-v1-selection.json": "c24e39ebbda475c63d39187565ab05b438d6de09b657f35d2c7bc4373fef2e9b",
+    "benchmarks/results/name-generalization-final-v1-heldout.json": "905e8e881b28865e6fa7d834dddf6b7994d9adf8b8c900f8ee2a225cab8b2539",
+    "scripts/evaluate_name_generalization_nonoverlap.py": "0b1bff69584ac28454e4a8bd727f5cc5921b8af8c8da35f8939ba2eee47e2428",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_generalization.py": "9af3cd76fe9c4d6bc75fa58de6671ae95795a059a3fc47dc85bbe578bd6483e6",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-final-v1-nonoverlap-selection.json": "19bc345844e266bf3ea41c643a4ffbdf84a460bd149e83f88d949b00a996e302",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-v1-split.json": "5d338498d8ea99fbcd7d35b366287fcd275d8f64de899c54081179a81437018d",
+    "/tmp/ko-pii-klue-ner/klue-ner-v1.1_dev.tsv": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+    "/tmp/ko-pii-klue-ner/source.json": "f409c8e657a65a9da3705ea182abc5b7d92bbd72cd6016f571303e9dbef0e4f6",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-span-v1-external.json": "588a29accbe8d0bfadcacaf569bed363783c9755a3e25adb94e497f8f8905618",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_span_external.py": "cd3ebe2938a0e76e6e4ee80c57ab58dd3ae40d59ca8a8e114947588e5d60d1c3",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_span_experiment.py": "6f5cabfb46379aa29098516965311f7e7b3b4fe63e67227b46dd2a8abe4e37ba",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_kdpii.py": "00a2c91a7ed93cfa37816b37a2541393a4a29369064bc59c57bc3e6a30da9025",
+    "/tmp/ko-pii-kdpii-v1/source.json": "d90c89cef825aa355ea73d7f6b25653b9cbc1dd3867a8646c11a40f41db3ffc0",
+    "/tmp/ko-pii-kdpii-v1/validation.json": "4cedb3b1816b285845461ac82caaeda2ca11f260538863f3dfbb8f5626023e64",
+    "/tmp/ko-pii-kdpii-v1/test.json": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+    "/tmp/ko-pii-kdpii-v1/record-metadata.json": "4e05e7761c061e5507f1bb9107a7d10f85cb4bf1f96041b6d897e3f94a4b1029",
+    "/tmp/ko-pii-kdpii-v1/selection.json": "d9644c70d1fadfdc3e57d8046d5b8d6a7a5b38f185548d3323856f129336cb94",
+    "/tmp/ko-pii-kdpii-v1/cases.jsonl": "23c02a730efe88eae363fdf51e119823778f81cbe251b508fe7ec943b92f7a87",
+    "/home/woodcross/projects/ko-pii-guard/scripts/fetch_kdpii_evaluation.py": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/config.json": "35dbfe8453937aa31aa9bff7ada2820f11ef4a6e19d1501e736bbfab38b2aa76",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/README.md": "4e86838d9415e9755e3fa3a8c778bafaa32a9f86e9f7b37fb54d946b818ed5cb",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/head.safetensors": "5f90c24375f115cf29eb43b50db59dda9ed41f8331689e376bd54962843e5f24",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/initial-checkpoint-manifest.json": "ef115c3dc6d1ff88338284a4389e67b701f080a452fecc05a0dfc4509ce3881a",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/train_name_multisource.py.source.txt": "1d401b185c1c6f03de217705bdd4107ded6f9dbac6db83bb4a272adc5641d6ed",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/initial-checkpoint-training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/training-text-hashes.json": "316aea0a57db0af291fbeb66e782fff3949065a124f1b5acb95ea21587c3caca",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/report.json": "66c0940955e95792a7f28cf4b8147273da158de88e8fafb24662e00e2ded3212",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/manifest.json": "f7cc16acea3ae887487377c89163cd152c8bd019f48eab628a35d6dc56483092",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/prepare_name_multisource_data.py.source.txt": "f9b8de81bc2c0f80c4da0589eb0103e07efaca0a677d8539bbde0cfd634a6a0c",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/fetch_kdpii_evaluation.py.source.txt": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/name_generalization_model.py.source.txt": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/initial-checkpoint-report.json": "573e00babc5f0a92e79b6913016d81ef469216a394e5b2e537a34b3eb6808ad2",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/original-cache-trainer.py.source.txt": "822beb5de8ffce77e427d22e26298c52fb9aed5471a81bf262189cbd5ea6e9fa",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/name_bioes_ablation.py.source.txt": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/data-manifest.json": "85567a6e87569bded5b6d487ac1e8b5bb4093a170ce185597fc4ad60b0fbb7f2",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-multisource-v2-verified/train_name_generalization.py.source.txt": "19f80aaa1f2ffb34473c94e2a622ac5eb8579fe865eed3717e4804046c43bd0a",
+    "/home/woodcross/projects/ko-pii-guard/scripts/collect_name_frozen_development.py": "1b9dde2bf9179799c44e36ca718f971d73ada96d233649bcde151e0731f7e2b9",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-final-v1-nonoverlap-development.json": "6d80cd2bae2f315aa3f16d7d861245dace7a84fbfb019e597b2c59fc39b5987f",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-final-v1-nonoverlap-kdpii.json": "d975551c5f8c8699d560faa6644d9dd6e4bc59f993d33e76f93df087cae40ced",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_selective_development.py": "1855d14cd892a806d5597bc40b5fa51d253468fa2433198a3f538793b1517dea",
+    "/tmp/name-multisource-v2-trained-klue.pt": "7199d8661e9634a4494a7c58d22cfc7d97dd773ad1c289054d0c38c713f652a7",
+    "/tmp/name-multisource-v2-trained-klue.spans.jsonl": "fdde64102a16ce03ca8c267ee479be14ae1e717bb1f5c401fdfbeff3a2106851",
+    "/tmp/name-multisource-v2-trained-klue.json": "4f006fefd411eefe7e5cc13c464c925fc6c4d556edfe1b45c953d1e551d12193",
+    "/tmp/name-multisource-v2-trained-kdpii.pt": "46cafd5d97e96e0361816c4c0ff1c6fcea4efe6b95fbc97c6faa9f0e3574b413",
+    "/tmp/name-multisource-v2-trained-kdpii.spans.jsonl": "834ad423c03b75ddc08b2b58d19db962951514f9075bd316e6a2422e393e0cdc",
+    "/tmp/name-multisource-v2-trained-kdpii.json": "b16d2a83de42daf71c38042d5a6a387806664ebb822a2a4135c8f2415f7d3dfc",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_selective_evidence.py": "3e130b55ac1ec8710158bfd629f3a5d9d6b1fd9032c5ab6c96cfa1a41501dd29",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_span_evidence.py": "52ac020cc91478f9fc83d7d6ec01f535a080d0b8705d34c271aa7a13e572b8d0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_span_evidence_development.py": "a8f0eaa80a0239e19e02c69844c7bdac39eb914405c10111b7331be5fa4e7812",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_multisource_selection.py": "cb31fdb13d1852acbc47c523e7f02bc544bbcc48d3359dcd8bb61bec50276799",
+    "/home/woodcross/projects/ko-pii-guard/scripts/diagnose_name_generalization.py": "931b29c9ab13426cfea4e1523bb6d93d3d0a893ec3c8fb639f785f534eb55d0f"
+  },
+  "independent_evaluation": false,
+  "runtime_promotion": false,
+  "duplicate_text_policy": "Every ID retained; identical outputs for repeated text",
+  "limitations": "Cached-logit selective ablation; no live parity or independent accuracy claim. Posterior confidence is model-relative, not calibrated risk.",
+  "baselines": {
+    "nsmc": {
+      "tp": 384,
+      "fp": 62,
+      "fn": 91,
+      "f1": 0.8338762214983714,
+      "fully_covered_names": 416,
+      "unnecessary_masked_characters": 104,
+      "precision": 0.8609865470852018,
+      "recall": 0.8084210526315789,
+      "full_name_coverage": 0.8757894736842106,
+      "negative_sentences": 184,
+      "negative_false_positive_sentences": 13,
+      "sentences": 494,
+      "gold_names": 475
+    },
+    "wikitree": {
+      "tp": 381,
+      "fp": 64,
+      "fn": 52,
+      "f1": 0.8678815489749431,
+      "fully_covered_names": 396,
+      "unnecessary_masked_characters": 113,
+      "precision": 0.8561797752808988,
+      "recall": 0.8799076212471132,
+      "full_name_coverage": 0.9145496535796767,
+      "negative_sentences": 249,
+      "negative_false_positive_sentences": 30,
+      "sentences": 506,
+      "gold_names": 433
+    },
+    "kdpii/PS_NAME": {
+      "tp": 15,
+      "fp": 2,
+      "fn": 3,
+      "f1": 0.8571428571428571,
+      "fully_covered_names": 16,
+      "unnecessary_masked_characters": 5,
+      "precision": 0.8823529411764706,
+      "recall": 0.8333333333333334,
+      "full_name_coverage": 0.8888888888888888,
+      "negative_sentences": 482,
+      "negative_false_positive_sentences": 1,
+      "sentences": 500,
+      "gold_names": 18
+    },
+    "kdpii/PS_NAME+PS_NICKNAME": {
+      "tp": 15,
+      "fp": 2,
+      "fn": 17,
+      "f1": 0.6122448979591837,
+      "fully_covered_names": 16,
+      "unnecessary_masked_characters": 5,
+      "precision": 0.8823529411764706,
+      "recall": 0.46875,
+      "full_name_coverage": 0.5,
+      "negative_sentences": 468,
+      "negative_false_positive_sentences": 1,
+      "sentences": 500,
+      "gold_names": 32
+    }
+  },
+  "candidates": [
+    {
+      "id": "selective:addition=0.99:removal=0.9",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.99,
+        "removal_threshold": 0.9,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 388,
+            "fp": 52,
+            "fn": 87,
+            "f1": 0.848087431693989,
+            "fully_covered_names": 420,
+            "unnecessary_masked_characters": 83,
+            "precision": 0.8818181818181818,
+            "recall": 0.8168421052631579,
+            "full_name_coverage": 0.8842105263157894,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 5,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 380,
+            "fp": 47,
+            "fn": 53,
+            "f1": 0.8837209302325582,
+            "fully_covered_names": 395,
+            "unnecessary_masked_characters": 64,
+            "precision": 0.8899297423887588,
+            "recall": 0.8775981524249422,
+            "full_name_coverage": 0.9122401847575058,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 13,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02010-wikitree",
+                3,
+                4
+              ],
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.99:removal=0.99",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.99,
+        "removal_threshold": 0.99,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 56,
+            "fn": 86,
+            "f1": 0.8456521739130435,
+            "fully_covered_names": 421,
+            "unnecessary_masked_characters": 92,
+            "precision": 0.8741573033707866,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.8863157894736842,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 8,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 380,
+            "fp": 52,
+            "fn": 53,
+            "f1": 0.8786127167630058,
+            "fully_covered_names": 395,
+            "unnecessary_masked_characters": 72,
+            "precision": 0.8796296296296297,
+            "recall": 0.8775981524249422,
+            "full_name_coverage": 0.9122401847575058,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 17,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02010-wikitree",
+                3,
+                4
+              ],
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.99:removal=0.999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.99,
+        "removal_threshold": 0.999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 62,
+            "fn": 86,
+            "f1": 0.8401727861771058,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8625277161862528,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 382,
+            "fp": 55,
+            "fn": 51,
+            "f1": 0.8781609195402299,
+            "fully_covered_names": 397,
+            "unnecessary_masked_characters": 81,
+            "precision": 0.8741418764302059,
+            "recall": 0.8822170900692841,
+            "full_name_coverage": 0.9168591224018475,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 20,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02010-wikitree",
+                3,
+                4
+              ],
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.99:removal=0.9999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.99,
+        "removal_threshold": 0.9999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 63,
+            "fn": 86,
+            "f1": 0.8392664509169363,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8606194690265486,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 384,
+            "fp": 64,
+            "fn": 49,
+            "f1": 0.8717366628830874,
+            "fully_covered_names": 399,
+            "unnecessary_masked_characters": 106,
+            "precision": 0.8571428571428571,
+            "recall": 0.8868360277136259,
+            "full_name_coverage": 0.9214780600461894,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 28,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02010-wikitree",
+                3,
+                4
+              ],
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.99:removal=1.0",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.99,
+        "removal_threshold": 1.0,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 63,
+            "fn": 86,
+            "f1": 0.8392664509169363,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8606194690265486,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 384,
+            "fp": 66,
+            "fn": 49,
+            "f1": 0.869762174405436,
+            "fully_covered_names": 399,
+            "unnecessary_masked_characters": 113,
+            "precision": 0.8533333333333334,
+            "recall": 0.8868360277136259,
+            "full_name_coverage": 0.9214780600461894,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 30,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02010-wikitree",
+                3,
+                4
+              ],
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.999:removal=0.9",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.999,
+        "removal_threshold": 0.9,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 388,
+            "fp": 52,
+            "fn": 87,
+            "f1": 0.848087431693989,
+            "fully_covered_names": 420,
+            "unnecessary_masked_characters": 83,
+            "precision": 0.8818181818181818,
+            "recall": 0.8168421052631579,
+            "full_name_coverage": 0.8842105263157894,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 5,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 379,
+            "fp": 46,
+            "fn": 54,
+            "f1": 0.8834498834498834,
+            "fully_covered_names": 394,
+            "unnecessary_masked_characters": 64,
+            "precision": 0.8917647058823529,
+            "recall": 0.8752886836027713,
+            "full_name_coverage": 0.9099307159353349,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 13,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.999:removal=0.99",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.999,
+        "removal_threshold": 0.99,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 56,
+            "fn": 86,
+            "f1": 0.8456521739130435,
+            "fully_covered_names": 421,
+            "unnecessary_masked_characters": 92,
+            "precision": 0.8741573033707866,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.8863157894736842,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 8,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 379,
+            "fp": 51,
+            "fn": 54,
+            "f1": 0.8783314020857474,
+            "fully_covered_names": 394,
+            "unnecessary_masked_characters": 72,
+            "precision": 0.8813953488372093,
+            "recall": 0.8752886836027713,
+            "full_name_coverage": 0.9099307159353349,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 17,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.999:removal=0.999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.999,
+        "removal_threshold": 0.999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 62,
+            "fn": 86,
+            "f1": 0.8401727861771058,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8625277161862528,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 381,
+            "fp": 54,
+            "fn": 52,
+            "f1": 0.8778801843317973,
+            "fully_covered_names": 396,
+            "unnecessary_masked_characters": 81,
+            "precision": 0.8758620689655172,
+            "recall": 0.8799076212471132,
+            "full_name_coverage": 0.9145496535796767,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 20,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.999:removal=0.9999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.999,
+        "removal_threshold": 0.9999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 63,
+            "fn": 86,
+            "f1": 0.8392664509169363,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8606194690265486,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 383,
+            "fp": 63,
+            "fn": 50,
+            "f1": 0.8714448236632537,
+            "fully_covered_names": 398,
+            "unnecessary_masked_characters": 106,
+            "precision": 0.8587443946188341,
+            "recall": 0.8845265588914549,
+            "full_name_coverage": 0.9191685912240185,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 28,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.999:removal=1.0",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.999,
+        "removal_threshold": 1.0,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 389,
+            "fp": 63,
+            "fn": 86,
+            "f1": 0.8392664509169363,
+            "fully_covered_names": 422,
+            "unnecessary_masked_characters": 107,
+            "precision": 0.8606194690265486,
+            "recall": 0.8189473684210526,
+            "full_name_coverage": 0.888421052631579,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_02190-nsmc",
+                20,
+                25
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 383,
+            "fp": 65,
+            "fn": 50,
+            "f1": 0.8694665153234961,
+            "fully_covered_names": 398,
+            "unnecessary_masked_characters": 113,
+            "precision": 0.8549107142857143,
+            "recall": 0.8845265588914549,
+            "full_name_coverage": 0.9191685912240185,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 30,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "klue-ner-v1_dev_04046-wikitree",
+                0,
+                3
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.9999:removal=0.9",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.9999,
+        "removal_threshold": 0.9,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 386,
+            "fp": 51,
+            "fn": 89,
+            "f1": 0.8464912280701754,
+            "fully_covered_names": 417,
+            "unnecessary_masked_characters": 80,
+            "precision": 0.8832951945080092,
+            "recall": 0.8126315789473684,
+            "full_name_coverage": 0.8778947368421053,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 5,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 378,
+            "fp": 45,
+            "fn": 55,
+            "f1": 0.883177570093458,
+            "fully_covered_names": 393,
+            "unnecessary_masked_characters": 64,
+            "precision": 0.8936170212765957,
+            "recall": 0.8729792147806005,
+            "full_name_coverage": 0.9076212471131639,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 13,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.9999:removal=0.99",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.9999,
+        "removal_threshold": 0.99,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 387,
+            "fp": 55,
+            "fn": 88,
+            "f1": 0.8440567066521265,
+            "fully_covered_names": 418,
+            "unnecessary_masked_characters": 89,
+            "precision": 0.8755656108597285,
+            "recall": 0.8147368421052632,
+            "full_name_coverage": 0.88,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 8,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 378,
+            "fp": 50,
+            "fn": 55,
+            "f1": 0.8780487804878049,
+            "fully_covered_names": 393,
+            "unnecessary_masked_characters": 72,
+            "precision": 0.883177570093458,
+            "recall": 0.8729792147806005,
+            "full_name_coverage": 0.9076212471131639,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 17,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.9999:removal=0.999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.9999,
+        "removal_threshold": 0.999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 387,
+            "fp": 61,
+            "fn": 88,
+            "f1": 0.838569880823402,
+            "fully_covered_names": 419,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8638392857142857,
+            "recall": 0.8147368421052632,
+            "full_name_coverage": 0.8821052631578947,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 380,
+            "fp": 53,
+            "fn": 53,
+            "f1": 0.8775981524249422,
+            "fully_covered_names": 395,
+            "unnecessary_masked_characters": 81,
+            "precision": 0.8775981524249422,
+            "recall": 0.8775981524249422,
+            "full_name_coverage": 0.9122401847575058,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 20,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.9999:removal=0.9999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.9999,
+        "removal_threshold": 0.9999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 387,
+            "fp": 62,
+            "fn": 88,
+            "f1": 0.8376623376623377,
+            "fully_covered_names": 419,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8619153674832962,
+            "recall": 0.8147368421052632,
+            "full_name_coverage": 0.8821052631578947,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 382,
+            "fp": 62,
+            "fn": 51,
+            "f1": 0.87115165336374,
+            "fully_covered_names": 397,
+            "unnecessary_masked_characters": 106,
+            "precision": 0.8603603603603603,
+            "recall": 0.8822170900692841,
+            "full_name_coverage": 0.9168591224018475,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 28,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=0.9999:removal=1.0",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 0.9999,
+        "removal_threshold": 1.0,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 387,
+            "fp": 62,
+            "fn": 88,
+            "f1": 0.8376623376623377,
+            "fully_covered_names": 419,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8619153674832962,
+            "recall": 0.8147368421052632,
+            "full_name_coverage": 0.8821052631578947,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 382,
+            "fp": 64,
+            "fn": 51,
+            "f1": 0.8691695108077361,
+            "fully_covered_names": 397,
+            "unnecessary_masked_characters": 113,
+            "precision": 0.8565022421524664,
+            "recall": 0.8822170900692841,
+            "full_name_coverage": 0.9168591224018475,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 30,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 3,
+            "fn": 3,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 8,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 2,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [
+              [
+                "Data2.1776_3_2",
+                18,
+                21
+              ]
+            ],
+            "newly_exposed_names": [],
+            "passed": false,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 16,
+            "fp": 2,
+            "fn": 16,
+            "f1": 0.64,
+            "fully_covered_names": 17,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8888888888888888,
+            "recall": 0.5,
+            "full_name_coverage": 0.53125,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=1.0:removal=0.9",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 1.0,
+        "removal_threshold": 0.9,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 383,
+            "fp": 51,
+            "fn": 92,
+            "f1": 0.8426842684268426,
+            "fully_covered_names": 414,
+            "unnecessary_masked_characters": 80,
+            "precision": 0.8824884792626728,
+            "recall": 0.8063157894736842,
+            "full_name_coverage": 0.871578947368421,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 5,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ],
+              [
+                "klue-ner-v1_dev_04557-nsmc",
+                28,
+                31
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 377,
+            "fp": 45,
+            "fn": 56,
+            "f1": 0.8818713450292398,
+            "fully_covered_names": 392,
+            "unnecessary_masked_characters": 64,
+            "precision": 0.8933649289099526,
+            "recall": 0.8706697459584296,
+            "full_name_coverage": 0.9053117782909931,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 13,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=1.0:removal=0.99",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 1.0,
+        "removal_threshold": 0.99,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 384,
+            "fp": 55,
+            "fn": 91,
+            "f1": 0.8402625820568927,
+            "fully_covered_names": 415,
+            "unnecessary_masked_characters": 89,
+            "precision": 0.8747152619589977,
+            "recall": 0.8084210526315789,
+            "full_name_coverage": 0.8736842105263158,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 8,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_04334-nsmc",
+                60,
+                62
+              ]
+            ]
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 377,
+            "fp": 50,
+            "fn": 56,
+            "f1": 0.8767441860465116,
+            "fully_covered_names": 392,
+            "unnecessary_masked_characters": 72,
+            "precision": 0.882903981264637,
+            "recall": 0.8706697459584296,
+            "full_name_coverage": 0.9053117782909931,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 17,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_01485-wikitree",
+                15,
+                19
+              ],
+              [
+                "klue-ner-v1_dev_01665-wikitree",
+                13,
+                16
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=1.0:removal=0.999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 1.0,
+        "removal_threshold": 0.999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 384,
+            "fp": 61,
+            "fn": 91,
+            "f1": 0.8347826086956521,
+            "fully_covered_names": 416,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8629213483146068,
+            "recall": 0.8084210526315789,
+            "full_name_coverage": 0.8757894736842106,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 379,
+            "fp": 53,
+            "fn": 54,
+            "f1": 0.8763005780346821,
+            "fully_covered_names": 394,
+            "unnecessary_masked_characters": 81,
+            "precision": 0.8773148148148148,
+            "recall": 0.8752886836027713,
+            "full_name_coverage": 0.9099307159353349,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 20,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ],
+            "passed": false,
+            "actual_stars_newly_exposed_names": [
+              [
+                "klue-ner-v1_dev_01429-wikitree",
+                14,
+                18
+              ],
+              [
+                "klue-ner-v1_dev_04782-wikitree",
+                3,
+                5
+              ]
+            ]
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=1.0:removal=0.9999",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 1.0,
+        "removal_threshold": 0.9999,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 384,
+            "fp": 62,
+            "fn": 91,
+            "f1": 0.8338762214983714,
+            "fully_covered_names": 416,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8609865470852018,
+            "recall": 0.8084210526315789,
+            "full_name_coverage": 0.8757894736842106,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 381,
+            "fp": 62,
+            "fn": 52,
+            "f1": 0.8698630136986302,
+            "fully_covered_names": 396,
+            "unnecessary_masked_characters": 106,
+            "precision": 0.8600451467268623,
+            "recall": 0.8799076212471132,
+            "full_name_coverage": 0.9145496535796767,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 28,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    },
+    {
+      "id": "selective:addition=1.0:removal=1.0",
+      "policy": {
+        "algorithm": "selective_whole_span",
+        "addition_threshold": 1.0,
+        "removal_threshold": 1.0,
+        "class_logit_correction": 0.0
+      },
+      "sources": {
+        "nsmc": {
+          "metrics": {
+            "tp": 384,
+            "fp": 62,
+            "fn": 91,
+            "f1": 0.8338762214983714,
+            "fully_covered_names": 416,
+            "unnecessary_masked_characters": 104,
+            "precision": 0.8609865470852018,
+            "recall": 0.8084210526315789,
+            "full_name_coverage": 0.8757894736842106,
+            "negative_sentences": 184,
+            "negative_false_positive_sentences": 13,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "wikitree": {
+          "metrics": {
+            "tp": 381,
+            "fp": 64,
+            "fn": 52,
+            "f1": 0.8678815489749431,
+            "fully_covered_names": 396,
+            "unnecessary_masked_characters": 113,
+            "precision": 0.8561797752808988,
+            "recall": 0.8799076212471132,
+            "full_name_coverage": 0.9145496535796767,
+            "negative_sentences": 249,
+            "negative_false_positive_sentences": 30,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        },
+        "kdpii/PS_NAME+PS_NICKNAME": {
+          "metrics": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "regression_gate": {
+            "lost_correct_spans": [],
+            "introduced_false_spans": [],
+            "newly_exposed_names": [],
+            "passed": true,
+            "actual_stars_newly_exposed_names": []
+          }
+        }
+      }
+    }
+  ],
+  "baseline_replay_verified": true,
+  "identity_policy_verified": true,
+  "source_changed_during_run": false
+}

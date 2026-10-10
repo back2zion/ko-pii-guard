@@ -1,0 +1,1303 @@
+{
+  "scope": "development_adapted_encoder_diagnostic",
+  "frozen_sha256": {
+    "/home/woodcross/projects/ko-pii-guard/scripts/collect_adapted_name_development.py": "6d67d4ac7ad2dd293a6bcfbfe0331eae958e4922ae30a0ff7ff2df4bc4bc5427",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/results/name-generalization-v1-development.json": "e9d08cf2f21ab05ea191aa275590106d13062a6b66ec22a5795baeffee88e761",
+    "/tmp/ko-pii-klue-ner/klue-ner-v1.1_dev.tsv": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/config.json": "185c7555118302e50bbcd41e5dddcc3b1f9567e8fa9aaf28838d3eecb21b7e24",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/report.json": "dbc1efcfc44484c2fe48ffe35c5a73d8880adea621033ce17771b6f79b624a8f",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/manifest.json": "8c20b460f1a09d1bbcf950714029aa9bc8eb4fd52ded48dbdea231ccb230e6a4",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/data-manifest.json": "bcb46c023e1a053431fd8c4df232d23c0b003f8bc728a3b43cad69934665d5c7",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/head.safetensors": "991a7434334f7bb7c63c0fdf9cd5f0c9c40e888df9ababee7b0df924dec7004b",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-lora-v1/lora.safetensors": "2791a505b4bf4b5924b551c2cb620d8429a5947b4754460ca02bac374241fc28",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_generalization.py": "9af3cd76fe9c4d6bc75fa58de6671ae95795a059a3fc47dc85bbe578bd6483e6",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_span_experiment.py": "6f5cabfb46379aa29098516965311f7e7b3b4fe63e67227b46dd2a8abe4e37ba",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea"
+  },
+  "cache": "/tmp/name-generalization-lora-v1-development-logits.pt",
+  "spans": "benchmarks/results/name-generalization-lora-v1-development.spans.jsonl",
+  "metrics": {
+    "tp": 799,
+    "fp": 49,
+    "fn": 109,
+    "f1": 0.9100227790432802,
+    "fully_covered_names": 811,
+    "unnecessary_masked_characters": 67,
+    "errors": [
+      {
+        "id": "klue-ner-v1_dev_00008-nsmc",
+        "missed": [],
+        "false": [
+          [
+            10,
+            14
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_00125-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ],
+          [
+            51,
+            54
+          ]
+        ],
+        "false": [
+          [
+            51,
+            57
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_00151-nsmc",
+        "missed": [
+          [
+            6,
+            8
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00157-nsmc",
+        "missed": [
+          [
+            5,
+            9
+          ],
+          [
+            13,
+            15
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00175-nsmc",
+        "missed": [
+          [
+            16,
+            19
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00186-wikitree",
+        "missed": [
+          [
+            12,
+            16
+          ],
+          [
+            40,
+            44
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00261-wikitree",
+        "missed": [
+          [
+            0,
+            3
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00306-nsmc",
+        "missed": [
+          [
+            18,
+            21
+          ]
+        ],
+        "false": [
+          [
+            18,
+            20
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_00307-wikitree",
+        "missed": [
+          [
+            45,
+            46
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00329-nsmc",
+        "missed": [
+          [
+            18,
+            21
+          ],
+          [
+            22,
+            25
+          ],
+          [
+            30,
+            33
+          ],
+          [
+            33,
+            35
+          ],
+          [
+            36,
+            38
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00422-nsmc",
+        "missed": [
+          [
+            22,
+            27
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00427-wikitree",
+        "missed": [
+          [
+            42,
+            45
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00454-wikitree",
+        "missed": [
+          [
+            24,
+            28
+          ],
+          [
+            61,
+            64
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00683-nsmc",
+        "missed": [
+          [
+            9,
+            11
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_00745-nsmc",
+        "missed": [
+          [
+            3,
+            13
+          ]
+        ],
+        "false": [
+          [
+            3,
+            10
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_00876-nsmc",
+        "missed": [],
+        "false": [
+          [
+            94,
+            96
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01007-nsmc",
+        "missed": [
+          [
+            17,
+            20
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01010-wikitree",
+        "missed": [
+          [
+            30,
+            38
+          ],
+          [
+            43,
+            51
+          ],
+          [
+            74,
+            75
+          ]
+        ],
+        "false": [
+          [
+            30,
+            33
+          ],
+          [
+            35,
+            38
+          ],
+          [
+            43,
+            46
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01135-nsmc",
+        "missed": [
+          [
+            11,
+            14
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01247-wikitree",
+        "missed": [
+          [
+            0,
+            6
+          ]
+        ],
+        "false": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01279-nsmc",
+        "missed": [
+          [
+            0,
+            1
+          ],
+          [
+            22,
+            23
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01295-wikitree",
+        "missed": [
+          [
+            13,
+            17
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01300-nsmc",
+        "missed": [
+          [
+            0,
+            1
+          ]
+        ],
+        "false": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01385-nsmc",
+        "missed": [
+          [
+            0,
+            8
+          ]
+        ],
+        "false": [
+          [
+            0,
+            9
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01429-wikitree",
+        "missed": [
+          [
+            14,
+            18
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01466-nsmc",
+        "missed": [
+          [
+            12,
+            16
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01485-wikitree",
+        "missed": [
+          [
+            15,
+            19
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01488-nsmc",
+        "missed": [],
+        "false": [
+          [
+            17,
+            19
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01504-wikitree",
+        "missed": [],
+        "false": [
+          [
+            17,
+            20
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01571-wikitree",
+        "missed": [
+          [
+            13,
+            21
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01641-nsmc",
+        "missed": [],
+        "false": [
+          [
+            26,
+            29
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01665-wikitree",
+        "missed": [
+          [
+            13,
+            16
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01754-nsmc",
+        "missed": [
+          [
+            13,
+            16
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01807-nsmc",
+        "missed": [
+          [
+            5,
+            8
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01868-nsmc",
+        "missed": [
+          [
+            4,
+            9
+          ]
+        ],
+        "false": [
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01884-nsmc",
+        "missed": [
+          [
+            11,
+            14
+          ]
+        ],
+        "false": [
+          [
+            8,
+            14
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01935-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_01948-wikitree",
+        "missed": [
+          [
+            40,
+            42
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_01977-nsmc",
+        "missed": [
+          [
+            18,
+            20
+          ],
+          [
+            28,
+            30
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02010-wikitree",
+        "missed": [
+          [
+            0,
+            4
+          ]
+        ],
+        "false": [
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02064-nsmc",
+        "missed": [
+          [
+            29,
+            31
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02190-nsmc",
+        "missed": [
+          [
+            20,
+            22
+          ]
+        ],
+        "false": [
+          [
+            20,
+            25
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02234-wikitree",
+        "missed": [
+          [
+            9,
+            16
+          ],
+          [
+            29,
+            37
+          ],
+          [
+            49,
+            57
+          ]
+        ],
+        "false": [
+          [
+            9,
+            13
+          ],
+          [
+            29,
+            34
+          ],
+          [
+            35,
+            44
+          ],
+          [
+            49,
+            51
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02302-wikitree",
+        "missed": [
+          [
+            0,
+            3
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02383-nsmc",
+        "missed": [
+          [
+            20,
+            26
+          ],
+          [
+            105,
+            110
+          ]
+        ],
+        "false": [
+          [
+            105,
+            109
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02430-nsmc",
+        "missed": [
+          [
+            0,
+            5
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02506-nsmc",
+        "missed": [
+          [
+            60,
+            62
+          ]
+        ],
+        "false": [
+          [
+            60,
+            64
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02533-wikitree",
+        "missed": [
+          [
+            4,
+            7
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02640-wikitree",
+        "missed": [
+          [
+            4,
+            6
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02739-nsmc",
+        "missed": [
+          [
+            0,
+            3
+          ]
+        ],
+        "false": [
+          [
+            48,
+            51
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02759-nsmc",
+        "missed": [
+          [
+            0,
+            4
+          ]
+        ],
+        "false": [
+          [
+            55,
+            60
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_02849-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02856-wikitree",
+        "missed": [
+          [
+            15,
+            17
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_02893-nsmc",
+        "missed": [
+          [
+            25,
+            28
+          ],
+          [
+            61,
+            64
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03031-nsmc",
+        "missed": [
+          [
+            22,
+            25
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03043-nsmc",
+        "missed": [
+          [
+            5,
+            8
+          ],
+          [
+            15,
+            18
+          ],
+          [
+            19,
+            22
+          ]
+        ],
+        "false": [
+          [
+            0,
+            8
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03088-nsmc",
+        "missed": [
+          [
+            0,
+            3
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03191-nsmc",
+        "missed": [
+          [
+            3,
+            7
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03240-nsmc",
+        "missed": [],
+        "false": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03287-wikitree",
+        "missed": [
+          [
+            26,
+            28
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03353-nsmc",
+        "missed": [
+          [
+            16,
+            20
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03361-wikitree",
+        "missed": [
+          [
+            0,
+            5
+          ]
+        ],
+        "false": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03516-wikitree",
+        "missed": [
+          [
+            26,
+            33
+          ]
+        ],
+        "false": [
+          [
+            26,
+            30
+          ],
+          [
+            31,
+            33
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03557-wikitree",
+        "missed": [
+          [
+            25,
+            31
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03598-wikitree",
+        "missed": [
+          [
+            33,
+            35
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03647-nsmc",
+        "missed": [
+          [
+            19,
+            20
+          ]
+        ],
+        "false": [
+          [
+            19,
+            21
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03664-nsmc",
+        "missed": [
+          [
+            32,
+            35
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03676-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03712-nsmc",
+        "missed": [
+          [
+            21,
+            25
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03749-nsmc",
+        "missed": [
+          [
+            39,
+            43
+          ],
+          [
+            46,
+            50
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_03808-nsmc",
+        "missed": [
+          [
+            8,
+            15
+          ]
+        ],
+        "false": [
+          [
+            8,
+            11
+          ],
+          [
+            12,
+            15
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_03932-wikitree",
+        "missed": [
+          [
+            35,
+            42
+          ]
+        ],
+        "false": [
+          [
+            35,
+            39
+          ],
+          [
+            40,
+            42
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04046-wikitree",
+        "missed": [
+          [
+            0,
+            6
+          ]
+        ],
+        "false": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04054-nsmc",
+        "missed": [
+          [
+            0,
+            4
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04063-nsmc",
+        "missed": [
+          [
+            10,
+            13
+          ]
+        ],
+        "false": [
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04078-nsmc",
+        "missed": [],
+        "false": [
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04081-nsmc",
+        "missed": [],
+        "false": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04167-nsmc",
+        "missed": [
+          [
+            17,
+            20
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04196-nsmc",
+        "missed": [
+          [
+            4,
+            6
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "false": [
+          [
+            4,
+            10
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04216-nsmc",
+        "missed": [
+          [
+            44,
+            47
+          ],
+          [
+            48,
+            51
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04334-nsmc",
+        "missed": [
+          [
+            60,
+            62
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04377-wikitree",
+        "missed": [
+          [
+            0,
+            8
+          ]
+        ],
+        "false": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04404-wikitree",
+        "missed": [
+          [
+            24,
+            27
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04439-nsmc",
+        "missed": [],
+        "false": [
+          [
+            12,
+            13
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04485-nsmc",
+        "missed": [
+          [
+            0,
+            4
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04557-nsmc",
+        "missed": [
+          [
+            28,
+            31
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04575-nsmc",
+        "missed": [
+          [
+            3,
+            6
+          ],
+          [
+            15,
+            18
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04612-wikitree",
+        "missed": [
+          [
+            40,
+            45
+          ]
+        ],
+        "false": [
+          [
+            40,
+            48
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04615-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04710-wikitree",
+        "missed": [
+          [
+            47,
+            54
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04721-wikitree",
+        "missed": [],
+        "false": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04770-wikitree",
+        "missed": [
+          [
+            24,
+            26
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04782-wikitree",
+        "missed": [
+          [
+            3,
+            5
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04802-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04815-wikitree",
+        "missed": [],
+        "false": [
+          [
+            11,
+            14
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04836-nsmc",
+        "missed": [],
+        "false": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04871-wikitree",
+        "missed": [
+          [
+            68,
+            71
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "klue-ner-v1_dev_04928-wikitree",
+        "missed": [
+          [
+            61,
+            70
+          ]
+        ],
+        "false": [
+          [
+            64,
+            70
+          ]
+        ]
+      },
+      {
+        "id": "klue-ner-v1_dev_04936-nsmc",
+        "missed": [
+          [
+            0,
+            2
+          ]
+        ],
+        "false": []
+      }
+    ]
+  },
+  "source_changed_during_run": false
+}

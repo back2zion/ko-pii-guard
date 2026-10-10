@@ -1,0 +1,47 @@
+{
+  "source_sha256": {
+    "/tmp/ko-pii-name-multisource-v2/train.jsonl": "3cff33e9a7d8107e40fab1e687880254eb73f9ec06188ce6b3834366978f81ab",
+    "/tmp/ko-pii-name-multisource-v2/klue-validation.jsonl": "4a266c004b7b0644044fc3a849daf18663011a462aa585909b37a5cdcc71b06f",
+    "/tmp/ko-pii-name-multisource-v2/kdpii-validation.jsonl": "9d22b1ebf2e9a097edb23aef6c088321b22b7a2bf022e2007b65b110ded04d5a",
+    "/tmp/ko-pii-name-multisource-v2/synthetic-validation.jsonl": "c11356044ba5b0bb1caade4ee000ff662652909a698db3e10c8e633c537231c0",
+    "/tmp/ko-pii-name-multisource-v2/manifest.json": "85567a6e87569bded5b6d487ac1e8b5bb4093a170ce185597fc4ad60b0fbb7f2",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/config.json": "802097c1d7d65a56f7cb344056318201e8460a636f5d1db41b653a889766d815",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/head.safetensors": "1bc5665c9a21ca85b5c0b6d538e9c2293905e9fc1dda09ae8da64dfa47b07316",
+    "/tmp/name-generalization-v1-features.pt": "aa1d574475217e2cde37b02dd73de197c5a1124f388a574b42e7c61af782c193",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_multisource.py": "6791ec7409f1e49f51e4a69bb17f03ff4ddf3e5077b5b8898379815922f5095d",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_generalization.py": "19f80aaa1f2ffb34473c94e2a622ac5eb8579fe865eed3717e4804046c43bd0a",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de"
+  },
+  "model_id": "FrameByFrame/korean-pii-e5-base",
+  "revision": "a308c54b4407819624a5661e31e162a269f39818",
+  "seed": 20261013,
+  "epochs": 3,
+  "batch_size": 64,
+  "learning_rate": 0.0005,
+  "weight_decay": 0.01,
+  "name_class_weight": 1.0,
+  "outside_class_weight": 1.0,
+  "optimizer": "AdamW",
+  "thresholds": [
+    0.5,
+    0.7,
+    0.9,
+    0.95
+  ],
+  "device": "cpu",
+  "cpu_threads": 2,
+  "train_rows": 21850,
+  "validation_rows": {
+    "klue": 2100,
+    "kdpii": 4975,
+    "synthetic": 96
+  },
+  "selection": "Equal macro exact F1 over nsmc/wikitree/kdpii validation sources; then fewer FP, higher threshold, earlier epoch. Synthetic reporting only.",
+  "encoder_frozen": true,
+  "prior_scale": "Trainable; initialized from frozen v1 head",
+  "ignore_policy": "PS_NICKNAME/PS_ID receive -100 only in training loss",
+  "strict_adoption_gate": "Separate multi-source public-runtime evaluation",
+  "test_data_opened": false,
+  "runtime_promotion": false
+}

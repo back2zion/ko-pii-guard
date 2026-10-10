@@ -1,0 +1,97 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "loss_sum": 5.616400786413578,
+      "validation": {
+        "0.5": {
+          "tp": 1482,
+          "fp": 67,
+          "fn": 16,
+          "fully_covered_names": 1488,
+          "f1": 0.9727600918936659
+        },
+        "0.7": {
+          "tp": 1471,
+          "fp": 51,
+          "fn": 27,
+          "fully_covered_names": 1477,
+          "f1": 0.9741721854304636
+        },
+        "0.9": {
+          "tp": 1455,
+          "fp": 34,
+          "fn": 43,
+          "fully_covered_names": 1461,
+          "f1": 0.9742216270505524
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "loss_sum": 4.829807488204096,
+      "validation": {
+        "0.5": {
+          "tp": 1474,
+          "fp": 57,
+          "fn": 24,
+          "fully_covered_names": 1481,
+          "f1": 0.9732585011554968
+        },
+        "0.7": {
+          "tp": 1468,
+          "fp": 44,
+          "fn": 30,
+          "fully_covered_names": 1474,
+          "f1": 0.9754152823920266
+        },
+        "0.9": {
+          "tp": 1442,
+          "fp": 28,
+          "fn": 56,
+          "fully_covered_names": 1446,
+          "f1": 0.9716981132075472
+        }
+      }
+    },
+    {
+      "epoch": 3,
+      "loss_sum": 3.9335938463991624,
+      "validation": {
+        "0.5": {
+          "tp": 1448,
+          "fp": 35,
+          "fn": 50,
+          "fully_covered_names": 1452,
+          "f1": 0.9714860784971486
+        },
+        "0.7": {
+          "tp": 1430,
+          "fp": 28,
+          "fn": 68,
+          "fully_covered_names": 1434,
+          "f1": 0.9675236806495264
+        },
+        "0.9": {
+          "tp": 1370,
+          "fp": 15,
+          "fn": 128,
+          "fully_covered_names": 1372,
+          "f1": 0.9503988900450919
+        }
+      }
+    }
+  ],
+  "selected_epoch": 2,
+  "threshold": 0.7,
+  "validation": {
+    "tp": 1468,
+    "fp": 44,
+    "fn": 30,
+    "fully_covered_names": 1474,
+    "f1": 0.9754152823920266
+  },
+  "elapsed_seconds": 221.24241769400032,
+  "source_changed": false,
+  "runtime_promotion": false
+}

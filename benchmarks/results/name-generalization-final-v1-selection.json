@@ -1,0 +1,29 @@
+{
+  "finalized": true,
+  "selection_basis": "Compare frozen and adapted encoders only on prior development. Fixed posterior cutoffs; full coverage/F1 no lower and negative FP/extra characters no higher than original E5. Maximize covered names, minimize extra characters, then maximize F1; retain frozen incumbent on a tie. Strict per-case regressions remain separate and cannot be waived by this ranking.",
+  "candidate_factory": "name_adapted_adapter:build_ner",
+  "candidate": {
+    "checkpoint": "artifacts/name-generalization-lora-v1",
+    "device": "cuda",
+    "decoder": "coverage",
+    "threshold": 0.01
+  },
+  "training_text_hashes_json": "artifacts/name-generalization-v1/training-text-hashes.json",
+  "frozen_sha256": {
+    "artifacts/name-generalization-lora-v1/head.safetensors": "991a7434334f7bb7c63c0fdf9cd5f0c9c40e888df9ababee7b0df924dec7004b",
+    "artifacts/name-generalization-lora-v1/lora.safetensors": "2791a505b4bf4b5924b551c2cb620d8429a5947b4754460ca02bac374241fc28",
+    "artifacts/name-generalization-lora-v1/config.json": "185c7555118302e50bbcd41e5dddcc3b1f9567e8fa9aaf28838d3eecb21b7e24",
+    "artifacts/name-generalization-lora-v1/report.json": "dbc1efcfc44484c2fe48ffe35c5a73d8880adea621033ce17771b6f79b624a8f",
+    "artifacts/name-generalization-v1/training-text-hashes.json": "0adb103a30cfca8ddeddeabd771e488a56520c99669330857c25a0aaf568b752",
+    "benchmarks/results/name-generalization-v1-development.json": "e9d08cf2f21ab05ea191aa275590106d13062a6b66ec22a5795baeffee88e761",
+    "benchmarks/results/name-generalization-v1-coverage-selection.json": "cb6cc6e7a69d15fb7c90e4712f4986d20415bd93e0fdb8efd8fce06de45b2d22",
+    "benchmarks/results/name-generalization-lora-v1-coverage-selection.json": "0a3f491e6cac95609f84e95e5d319585cdfe220b0916d2d7b1b91ae93206aadf",
+    "/home/woodcross/projects/ko-pii-guard/scripts/validate_name_generalization_pipeline.py": "8999399785c8531aad84dd778074b0cbe16c13fefa527a999f68589f5e094db3",
+    "scripts/name_adapted_adapter.py": "6e599c3ea60243f7e06cd64d721d3ea6f3727c90b1b606743304e2b23d16b2f7",
+    "scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "scripts/name_coverage_decoding.py": "a7b93261e66fd7cad14369ad0ca4e6ee07e476d1693de03a3d656d007886124c",
+    "scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "scripts/select_name_coverage.py": "f8e5f71dfdfbfcaa223f7e4fb27811b17dc278acccf58e48f99582cb7dcbed0b"
+  }
+}

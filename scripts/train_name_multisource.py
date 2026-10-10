@@ -1,0 +1,330 @@
+"""CPU frozen-E5 head adaptation on independently prepared training sources.
+
+Only train/validation files are read. Frozen v1 KLUE/synthetic features are
+verified and reused; previously unseen KDPII features are computed locally.
+"""
+
+from __future__ import annotations
+
+import argparse
+import ast
+import hashlib
+import json
+import random
+import time
+from pathlib import Path
+
+import torch
+from name_generalization_model import GeneralNameHead
+from safetensors.torch import load_file, save_file
+from train_name_generalization import (
+    MODEL_ID,
+    REVISION,
+    collate,
+    digest,
+    encode,
+    evaluate,
+    gold_labels,
+    load_rows,
+)
+
+SEED = 20261013
+EPOCHS = 3
+THRESHOLDS = [.5, .7, .9, .95]
+
+
+def case_key(case):
+    """ID-independent identity requires identical original text and gold spans."""
+    spans = sorted((s["entity"], s["start"], s["end"]) for s in case["expected"])
+    content = json.dumps([case["text"], spans], ensure_ascii=False).encode()
+    return hashlib.sha256(content).hexdigest()
+
+
+def apply_ignore_labels(case, labels):
+    target = labels.clone()
+    if not torch.equal(target, gold_labels(case)):
+        raise ValueError("Cached gold labels differ from source spans")
+    for span in case.get("training_ignore_spans", []):
+        start, end = span["start"], span["end"]
+        if (span.get("label") not in {"PS_NICKNAME", "PS_ID"}
+                or not isinstance(start, int) or not isinstance(end, int)
+                or not 0 <= start < end <= len(target)):
+            raise ValueError("Invalid training ignore span")
+        if (target[start:end] > 0).any():
+            raise ValueError("Ignore regions overlap a gold name")
+        target[start:end] = -100
+    return target
+
+
+def verify_encoding_archive(current, archive, expected):
+    """Accept post-training main() hardening only with the exact archived encoder."""
+    if digest(current) == expected:
+        return dict(method="direct_source_hash", sha256=expected)
+    if not archive.exists() or digest(archive) != expected:
+        raise ValueError("Frozen encoding archive hash changed")
+
+    def encoding_ast(path):
+        tree = ast.parse(path.read_text())
+        tree.body = [node for node in tree.body
+                     if not (isinstance(node, ast.FunctionDef) and node.name == "main")]
+        definitions = {node.name for node in tree.body if isinstance(node, ast.FunctionDef)}
+        if not {"encode", "gold_labels"} <= definitions:
+            raise ValueError("Encoding AST must contain encode and gold_labels")
+        return ast.dump(tree, include_attributes=False)
+
+    if encoding_ast(current) != encoding_ast(archive):
+        raise ValueError("Frozen encoding AST differs outside main()")
+    return dict(method="verified_archive_ast", archive_sha256=expected,
+                current_sha256=digest(current), ignored_definition="main")
+
+
+def index_frozen_cache(payload, vocabulary, *, verify_code=True, source_archive=None):
+    key = payload["key"]
+    if key["encoder"] != [MODEL_ID, REVISION] or key["vocabulary"] != vocabulary:
+        raise ValueError("Frozen encoder or vocabulary changed")
+    if verify_code:
+        current = Path(__file__).with_name("train_name_generalization.py")
+        archive = source_archive or Path("artifacts/name-generalization-v1") / (
+            "train_name_generalization.py.source.txt")
+        verify_encoding_archive(current, archive, key["encoding_source"])
+        character = Path(__file__).with_name("name_generalization_model.py")
+        expected_character = key.get("character_encoding_source")
+        if expected_character is None:
+            original = json.loads((archive.parent / "manifest.json").read_text())["source_sha256"]
+            if (original.get(str(current.resolve())) != key["encoding_source"]
+                    or digest(archive) != key["encoding_source"]):
+                raise ValueError("Legacy manifest does not pin original cache trainer")
+            expected_character = original.get(str(character.resolve()))
+            character_archive = archive.parent / "name_generalization_model.py.source.txt"
+            if (not expected_character or not character_archive.exists()
+                    or digest(character_archive) != expected_character):
+                raise ValueError("Legacy manifest/archive does not pin character encoding")
+        if expected_character != digest(character):
+            raise ValueError("Frozen character encoding source hash changed")
+    cases = []
+    file_order = {"train.jsonl": 0, "validation.jsonl": 1, "synthetic-validation.jsonl": 2}
+    for filename, expected_hash in sorted(key["files"].items(),
+                                          key=lambda item: file_order[Path(item[0]).name]):
+        if digest(filename) != expected_hash:
+            raise ValueError("Frozen source data hash changed")
+        cases.extend(load_rows(filename))
+    if len(cases) != len(payload["rows"]):
+        raise ValueError("Frozen row count differs from source files")
+    index = {}
+    for case, row in zip(cases, payload["rows"], strict=True):
+        if len(row) != 5 or any(len(tensor) != len(case["text"]) for tensor in row):
+            raise ValueError("Frozen feature lengths differ from original text")
+        if not torch.equal(row[-1], gold_labels(case)):
+            raise ValueError("Frozen cached labels differ from original gold spans")
+        expected_chars = torch.tensor([vocabulary.get(char, 1) for char in case["text"]])
+        if not torch.equal(row[1], expected_chars):
+            raise ValueError("Frozen character IDs differ from original text/vocabulary")
+        index[case_key(case)] = row
+    return index
+
+
+def source_macro_rank(scores, threshold, epoch):
+    if not scores:
+        raise ValueError("At least one validation source is required")
+    return (sum(s["f1"] for s in scores.values()) / len(scores),
+            -sum(s["fp"] for s in scores.values()), float(threshold), -epoch)
+
+
+def train_step(head, optimizer, rows):
+    features, chars, positions, prior, lengths, target = collate(rows, "cpu")
+    if not (target != -100).any():
+        return 0.0
+    optimizer.zero_grad(set_to_none=True)
+    logits = head(features, chars, positions, prior, lengths)
+    loss = torch.nn.functional.cross_entropy(logits.flatten(0, 1), target.flatten(),
+                                             ignore_index=-100)
+    if not torch.isfinite(loss):
+        raise ValueError("Nonfinite training loss")
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(head.parameters(), 1.)
+    optimizer.step()
+    return float(loss.detach())
+
+
+def _write(path, value):
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+
+
+def _validate_new_cache(payload, cache_key, cases, vocabulary):
+    if payload["key"] != cache_key or len(payload["rows"]) != len(cases):
+        raise ValueError("Novel feature cache input hashes or row count changed")
+    for case, row in zip(cases, payload["rows"], strict=True):
+        if (len(row) != 5 or any(len(value) != len(case["text"]) for value in row)
+                or not torch.equal(row[-1], gold_labels(case))
+                or row[1].tolist() != [vocabulary.get(c, 1) for c in case["text"]]):
+            raise ValueError("Novel feature cache character IDs or labels differ")
+    return payload["rows"]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=Path("/tmp/ko-pii-name-multisource-v2"))
+    parser.add_argument("--initial", type=Path, default=Path("artifacts/name-generalization-v1"))
+    parser.add_argument("--old-cache", type=Path,
+                        default=Path("/tmp/name-generalization-v1-features.pt"))
+    parser.add_argument("--cache", type=Path, default=Path("/tmp/name-multisource-v2-features.pt"))
+    parser.add_argument("--output", type=Path, default=Path("artifacts/name-multisource-v2"))
+    parser.add_argument("--threads", type=int, default=2)
+    args = parser.parse_args()
+    if args.output.exists() and any(args.output.iterdir()):
+        parser.error("Use a new or empty artifact directory")
+    if args.threads < 1:
+        parser.error("CPU threads must be positive")
+    torch.set_num_threads(args.threads)
+    torch.manual_seed(SEED)
+    random.seed(SEED)
+    torch.use_deterministic_algorithms(True)
+    started = time.monotonic()
+    config = json.loads((args.initial / "config.json").read_text())
+    vocabulary = config["vocabulary"]
+    if config["model_id"] != MODEL_ID or config["revision"] != REVISION:
+        raise ValueError("Initial head encoder differs from pinned E5")
+    filenames = ["train.jsonl", "klue-validation.jsonl", "kdpii-validation.jsonl",
+                 "synthetic-validation.jsonl"]
+    preparation = json.loads((args.data_dir / "manifest.json").read_text())
+    data_files = [args.data_dir / name for name in filenames]
+    for path in data_files:
+        if digest(path) != preparation["outputs"][path.name]["sha256"]:
+            raise ValueError("Prepared data hash changed")
+    sets = [load_rows(path) for path in data_files]
+    train, klue, kdpii, synthetic = sets
+    if {case["text"] for case in train} & {case["text"] for group in sets[1:] for case in group}:
+        raise ValueError("Training/validation original text overlap")
+    code_files = [Path(__file__), Path(__file__).with_name("train_name_generalization.py"),
+                  Path(__file__).with_name("name_generalization_model.py"),
+                  Path(__file__).with_name("name_bioes_ablation.py")]
+    inputs = [*data_files, args.data_dir / "manifest.json", args.initial / "config.json",
+              args.initial / "head.safetensors", args.old_cache, *code_files,
+              args.initial / "train_name_generalization.py.source.txt",
+              args.initial / "name_generalization_model.py.source.txt",
+              args.initial / "manifest.json", args.initial / "report.json",
+              args.initial / "training-text-hashes.json",
+              args.data_dir / "training-text-hashes.json"]
+    hashes = {str(path.resolve()): digest(path) for path in inputs}
+    args.output.mkdir(parents=True, exist_ok=True)
+    manifest = dict(source_sha256=hashes, model_id=MODEL_ID, revision=REVISION,
+                    seed=SEED, epochs=EPOCHS, batch_size=64, learning_rate=.0005,
+                    weight_decay=.01, name_class_weight=1., outside_class_weight=1.,
+                    optimizer="AdamW", thresholds=THRESHOLDS, device="cpu",
+                    cpu_threads=args.threads, train_rows=len(train),
+                    validation_rows=dict(klue=len(klue), kdpii=len(kdpii),
+                                         synthetic=len(synthetic)),
+                    selection="Equal macro exact F1 over nsmc/wikitree/kdpii validation sources; "
+                    "then fewer FP, higher threshold, earlier epoch. Synthetic reporting only.",
+                    encoder_frozen=True, prior_scale="Trainable; initialized from frozen v1 head",
+                    ignore_policy="PS_NICKNAME/PS_ID receive -100 only in training loss",
+                    original_cache_source="Verify original archived trainer SHA256 and "
+                    "current trainer AST equivalence outside main(); character module exact hash",
+                    strict_adoption_gate="Separate multi-source public-runtime evaluation",
+                    test_data_opened=False, runtime_promotion=False)
+    _write(args.output / "manifest.json", manifest)
+    for path in code_files:
+        (args.output / (path.name + ".source.txt")).write_bytes(path.read_bytes())
+    (args.output / "original-cache-trainer.py.source.txt").write_bytes(
+        (args.initial / "train_name_generalization.py.source.txt").read_bytes())
+    (args.output / "data-manifest.json").write_bytes((args.data_dir / "manifest.json").read_bytes())
+    initial_texts = json.loads((args.initial / "training-text-hashes.json").read_text())
+    current_texts = json.loads((args.data_dir / "training-text-hashes.json").read_text())
+    if initial_texts["algorithm"] != "sha256_utf8_exact_text":
+        raise ValueError("Initial checkpoint text hashes use an unknown algorithm")
+    validation_texts = {hashlib.sha256(case["text"].encode()).hexdigest()
+                        for group in sets[1:] for case in group}
+    _write(args.output / "training-text-hashes.json", dict(
+        algorithm=initial_texts["algorithm"],
+        text_sha256=sorted(set(initial_texts["text_sha256"]) | set(current_texts)
+                           | validation_texts),
+        initial_checkpoint_texts=len(initial_texts["text_sha256"]),
+        new_training_texts=len(current_texts),
+        new_validation_texts=len(validation_texts),
+        scope="Initial v1 train/validation ancestry union new multisource train/validation"))
+    print(json.dumps(dict(stage="frozen_manifest_written", train_rows=len(train),
+                          validation_rows=manifest["validation_rows"])), flush=True)
+    payload = torch.load(args.old_cache, map_location="cpu", weights_only=True)
+    index = index_frozen_cache(
+        payload, vocabulary,
+        source_archive=args.initial / "train_name_generalization.py.source.txt")
+    cases = [case for group in sets for case in group]
+    novel = [case for case in cases if case_key(case) not in index]
+    novel_key = dict(cases=[case_key(case) for case in novel], encoder=[MODEL_ID, REVISION],
+                     vocabulary=vocabulary,
+                     encoding_source=digest(Path(__file__).with_name("train_name_generalization.py")),
+                     character_encoding_source=digest(Path(__file__).with_name("name_generalization_model.py")))
+    print(json.dumps(dict(stage="features", reused_rows=len(cases) - len(novel),
+                          novel_rows=len(novel))), flush=True)
+    if args.cache.exists():
+        fresh = _validate_new_cache(torch.load(args.cache, map_location="cpu", weights_only=True),
+                                    novel_key, novel, vocabulary)
+    else:
+        fresh = encode(novel, vocabulary, device="cpu") if novel else []
+        torch.save(dict(key=novel_key, rows=fresh), args.cache)
+    for case, row in zip(novel, fresh, strict=True):
+        index[case_key(case)] = row
+    cached = [(*index[case_key(case)][:-1], apply_ignore_labels(case, index[case_key(case)][-1]))
+              for case in cases]
+    # Training can only update the small head. Encoder has already been unloaded.
+    del payload, index, fresh
+    train_cache = cached[:len(train)]
+    validation_cases = cases[len(train):len(train) + len(klue) + len(kdpii)]
+    validation_cache = cached[len(train):len(train) + len(klue) + len(kdpii)]
+    domains = sorted({case["source"] for case in validation_cases})
+    by_source = {source: [i for i, case in enumerate(validation_cases) if case["source"] == source]
+                 for source in domains}
+    head = GeneralNameHead(char_vocab_size=len(vocabulary) + 2, **{
+        key: config[key] for key in ("hidden_size", "projection_size", "char_embedding_size",
+                                     "lstm_hidden_size")})
+    head.load_state_dict(load_file(str(args.initial / "head.safetensors")))
+    optimizer = torch.optim.AdamW(head.parameters(), lr=.0005, weight_decay=.01)
+    history, best = [], None
+    for epoch in range(1, EPOCHS + 1):
+        head.train()
+        order = list(range(len(train_cache)))
+        random.shuffle(order)
+        total_loss = 0.
+        for start in range(0, len(order), 64):
+            total_loss += train_step(head, optimizer,
+                                     [train_cache[i] for i in order[start:start + 64]])
+            if start % (64 * 100) == 0:
+                print(json.dumps(dict(stage="training", epoch=epoch,
+                                      rows=min(start + 64, len(order)))), flush=True)
+        scores = {source: evaluate(head, [validation_cache[i] for i in indices],
+                                   [validation_cases[i] for i in indices], device="cpu",
+                                   thresholds=THRESHOLDS)
+                  for source, indices in by_source.items()}
+        record = dict(epoch=epoch, loss=total_loss, validation=scores,
+                      prior_scale=float(head.prior_scale.detach()))
+        history.append(record)
+        print(json.dumps(record), flush=True)
+        for threshold in THRESHOLDS:
+            source_scores = {source: values[str(threshold)] for source, values in scores.items()}
+            rank = source_macro_rank(source_scores, threshold, epoch)
+            if best is None or rank > best[0]:
+                best = (rank, epoch, threshold, source_scores)
+                save_file({key: value.detach().cpu().contiguous()
+                           for key, value in head.state_dict().items()},
+                          str(args.output / "head.safetensors"))
+    head.load_state_dict(load_file(str(args.output / "head.safetensors")))
+    synthetic_scores = evaluate(head, cached[-len(synthetic):], synthetic, device="cpu",
+                                 thresholds=[best[2]]) if synthetic else {}
+    config.update(threshold=best[2], selected_epoch=best[1])
+    _write(args.output / "config.json", config)
+    report = dict(history=history, selected_epoch=best[1], threshold=best[2],
+                  macro_validation_f1=best[0][0], validation=best[3],
+                  synthetic_validation=synthetic_scores,
+                  elapsed_seconds=time.monotonic() - started,
+                  reused_feature_rows=len(cases) - len(novel), encoded_feature_rows=len(novel),
+                  novel_cache_sha256=digest(args.cache),
+                  source_changed=any(digest(path) != expected for path, expected in hashes.items()),
+                  runtime_promotion=False)
+    _write(args.output / "report.json", report)
+    print(json.dumps({key: value for key, value in report.items() if key != "history"}), flush=True)
+    if report["source_changed"]:
+        raise RuntimeError("Frozen training sources changed")
+
+
+if __name__ == "__main__":
+    main()

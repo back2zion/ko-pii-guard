@@ -1,0 +1,1000 @@
+{"id": "klue-ner-v1_dev_00006-wikitree", "spans": [{"entity": "KR_NAME", "start": 7, "end": 8, "score": 0.9962925314903259}, {"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9982201258341471}, {"entity": "KR_NAME", "start": 39, "end": 40, "score": 0.9948546886444092}]}
+{"id": "klue-ner-v1_dev_00008-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9894878268241882}, {"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9898611704508463}, {"entity": "KR_NAME", "start": 10, "end": 14, "score": 0.9210586100816727}]}
+{"id": "klue-ner-v1_dev_00013-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.999839166800181}, {"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9998913407325745}, {"entity": "KR_NAME", "start": 23, "end": 26, "score": 0.9998576641082764}]}
+{"id": "klue-ner-v1_dev_00015-wikitree", "spans": [{"entity": "KR_NAME", "start": 30, "end": 31, "score": 0.9992271661758423}]}
+{"id": "klue-ner-v1_dev_00019-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9889911015828451}]}
+{"id": "klue-ner-v1_dev_00021-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 21, "score": 0.9699071198701859}, {"entity": "KR_NAME", "start": 42, "end": 47, "score": 0.983584713935852}]}
+{"id": "klue-ner-v1_dev_00028-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00029-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00030-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9478324353694916}]}
+{"id": "klue-ner-v1_dev_00031-wikitree", "spans": [{"entity": "KR_NAME", "start": 68, "end": 71, "score": 0.9931096037228903}]}
+{"id": "klue-ner-v1_dev_00037-wikitree", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9961169560750326}, {"entity": "KR_NAME", "start": 15, "end": 22, "score": 0.9676042965480259}]}
+{"id": "klue-ner-v1_dev_00038-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9954241017500559}]}
+{"id": "klue-ner-v1_dev_00047-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00055-wikitree", "spans": [{"entity": "KR_NAME", "start": 10, "end": 17, "score": 0.9941528609820774}]}
+{"id": "klue-ner-v1_dev_00063-wikitree", "spans": [{"entity": "KR_NAME", "start": 41, "end": 43, "score": 0.9968991875648499}, {"entity": "KR_NAME", "start": 45, "end": 47, "score": 0.9808158278465271}]}
+{"id": "klue-ner-v1_dev_00067-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00070-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.7969560821851095}]}
+{"id": "klue-ner-v1_dev_00072-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00073-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 13, "score": 0.9986139237880707}]}
+{"id": "klue-ner-v1_dev_00077-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00085-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 10, "score": 0.9971570670604706}]}
+{"id": "klue-ner-v1_dev_00088-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9958912332852682}, {"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9960871537526449}, {"entity": "KR_NAME", "start": 34, "end": 36, "score": 0.9969392716884613}]}
+{"id": "klue-ner-v1_dev_00091-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9994296431541443}]}
+{"id": "klue-ner-v1_dev_00093-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9995442032814026}]}
+{"id": "klue-ner-v1_dev_00095-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9412692983945211}, {"entity": "KR_NAME", "start": 20, "end": 24, "score": 0.9172598421573639}]}
+{"id": "klue-ner-v1_dev_00096-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00103-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00108-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00125-nsmc", "spans": [{"entity": "KR_NAME", "start": 51, "end": 57, "score": 0.9636738101641337}]}
+{"id": "klue-ner-v1_dev_00133-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9979077180226644}]}
+{"id": "klue-ner-v1_dev_00145-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00147-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00148-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9989488244056701}, {"entity": "KR_NAME", "start": 7, "end": 13, "score": 0.9992823600769043}]}
+{"id": "klue-ner-v1_dev_00151-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.8333223462104797}]}
+{"id": "klue-ner-v1_dev_00154-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00157-nsmc", "spans": [{"entity": "KR_NAME", "start": 21, "end": 23, "score": 0.681674137711525}, {"entity": "KR_NAME", "start": 46, "end": 49, "score": 0.8334818681081136}, {"entity": "KR_NAME", "start": 50, "end": 52, "score": 0.9504802227020264}]}
+{"id": "klue-ner-v1_dev_00161-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9979474345842997}, {"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.998720645904541}, {"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.9997086326281229}, {"entity": "KR_NAME", "start": 68, "end": 69, "score": 0.911284863948822}, {"entity": "KR_NAME", "start": 79, "end": 82, "score": 0.9975972175598145}, {"entity": "KR_NAME", "start": 91, "end": 94, "score": 0.9998654723167419}, {"entity": "KR_NAME", "start": 100, "end": 103, "score": 0.9990155895551046}]}
+{"id": "klue-ner-v1_dev_00170-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00175-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00178-nsmc", "spans": [{"entity": "KR_NAME", "start": 25, "end": 28, "score": 0.990768293539683}, {"entity": "KR_NAME", "start": 30, "end": 33, "score": 0.9931871891021729}]}
+{"id": "klue-ner-v1_dev_00182-nsmc", "spans": [{"entity": "KR_NAME", "start": 28, "end": 31, "score": 0.996619462966919}]}
+{"id": "klue-ner-v1_dev_00183-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00186-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 16, "score": 0.9898720532655716}, {"entity": "KR_NAME", "start": 40, "end": 44, "score": 0.9810229539871216}]}
+{"id": "klue-ner-v1_dev_00189-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00201-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00203-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9989253481229147}, {"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9995442032814026}]}
+{"id": "klue-ner-v1_dev_00212-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00222-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 8, "score": 0.972943377494812}]}
+{"id": "klue-ner-v1_dev_00223-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00226-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9969375133514404}, {"entity": "KR_NAME", "start": 42, "end": 43, "score": 0.9993219375610352}]}
+{"id": "klue-ner-v1_dev_00227-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00233-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00237-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00238-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00261-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00266-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9883843064308167}, {"entity": "KR_NAME", "start": 21, "end": 23, "score": 0.9955487549304962}]}
+{"id": "klue-ner-v1_dev_00275-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.8847061991691589}]}
+{"id": "klue-ner-v1_dev_00277-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00289-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.961912989616394}]}
+{"id": "klue-ner-v1_dev_00298-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9953521291414896}]}
+{"id": "klue-ner-v1_dev_00306-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 20, "score": 0.9908530116081238}]}
+{"id": "klue-ner-v1_dev_00307-wikitree", "spans": [{"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9983596007029215}, {"entity": "KR_NAME", "start": 49, "end": 52, "score": 0.9951320091883341}]}
+{"id": "klue-ner-v1_dev_00309-wikitree", "spans": [{"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9989569783210754}, {"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9998234907786051}]}
+{"id": "klue-ner-v1_dev_00311-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00322-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00327-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9910014569759369}]}
+{"id": "klue-ner-v1_dev_00329-nsmc", "spans": [{"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.8380590478579203}]}
+{"id": "klue-ner-v1_dev_00332-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00339-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00346-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00351-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00355-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9422807320952415}]}
+{"id": "klue-ner-v1_dev_00361-nsmc", "spans": [{"entity": "KR_NAME", "start": 42, "end": 45, "score": 0.9091861446698507}]}
+{"id": "klue-ner-v1_dev_00364-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00375-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00382-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9942768414815267}]}
+{"id": "klue-ner-v1_dev_00388-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00397-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00402-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00405-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00408-nsmc", "spans": [{"entity": "KR_NAME", "start": 73, "end": 76, "score": 0.9991995493570963}, {"entity": "KR_NAME", "start": 94, "end": 97, "score": 0.9996388554573059}]}
+{"id": "klue-ner-v1_dev_00411-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00419-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9991440773010254}, {"entity": "KR_NAME", "start": 71, "end": 72, "score": 0.9841058850288391}]}
+{"id": "klue-ner-v1_dev_00422-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00424-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00427-wikitree", "spans": [{"entity": "KR_NAME", "start": 33, "end": 36, "score": 0.976404090722402}, {"entity": "KR_NAME", "start": 37, "end": 40, "score": 0.9993511239687601}, {"entity": "KR_NAME", "start": 60, "end": 63, "score": 0.9946932593981425}]}
+{"id": "klue-ner-v1_dev_00430-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00436-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00443-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00447-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00450-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9997659722963969}, {"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9995896617571512}]}
+{"id": "klue-ner-v1_dev_00454-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.9935864806175232}, {"entity": "KR_NAME", "start": 15, "end": 23, "score": 0.9988660141825676}, {"entity": "KR_NAME", "start": 39, "end": 42, "score": 0.9781354268391927}]}
+{"id": "klue-ner-v1_dev_00455-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9995585878690084}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9964559475580851}]}
+{"id": "klue-ner-v1_dev_00460-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.999675432840983}, {"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.9994668165842692}, {"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9993840058644613}]}
+{"id": "klue-ner-v1_dev_00470-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.8956005871295929}, {"entity": "KR_NAME", "start": 23, "end": 28, "score": 0.8980101943016052}]}
+{"id": "klue-ner-v1_dev_00476-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9935995241006216}]}
+{"id": "klue-ner-v1_dev_00480-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9945015907287598}, {"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9942293365796407}]}
+{"id": "klue-ner-v1_dev_00489-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.8230059146881104}]}
+{"id": "klue-ner-v1_dev_00490-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 10, "score": 0.5680958852171898}, {"entity": "KR_NAME", "start": 34, "end": 36, "score": 0.9531555473804474}]}
+{"id": "klue-ner-v1_dev_00494-wikitree", "spans": [{"entity": "KR_NAME", "start": 29, "end": 30, "score": 0.9996069073677063}]}
+{"id": "klue-ner-v1_dev_00505-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9861694773038229}, {"entity": "KR_NAME", "start": 5, "end": 7, "score": 0.998688668012619}]}
+{"id": "klue-ner-v1_dev_00509-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9964456856250763}]}
+{"id": "klue-ner-v1_dev_00513-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00526-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9953646659851074}, {"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9997139573097229}, {"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9993950724601746}]}
+{"id": "klue-ner-v1_dev_00529-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9992801149686178}]}
+{"id": "klue-ner-v1_dev_00533-nsmc", "spans": [{"entity": "KR_NAME", "start": 41, "end": 48, "score": 0.7929766178131104}]}
+{"id": "klue-ner-v1_dev_00538-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 10, "score": 0.5022080957889556}]}
+{"id": "klue-ner-v1_dev_00543-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.951058586438497}]}
+{"id": "klue-ner-v1_dev_00547-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.884106457233429}]}
+{"id": "klue-ner-v1_dev_00553-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9765498638153076}]}
+{"id": "klue-ner-v1_dev_00571-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9896969397862753}, {"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9991990725199381}, {"entity": "KR_NAME", "start": 34, "end": 37, "score": 0.9833842515945435}, {"entity": "KR_NAME", "start": 43, "end": 46, "score": 0.9974877635637919}, {"entity": "KR_NAME", "start": 55, "end": 58, "score": 0.9995516339937845}, {"entity": "KR_NAME", "start": 70, "end": 73, "score": 0.99842369556427}]}
+{"id": "klue-ner-v1_dev_00579-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9996873140335083}]}
+{"id": "klue-ner-v1_dev_00581-nsmc", "spans": [{"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.9666438500086466}, {"entity": "KR_NAME", "start": 89, "end": 92, "score": 0.9632211327552795}]}
+{"id": "klue-ner-v1_dev_00587-nsmc", "spans": [{"entity": "KR_NAME", "start": 20, "end": 22, "score": 0.9975560903549194}]}
+{"id": "klue-ner-v1_dev_00588-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00605-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00606-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00617-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00640-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9575687170028686}]}
+{"id": "klue-ner-v1_dev_00641-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00661-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9979608058929443}]}
+{"id": "klue-ner-v1_dev_00674-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9994855523109436}, {"entity": "KR_NAME", "start": 28, "end": 29, "score": 0.9988499879837036}]}
+{"id": "klue-ner-v1_dev_00676-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00677-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00683-nsmc", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.997557004292806}]}
+{"id": "klue-ner-v1_dev_00701-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.895685464143753}]}
+{"id": "klue-ner-v1_dev_00705-nsmc", "spans": [{"entity": "KR_NAME", "start": 35, "end": 39, "score": 0.9766743332147598}]}
+{"id": "klue-ner-v1_dev_00714-wikitree", "spans": [{"entity": "KR_NAME", "start": 35, "end": 36, "score": 0.9997163414955139}]}
+{"id": "klue-ner-v1_dev_00715-nsmc", "spans": [{"entity": "KR_NAME", "start": 25, "end": 28, "score": 0.9964481393496195}]}
+{"id": "klue-ner-v1_dev_00720-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9936251640319824}]}
+{"id": "klue-ner-v1_dev_00726-nsmc", "spans": [{"entity": "KR_NAME", "start": 19, "end": 22, "score": 0.9154470562934875}]}
+{"id": "klue-ner-v1_dev_00740-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00745-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 10, "score": 0.7336123755999974}]}
+{"id": "klue-ner-v1_dev_00760-nsmc", "spans": [{"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9993667205174764}, {"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9979527791341146}]}
+{"id": "klue-ner-v1_dev_00768-nsmc", "spans": [{"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9845402240753174}]}
+{"id": "klue-ner-v1_dev_00787-wikitree", "spans": [{"entity": "KR_NAME", "start": 19, "end": 21, "score": 0.934587299823761}]}
+{"id": "klue-ner-v1_dev_00788-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00789-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9609086364507675}]}
+{"id": "klue-ner-v1_dev_00792-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00793-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00795-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9391679614782333}, {"entity": "KR_NAME", "start": 18, "end": 25, "score": 0.992461621761322}]}
+{"id": "klue-ner-v1_dev_00796-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00812-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 5, "score": 0.9993698596954346}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9996851682662964}]}
+{"id": "klue-ner-v1_dev_00813-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9667860666910807}, {"entity": "KR_NAME", "start": 11, "end": 17, "score": 0.9973000387350718}]}
+{"id": "klue-ner-v1_dev_00815-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00816-wikitree", "spans": [{"entity": "KR_NAME", "start": 44, "end": 47, "score": 0.9855358203252157}]}
+{"id": "klue-ner-v1_dev_00833-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.817454993724823}, {"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.9682791630427042}]}
+{"id": "klue-ner-v1_dev_00834-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00837-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9969533085823059}, {"entity": "KR_NAME", "start": 50, "end": 57, "score": 0.97353481394904}, {"entity": "KR_NAME", "start": 105, "end": 112, "score": 0.9271570018359593}]}
+{"id": "klue-ner-v1_dev_00852-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00859-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9932705660661062}]}
+{"id": "klue-ner-v1_dev_00861-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9975470304489136}]}
+{"id": "klue-ner-v1_dev_00869-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 23, "score": 0.9950519303480784}]}
+{"id": "klue-ner-v1_dev_00875-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9744773904482523}, {"entity": "KR_NAME", "start": 21, "end": 22, "score": 0.9958964586257935}]}
+{"id": "klue-ner-v1_dev_00876-nsmc", "spans": [{"entity": "KR_NAME", "start": 94, "end": 96, "score": 0.945499062538147}, {"entity": "KR_NAME", "start": 106, "end": 107, "score": 0.9553396105766296}]}
+{"id": "klue-ner-v1_dev_00877-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9976073503494263}, {"entity": "KR_NAME", "start": 23, "end": 25, "score": 0.9958799481391907}]}
+{"id": "klue-ner-v1_dev_00885-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00894-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 12, "score": 0.9886622693803575}, {"entity": "KR_NAME", "start": 39, "end": 47, "score": 0.9222956523299217}]}
+{"id": "klue-ner-v1_dev_00900-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 16, "score": 0.979168583949407}]}
+{"id": "klue-ner-v1_dev_00912-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00913-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00918-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00919-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9959153532981873}]}
+{"id": "klue-ner-v1_dev_00920-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.8073182851076126}]}
+{"id": "klue-ner-v1_dev_00921-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9964397152264913}]}
+{"id": "klue-ner-v1_dev_00925-wikitree", "spans": [{"entity": "KR_NAME", "start": 67, "end": 68, "score": 0.9994983673095703}]}
+{"id": "klue-ner-v1_dev_00926-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 20, "score": 0.5824936032295227}, {"entity": "KR_NAME", "start": 45, "end": 47, "score": 0.962415337562561}]}
+{"id": "klue-ner-v1_dev_00935-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00941-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00945-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00947-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00954-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00955-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00963-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00965-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9969059924284617}, {"entity": "KR_NAME", "start": 8, "end": 14, "score": 0.9990371962388357}]}
+{"id": "klue-ner-v1_dev_00968-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00972-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00975-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_00979-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_00984-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9978548089663187}]}
+{"id": "klue-ner-v1_dev_00985-nsmc", "spans": [{"entity": "KR_NAME", "start": 39, "end": 42, "score": 0.95306263367335}, {"entity": "KR_NAME", "start": 43, "end": 46, "score": 0.9906790852546692}]}
+{"id": "klue-ner-v1_dev_00986-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.9665781060854594}]}
+{"id": "klue-ner-v1_dev_00987-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9978454113006592}]}
+{"id": "klue-ner-v1_dev_01000-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9465754230817159}]}
+{"id": "klue-ner-v1_dev_01004-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01007-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01010-wikitree", "spans": [{"entity": "KR_NAME", "start": 30, "end": 33, "score": 0.7872813940048218}, {"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9989005327224731}, {"entity": "KR_NAME", "start": 43, "end": 46, "score": 0.997094452381134}, {"entity": "KR_NAME", "start": 53, "end": 55, "score": 0.9989648759365082}, {"entity": "KR_NAME", "start": 70, "end": 72, "score": 0.981569230556488}]}
+{"id": "klue-ner-v1_dev_01015-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.999574879805247}, {"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.999806801478068}, {"entity": "KR_NAME", "start": 35, "end": 37, "score": 0.9993568658828735}]}
+{"id": "klue-ner-v1_dev_01016-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01019-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01022-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01028-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01029-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9994686643282572}, {"entity": "KR_NAME", "start": 36, "end": 39, "score": 0.9957095384597778}]}
+{"id": "klue-ner-v1_dev_01030-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01032-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01048-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9954858819643656}, {"entity": "KR_NAME", "start": 59, "end": 62, "score": 0.9942306876182556}]}
+{"id": "klue-ner-v1_dev_01054-wikitree", "spans": [{"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9549897909164429}]}
+{"id": "klue-ner-v1_dev_01056-wikitree", "spans": [{"entity": "KR_NAME", "start": 37, "end": 45, "score": 0.9804569333791733}]}
+{"id": "klue-ner-v1_dev_01060-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 24, "score": 0.9051608954157148}]}
+{"id": "klue-ner-v1_dev_01062-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01064-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9983655214309692}]}
+{"id": "klue-ner-v1_dev_01066-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9972505768140157}]}
+{"id": "klue-ner-v1_dev_01071-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 18, "score": 0.978456437587738}]}
+{"id": "klue-ner-v1_dev_01072-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 15, "score": 0.9996801614761353}, {"entity": "KR_NAME", "start": 86, "end": 87, "score": 0.9996986389160156}]}
+{"id": "klue-ner-v1_dev_01074-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9871946175893148}]}
+{"id": "klue-ner-v1_dev_01076-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01087-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9827300310134888}]}
+{"id": "klue-ner-v1_dev_01092-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9998619357744852}, {"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9991124669710795}]}
+{"id": "klue-ner-v1_dev_01093-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01094-wikitree", "spans": [{"entity": "KR_NAME", "start": 35, "end": 36, "score": 0.9977123737335205}, {"entity": "KR_NAME", "start": 51, "end": 52, "score": 0.9988734126091003}]}
+{"id": "klue-ner-v1_dev_01101-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9994972944259644}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9997800787289938}, {"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9994138479232788}, {"entity": "KR_NAME", "start": 99, "end": 100, "score": 0.9996811151504517}]}
+{"id": "klue-ner-v1_dev_01103-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01118-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9982424974441528}]}
+{"id": "klue-ner-v1_dev_01120-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 19, "score": 0.9899446964263916}]}
+{"id": "klue-ner-v1_dev_01121-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9955731829007467}]}
+{"id": "klue-ner-v1_dev_01122-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01126-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 15, "score": 0.9994708895683289}]}
+{"id": "klue-ner-v1_dev_01128-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9986828168233236}, {"entity": "KR_NAME", "start": 5, "end": 9, "score": 0.9927250891923904}]}
+{"id": "klue-ner-v1_dev_01129-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01135-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9981937408447266}]}
+{"id": "klue-ner-v1_dev_01149-wikitree", "spans": [{"entity": "KR_NAME", "start": 15, "end": 16, "score": 0.9997348189353943}]}
+{"id": "klue-ner-v1_dev_01151-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9988996982574463}]}
+{"id": "klue-ner-v1_dev_01159-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 19, "score": 0.986274242401123}]}
+{"id": "klue-ner-v1_dev_01162-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9966402053833008}]}
+{"id": "klue-ner-v1_dev_01164-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01165-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01168-nsmc", "spans": [{"entity": "KR_NAME", "start": 68, "end": 70, "score": 0.9910613298416138}]}
+{"id": "klue-ner-v1_dev_01169-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01170-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9933668971061707}]}
+{"id": "klue-ner-v1_dev_01184-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01187-nsmc", "spans": [{"entity": "KR_NAME", "start": 54, "end": 57, "score": 0.9978903532028198}]}
+{"id": "klue-ner-v1_dev_01197-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01198-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01211-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.997853946685791}, {"entity": "KR_NAME", "start": 7, "end": 13, "score": 0.9971842567125956}]}
+{"id": "klue-ner-v1_dev_01218-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9951192140579224}]}
+{"id": "klue-ner-v1_dev_01222-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.749047577381134}]}
+{"id": "klue-ner-v1_dev_01225-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9968708604574203}, {"entity": "KR_NAME", "start": 6, "end": 11, "score": 0.9992589235305787}]}
+{"id": "klue-ner-v1_dev_01226-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 26, "score": 0.9911287277936935}]}
+{"id": "klue-ner-v1_dev_01227-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9998230735460917}, {"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9993725021680196}]}
+{"id": "klue-ner-v1_dev_01235-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01238-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01241-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9994199275970459}, {"entity": "KR_NAME", "start": 88, "end": 89, "score": 0.9992951154708862}]}
+{"id": "klue-ner-v1_dev_01247-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9819546937942505}, {"entity": "KR_NAME", "start": 25, "end": 26, "score": 0.9973933696746826}]}
+{"id": "klue-ner-v1_dev_01249-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01262-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 15, "score": 0.9989449977874756}, {"entity": "KR_NAME", "start": 25, "end": 29, "score": 0.9952420145273209}]}
+{"id": "klue-ner-v1_dev_01266-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01267-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01268-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01271-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9722979068756104}, {"entity": "KR_NAME", "start": 17, "end": 18, "score": 0.9915237426757812}, {"entity": "KR_NAME", "start": 30, "end": 31, "score": 0.9874722361564636}, {"entity": "KR_NAME", "start": 59, "end": 60, "score": 0.9788370132446289}]}
+{"id": "klue-ner-v1_dev_01279-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9986917773882548}]}
+{"id": "klue-ner-v1_dev_01282-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01288-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9987674156824747}, {"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.997251828511556}]}
+{"id": "klue-ner-v1_dev_01295-wikitree", "spans": [{"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9828035235404968}]}
+{"id": "klue-ner-v1_dev_01297-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01298-wikitree", "spans": [{"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9945002396901449}, {"entity": "KR_NAME", "start": 28, "end": 29, "score": 0.9977304339408875}]}
+{"id": "klue-ner-v1_dev_01300-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9981346130371094}, {"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.998816986878713}]}
+{"id": "klue-ner-v1_dev_01305-wikitree", "spans": [{"entity": "KR_NAME", "start": 27, "end": 34, "score": 0.9296190908976963}, {"entity": "KR_NAME", "start": 59, "end": 64, "score": 0.9902630805969238}]}
+{"id": "klue-ner-v1_dev_01306-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01307-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01309-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9723474184672037}]}
+{"id": "klue-ner-v1_dev_01316-nsmc", "spans": [{"entity": "KR_NAME", "start": 23, "end": 25, "score": 0.9380598962306976}]}
+{"id": "klue-ner-v1_dev_01317-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 9, "score": 0.999416708946228}]}
+{"id": "klue-ner-v1_dev_01321-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01326-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01333-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01348-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01352-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01354-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9945144255956014}, {"entity": "KR_NAME", "start": 30, "end": 33, "score": 0.5344164197643598}, {"entity": "KR_NAME", "start": 41, "end": 47, "score": 0.9851998885472616}]}
+{"id": "klue-ner-v1_dev_01357-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 7, "score": 0.9897133197103228}]}
+{"id": "klue-ner-v1_dev_01359-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01362-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01366-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01373-nsmc", "spans": [{"entity": "KR_NAME", "start": 38, "end": 43, "score": 0.9871774554252625}, {"entity": "KR_NAME", "start": 52, "end": 57, "score": 0.9337296485900879}]}
+{"id": "klue-ner-v1_dev_01374-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01384-nsmc", "spans": [{"entity": "KR_NAME", "start": 20, "end": 22, "score": 0.9963842332363129}]}
+{"id": "klue-ner-v1_dev_01385-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.7553084716200829}]}
+{"id": "klue-ner-v1_dev_01396-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 13, "score": 0.9974650740623474}, {"entity": "KR_NAME", "start": 23, "end": 25, "score": 0.9666312634944916}]}
+{"id": "klue-ner-v1_dev_01413-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9948761264483134}]}
+{"id": "klue-ner-v1_dev_01416-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01419-wikitree", "spans": [{"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.9993058641751608}]}
+{"id": "klue-ner-v1_dev_01428-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9989305933316549}]}
+{"id": "klue-ner-v1_dev_01429-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01437-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9978907505671183}]}
+{"id": "klue-ner-v1_dev_01439-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9836792796850204}, {"entity": "KR_NAME", "start": 6, "end": 12, "score": 0.9945731262365977}, {"entity": "KR_NAME", "start": 14, "end": 21, "score": 0.9988592522484916}, {"entity": "KR_NAME", "start": 23, "end": 29, "score": 0.9937583406766256}, {"entity": "KR_NAME", "start": 51, "end": 53, "score": 0.9018292427062988}]}
+{"id": "klue-ner-v1_dev_01441-wikitree", "spans": [{"entity": "KR_NAME", "start": 46, "end": 48, "score": 0.9996994435787201}, {"entity": "KR_NAME", "start": 52, "end": 55, "score": 0.9997894565264384}, {"entity": "KR_NAME", "start": 59, "end": 62, "score": 0.9997510115305582}]}
+{"id": "klue-ner-v1_dev_01450-wikitree", "spans": [{"entity": "KR_NAME", "start": 29, "end": 32, "score": 0.999022901058197}]}
+{"id": "klue-ner-v1_dev_01453-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 14, "score": 0.7631240685780843}]}
+{"id": "klue-ner-v1_dev_01466-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 10, "score": 0.9949764013290405}]}
+{"id": "klue-ner-v1_dev_01470-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9786227941513062}]}
+{"id": "klue-ner-v1_dev_01479-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9997464219729105}, {"entity": "KR_NAME", "start": 14, "end": 18, "score": 0.9991187900304794}, {"entity": "KR_NAME", "start": 23, "end": 26, "score": 0.9993022680282593}]}
+{"id": "klue-ner-v1_dev_01481-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01485-wikitree", "spans": [{"entity": "KR_NAME", "start": 61, "end": 64, "score": 0.996680478254954}]}
+{"id": "klue-ner-v1_dev_01488-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 19, "score": 0.9061006307601929}, {"entity": "KR_NAME", "start": 25, "end": 31, "score": 0.8869407971700033}]}
+{"id": "klue-ner-v1_dev_01493-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01497-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.9997592568397522}]}
+{"id": "klue-ner-v1_dev_01502-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.8451372981071472}]}
+{"id": "klue-ner-v1_dev_01503-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01504-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9687313636144003}]}
+{"id": "klue-ner-v1_dev_01508-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.6993071635564169}]}
+{"id": "klue-ner-v1_dev_01521-wikitree", "spans": [{"entity": "KR_NAME", "start": 48, "end": 49, "score": 0.9989848732948303}]}
+{"id": "klue-ner-v1_dev_01522-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01527-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01533-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01544-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01547-wikitree", "spans": [{"entity": "KR_NAME", "start": 16, "end": 17, "score": 0.9991375207901001}]}
+{"id": "klue-ner-v1_dev_01561-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9982417821884155}]}
+{"id": "klue-ner-v1_dev_01571-wikitree", "spans": [{"entity": "KR_NAME", "start": 13, "end": 21, "score": 0.9912356585264206}]}
+{"id": "klue-ner-v1_dev_01577-nsmc", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9980631073315939}]}
+{"id": "klue-ner-v1_dev_01597-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9708341558774313}]}
+{"id": "klue-ner-v1_dev_01600-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 23, "score": 0.9700468182563782}]}
+{"id": "klue-ner-v1_dev_01605-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01606-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9978575706481934}]}
+{"id": "klue-ner-v1_dev_01610-wikitree", "spans": [{"entity": "KR_NAME", "start": 33, "end": 36, "score": 0.9964351256688436}]}
+{"id": "klue-ner-v1_dev_01614-nsmc", "spans": [{"entity": "KR_NAME", "start": 36, "end": 39, "score": 0.9238004287083944}]}
+{"id": "klue-ner-v1_dev_01618-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9979169170061747}]}
+{"id": "klue-ner-v1_dev_01620-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.998318612575531}]}
+{"id": "klue-ner-v1_dev_01621-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9958783388137817}, {"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.998460570971171}, {"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9990935325622559}]}
+{"id": "klue-ner-v1_dev_01624-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01625-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01641-nsmc", "spans": [{"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.6506475408871969}, {"entity": "KR_NAME", "start": 45, "end": 48, "score": 0.9083291093508402}, {"entity": "KR_NAME", "start": 49, "end": 51, "score": 0.9994708895683289}]}
+{"id": "klue-ner-v1_dev_01645-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01646-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01665-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01669-wikitree", "spans": [{"entity": "KR_NAME", "start": 28, "end": 37, "score": 0.9786591463618808}, {"entity": "KR_NAME", "start": 48, "end": 50, "score": 0.9535492360591888}]}
+{"id": "klue-ner-v1_dev_01685-wikitree", "spans": [{"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.9964387615521749}]}
+{"id": "klue-ner-v1_dev_01686-nsmc", "spans": [{"entity": "KR_NAME", "start": 38, "end": 42, "score": 0.9930501580238342}]}
+{"id": "klue-ner-v1_dev_01701-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01706-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01709-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9842166105906168}]}
+{"id": "klue-ner-v1_dev_01714-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01716-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9996001124382019}, {"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9996059139569601}]}
+{"id": "klue-ner-v1_dev_01727-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9988169471422831}, {"entity": "KR_NAME", "start": 23, "end": 28, "score": 0.9827635049819946}]}
+{"id": "klue-ner-v1_dev_01739-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01740-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9877283771832784}, {"entity": "KR_NAME", "start": 57, "end": 67, "score": 0.8959235846996307}]}
+{"id": "klue-ner-v1_dev_01751-wikitree", "spans": [{"entity": "KR_NAME", "start": 29, "end": 32, "score": 0.9948683381080627}]}
+{"id": "klue-ner-v1_dev_01752-nsmc", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9997014204661051}, {"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.9999069372812907}, {"entity": "KR_NAME", "start": 32, "end": 35, "score": 0.9994824330012003}, {"entity": "KR_NAME", "start": 36, "end": 38, "score": 0.9980954229831696}]}
+{"id": "klue-ner-v1_dev_01753-wikitree", "spans": [{"entity": "KR_NAME", "start": 31, "end": 37, "score": 0.771687259276708}, {"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.9957747459411621}]}
+{"id": "klue-ner-v1_dev_01754-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01757-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 6, "score": 0.9939674437046051}]}
+{"id": "klue-ner-v1_dev_01758-wikitree", "spans": [{"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.9994143644968668}]}
+{"id": "klue-ner-v1_dev_01759-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01765-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01766-wikitree", "spans": [{"entity": "KR_NAME", "start": 53, "end": 56, "score": 0.99821670850118}]}
+{"id": "klue-ner-v1_dev_01767-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01771-nsmc", "spans": [{"entity": "KR_NAME", "start": 1, "end": 4, "score": 0.999213437239329}]}
+{"id": "klue-ner-v1_dev_01790-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01800-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9674389958381653}]}
+{"id": "klue-ner-v1_dev_01801-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01807-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9898396531740824}, {"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.9881806572278341}]}
+{"id": "klue-ner-v1_dev_01820-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 14, "score": 0.9930217862129211}, {"entity": "KR_NAME", "start": 72, "end": 73, "score": 0.9370554089546204}]}
+{"id": "klue-ner-v1_dev_01826-wikitree", "spans": [{"entity": "KR_NAME", "start": 34, "end": 39, "score": 0.9683980345726013}]}
+{"id": "klue-ner-v1_dev_01830-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01834-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.7303067743778229}]}
+{"id": "klue-ner-v1_dev_01836-nsmc", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.979840616385142}]}
+{"id": "klue-ner-v1_dev_01840-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01844-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01868-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.5468340913454691}]}
+{"id": "klue-ner-v1_dev_01872-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01873-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01878-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 7, "score": 0.9961381469454084}]}
+{"id": "klue-ner-v1_dev_01884-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 14, "score": 0.854278177022934}]}
+{"id": "klue-ner-v1_dev_01885-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9071853756904602}]}
+{"id": "klue-ner-v1_dev_01892-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01895-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.963922401269277}]}
+{"id": "klue-ner-v1_dev_01898-nsmc", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9929747382799784}]}
+{"id": "klue-ner-v1_dev_01899-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01906-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9992214441299438}, {"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9997101227442423}, {"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9996480544408163}, {"entity": "KR_NAME", "start": 29, "end": 32, "score": 0.8086419701576233}, {"entity": "KR_NAME", "start": 34, "end": 39, "score": 0.8634230375289917}, {"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.8075466553370158}]}
+{"id": "klue-ner-v1_dev_01913-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01915-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 21, "score": 0.9997721314430237}]}
+{"id": "klue-ner-v1_dev_01917-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01923-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 8, "score": 0.9944506645202636}]}
+{"id": "klue-ner-v1_dev_01925-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01932-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 10, "score": 0.9918084621429444}]}
+{"id": "klue-ner-v1_dev_01935-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9976901213328043}]}
+{"id": "klue-ner-v1_dev_01941-nsmc", "spans": [{"entity": "KR_NAME", "start": 76, "end": 79, "score": 0.9992971420288086}, {"entity": "KR_NAME", "start": 80, "end": 83, "score": 0.9994498689969381}]}
+{"id": "klue-ner-v1_dev_01948-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01954-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01960-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9548313915729523}, {"entity": "KR_NAME", "start": 28, "end": 31, "score": 0.9814218084017435}]}
+{"id": "klue-ner-v1_dev_01963-nsmc", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9936924576759338}, {"entity": "KR_NAME", "start": 38, "end": 41, "score": 0.9989885886510214}, {"entity": "KR_NAME", "start": 75, "end": 78, "score": 0.9945435921351115}]}
+{"id": "klue-ner-v1_dev_01971-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01973-nsmc", "spans": [{"entity": "KR_NAME", "start": 29, "end": 32, "score": 0.99918133020401}]}
+{"id": "klue-ner-v1_dev_01977-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_01990-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_01995-wikitree", "spans": [{"entity": "KR_NAME", "start": 46, "end": 56, "score": 0.9749983191490174}]}
+{"id": "klue-ner-v1_dev_01996-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9992807507514954}]}
+{"id": "klue-ner-v1_dev_01997-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9995844562848409}, {"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9994049072265625}, {"entity": "KR_NAME", "start": 54, "end": 57, "score": 0.9991840521494547}, {"entity": "KR_NAME", "start": 59, "end": 62, "score": 0.9998924732208252}, {"entity": "KR_NAME", "start": 64, "end": 67, "score": 0.999899427096049}, {"entity": "KR_NAME", "start": 69, "end": 72, "score": 0.9998376170794169}]}
+{"id": "klue-ner-v1_dev_02006-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9874850809574127}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9166980783144633}]}
+{"id": "klue-ner-v1_dev_02008-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9967194398244222}, {"entity": "KR_NAME", "start": 5, "end": 7, "score": 0.9990084171295166}, {"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.980313221613566}, {"entity": "KR_NAME", "start": 96, "end": 99, "score": 0.6728057265281677}]}
+{"id": "klue-ner-v1_dev_02010-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9933878183364868}, {"entity": "KR_NAME", "start": 15, "end": 17, "score": 0.9970652163028717}]}
+{"id": "klue-ner-v1_dev_02015-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.9953266978263855}]}
+{"id": "klue-ner-v1_dev_02017-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02021-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02026-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02028-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02031-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9885844190915426}]}
+{"id": "klue-ner-v1_dev_02043-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9577983617782593}, {"entity": "KR_NAME", "start": 10, "end": 16, "score": 0.6316554049650828}]}
+{"id": "klue-ner-v1_dev_02053-wikitree", "spans": [{"entity": "KR_NAME", "start": 7, "end": 12, "score": 0.9462246060371399}]}
+{"id": "klue-ner-v1_dev_02054-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02055-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02057-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02058-nsmc", "spans": [{"entity": "KR_NAME", "start": 9, "end": 17, "score": 0.9959022477269173}]}
+{"id": "klue-ner-v1_dev_02059-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9548623164494833}]}
+{"id": "klue-ner-v1_dev_02063-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9932100971539816}]}
+{"id": "klue-ner-v1_dev_02064-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02066-nsmc", "spans": [{"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9990817904472351}]}
+{"id": "klue-ner-v1_dev_02080-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9938181042671204}, {"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9990806579589844}]}
+{"id": "klue-ner-v1_dev_02081-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9821052749951681}]}
+{"id": "klue-ner-v1_dev_02087-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02100-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9986489415168762}, {"entity": "KR_NAME", "start": 25, "end": 28, "score": 0.9983857274055481}]}
+{"id": "klue-ner-v1_dev_02101-wikitree", "spans": [{"entity": "KR_NAME", "start": 7, "end": 8, "score": 0.9571199417114258}, {"entity": "KR_NAME", "start": 10, "end": 12, "score": 0.9980288743972778}]}
+{"id": "klue-ner-v1_dev_02102-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02107-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02127-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02136-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02138-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02142-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02143-nsmc", "spans": [{"entity": "KR_NAME", "start": 28, "end": 30, "score": 0.5312942713499069}]}
+{"id": "klue-ner-v1_dev_02144-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02148-nsmc", "spans": [{"entity": "KR_NAME", "start": 24, "end": 26, "score": 0.9926033318042755}, {"entity": "KR_NAME", "start": 31, "end": 33, "score": 0.9963820278644562}, {"entity": "KR_NAME", "start": 46, "end": 48, "score": 0.9977715313434601}]}
+{"id": "klue-ner-v1_dev_02152-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.942740003267924}]}
+{"id": "klue-ner-v1_dev_02155-wikitree", "spans": [{"entity": "KR_NAME", "start": 79, "end": 80, "score": 0.9966161847114563}]}
+{"id": "klue-ner-v1_dev_02158-wikitree", "spans": [{"entity": "KR_NAME", "start": 58, "end": 59, "score": 0.9921189546585083}]}
+{"id": "klue-ner-v1_dev_02165-wikitree", "spans": [{"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.9995962580045065}, {"entity": "KR_NAME", "start": 28, "end": 35, "score": 0.9436026385852269}]}
+{"id": "klue-ner-v1_dev_02168-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9980471134185791}]}
+{"id": "klue-ner-v1_dev_02171-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02175-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02176-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9955846071243286}, {"entity": "KR_NAME", "start": 6, "end": 9, "score": 0.9973038832346598}]}
+{"id": "klue-ner-v1_dev_02183-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02185-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02189-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02190-nsmc", "spans": [{"entity": "KR_NAME", "start": 20, "end": 22, "score": 0.6072035580873489}]}
+{"id": "klue-ner-v1_dev_02221-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02227-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9981894095738729}]}
+{"id": "klue-ner-v1_dev_02229-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02234-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 13, "score": 0.9820769280195236}, {"entity": "KR_NAME", "start": 29, "end": 34, "score": 0.8889646410942078}, {"entity": "KR_NAME", "start": 35, "end": 44, "score": 0.9954693648550246}, {"entity": "KR_NAME", "start": 52, "end": 57, "score": 0.4967965424060822}]}
+{"id": "klue-ner-v1_dev_02237-nsmc", "spans": [{"entity": "KR_NAME", "start": 27, "end": 32, "score": 0.9984514594078064}, {"entity": "KR_NAME", "start": 35, "end": 40, "score": 0.8147133886814117}]}
+{"id": "klue-ner-v1_dev_02240-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02246-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02256-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02260-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02272-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02277-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.99533411860466}]}
+{"id": "klue-ner-v1_dev_02278-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9994856119155884}, {"entity": "KR_NAME", "start": 16, "end": 17, "score": 0.9996819496154785}]}
+{"id": "klue-ner-v1_dev_02288-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02289-wikitree", "spans": [{"entity": "KR_NAME", "start": 32, "end": 35, "score": 0.9946900804837545}, {"entity": "KR_NAME", "start": 36, "end": 39, "score": 0.9985620776812235}]}
+{"id": "klue-ner-v1_dev_02291-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02297-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02302-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02303-wikitree", "spans": [{"entity": "KR_NAME", "start": 6, "end": 12, "score": 0.9950085481007894}]}
+{"id": "klue-ner-v1_dev_02305-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 13, "score": 0.5693083107471466}]}
+{"id": "klue-ner-v1_dev_02307-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9599323670069376}]}
+{"id": "klue-ner-v1_dev_02319-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 24, "score": 0.6570121986525399}]}
+{"id": "klue-ner-v1_dev_02328-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02350-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02351-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.9985296726226807}]}
+{"id": "klue-ner-v1_dev_02354-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02358-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02359-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.997522751490275}]}
+{"id": "klue-ner-v1_dev_02360-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02378-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02383-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.854066526889801}, {"entity": "KR_NAME", "start": 20, "end": 26, "score": 0.9746776620546976}, {"entity": "KR_NAME", "start": 55, "end": 60, "score": 0.8864548444747925}, {"entity": "KR_NAME", "start": 98, "end": 100, "score": 0.9910842776298523}, {"entity": "KR_NAME", "start": 105, "end": 109, "score": 0.9446729123592377}]}
+{"id": "klue-ner-v1_dev_02387-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02390-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02392-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02403-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9977534612019857}, {"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9783503413200378}]}
+{"id": "klue-ner-v1_dev_02410-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02416-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02417-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02420-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 13, "score": 0.8031130731105804}]}
+{"id": "klue-ner-v1_dev_02430-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9508694609006246}, {"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.8325566649436951}]}
+{"id": "klue-ner-v1_dev_02467-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 18, "score": 0.9997451901435852}]}
+{"id": "klue-ner-v1_dev_02472-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02474-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02478-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 18, "score": 0.9995643496513367}, {"entity": "KR_NAME", "start": 42, "end": 43, "score": 0.9994140863418579}, {"entity": "KR_NAME", "start": 50, "end": 51, "score": 0.9992819428443909}]}
+{"id": "klue-ner-v1_dev_02488-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9993327458699545}, {"entity": "KR_NAME", "start": 25, "end": 28, "score": 0.9978833993275961}]}
+{"id": "klue-ner-v1_dev_02490-wikitree", "spans": [{"entity": "KR_NAME", "start": 40, "end": 43, "score": 0.9966118534406027}]}
+{"id": "klue-ner-v1_dev_02491-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02492-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02496-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02499-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02503-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02506-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.8985515832901001}, {"entity": "KR_NAME", "start": 60, "end": 64, "score": 0.7064150720834732}]}
+{"id": "klue-ner-v1_dev_02513-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02515-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9993629654248556}]}
+{"id": "klue-ner-v1_dev_02524-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9974895119667053}]}
+{"id": "klue-ner-v1_dev_02532-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02533-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02534-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02536-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02544-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02551-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9940360188484192}]}
+{"id": "klue-ner-v1_dev_02559-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02560-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02573-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9990080197652181}, {"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9990762074788412}]}
+{"id": "klue-ner-v1_dev_02574-wikitree", "spans": [{"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9966162244478861}]}
+{"id": "klue-ner-v1_dev_02586-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02590-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9692775011062622}, {"entity": "KR_NAME", "start": 9, "end": 11, "score": 0.9927980303764343}]}
+{"id": "klue-ner-v1_dev_02591-nsmc", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9946125745773315}]}
+{"id": "klue-ner-v1_dev_02597-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9989392757415771}]}
+{"id": "klue-ner-v1_dev_02598-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02602-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9971027771631876}]}
+{"id": "klue-ner-v1_dev_02603-nsmc", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9981085856755575}]}
+{"id": "klue-ner-v1_dev_02605-wikitree", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9984560410181681}, {"entity": "KR_NAME", "start": 32, "end": 35, "score": 0.996209462483724}]}
+{"id": "klue-ner-v1_dev_02606-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02610-nsmc", "spans": [{"entity": "KR_NAME", "start": 9, "end": 11, "score": 0.6279383301734924}]}
+{"id": "klue-ner-v1_dev_02618-wikitree", "spans": [{"entity": "KR_NAME", "start": 37, "end": 40, "score": 0.9988759756088257}, {"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.9998166759808859}, {"entity": "KR_NAME", "start": 50, "end": 53, "score": 0.9991046190261841}, {"entity": "KR_NAME", "start": 54, "end": 57, "score": 0.9995108246803284}]}
+{"id": "klue-ner-v1_dev_02626-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9986099004745483}, {"entity": "KR_NAME", "start": 23, "end": 24, "score": 0.9983312487602234}]}
+{"id": "klue-ner-v1_dev_02631-wikitree", "spans": [{"entity": "KR_NAME", "start": 33, "end": 36, "score": 0.9981333613395691}, {"entity": "KR_NAME", "start": 68, "end": 71, "score": 0.9988217751185099}]}
+{"id": "klue-ner-v1_dev_02640-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.8030369480450948}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9926369786262512}, {"entity": "KR_NAME", "start": 29, "end": 32, "score": 0.9476914803187052}]}
+{"id": "klue-ner-v1_dev_02644-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02646-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02653-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9851877689361572}]}
+{"id": "klue-ner-v1_dev_02655-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02658-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02660-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02668-nsmc", "spans": [{"entity": "KR_NAME", "start": 2, "end": 4, "score": 0.9897201061248779}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9996002316474915}]}
+{"id": "klue-ner-v1_dev_02673-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9997887015342712}]}
+{"id": "klue-ner-v1_dev_02674-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02675-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9711223244667053}, {"entity": "KR_NAME", "start": 12, "end": 21, "score": 0.9891441464424133}]}
+{"id": "klue-ner-v1_dev_02677-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02678-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02693-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9339000225067139}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9936516880989075}, {"entity": "KR_NAME", "start": 28, "end": 30, "score": 0.9855179190635681}]}
+{"id": "klue-ner-v1_dev_02698-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02702-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02703-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02708-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9901421070098877}]}
+{"id": "klue-ner-v1_dev_02709-wikitree", "spans": [{"entity": "KR_NAME", "start": 60, "end": 61, "score": 0.9983071088790894}]}
+{"id": "klue-ner-v1_dev_02716-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 13, "score": 0.9618385235468546}, {"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9835606416066488}]}
+{"id": "klue-ner-v1_dev_02720-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 15, "score": 0.9839513599872589}]}
+{"id": "klue-ner-v1_dev_02734-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 9, "score": 0.9842971463998159}]}
+{"id": "klue-ner-v1_dev_02739-nsmc", "spans": [{"entity": "KR_NAME", "start": 48, "end": 51, "score": 0.5585438509782156}]}
+{"id": "klue-ner-v1_dev_02740-wikitree", "spans": [{"entity": "KR_NAME", "start": 34, "end": 35, "score": 0.9983479976654053}]}
+{"id": "klue-ner-v1_dev_02743-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02744-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02746-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9980338215827942}]}
+{"id": "klue-ner-v1_dev_02752-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02753-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02755-wikitree", "spans": [{"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9877917766571045}]}
+{"id": "klue-ner-v1_dev_02759-nsmc", "spans": [{"entity": "KR_NAME", "start": 55, "end": 60, "score": 0.5134283483028412}]}
+{"id": "klue-ner-v1_dev_02762-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02763-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02767-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 23, "score": 0.9778015851974488}]}
+{"id": "klue-ner-v1_dev_02773-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 23, "score": 0.9956924319267273}]}
+{"id": "klue-ner-v1_dev_02775-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02781-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02784-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9939607779184977}]}
+{"id": "klue-ner-v1_dev_02785-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9984280467033386}, {"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.999136745929718}]}
+{"id": "klue-ner-v1_dev_02791-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 13, "score": 0.9495194554328918}]}
+{"id": "klue-ner-v1_dev_02792-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9991995096206665}]}
+{"id": "klue-ner-v1_dev_02801-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02806-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9996119141578674}]}
+{"id": "klue-ner-v1_dev_02807-wikitree", "spans": [{"entity": "KR_NAME", "start": 1, "end": 6, "score": 0.9921182155609131}, {"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9981122612953186}]}
+{"id": "klue-ner-v1_dev_02808-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9990980625152588}]}
+{"id": "klue-ner-v1_dev_02812-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 23, "score": 0.9901297887166342}]}
+{"id": "klue-ner-v1_dev_02814-wikitree", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9979449311892191}]}
+{"id": "klue-ner-v1_dev_02839-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 11, "score": 0.9942423343658447}]}
+{"id": "klue-ner-v1_dev_02849-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9951180815696716}]}
+{"id": "klue-ner-v1_dev_02856-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02863-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02865-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02867-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9988466302553812}, {"entity": "KR_NAME", "start": 78, "end": 79, "score": 0.995729386806488}]}
+{"id": "klue-ner-v1_dev_02875-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02884-nsmc", "spans": [{"entity": "KR_NAME", "start": 21, "end": 23, "score": 0.9994810223579407}]}
+{"id": "klue-ner-v1_dev_02885-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 9, "score": 0.9935916331079271}]}
+{"id": "klue-ner-v1_dev_02886-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02891-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02893-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9944467743237814}, {"entity": "KR_NAME", "start": 32, "end": 34, "score": 0.8961803019046783}, {"entity": "KR_NAME", "start": 37, "end": 40, "score": 0.9996467630068461}]}
+{"id": "klue-ner-v1_dev_02894-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02902-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02904-wikitree", "spans": [{"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.9904337724049886}]}
+{"id": "klue-ner-v1_dev_02906-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02912-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.99962051709493}]}
+{"id": "klue-ner-v1_dev_02915-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02921-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9856024861335755}]}
+{"id": "klue-ner-v1_dev_02923-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02924-wikitree", "spans": [{"entity": "KR_NAME", "start": 78, "end": 86, "score": 0.9809327870607376}]}
+{"id": "klue-ner-v1_dev_02925-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02929-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02944-wikitree", "spans": [{"entity": "KR_NAME", "start": 30, "end": 31, "score": 0.9995995163917542}, {"entity": "KR_NAME", "start": 87, "end": 88, "score": 0.9991455078125}]}
+{"id": "klue-ner-v1_dev_02953-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02966-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02968-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_02971-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9931586384773254}]}
+{"id": "klue-ner-v1_dev_02977-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02988-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02993-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_02996-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.999567449092865}, {"entity": "KR_NAME", "start": 23, "end": 24, "score": 0.999394416809082}]}
+{"id": "klue-ner-v1_dev_03001-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9995519518852234}, {"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.9995632767677307}, {"entity": "KR_NAME", "start": 39, "end": 40, "score": 0.9998325109481812}, {"entity": "KR_NAME", "start": 56, "end": 57, "score": 0.9995926022529602}]}
+{"id": "klue-ner-v1_dev_03019-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03027-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9995681941509247}, {"entity": "KR_NAME", "start": 15, "end": 17, "score": 0.9985405504703522}, {"entity": "KR_NAME", "start": 18, "end": 20, "score": 0.9906376600265503}, {"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9997027715047201}]}
+{"id": "klue-ner-v1_dev_03030-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03031-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 17, "score": 0.8749561607837677}]}
+{"id": "klue-ner-v1_dev_03033-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03043-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.8729720190167427}, {"entity": "KR_NAME", "start": 10, "end": 13, "score": 0.983563244342804}]}
+{"id": "klue-ner-v1_dev_03053-nsmc", "spans": [{"entity": "KR_NAME", "start": 7, "end": 20, "score": 0.9976508113054129}, {"entity": "KR_NAME", "start": 23, "end": 36, "score": 0.9976409123494074}]}
+{"id": "klue-ner-v1_dev_03054-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03059-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03062-wikitree", "spans": [{"entity": "KR_NAME", "start": 38, "end": 41, "score": 0.694204052289327}]}
+{"id": "klue-ner-v1_dev_03069-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9822704593340555}]}
+{"id": "klue-ner-v1_dev_03075-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03076-wikitree", "spans": [{"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.9978873133659363}, {"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9993207852045695}]}
+{"id": "klue-ner-v1_dev_03088-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.997687558333079}]}
+{"id": "klue-ner-v1_dev_03101-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9991302092870077}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.999207595984141}]}
+{"id": "klue-ner-v1_dev_03105-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.999774436155955}]}
+{"id": "klue-ner-v1_dev_03117-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03119-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9957741300264994}, {"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.9887416958808899}]}
+{"id": "klue-ner-v1_dev_03122-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03129-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9985974133014679}, {"entity": "KR_NAME", "start": 4, "end": 6, "score": 0.9991974830627441}]}
+{"id": "klue-ner-v1_dev_03131-wikitree", "spans": [{"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.8412410020828247}]}
+{"id": "klue-ner-v1_dev_03149-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9992703596750895}]}
+{"id": "klue-ner-v1_dev_03153-wikitree", "spans": [{"entity": "KR_NAME", "start": 18, "end": 19, "score": 0.9985737800598145}]}
+{"id": "klue-ner-v1_dev_03155-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03158-wikitree", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9726789792378744}]}
+{"id": "klue-ner-v1_dev_03167-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03172-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03175-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03182-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 8, "score": 0.9863935708999634}, {"entity": "KR_NAME", "start": 33, "end": 35, "score": 0.9926182627677917}]}
+{"id": "klue-ner-v1_dev_03189-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9673805832862854}]}
+{"id": "klue-ner-v1_dev_03191-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03197-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9139030873775482}]}
+{"id": "klue-ner-v1_dev_03202-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 19, "score": 0.9294004887342453}]}
+{"id": "klue-ner-v1_dev_03207-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03221-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03224-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03225-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03237-nsmc", "spans": [{"entity": "KR_NAME", "start": 23, "end": 25, "score": 0.9996634721755981}, {"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.999335249265035}]}
+{"id": "klue-ner-v1_dev_03238-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03240-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 22, "score": 0.9806600638798305}, {"entity": "KR_NAME", "start": 36, "end": 38, "score": 0.9594903290271759}]}
+{"id": "klue-ner-v1_dev_03243-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03246-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03253-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03256-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9996715784072876}]}
+{"id": "klue-ner-v1_dev_03257-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9996503392855326}, {"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9998999635378519}, {"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9995426932970682}]}
+{"id": "klue-ner-v1_dev_03259-wikitree", "spans": [{"entity": "KR_NAME", "start": 8, "end": 9, "score": 0.9995751976966858}]}
+{"id": "klue-ner-v1_dev_03260-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9926250775655111}]}
+{"id": "klue-ner-v1_dev_03263-wikitree", "spans": [{"entity": "KR_NAME", "start": 28, "end": 32, "score": 0.9361255019903183}]}
+{"id": "klue-ner-v1_dev_03264-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.99605925877889}]}
+{"id": "klue-ner-v1_dev_03270-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03273-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9980757236480713}, {"entity": "KR_NAME", "start": 16, "end": 18, "score": 0.8684922456741333}, {"entity": "KR_NAME", "start": 19, "end": 21, "score": 0.9969720840454102}, {"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9987613558769226}, {"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.99910835425059}, {"entity": "KR_NAME", "start": 32, "end": 35, "score": 0.9873617688814799}, {"entity": "KR_NAME", "start": 44, "end": 47, "score": 0.9935002326965332}, {"entity": "KR_NAME", "start": 54, "end": 56, "score": 0.7770834267139435}, {"entity": "KR_NAME", "start": 57, "end": 59, "score": 0.9617613852024078}]}
+{"id": "klue-ner-v1_dev_03279-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03285-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03287-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.9957129955291748}]}
+{"id": "klue-ner-v1_dev_03288-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9975981116294861}, {"entity": "KR_NAME", "start": 32, "end": 38, "score": 0.9959804813067118}]}
+{"id": "klue-ner-v1_dev_03289-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9388813674449921}]}
+{"id": "klue-ner-v1_dev_03295-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9986905256907145}]}
+{"id": "klue-ner-v1_dev_03302-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03307-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9994737505912781}]}
+{"id": "klue-ner-v1_dev_03314-wikitree", "spans": [{"entity": "KR_NAME", "start": 5, "end": 6, "score": 0.9996618032455444}]}
+{"id": "klue-ner-v1_dev_03319-nsmc", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9942344625790914}]}
+{"id": "klue-ner-v1_dev_03321-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03323-wikitree", "spans": [{"entity": "KR_NAME", "start": 40, "end": 45, "score": 0.9673846960067749}]}
+{"id": "klue-ner-v1_dev_03324-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03325-wikitree", "spans": [{"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.999399205048879}, {"entity": "KR_NAME", "start": 17, "end": 22, "score": 0.9752308487892151}, {"entity": "KR_NAME", "start": 25, "end": 28, "score": 0.9997383753458658}, {"entity": "KR_NAME", "start": 44, "end": 47, "score": 0.9974167943000793}, {"entity": "KR_NAME", "start": 49, "end": 52, "score": 0.999733587106069}]}
+{"id": "klue-ner-v1_dev_03332-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03333-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03337-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03339-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03347-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03349-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03353-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03359-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03361-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9591069221496582}]}
+{"id": "klue-ner-v1_dev_03365-nsmc", "spans": [{"entity": "KR_NAME", "start": 22, "end": 30, "score": 0.9910103157162666}]}
+{"id": "klue-ner-v1_dev_03373-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.9911020000775655}]}
+{"id": "klue-ner-v1_dev_03407-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03414-nsmc", "spans": [{"entity": "KR_NAME", "start": 19, "end": 22, "score": 0.9985346992810568}]}
+{"id": "klue-ner-v1_dev_03430-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03432-wikitree", "spans": [{"entity": "KR_NAME", "start": 23, "end": 27, "score": 0.9746981114149094}]}
+{"id": "klue-ner-v1_dev_03433-nsmc", "spans": [{"entity": "KR_NAME", "start": 28, "end": 31, "score": 0.8486712972323099}]}
+{"id": "klue-ner-v1_dev_03437-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 19, "score": 0.9916048645973206}]}
+{"id": "klue-ner-v1_dev_03469-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03474-wikitree", "spans": [{"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.9720328648885092}]}
+{"id": "klue-ner-v1_dev_03478-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03479-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03481-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03484-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03487-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03490-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03491-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9954004883766174}]}
+{"id": "klue-ner-v1_dev_03493-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03499-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9965832630793253}]}
+{"id": "klue-ner-v1_dev_03504-nsmc", "spans": [{"entity": "KR_NAME", "start": 31, "end": 34, "score": 0.9874894618988037}]}
+{"id": "klue-ner-v1_dev_03505-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03516-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.8992129564285278}, {"entity": "KR_NAME", "start": 10, "end": 12, "score": 0.9990779459476471}, {"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9993481437365214}, {"entity": "KR_NAME", "start": 26, "end": 30, "score": 0.9865074306726456}, {"entity": "KR_NAME", "start": 31, "end": 33, "score": 0.9991253614425659}]}
+{"id": "klue-ner-v1_dev_03520-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 15, "score": 0.9997299313545227}]}
+{"id": "klue-ner-v1_dev_03528-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 15, "score": 0.8922462633677891}]}
+{"id": "klue-ner-v1_dev_03536-wikitree", "spans": [{"entity": "KR_NAME", "start": 30, "end": 35, "score": 0.8478026032447815}]}
+{"id": "klue-ner-v1_dev_03539-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9503507316112518}, {"entity": "KR_NAME", "start": 4, "end": 6, "score": 0.9550350904464722}]}
+{"id": "klue-ner-v1_dev_03548-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03552-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03553-wikitree", "spans": [{"entity": "KR_NAME", "start": 38, "end": 40, "score": 0.9218693971633911}, {"entity": "KR_NAME", "start": 68, "end": 70, "score": 0.8451542854309082}]}
+{"id": "klue-ner-v1_dev_03557-wikitree", "spans": [{"entity": "KR_NAME", "start": 2, "end": 4, "score": 0.9911546409130096}]}
+{"id": "klue-ner-v1_dev_03563-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9979769587516785}]}
+{"id": "klue-ner-v1_dev_03578-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03591-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03598-wikitree", "spans": [{"entity": "KR_NAME", "start": 7, "end": 14, "score": 0.9877810989107404}]}
+{"id": "klue-ner-v1_dev_03605-wikitree", "spans": [{"entity": "KR_NAME", "start": 57, "end": 60, "score": 0.9949548840522766}]}
+{"id": "klue-ner-v1_dev_03616-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9939607381820679}, {"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9998397628466288}, {"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9995429913202921}, {"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.9969621698061625}, {"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9982078075408936}]}
+{"id": "klue-ner-v1_dev_03620-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9856076041857401}]}
+{"id": "klue-ner-v1_dev_03622-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9958395957946777}]}
+{"id": "klue-ner-v1_dev_03626-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03637-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03640-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03643-nsmc", "spans": [{"entity": "KR_NAME", "start": 48, "end": 51, "score": 0.9984180331230164}]}
+{"id": "klue-ner-v1_dev_03645-wikitree", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9927162528038025}]}
+{"id": "klue-ner-v1_dev_03647-nsmc", "spans": [{"entity": "KR_NAME", "start": 19, "end": 21, "score": 0.9682073593139648}]}
+{"id": "klue-ner-v1_dev_03653-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03664-nsmc", "spans": [{"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9342641035715739}]}
+{"id": "klue-ner-v1_dev_03666-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03673-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03676-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03677-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03686-nsmc", "spans": [{"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.9428508083025614}]}
+{"id": "klue-ner-v1_dev_03695-wikitree", "spans": [{"entity": "KR_NAME", "start": 41, "end": 44, "score": 0.7939145565032959}]}
+{"id": "klue-ner-v1_dev_03706-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03708-wikitree", "spans": [{"entity": "KR_NAME", "start": 37, "end": 40, "score": 0.9965505202611288}]}
+{"id": "klue-ner-v1_dev_03712-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03715-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03716-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9967936277389526}]}
+{"id": "klue-ner-v1_dev_03720-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9926070968310038}, {"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9997866749763489}]}
+{"id": "klue-ner-v1_dev_03726-nsmc", "spans": [{"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9637946486473083}, {"entity": "KR_NAME", "start": 22, "end": 24, "score": 0.9601493179798126}]}
+{"id": "klue-ner-v1_dev_03728-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.999613364537557}]}
+{"id": "klue-ner-v1_dev_03730-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9396888017654419}]}
+{"id": "klue-ner-v1_dev_03737-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03738-wikitree", "spans": [{"entity": "KR_NAME", "start": 28, "end": 31, "score": 0.9975006779034933}]}
+{"id": "klue-ner-v1_dev_03740-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03741-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03743-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9995062152544657}]}
+{"id": "klue-ner-v1_dev_03747-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 10, "score": 0.997473955154419}]}
+{"id": "klue-ner-v1_dev_03749-nsmc", "spans": [{"entity": "KR_NAME", "start": 16, "end": 20, "score": 0.9876258373260498}]}
+{"id": "klue-ner-v1_dev_03753-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03755-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03759-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03762-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 25, "score": 0.6927316427230835}]}
+{"id": "klue-ner-v1_dev_03768-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9011247158050537}]}
+{"id": "klue-ner-v1_dev_03773-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 5, "score": 0.9976837337017059}]}
+{"id": "klue-ner-v1_dev_03775-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9936310648918152}, {"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9986384709676107}]}
+{"id": "klue-ner-v1_dev_03789-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 27, "score": 0.9445703744888305}]}
+{"id": "klue-ner-v1_dev_03794-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 12, "score": 0.9913940727710724}]}
+{"id": "klue-ner-v1_dev_03795-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03802-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03805-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9974738160769144}]}
+{"id": "klue-ner-v1_dev_03808-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.7881536483764648}, {"entity": "KR_NAME", "start": 8, "end": 11, "score": 0.9518612424532572}, {"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9398496945699056}]}
+{"id": "klue-ner-v1_dev_03810-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03814-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03817-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03818-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9602720538775126}]}
+{"id": "klue-ner-v1_dev_03825-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9537251790364584}]}
+{"id": "klue-ner-v1_dev_03826-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03834-nsmc", "spans": [{"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.998310923576355}]}
+{"id": "klue-ner-v1_dev_03836-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03841-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03851-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03874-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03880-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03883-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9773724377155304}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9802196224530538}]}
+{"id": "klue-ner-v1_dev_03884-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03888-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03889-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03897-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03900-wikitree", "spans": [{"entity": "KR_NAME", "start": 26, "end": 29, "score": 0.9362926483154297}]}
+{"id": "klue-ner-v1_dev_03903-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9912521640459696}, {"entity": "KR_NAME", "start": 8, "end": 15, "score": 0.9968088694981166}]}
+{"id": "klue-ner-v1_dev_03909-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03913-nsmc", "spans": [{"entity": "KR_NAME", "start": 34, "end": 43, "score": 0.9640322128931681}]}
+{"id": "klue-ner-v1_dev_03922-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03927-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03928-wikitree", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9974444905916849}, {"entity": "KR_NAME", "start": 45, "end": 48, "score": 0.9957332611083984}]}
+{"id": "klue-ner-v1_dev_03929-nsmc", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9985754688580831}]}
+{"id": "klue-ner-v1_dev_03931-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03932-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 22, "score": 0.9990279078483582}, {"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9997978806495667}, {"entity": "KR_NAME", "start": 29, "end": 33, "score": 0.9993109852075577}, {"entity": "KR_NAME", "start": 35, "end": 39, "score": 0.9741310179233551}, {"entity": "KR_NAME", "start": 40, "end": 42, "score": 0.9993772804737091}, {"entity": "KR_NAME", "start": 44, "end": 47, "score": 0.999932607014974}, {"entity": "KR_NAME", "start": 49, "end": 52, "score": 0.9998979568481445}, {"entity": "KR_NAME", "start": 54, "end": 57, "score": 0.999812920888265}, {"entity": "KR_NAME", "start": 67, "end": 70, "score": 0.9982391198476156}, {"entity": "KR_NAME", "start": 72, "end": 75, "score": 0.9997127652168274}]}
+{"id": "klue-ner-v1_dev_03938-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03946-wikitree", "spans": [{"entity": "KR_NAME", "start": 23, "end": 26, "score": 0.9949153463045756}]}
+{"id": "klue-ner-v1_dev_03954-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03955-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03959-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03963-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03966-wikitree", "spans": [{"entity": "KR_NAME", "start": 47, "end": 50, "score": 0.999528964360555}, {"entity": "KR_NAME", "start": 54, "end": 61, "score": 0.9810207230704171}]}
+{"id": "klue-ner-v1_dev_03967-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03969-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_03977-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_03980-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9998924533526102}, {"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.999870777130127}]}
+{"id": "klue-ner-v1_dev_03988-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9604415694872538}]}
+{"id": "klue-ner-v1_dev_03999-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04000-wikitree", "spans": [{"entity": "KR_NAME", "start": 21, "end": 22, "score": 0.9991388320922852}]}
+{"id": "klue-ner-v1_dev_04010-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04012-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9972691933314005}, {"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9868204792340597}]}
+{"id": "klue-ner-v1_dev_04014-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04020-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9395740032196045}]}
+{"id": "klue-ner-v1_dev_04021-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.999512791633606}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9991705020268759}]}
+{"id": "klue-ner-v1_dev_04022-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04029-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04031-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 15, "score": 0.9997113347053528}, {"entity": "KR_NAME", "start": 40, "end": 41, "score": 0.9997335076332092}]}
+{"id": "klue-ner-v1_dev_04036-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04037-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9924384156862894}, {"entity": "KR_NAME", "start": 5, "end": 7, "score": 0.997719019651413}, {"entity": "KR_NAME", "start": 9, "end": 11, "score": 0.9945647716522217}, {"entity": "KR_NAME", "start": 13, "end": 15, "score": 0.9920506477355957}]}
+{"id": "klue-ner-v1_dev_04038-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04040-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04044-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9975546399752299}]}
+{"id": "klue-ner-v1_dev_04046-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.726076583067576}]}
+{"id": "klue-ner-v1_dev_04049-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04051-nsmc", "spans": [{"entity": "KR_NAME", "start": 12, "end": 14, "score": 0.8732772469520569}, {"entity": "KR_NAME", "start": 17, "end": 19, "score": 0.9979657530784607}]}
+{"id": "klue-ner-v1_dev_04053-nsmc", "spans": [{"entity": "KR_NAME", "start": 70, "end": 73, "score": 0.9986041982968649}]}
+{"id": "klue-ner-v1_dev_04054-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04056-nsmc", "spans": [{"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.9752777814865112}]}
+{"id": "klue-ner-v1_dev_04057-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.996751606464386}]}
+{"id": "klue-ner-v1_dev_04060-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 18, "score": 0.9787059187889099}]}
+{"id": "klue-ner-v1_dev_04061-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04063-nsmc", "spans": [{"entity": "KR_NAME", "start": 2, "end": 5, "score": 0.9975356062253317}, {"entity": "KR_NAME", "start": 10, "end": 12, "score": 0.9643970131874084}]}
+{"id": "klue-ner-v1_dev_04067-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04069-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04070-wikitree", "spans": [{"entity": "KR_NAME", "start": 36, "end": 39, "score": 0.9564668536186218}]}
+{"id": "klue-ner-v1_dev_04078-nsmc", "spans": [{"entity": "KR_NAME", "start": 13, "end": 19, "score": 0.9973755379517873}]}
+{"id": "klue-ner-v1_dev_04080-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04081-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.8165377577145895}]}
+{"id": "klue-ner-v1_dev_04082-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04094-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04114-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04116-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04123-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04126-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04129-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04131-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.8178814649581909}, {"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9950896501541138}]}
+{"id": "klue-ner-v1_dev_04132-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9988154768943787}, {"entity": "KR_NAME", "start": 5, "end": 10, "score": 0.9369949698448181}]}
+{"id": "klue-ner-v1_dev_04134-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04135-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9687537848949432}, {"entity": "KR_NAME", "start": 86, "end": 92, "score": 0.9552174508571625}]}
+{"id": "klue-ner-v1_dev_04138-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04140-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04147-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 5, "score": 0.9991235136985779}]}
+{"id": "klue-ner-v1_dev_04149-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04152-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04157-nsmc", "spans": [{"entity": "KR_NAME", "start": 3, "end": 6, "score": 0.939016580581665}, {"entity": "KR_NAME", "start": 7, "end": 10, "score": 0.684034526348114}]}
+{"id": "klue-ner-v1_dev_04166-nsmc", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9299529393513998}]}
+{"id": "klue-ner-v1_dev_04167-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04192-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04196-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9986491401990255}, {"entity": "KR_NAME", "start": 4, "end": 10, "score": 0.9870158731937408}]}
+{"id": "klue-ner-v1_dev_04203-wikitree", "spans": [{"entity": "KR_NAME", "start": 16, "end": 17, "score": 0.9836589097976685}]}
+{"id": "klue-ner-v1_dev_04204-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04208-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04216-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04224-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.997376004854838}, {"entity": "KR_NAME", "start": 16, "end": 19, "score": 0.9776243766148885}]}
+{"id": "klue-ner-v1_dev_04226-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04229-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04230-nsmc", "spans": [{"entity": "KR_NAME", "start": 34, "end": 36, "score": 0.9951438009738922}, {"entity": "KR_NAME", "start": 39, "end": 41, "score": 0.9989297091960907}]}
+{"id": "klue-ner-v1_dev_04241-nsmc", "spans": [{"entity": "KR_NAME", "start": 28, "end": 30, "score": 0.9952379465103149}]}
+{"id": "klue-ner-v1_dev_04242-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9824496110280355}]}
+{"id": "klue-ner-v1_dev_04252-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04254-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04259-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 8, "score": 0.9613694846630096}, {"entity": "KR_NAME", "start": 47, "end": 51, "score": 0.8011124730110168}]}
+{"id": "klue-ner-v1_dev_04261-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.9919249614079794}]}
+{"id": "klue-ner-v1_dev_04263-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04264-wikitree", "spans": [{"entity": "KR_NAME", "start": 10, "end": 13, "score": 0.9428264300028483}, {"entity": "KR_NAME", "start": 35, "end": 38, "score": 0.9902603427569071}]}
+{"id": "klue-ner-v1_dev_04265-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04269-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04275-wikitree", "spans": [{"entity": "KR_NAME", "start": 21, "end": 22, "score": 0.9974218606948853}]}
+{"id": "klue-ner-v1_dev_04284-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04287-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04300-nsmc", "spans": [{"entity": "KR_NAME", "start": 15, "end": 18, "score": 0.9957757393519083}]}
+{"id": "klue-ner-v1_dev_04304-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04305-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04315-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04317-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9941193660100301}]}
+{"id": "klue-ner-v1_dev_04324-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04325-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04326-nsmc", "spans": [{"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9987936615943909}]}
+{"id": "klue-ner-v1_dev_04327-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04333-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04334-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04337-nsmc", "spans": [{"entity": "KR_NAME", "start": 6, "end": 8, "score": 0.9845614731311798}]}
+{"id": "klue-ner-v1_dev_04341-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 10, "score": 0.9754820764064789}]}
+{"id": "klue-ner-v1_dev_04345-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04347-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04359-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9972814559936524}]}
+{"id": "klue-ner-v1_dev_04377-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9971178968747457}, {"entity": "KR_NAME", "start": 19, "end": 21, "score": 0.998818963766098}]}
+{"id": "klue-ner-v1_dev_04394-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04401-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9992759823799133}, {"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.9995803833007812}]}
+{"id": "klue-ner-v1_dev_04402-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04404-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9977898796399435}, {"entity": "KR_NAME", "start": 13, "end": 16, "score": 0.9993566870689392}]}
+{"id": "klue-ner-v1_dev_04409-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9393702348073324}]}
+{"id": "klue-ner-v1_dev_04417-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04421-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04424-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04436-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9981159766515096}]}
+{"id": "klue-ner-v1_dev_04439-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 5, "score": 0.9972184896469116}]}
+{"id": "klue-ner-v1_dev_04445-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 1, "score": 0.9946746826171875}, {"entity": "KR_NAME", "start": 7, "end": 12, "score": 0.6116111993789672}]}
+{"id": "klue-ner-v1_dev_04450-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04453-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9989005997776985}]}
+{"id": "klue-ner-v1_dev_04463-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9967071215311686}, {"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9987838268280029}]}
+{"id": "klue-ner-v1_dev_04464-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04472-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9994189341862997}, {"entity": "KR_NAME", "start": 27, "end": 30, "score": 0.9997403224309286}, {"entity": "KR_NAME", "start": 32, "end": 35, "score": 0.999839981396993}, {"entity": "KR_NAME", "start": 37, "end": 40, "score": 0.999880870183309}, {"entity": "KR_NAME", "start": 42, "end": 45, "score": 0.9998428424199423}, {"entity": "KR_NAME", "start": 47, "end": 50, "score": 0.9998296896616617}, {"entity": "KR_NAME", "start": 52, "end": 57, "score": 0.9986338257789612}, {"entity": "KR_NAME", "start": 59, "end": 62, "score": 0.9997912446657816}, {"entity": "KR_NAME", "start": 64, "end": 67, "score": 0.999694029490153}, {"entity": "KR_NAME", "start": 69, "end": 72, "score": 0.9993125995000204}]}
+{"id": "klue-ner-v1_dev_04485-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04487-nsmc", "spans": [{"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9986930092175802}, {"entity": "KR_NAME", "start": 14, "end": 17, "score": 0.9987363815307617}]}
+{"id": "klue-ner-v1_dev_04493-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04502-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04507-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04508-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04509-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.9960249066352844}]}
+{"id": "klue-ner-v1_dev_04510-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9977889855702718}]}
+{"id": "klue-ner-v1_dev_04514-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9945678313573202}]}
+{"id": "klue-ner-v1_dev_04516-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04520-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 23, "score": 0.997795581817627}]}
+{"id": "klue-ner-v1_dev_04524-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9930755297342936}]}
+{"id": "klue-ner-v1_dev_04527-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9927739575505257}]}
+{"id": "klue-ner-v1_dev_04529-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04533-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04541-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04542-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9902039468288422}]}
+{"id": "klue-ner-v1_dev_04554-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04557-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04560-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 7, "score": 0.9874376228877476}, {"entity": "KR_NAME", "start": 9, "end": 14, "score": 0.9983985543251037}, {"entity": "KR_NAME", "start": 16, "end": 23, "score": 0.997590822832925}]}
+{"id": "klue-ner-v1_dev_04562-wikitree", "spans": [{"entity": "KR_NAME", "start": 2, "end": 4, "score": 0.9142303764820099}]}
+{"id": "klue-ner-v1_dev_04564-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04570-wikitree", "spans": [{"entity": "KR_NAME", "start": 14, "end": 16, "score": 0.9651469886302948}]}
+{"id": "klue-ner-v1_dev_04572-wikitree", "spans": [{"entity": "KR_NAME", "start": 38, "end": 40, "score": 0.9499449729919434}]}
+{"id": "klue-ner-v1_dev_04575-nsmc", "spans": [{"entity": "KR_NAME", "start": 43, "end": 46, "score": 0.977255622545878}]}
+{"id": "klue-ner-v1_dev_04577-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04583-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9991882046063741}, {"entity": "KR_NAME", "start": 36, "end": 37, "score": 0.9992129802703857}, {"entity": "KR_NAME", "start": 53, "end": 54, "score": 0.9997102618217468}, {"entity": "KR_NAME", "start": 60, "end": 61, "score": 0.9995437264442444}]}
+{"id": "klue-ner-v1_dev_04587-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04592-wikitree", "spans": [{"entity": "KR_NAME", "start": 4, "end": 7, "score": 0.998805820941925}]}
+{"id": "klue-ner-v1_dev_04594-nsmc", "spans": [{"entity": "KR_NAME", "start": 4, "end": 6, "score": 0.9899840950965881}, {"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.9968991676966349}, {"entity": "KR_NAME", "start": 31, "end": 37, "score": 0.9977135757605234}]}
+{"id": "klue-ner-v1_dev_04603-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 4, "score": 0.9996281862258911}]}
+{"id": "klue-ner-v1_dev_04607-wikitree", "spans": [{"entity": "KR_NAME", "start": 16, "end": 17, "score": 0.9984241724014282}, {"entity": "KR_NAME", "start": 21, "end": 24, "score": 0.9981142481168112}, {"entity": "KR_NAME", "start": 84, "end": 85, "score": 0.9985692501068115}]}
+{"id": "klue-ner-v1_dev_04611-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.9752207597096761}, {"entity": "KR_NAME", "start": 49, "end": 52, "score": 0.9554320375124613}]}
+{"id": "klue-ner-v1_dev_04612-wikitree", "spans": [{"entity": "KR_NAME", "start": 40, "end": 45, "score": 0.8848520636558532}]}
+{"id": "klue-ner-v1_dev_04615-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04619-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04621-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04624-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04627-wikitree", "spans": [{"entity": "KR_NAME", "start": 31, "end": 32, "score": 0.9994400143623352}, {"entity": "KR_NAME", "start": 64, "end": 65, "score": 0.9992196559906006}]}
+{"id": "klue-ner-v1_dev_04631-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04633-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04638-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9977665146191915}]}
+{"id": "klue-ner-v1_dev_04650-nsmc", "spans": [{"entity": "KR_NAME", "start": 27, "end": 29, "score": 0.764783501625061}]}
+{"id": "klue-ner-v1_dev_04651-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04652-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 4, "score": 0.9941179901361465}]}
+{"id": "klue-ner-v1_dev_04657-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04660-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04665-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04682-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04687-wikitree", "spans": [{"entity": "KR_NAME", "start": 61, "end": 64, "score": 0.9974439740180969}]}
+{"id": "klue-ner-v1_dev_04693-wikitree", "spans": [{"entity": "KR_NAME", "start": 45, "end": 48, "score": 0.9996271928151449}, {"entity": "KR_NAME", "start": 52, "end": 55, "score": 0.9997772971789042}]}
+{"id": "klue-ner-v1_dev_04699-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04708-wikitree", "spans": [{"entity": "KR_NAME", "start": 18, "end": 21, "score": 0.9998402992884318}, {"entity": "KR_NAME", "start": 23, "end": 26, "score": 0.9998128016789755}]}
+{"id": "klue-ner-v1_dev_04710-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9905321399370829}]}
+{"id": "klue-ner-v1_dev_04714-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04721-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.7270061671733856}]}
+{"id": "klue-ner-v1_dev_04723-wikitree", "spans": [{"entity": "KR_NAME", "start": 20, "end": 21, "score": 0.9991024732589722}]}
+{"id": "klue-ner-v1_dev_04724-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9982210397720337}]}
+{"id": "klue-ner-v1_dev_04736-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04737-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04742-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04746-wikitree", "spans": [{"entity": "KR_NAME", "start": 33, "end": 36, "score": 0.997926652431488}]}
+{"id": "klue-ner-v1_dev_04754-nsmc", "spans": [{"entity": "KR_NAME", "start": 12, "end": 18, "score": 0.9918950498104095}]}
+{"id": "klue-ner-v1_dev_04756-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04760-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04764-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04766-nsmc", "spans": [{"entity": "KR_NAME", "start": 8, "end": 14, "score": 0.9890751739343008}]}
+{"id": "klue-ner-v1_dev_04769-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04770-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9804668029149374}, {"entity": "KR_NAME", "start": 47, "end": 58, "score": 0.9942697232419794}]}
+{"id": "klue-ner-v1_dev_04771-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9897734522819519}]}
+{"id": "klue-ner-v1_dev_04780-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 7, "score": 0.7295034953526088}, {"entity": "KR_NAME", "start": 9, "end": 12, "score": 0.9964977304140726}]}
+{"id": "klue-ner-v1_dev_04782-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04802-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04807-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04814-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04815-wikitree", "spans": [{"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.8737193743387858}, {"entity": "KR_NAME", "start": 24, "end": 27, "score": 0.8444633086522421}]}
+{"id": "klue-ner-v1_dev_04824-nsmc", "spans": [{"entity": "KR_NAME", "start": 5, "end": 8, "score": 0.9609959920247396}]}
+{"id": "klue-ner-v1_dev_04836-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.6290740072727203}, {"entity": "KR_NAME", "start": 51, "end": 53, "score": 0.8994633257389069}, {"entity": "KR_NAME", "start": 86, "end": 89, "score": 0.9964003562927246}, {"entity": "KR_NAME", "start": 90, "end": 93, "score": 0.9974896907806396}]}
+{"id": "klue-ner-v1_dev_04838-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04852-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04861-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04862-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04869-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04871-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04873-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04890-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04896-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04899-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9973074595133463}]}
+{"id": "klue-ner-v1_dev_04904-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 6, "score": 0.984348714351654}]}
+{"id": "klue-ner-v1_dev_04914-wikitree", "spans": [{"entity": "KR_NAME", "start": 12, "end": 15, "score": 0.9605904221534729}]}
+{"id": "klue-ner-v1_dev_04917-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9989610513051351}]}
+{"id": "klue-ner-v1_dev_04921-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04926-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 9, "score": 0.8079316086239285}]}
+{"id": "klue-ner-v1_dev_04927-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04928-wikitree", "spans": [{"entity": "KR_NAME", "start": 0, "end": 3, "score": 0.9983926812807719}, {"entity": "KR_NAME", "start": 11, "end": 14, "score": 0.762417862812678}, {"entity": "KR_NAME", "start": 64, "end": 70, "score": 0.7797048290570577}]}
+{"id": "klue-ner-v1_dev_04929-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 2, "score": 0.9831005334854126}]}
+{"id": "klue-ner-v1_dev_04931-nsmc", "spans": [{"entity": "KR_NAME", "start": 10, "end": 12, "score": 0.9853889346122742}]}
+{"id": "klue-ner-v1_dev_04932-nsmc", "spans": [{"entity": "KR_NAME", "start": 0, "end": 8, "score": 0.9908390045166016}]}
+{"id": "klue-ner-v1_dev_04933-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04936-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04937-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04948-nsmc", "spans": [{"entity": "KR_NAME", "start": 26, "end": 30, "score": 0.9929933100938797}, {"entity": "KR_NAME", "start": 47, "end": 50, "score": 0.9983585675557455}]}
+{"id": "klue-ner-v1_dev_04955-wikitree", "spans": [{"entity": "KR_NAME", "start": 3, "end": 8, "score": 0.9929401278495789}, {"entity": "KR_NAME", "start": 17, "end": 20, "score": 0.9981181621551514}]}
+{"id": "klue-ner-v1_dev_04956-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04958-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04965-wikitree", "spans": [{"entity": "KR_NAME", "start": 18, "end": 19, "score": 0.9952625036239624}]}
+{"id": "klue-ner-v1_dev_04967-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04976-nsmc", "spans": []}
+{"id": "klue-ner-v1_dev_04982-wikitree", "spans": [{"entity": "KR_NAME", "start": 2, "end": 3, "score": 0.9992596507072449}]}
+{"id": "klue-ner-v1_dev_04985-wikitree", "spans": []}
+{"id": "klue-ner-v1_dev_04994-nsmc", "spans": [{"entity": "KR_NAME", "start": 18, "end": 22, "score": 0.8482302576303482}]}
+{"id": "klue-ner-v1_dev_04998-wikitree", "spans": [{"entity": "KR_NAME", "start": 22, "end": 25, "score": 0.9924022157986959}]}

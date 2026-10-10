@@ -1,0 +1,51 @@
+{
+  "source_sha256": {
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_encoder_adaptation.py": "5fc9bb1180f15cc25c313ad57f9311d6e55e150b41012f0bc06ab4590bfabb72",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_encoder_adaptation.py": "c1bb78cbab7bb8991c4a1cc00eb2b58af4a2e6e3b642f512f98e6323ed292276",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_generalization_model.py": "e5be7933ad889be0f476b8cd9260eded27d69debe3b2d0fb8a2ce4e1fc0146b0",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_generalization.py": "19f80aaa1f2ffb34473c94e2a622ac5eb8579fe865eed3717e4804046c43bd0a",
+    "/tmp/ko-pii-name-generalization-v1-verified/train.jsonl": "2807862398202a0d000409360adcc4e3159f2239e87ecd0880dd1642c7fcdffb",
+    "/tmp/ko-pii-name-generalization-v1-verified/validation.jsonl": "e5e76bb267dbd053cf5c070842c2b3db590120fe0ce8f2db10eac586f94e8228",
+    "/tmp/ko-pii-name-generalization-v1-verified/manifest.json": "bcb46c023e1a053431fd8c4df232d23c0b003f8bc728a3b43cad69934665d5c7",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/head.safetensors": "1bc5665c9a21ca85b5c0b6d538e9c2293905e9fc1dda09ae8da64dfa47b07316",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/config.json": "802097c1d7d65a56f7cb344056318201e8460a636f5d1db41b653a889766d815",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-generalization-v1/report.json": "573e00babc5f0a92e79b6913016d81ef469216a394e5b2e537a34b3eb6808ad2",
+    "/tmp/name-generalization-v1-features.pt": "aa1d574475217e2cde37b02dd73de197c5a1124f388a574b42e7c61af782c193"
+  },
+  "model_id": "FrameByFrame/korean-pii-e5-base",
+  "revision": "a308c54b4407819624a5661e31e162a269f39818",
+  "seed": 20261012,
+  "epochs": 3,
+  "thresholds": [
+    0.5,
+    0.7,
+    0.9
+  ],
+  "batch_size": 32,
+  "lora_learning_rate": 0.0001,
+  "head_learning_rate": 0.0005,
+  "name_class_weight": 4.0,
+  "encoder_dropout": false,
+  "encoder_autocast": "bfloat16",
+  "original_prior": "Immutable original E5 probabilities from frozen feature cache",
+  "adaptation": {
+    "rank": 8,
+    "alpha": 16,
+    "last_layers": 4,
+    "modules": [
+      "roberta.encoder.layer.8.attention.self.query",
+      "roberta.encoder.layer.8.attention.self.value",
+      "roberta.encoder.layer.9.attention.self.query",
+      "roberta.encoder.layer.9.attention.self.value",
+      "roberta.encoder.layer.10.attention.self.query",
+      "roberta.encoder.layer.10.attention.self.value",
+      "roberta.encoder.layer.11.attention.self.query",
+      "roberta.encoder.layer.11.attention.self.value"
+    ]
+  },
+  "train_rows": 28909,
+  "validation_rows": 2100,
+  "selection": "real validation exact F1, fewer FP, higher threshold, earlier epoch",
+  "runtime_promotion": false
+}
