@@ -186,22 +186,30 @@ opening a fresh evaluation split. All 40 policies using the fixed LoRA weights
 failed that gate. A separate head trained with conversational data also failed
 all 20 initial policies. Of 20 further selective policies, one
 (`selective:addition=1.0:removal=0.9999`) passed development and
-actual-inference replay. Its completed fresh heldout evaluation **still fails
-the automatic release gate**: KDPII heldout (1,992 sentences) passes
-(`PS_NAME` F1 85.71%, `PS_NAME+PS_NICKNAME` F1 71.28%, both at or above the
-original E5), but KLUE NSMC heldout loses one previously correct name
-("가르시아", a foreign surname already gold-tagged `PS` in KLUE-NER) out of 449,
-holding KLUE WikiTree at 418/418. `quality_gate_passed` is `false` in
-[`name-multisource-v2-release-decision.json`](benchmarks/results/name-multisource-v2-release-decision.json)
-and the gate code is unchanged: per-case regressions are not auto-waived. The
-checkpoint ([`artifacts/name-multisource-v2-verified`](artifacts/name-multisource-v2-verified))
-ships only through a documented human operational decision, not a gate pass —
-see [the release-decision memo](docs/name-multisource-v2.md#운영-배포-결정-게이트-통과가-아닌-사람의-승인)
-for the dated approval, rejection detail and the open watchlist item for the
-missed name. These experiments are name-only at guard threshold 0.0 (default 0.4).
-Upstream E5 training exposure has not been independently audited. General prose
-name-recognition errors remain unresolved; passing software tests does not imply
-model accuracy.
+actual-inference replay, but its completed fresh heldout evaluation shows it is
+**not an improvement and is not adopted**. This policy only strips existing
+baseline spans above a 0.9999 confidence that they are not names
+(`addition_threshold=1.0` means it never adds a span baseline did not already
+find, so it cannot fix missed names). On the 1,992-sentence KDPII heldout its
+output is **identical** to the original E5 baseline (`PS_NAME` F1 85.71% both,
+`PS_NAME+PS_NICKNAME` F1 71.28% both — no spans were stripped there) and KLUE
+WikiTree is unchanged (418/418). On KLUE NSMC it incorrectly strips one
+previously correct name ("가르시아", a foreign surname already gold-tagged
+`PS` in KLUE-NER), a regression with no offsetting gain anywhere. The
+automatic release gate correctly rejects it
+(`quality_gate_passed: false` in
+[`name-multisource-v2-release-decision.json`](benchmarks/results/name-multisource-v2-release-decision.json));
+an earlier draft of this README incorrectly described a human override
+shipping this checkpoint anyway, based on comparing it against a different,
+already-rejected candidate's numbers instead of against the baseline it is
+actually evaluated against. That override is retracted: the checkpoint
+([`artifacts/name-multisource-v2-verified`](artifacts/name-multisource-v2-verified))
+is **not promoted**, and the shipped default stays the original E5 baseline.
+See [the retraction](docs/name-multisource-v2.md#운영-배포-결정-게이트-통과가-아닌-사람의-승인-철회)
+for what was wrong and why. These experiments are name-only at guard threshold
+0.0 (default 0.4). Upstream E5 training exposure has not been independently
+audited. General prose name-recognition errors remain unresolved; passing
+software tests does not imply model accuracy.
 
 To reproduce v11 explicitly:
 

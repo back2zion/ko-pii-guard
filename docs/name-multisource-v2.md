@@ -1,40 +1,44 @@
 # 출처별 검증과 구간 존재 판정 v2
 
-상태: **게이트는 여전히 `quality_gate_passed: false`.** KLUE NSMC heldout에서
-외래 인명 1건("가르시아") 회귀로 자동 채택은 거부된다. KDPII heldout은
-중단됐던 추론을 완료해 PS_NAME F1 0.86, PS_NAME+NICKNAME F1 0.71로 통과했다
-([`name-multisource-v2-heldout-kdpii-lossless-v2.json`](../benchmarks/results/name-multisource-v2-heldout-kdpii-lossless-v2.json)).
-자동 게이트는 통과시키지 않았지만, 아래 "운영 배포 결정" 메모에 따라 사람이
-명시적으로 배포를 승인했다.
+상태: **채택하지 않음.** `quality_gate_passed: false`가 맞는 결과였다.
+`selective:addition=1.0:removal=0.9999` 정책은 KDPII·WikiTree heldout에서
+baseline E5와 완전히 동일하고(개선 없음), KLUE NSMC heldout에서 기존 정답
+구간 1건("가르시아")을 잘못 제거하는 회귀만 남긴다. 아래는 한 번 틀리게
+내렸던 "운영 배포 결정"과 그 철회 기록이다 — 삭제하지 않고 무엇이 왜 틀렸는지
+남긴다.
 
-## 운영 배포 결정 (게이트 통과가 아닌 사람의 승인)
+## 운영 배포 결정 — 철회 (원래 승인은 틀린 비교에 근거함)
 
-- **일자**: 2026-10-10
-- **승인자**: back2zion
-- **대상 체크포인트**: [`artifacts/name-multisource-v2-verified`](../artifacts/name-multisource-v2-verified)
-  (selective_whole_span, addition=1.0, removal=0.9999)
-- **게이트 결과**: [`name-multisource-v2-release-decision.json`](../benchmarks/results/name-multisource-v2-release-decision.json)은
-  그대로 `quality_gate_passed: false`로 둔다. 게이트 코드는 수정하지 않았고,
-  수정하지 않을 것이다 — per-case regression을 자동으로 waive하는 경로를
-  게이트에 추가하는 것은 이 저장소의 핵심 안전장치를 느슨하게 만드는 일이라
-  명시적으로 거부한다.
-- **거부 이유 (사실 그대로)**: KLUE NSMC heldout에서 1건의 기존 정답 구간을
-  잃었다 (`klue-ner-v1_dev_00325-nsmc`, 문자 [16, 20), "가르시아"). 원문은
-  "네이버에서 바로 검색됩니다. 가르시아 뿐만 아니라 주옥같은 작품들을
-  모아놨습니다." — NSMC(영화 리뷰) 문맥이고 KLUE-NER 원본 골드 라벨이 이미
-  이 구간을 PS(인물)로 태깅했으므로, 라벨 경계 모호 사례가 아니라 **실제
-  인명 미탐**으로 판단한다.
-- **순효과 판단**: 같은 체크포인트로 KDPII heldout(1,992문장)의 PS_NAME F1이
-  0.13→0.86로 올랐고(기존 LoRA 후보 대비), WikiTree heldout 418/418,
-  NSMC heldout 448/449(이번 1건 제외 전부 유지)을 유지했다. 하나의 외래
-  인명 미탐과 교환해 대화체 도메인 전체의 인명 탐지 품질을 회복하는 쪽이
-  총 프라이버시 보호 관점에서 더 안전하다고 판단해 배포를 승인한다.
-- **watchlist**: `klue-ner-v1_dev_00325-nsmc`의 "가르시아" 구간을 다음
-  checkpoint 후보에서 반드시 다시 잡아야 하는 회귀로 등록한다. 이후
-  재학습/재선택에서 이 구간이 다시 놓치면 새로운 예외로 취급하고, 조용히
-  동일 사유로 재승인하지 않는다.
-- **하지 않은 일**: 게이트에 waive 메커니즘 추가, `release-decision.json` 값
-  수정, 회귀 케이스의 골드 라벨 변경 — 전부 하지 않았다.
+**원래 결정 (2026-10-10, 철회됨)**: 승인자 back2zion이 이 체크포인트를
+"KDPII heldout PS_NAME F1 0.13→0.86, WikiTree/NSMC 거의 유지"라는 순효과
+판단으로 운영상 배포 승인했다. "가르시아" 1건 회귀는 외래 인명 미탐으로 보고
+watchlist에 올렸다.
+
+**무엇이 틀렸는가**: "0.13→0.86"은 **이미 거부된 다른 후보**
+(`name-generalization-lora-v1`, coverage 디코더, threshold 0.01)를 baseline과
+비교한 수치였고, 실제로 채택 검토 중이던 `selective` 정책과는 무관했다.
+`selective` 정책의 실제 동작(`scripts/name_selective_adapter.py`)은
+`addition_threshold=1.0`(baseline이 못 찾은 이름은 추가하지 않음)과
+`removal_threshold=0.9999`(아주 확실할 때만 baseline의 기존 구간 제거)로
+구성된 **보수적 오탐 제거 필터**일 뿐이다. 실제로 KDPII heldout(1,992문장)의
+baseline F1과 candidate F1은 PS_NAME 0.8571 = 0.8571,
+PS_NAME+별명 0.7128 = 0.7128로 **완전히 동일**했다 — 이 구간에서 제거가 한
+건도 일어나지 않았다는 뜻이고, 어떤 개선도 없었다는 뜻이다. WikiTree도
+동일(418/418). 반면 NSMC에서는 이 필터가 정답 구간 1건("가르시아")을 잘못
+제거해 회귀를 냈다. 즉 실제 순효과는 **이득 0 + 회귀 1건**이며, 이 상태에서는
+baseline을 그대로 두는 쪽이 엄밀히 더 낫다. 이 오류는 README용 실측 평가 표를
+작성하며 baseline 열과 candidate 열을 나란히 놓다가 발견했다 — 배포 전,
+문서화 단계에서 잡힌 것이다.
+
+**철회 내용**:
+- 운영 배포 승인을 철회한다. [`artifacts/name-multisource-v2-verified`](../artifacts/name-multisource-v2-verified)는
+  기본 런타임으로 채택하지 않는다.
+- 게이트 코드는 원래부터 수정한 적이 없다 — `release-decision.json`의
+  `quality_gate_passed: false`가 처음부터 맞았다는 것이 이번에 확인됐다.
+- watchlist 항목(`klue-ner-v1_dev_00325-nsmc`, "가르시아")은 유지한다. 이 정책
+  자체가 이 구간을 잘못 제거한다는 사실은 여전히 유효한 발견이다.
+- 앞으로 같은 `selective` 계열 정책을 다시 검토할 때는, 거부된 다른 후보의
+  수치가 아니라 **그 정책이 실제로 비교되는 baseline과** 나란히 놓고 판단한다.
 
 [v1](name-generalization-v1.md)의 새 KLUE 성능은 개선됐지만, KDPII의 비인물
 오탐 문장은 1/482에서 101/482로 늘었다. 이름+별명 정책에서도 오탐 구간은
