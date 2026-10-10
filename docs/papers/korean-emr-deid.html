@@ -1,0 +1,3088 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+    <head >
+
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        
+        
+
+        
+        
+  <link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/base_style-BxRs1iOp.css" />
+<script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/base_style-D-jH62-1.js"></script>
+
+  <link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/article_style-B67IZFds.css" />
+<link  rel="stylesheet" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/style-D77LS1kY.css" />
+<script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/article_style-CTAd1LmM.js"></script>
+
+  
+  
+    <style>
+  
+  
+  @media screen and (min-width: 64em) {
+    div.pmc-wm {
+      background: repeat-y;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='350' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cfilter x='-.02' y='0' width='1.05' height='1' id='c'%3E%3CfeFlood flood-color='%23FFF'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3Ctext id='b' font-family='Helvetica' font-size='11pt' style='opacity:1;fill:%23005ea2;stroke:none;text-anchor:middle' x='175' y='14'%3E%3C/text%3E%3Cpath id='a' style='fill:%23005ea2' d='M0 8h350v3H0z'/%3E%3C/defs%3E%3Cuse xlink:href='%23a' transform='rotate(90 10 10)'/%3E%3Cuse xlink:href='%23b' transform='rotate(90 10 10)' filter='url(%23c)'/%3E%3C/svg%3E");
+      padding-left: 3rem;
+    }
+  }
+</style>
+
+  
+
+
+
+        
+            <link rel="apple-touch-icon"
+                  sizes="180x180"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/apple-touch-icon.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="48x48"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/favicon-48x48.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="32x32"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/favicon-32x32.png" />
+            <link rel="icon"
+                  type="image/png"
+                  sizes="16x16"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/favicon-16x16.png" />
+            <link rel="manifest" href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/site.webmanifest" />
+            <link rel="mask-icon"
+                  href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/safari-pinned-tab.svg"
+                  color="#0071bc" />
+            <meta name="msapplication-config"
+                  content="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/favicons/browserconfig.xml" />
+            <meta name="theme-color" content="#ffffff" />
+        
+
+        <title>
+            Protecting medical privacy with pretrained language models: named entity recognition-based de-identification in Korean unstructured electronic medical records - PMC
+        </title>
+
+        
+        
+  
+  <!-- Logging params: Pinger defaults -->
+<meta name="ncbi_app" content="cloudpmc-viewer" />
+<meta name="ncbi_db" content="pmc" />
+<meta name="ncbi_phid" content="9639DF1EACA4C1430CDF1E00481FC611.m_1" />
+<meta name="ncbi_pinger_stat_url" content="https://pmc.ncbi.nlm.nih.gov/stat" />
+<!-- Logging params: Pinger custom -->
+<meta name="ncbi_pdid" content="article" />
+  
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    
+        <link rel="preconnect" href="https://cdn.ncbi.nlm.nih.gov" />
+    
+
+    <!-- Include USWDS Init Script -->
+    <script src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/uswds-init.js"></script>
+
+
+    <meta name="ncbi_domain" content="npjhealthsyst">
+<meta name="ncbi_type" content="fulltext">
+<meta name="ncbi_pcid" content="journal">
+<meta name="ncbi_feature" content="associated_data">
+<link rel="canonical" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/">
+<meta name="robots" content="INDEX,NOFOLLOW,NOARCHIVE">
+<meta name="citation_journal_title" content="npj Health Systems">
+<meta name="citation_title" content="Protecting medical privacy with pretrained language models: named entity recognition-based de-identification in Korean unstructured electronic medical records">
+<meta name="citation_author" content="Jiahn Seo">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Yunha Kim">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author_institution" content="Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Heejung Choi">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Minkyoung Kim">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="JiYe Han">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Gaeun Kee">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author_institution" content="Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Soyoung Ko">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author_institution" content="Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="HyoJe Jung">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Byeolhee Kim">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author_institution" content="Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Boeun Choi">
+<meta name="citation_author_institution" content="Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author_institution" content="Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Sanghyun Park">
+<meta name="citation_author_institution" content="Department of Computer Science, Yonsei University, 50, Yonsei-ro, Seodaemungu, 03722 Seoul, Republic of Korea">
+<meta name="citation_author" content="Tae Joon Jun">
+<meta name="citation_author_institution" content="Department of Medical Informatics and Statistics, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_author" content="Young-Hak Kim">
+<meta name="citation_author_institution" content="Division of Cardiology, Department of Internal Medicine, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea">
+<meta name="citation_publication_date" content="2025 Sep 4">
+<meta name="citation_volume" content="2">
+<meta name="citation_firstpage" content="32">
+<meta name="citation_doi" content="10.1038/s44401-025-00036-1">
+<meta name="citation_pmid" content="42527470">
+<meta name="citation_abstract_html_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/">
+<meta name="citation_fulltext_html_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/">
+<meta name="citation_pdf_url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/pdf/44401_2025_Article_36.pdf">
+<meta name="description" content="This study introduces a lightweight de-identification software tailored to the Korean healthcare environment, where heterogeneous document formats and limited computing resources hinder clinical data integration. The proposed system protects ...">
+<meta name="og:title" content="Protecting medical privacy with pretrained language models: named entity recognition-based de-identification in Korean unstructured electronic medical records">
+<meta name="og:type" content="article">
+<meta name="og:site_name" content="PubMed Central (PMC)">
+<meta name="og:description" content="This study introduces a lightweight de-identification software tailored to the Korean healthcare environment, where heterogeneous document formats and limited computing resources hinder clinical data integration. The proposed system protects ...">
+<meta name="og:url" content="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/">
+<meta name="og:image" content="https://cdn.ncbi.nlm.nih.gov/pmc/cms/images/pmc-card-share.jpg?_=0">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ncbi">
+    
+    
+
+    </head>
+    <body >
+        
+    <a class="usa-skipnav " href="#main-content">
+      Skip to main content
+    </a>
+
+
+        
+            
+
+<section class="usa-banner " aria-label="Official website of the United States government" >
+    <div class="usa-accordion">
+        <header class="usa-banner__header">
+            <div class="usa-banner__inner">
+                <div class="grid-col-auto">
+                    <img aria-hidden="true"
+                         class="usa-banner__header-flag"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/us_flag.svg"
+                         alt="" />
+                </div>
+
+                <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
+                    <p class="usa-banner__header-text">
+                        An official website of the United States government
+                    </p>
+                    <span class="usa-banner__header-action">Here's how you know</span>
+                </div>
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-accordion__button usa-banner__button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    aria-expanded="false"
+    aria-controls="gov-banner-default"
+    
+    data-testid="storybook-django-banner"
+    
+    >
+    
+        
+
+        
+                    <span class="usa-banner__button-text">Here's how you know</span>
+                
+
+        
+    
+        
+            </button>
+        
+
+
+            </div>
+        </header>
+
+        <div class="usa-banner__content usa-accordion__content"
+             id="gov-banner-default"
+             hidden>
+            <div class="grid-row grid-gap-lg">
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/icon-dot-gov.svg"
+                         alt=""
+                         aria-hidden="true" />
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>Official websites use .gov</strong>
+                            <br />
+                            A
+                            <strong>.gov</strong> website belongs to an official
+                            government organization in the United States.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img"
+                         src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/icon-https.svg"
+                         alt=""
+                         aria-hidden="true" />
+
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>Secure .gov websites use HTTPS</strong>
+                            <br />
+                            A <strong>lock</strong> (
+                            <span class="icon-lock">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="52"
+                                     height="64"
+                                     viewBox="0 0 52 64"
+                                     class="usa-banner__lock-image"
+                                     role="graphics-symbol"
+                                     aria-labelledby="banner-lock-description"
+                                     focusable="false">
+                                    <title id="banner-lock-title">Lock</title>
+                                    <desc id="banner-lock-description">
+                                    Locked padlock icon
+                                    </desc>
+                                    <path fill="#000000"
+                                          fill-rule="evenodd"
+                                          d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z" />
+                                </svg>
+</span>) or <strong>https://</strong> means you've safely
+                                connected to the .gov website. Share sensitive
+                                information only on official, secure websites.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+
+        
+    
+    
+    
+
+<div class="usa-overlay">
+</div>
+
+
+
+<header class="usa-header usa-header--extended usa-header--wide" data-header data-testid="header"    >
+    <div class="ncbi-header">
+        <div class="ncbi-header__container">
+            <a class="ncbi-header__logo-container"
+               href="https://www.ncbi.nlm.nih.gov/">
+                <img alt="NCBI home page"
+                     class="ncbi-header__logo-image"
+                     src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/ncbi-logos/nih-nlm-ncbi--white.svg"
+                     width="410"
+                     height="100" />
+            </a>
+
+            <!-- Mobile menu hamburger button -->
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-menu-btn ncbi-header__hamburger-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    aria-label="Show menu"
+    data-testid="navMenuButton"
+    
+    >
+    
+        
+
+        
+                <svg aria-hidden="true"
+                     class="ncbi-hamburger-icon"
+                     fill="none"
+                     focusable="false"
+                     height="21"
+                     viewBox="0 0 31 21"
+                     width="31"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                          d="M0.125 20.75H30.875V17.3333H0.125V20.75ZM0.125 12.2083H30.875V8.79167H0.125V12.2083ZM0.125 0.25V3.66667H30.875V0.25H0.125Z"
+                          fill="#F1F1F1"
+                          fill-rule="evenodd" />
+                </svg>
+            
+
+        
+    
+        
+            </button>
+        
+
+
+
+            
+                <!-- Desktop buttons-->
+                <div class="ncbi-header__desktop-buttons">
+                    
+                        <!-- Desktop search button -->
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--unstyled ncbi-header__desktop-button
+           "
+    aria-expanded="false"
+    aria-controls="search-field-desktop-navigation"
+    aria-label="Show search overlay"
+    data-testid="toggleSearchPanelButton"
+    data-toggle-search-panel-button
+    >
+    
+        
+
+        
+                            
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/search.svg"
+        class="usa-icon "
+        aria-hidden="true"
+        
+        
+    />
+
+
+                            Search
+                        
+
+        
+    
+        
+            </button>
+        
+
+
+                    
+
+                    <!-- Desktop login dropdown -->
+                    
+                        <div class="ncbi-header__login-dropdown">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--unstyled ncbi-header__desktop-button ncbi-header__login-dropdown-button
+           "
+    aria-expanded="false"
+    aria-controls="login-dropdown-menu"
+    aria-label="Show login menu"
+    data-testid="toggleLoginMenuDropdown"
+    data-desktop-login-button
+    >
+    
+        
+
+        
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/person.svg"
+        class="usa-icon "
+        aria-hidden="true"
+        
+        
+    />
+
+
+
+                                <span data-login-dropdown-text>Log in</span>
+
+                                <!-- Dropdown icon pointing up -->
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/expand_less.svg"
+        class="usa-icon ncbi-header__login-dropdown-icon ncbi-header__login-dropdown-icon--expand-less ncbi-header__login-dropdown-icon--hidden"
+        aria-hidden="true"
+        data-login-dropdown-up-arrow
+        
+    />
+
+
+
+                                <!-- Dropdown icon pointing down -->
+                                
+
+
+
+    <img
+        src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/expand_more.svg"
+        class="usa-icon ncbi-header__login-dropdown-icon ncbi-header__login-dropdown-icon--expand-more ncbi-header__login-dropdown-icon--hidden"
+        aria-hidden="true"
+        data-login-dropdown-down-arrow
+        
+    />
+
+
+                            
+
+        
+    
+        
+            </button>
+        
+
+
+
+                            <!-- Login dropdown menu -->
+                            <ul class="usa-nav__submenu ncbi-header__login-dropdown-menu"
+                                id="login-dropdown-menu"
+                                data-desktop-login-menu-dropdown
+                                hidden>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/" class="usa-link  "  >
+        
+
+        
+            Dashboard
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/collections/bibliography/" class="usa-link  "  >
+        
+
+        
+            Publications
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                    <li class="usa-nav__submenu-item">
+                                        <!-- Uses custom style overrides to render external and document links. -->
+                                        
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/account/settings/" class="usa-link  "  >
+        
+
+        
+            Account settings
+        
+
+        
+    </a>
+
+
+                                    </li>
+                                
+                                <li class="usa-nav__submenu-item">
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           usa-button--outline ncbi-header__login-dropdown-logout-button
+           "
+    
+    
+    
+    data-testid="desktopLogoutButton"
+    data-desktop-logout-button
+    >
+    
+        
+
+        Log out
+
+        
+    
+        
+            </button>
+        
+
+
+                                </li>
+                            </ul>
+                        </div>
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <!-- Search panel -->
+    
+        <div class="ncbi-search-panel ncbi--show-only-at-desktop"
+             data-header-search-panel
+             hidden>
+            <div class="ncbi-search-panel__container">
+                <form action="https://www.ncbi.nlm.nih.gov/search/all/"
+                      
+                      autocomplete="off"
+                      class="usa-search usa-search--big ncbi-search-panel__form"
+                      data-testid="desktop-navigation-search-form"
+                      method="GET"
+                      role="search">
+                    <label class="usa-sr-only" for="search-field-desktop-navigation">
+                        Search…
+                    </label>
+                    <input class="usa-input"
+                           id="search-field-desktop-navigation"
+                           name="term"
+                           
+                               placeholder="Search NCBI"
+                           
+                           type="search"
+                           value="" />
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="submit"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    
+    
+    
+    >
+    
+        
+
+        
+                        <span class="usa-search__submit-text">
+                            Search NCBI
+                        </span>
+                    
+
+        
+    
+        
+            </button>
+        
+
+
+                </form>
+
+                
+            </div>
+        </div>
+    
+
+    <nav aria-label="Primary navigation" class="usa-nav">
+        <p class="usa-sr-only" id="primary-navigation-sr-only-title">
+            Primary site navigation
+        </p>
+
+        <!-- Mobile menu close button -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-nav__close ncbi-nav__close-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    aria-label="Close navigation menu"
+    data-testid="navCloseButton"
+    
+    >
+    
+        
+
+        
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/close.svg" alt="Close" />
+        
+
+        
+    
+        
+            </button>
+        
+
+
+
+        
+            <!-- Mobile search component -->
+            <form class="usa-search usa-search--small ncbi--hide-at-desktop"
+                  action="https://www.ncbi.nlm.nih.gov/search/all/"
+                  
+                  autocomplete="off"
+                  data-testid="mobile-navigation-search-form"
+                  method="GET"
+                  role="search">
+                <label class="usa-sr-only" for="search-field-mobile-navigation">
+                    Search
+                </label>
+
+                <input class="usa-input"
+                       id="search-field-mobile-navigation"
+                       type="search"
+                       
+                           placeholder="Search NCBI"
+                       
+                       name="term" />
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="submit"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           
+           "
+    
+    
+    
+    
+    
+    >
+    
+        
+
+        
+                    <!-- This SVG should be kept inline and not replaced with a link to the icon as otherwise it will render in the wrong color -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0E2LjQ3MSA2LjQ3MSAwIDAgMCAxNiA5LjUgNi41IDYuNSAwIDEgMCA5LjUgMTZjMS42MSAwIDMuMDktLjU5IDQuMjMtMS41N2wuMjcuMjh2Ljc5bDUgNC45OUwyMC40OSAxOWwtNC45OS01em0tNiAwQzcuMDEgMTQgNSAxMS45OSA1IDkuNVM3LjAxIDUgOS41IDUgMTQgNy4wMSAxNCA5LjUgMTEuOTkgMTQgOS41IDE0eiIvPjwvc3ZnPg=="
+                         class="usa-search__submit-icon"
+                         alt="Search" />
+                
+
+        
+    
+        
+            </button>
+        
+
+
+            </form>
+
+            
+        
+
+        <!-- Primary navigation menu items -->
+        <!-- This usa-nav__inner wrapper is required to correctly style the navigation items on Desktop -->
+        
+
+        
+            <div class="ncbi-nav__mobile-login-menu ncbi--hide-at-desktop"
+                 data-mobile-login-menu
+                 hidden>
+                <p class="ncbi-nav__mobile-login-menu-status">
+                    Logged in as:
+                    <strong class="ncbi-nav__mobile-login-menu-email"
+                            data-mobile-login-email-text></strong>
+                </p>
+                <ul class="usa-nav__primary usa-accordion">
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/" class="usa-link  "  >
+        
+
+        
+            Dashboard
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/collections/bibliography/" class="usa-link  "  >
+        
+
+        
+            Publications
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="usa-nav__primary-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.ncbi.nlm.nih.gov/account/settings/" class="usa-link  "  >
+        
+
+        
+            Account settings
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            </div>
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <button
+            type="button"
+        
+    
+    class="usa-button
+           
+
+           
+               
+               
+               
+               
+            
+
+           
+           
+           ncbi-nav__mobile-login-button ncbi--hide-at-desktop
+           "
+    
+    
+    
+    data-testid="mobileLoginButton"
+    data-mobile-login-button
+    >
+    
+        
+
+        Log in
+
+        
+    
+        
+            </button>
+        
+
+
+    </nav>
+</header>
+
+    
+    
+        
+
+<section class="pmc-header pmc-header--basic" aria-label="PMC Header with search box">
+    <div class="pmc-nav-container">
+        <div class="pmc-header__bar">
+           <div class="pmc-header__logo">
+               <a href="/" title="Home" aria-label="PMC Home"></a>
+           </div>
+            <button
+                    type="button"
+                    class="usa-button usa-button--unstyled pmc-header__search__button"
+                    aria-label="Open search"
+                    data-ga-category="search"
+                    data-ga-action="PMC"
+                    data-ga-label="pmc_search_panel_mobile"
+            >
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/search.svg" alt="PMC search open icon" aria-hidden="true" class="usa-icon usa-icon--size-4 pmc-icon__open" />
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/close.svg" alt="PMC search close ison" aria-hidden="true" class="usa-icon usa-icon--size-4 pmc-icon__close" />
+            </button>
+        </div>
+        <div class="pmc-header__search">
+            
+
+
+<form class="usa-search usa-search--extra usa-search--article-right-column  pmc-header__search__form" id="pmc-search-form" autocomplete="off" role="search">
+<label class="usa-sr-only" for="pmc-search">Search PMC Full-Text Archive</label>
+<span class="autoComplete_wrapper flex-1">
+<input class="usa-input width-full maxw-none" required="required" placeholder="Search PMC Full-Text Archive" id="pmc-search"  type="search" name="term" data-autocomplete-url="https://pmc.ncbi.nlm.nih.gov/autocomp/search/autocomp/"/>
+</span>
+<button
+class="usa-button"
+type="submit"
+formaction="https://pmc.ncbi.nlm.nih.gov/search/"
+data-ga-category="search"
+data-ga-action="PMC"
+data-ga-label="PMC_search_button"
+>
+<span class="usa-search__submit-text">Search in PMC</span>
+<img
+src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons-bg/search--white.svg"
+class="usa-search__submit-icon"
+alt="Search"
+/>
+</button>
+</form>
+            <div class="display-flex flex-column tablet:flex-row tablet:flex-justify flex-justify-center flex-align-center width-full desktop:maxw-44">
+                <ul class="pmc-header__search__menu">
+                    <li>
+                        
+                            <a class="usa-link" href="/journals/" data-ga-action="featured_link" data-ga-label="journal list">
+                                Journal List
+                            </a>
+                        
+                    </li>
+                    <li>
+                        
+                            <a class="usa-link" href="/about/userguide/" data-ga-action="featured_link"
+                            data-ga-label="user guide">
+                                User Guide
+                            </a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+
+        
+        
+
+       
+  <div class="usa-section padding-top-0 desktop:padding-top-6 pmc-article-section" data-article-db="pmc" data-article-id="13354230">
+
+    
+
+   
+
+
+
+<div class="grid-container pmc-actions-bar" aria-label="Actions bar" role="complementary">
+    <div class="grid-row">
+        <div class="grid-col-fill display-flex">
+             <div class="display-flex">
+                <ul class="usa-list usa-list--unstyled usa-list--horizontal">
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex mob">
+                        <button
+                                type="button"
+                                class="usa-button pmc-sidenav__container__open usa-button--unstyled width-auto display-flex"
+                                aria-label="Open resources"
+                                data-extra-class="is-visible-resources"
+                                data-ga-category="resources_accordion"
+                                data-ga-action="click"
+                                data-ga-label="mobile_icon"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/more_vert.svg" alt="Open resources icon" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                    </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex mob">
+                        <a
+                                href="https://doi.org/10.1038/s44401-025-00036-1"
+                                class="usa-link display-flex usa-tooltip"
+                                role="button"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                title="View on publisher site"
+                                data-position="bottom"
+                                aria-label="View on publisher site"
+                                data-ga-category="actions"
+                                data-ga-action="click"
+                                data-ga-label="publisher_link_mobile"
+                        >
+                                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/launch.svg" alt="View on publisher site icon" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </a>
+                    </li>
+                    
+                    
+                        <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                             <a
+                                     href="pdf/44401_2025_Article_36.pdf"
+                                     class="usa-link display-flex usa-tooltip"
+                                     role="button"
+                                     title="Download PDF"
+                                     data-position="bottom"
+                                     aria-label="Download PDF"
+                                     data-ga-category="actions"
+                                     data-ga-action="click"
+                                     data-ga-label="pdf_download_mobile"
+                             >
+
+                                 <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/file_download.svg" alt="Download PDF icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                            </a>
+                        </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                        <button
+                            class="usa-button usa-button--unstyled  usa-tooltip collections-dialog-trigger collections-button display-flex collections-button-empty"
+                            title="Add to Collections"
+                            data-position="bottom"
+                            aria-label="Save article in MyNCBI collections."
+                            data-ga-category="actions"
+                            data-ga-action="click"
+                            data-ga-label="collections_button_mobile"
+                            data-collections-open-dialog-enabled="false"
+                            data-collections-open-dialog-url="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpmc.ncbi.nlm.nih.gov%2Farticles%2FPMC13354230%2F%23open-collections-dialog"
+                            data-in-collections="false"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/action-bookmark-full.svg" alt="Collections icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link usa-icon--bookmark-full" />
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/action-bookmark-empty.svg" alt="Collections icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link usa-icon--bookmark-empty" />
+                        </button>
+                    </li>
+                    
+                    <li class="margin-right-2 mobile-lg:margin-right-4 display-flex">
+                        <button role="button" class="usa-button usa-button--unstyled usa-tooltip citation-dialog-trigger display-flex"
+                            aria-label="Open dialog with citation text in different styles"
+                            title="Cite"
+                            data-position="bottom"
+                            data-ga-category="actions"
+                            data-ga-action="open"
+                            data-ga-label="cite_mobile"
+                            data-all-citations-url="/resources/citations/13354230/"
+                            data-citation-style="nlm"
+                            data-download-format-link="/resources/citations/13354230/export/"
+                        >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/format_quote.svg" alt="Cite icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                    </li>
+                    
+                    <li class="pmc-permalink display-flex" >
+                         <button
+                                 type="button"
+                                 title="Permalink"
+                                 data-position="bottom"
+                                 class="usa-button usa-button--unstyled display-flex usa-tooltip"
+                                 aria-label="Show article permalink"
+                                 aria-expanded="false"
+                                 aria-haspopup="true"
+                                 data-ga-category="actions"
+                                 data-ga-action="open"
+                                 data-ga-label="permalink_mobile"
+                         >
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/share.svg" alt="Show article permalink icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+                        </button>
+                        
+
+<div class="pmc-permalink__dropdown" hidden>
+    <div class="pmc-permalink__dropdown__container">
+          <h2 class="usa-modal__heading margin-top-0 margin-bottom-2 text-uppercase font-sans-xs">PERMALINK</h2>
+          <div class="pmc-permalink__dropdown__content">
+              <input type="text" class="usa-input" value="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/" aria-label="Article permalink">
+              <button class="usa-button display-inline-flex pmc-permalink__dropdown__copy__btn margin-right-0" title="Copy article permalink" data-ga-category="save_share" data-ga-action="link" data-ga-label="copy_link">
+                  <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/content_copy.svg" alt="Copy icon" aria-hidden="true" class="usa-icon usa-icon--white" />
+                  <span class="margin-left-1">Copy</span>
+              </button>
+          </div>
+    </div>
+</div>
+                    </li>
+                </ul>
+            </div>
+            <button
+                    type="button"
+                    class="usa-button pmc-sidenav__container__open usa-button--unstyled width-auto display-flex"
+                    aria-label="Open article navigation"
+                    data-extra-class="is-visible-in-page"
+                    data-ga-category="actions"
+                    data-ga-action="open"
+                    data-ga-label="article_nav_mobile"
+            >
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/list.svg" alt="Open article navigation icon" aria-hidden="true" class="usa-icon usa-icon--size-4 usa-icon--link" />
+            </button>
+        </div>
+    </div>
+</div>
+    <div class="grid-container desktop:padding-left-6">
+      <div id="article-container" class="grid-row grid-gap">
+        <div class="grid-col-12 desktop:grid-col-8 order-2 pmc-layout__content">
+            <div class="grid-container padding-left-0 padding-right-0">
+                <div class="grid-row desktop:margin-left-neg-6">
+                    <div class="grid-col-12">
+                        <div class="pmc-layout__disclaimer" role="complementary" aria-label="Disclaimer note">
+    As a library, NLM provides access to scientific literature. Inclusion in an NLM database does not imply endorsement of, or agreement with,
+    the contents by NLM or the National Institutes of Health.<br/>
+    Learn more:
+    <a class="usa-link" data-ga-category="Link click" data-ga-action="Disclaimer" data-ga-label="New disclaimer box" href="/about/disclaimer/">PMC Disclaimer</a>
+    |
+    <a class="usa-link" data-ga-category="Link click" data-ga-action="PMC Copyright Notice" data-ga-label="New disclaimer box" href="/about/copyright/">
+        PMC Copyright Notice
+    </a>
+</div>
+                    </div>
+                </div>
+                <div class="grid-row pmc-wm desktop:margin-left-neg-6">
+                    <!-- Main content -->
+                    <main
+                      id="main-content"
+                      class="usa-layout-docs__main usa-layout-docs grid-col-12 pmc-layout pmc-prose padding-0"
+                    >
+
+                      
+                        <section class="pmc-journal-banner text-center line-height-none" aria-label="Journal banner"><img src="https://cdn.ncbi.nlm.nih.gov/pmc/banners/logo-npjhealthsyst.png" alt="npj Health Systems logo" usemap="#pmc-banner-imagemap" width="500" height="75"><map name="pmc-banner-imagemap"><area alt="Link to npj Health Systems" title="Link to npj Health Systems" shape="default" href="https://doi.org/10.1038/s44401-025-00036-1" target="_blank" rel="noopener noreferrer"></map></section><article lang="en"><section aria-label="Article citation and metadata"><section class="pmc-layout__citation font-secondary font-xs"><div>
+<div class="display-inline-block"><button type="button" class="cursor-pointer text-no-underline bg-transparent border-0 padding-0 text-left margin-0 text-normal text-primary" aria-controls="journal_context_menu">Npj Health Syst</button></div>. 2025 Sep 4;2:32. doi: <a href="https://doi.org/10.1038/s44401-025-00036-1" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">10.1038/s44401-025-00036-1</a>
+</div>
+<nav id="journal_context_menu" hidden="hidden"><ul class="menu-list font-family-ui" role="menu">
+<li role="presentation"><a href='https://pmc.ncbi.nlm.nih.gov/search/?term="Npj%20Health%20Syst"[jour]' class="usa-link" role="menuitem">Search in PMC</a></li>
+<li role="presentation"><a href='https://pubmed.ncbi.nlm.nih.gov/?term="Npj%20Health%20Syst"[jour]' lang="en" class="usa-link" role="menuitem">Search in PubMed</a></li>
+<li role="presentation"><a href='https://www.ncbi.nlm.nih.gov/nlmcatalog?term="Npj%20Health%20Syst"[Title%20Abbreviation]' class="usa-link" role="menuitem">View in NLM Catalog</a></li>
+<li role="presentation"><a href='?term="Npj%20Health%20Syst"[jour]' class="usa-link" role="menuitem" data-add-to-search="true">Add to search</a></li>
+</ul></nav></section><section class="front-matter"><div class="ameta p font-secondary font-xs">
+<hgroup><h1>Protecting medical privacy with pretrained language models: named entity recognition-based de-identification in Korean unstructured electronic medical records</h1></hgroup><div class="cg p">
+<a href='https://pubmed.ncbi.nlm.nih.gov/?term="Seo%20J"[Author]' class="usa-link" aria-describedby="id1"><span class="name western">Jiahn Seo</span></a><div hidden="hidden" id="id1">
+<h3><span class="name western">Jiahn Seo</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Seo%20J"[Author]' class="usa-link"><span class="name western">Jiahn Seo</span></a>
+</div>
+</div>
+<sup>1</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20Y"[Author]' class="usa-link" aria-describedby="id2"><span class="name western">Yunha Kim</span></a><div hidden="hidden" id="id2">
+<h3><span class="name western">Yunha Kim</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20Y"[Author]' class="usa-link"><span class="name western">Yunha Kim</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Choi%20H"[Author]' class="usa-link" aria-describedby="id3"><span class="name western">Heejung Choi</span></a><div hidden="hidden" id="id3">
+<h3><span class="name western">Heejung Choi</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Choi%20H"[Author]' class="usa-link"><span class="name western">Heejung Choi</span></a>
+</div>
+</div>
+<sup>1</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20M"[Author]' class="usa-link" aria-describedby="id4"><span class="name western">Minkyoung Kim</span></a><div hidden="hidden" id="id4">
+<h3><span class="name western">Minkyoung Kim</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20M"[Author]' class="usa-link"><span class="name western">Minkyoung Kim</span></a>
+</div>
+</div>
+<sup>1</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Han%20J"[Author]' class="usa-link" aria-describedby="id5"><span class="name western">JiYe Han</span></a><div hidden="hidden" id="id5">
+<h3><span class="name western">JiYe Han</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Han%20J"[Author]' class="usa-link"><span class="name western">JiYe Han</span></a>
+</div>
+</div>
+<sup>1</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kee%20G"[Author]' class="usa-link" aria-describedby="id6"><span class="name western">Gaeun Kee</span></a><div hidden="hidden" id="id6">
+<h3><span class="name western">Gaeun Kee</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kee%20G"[Author]' class="usa-link"><span class="name western">Gaeun Kee</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Ko%20S"[Author]' class="usa-link" aria-describedby="id7"><span class="name western">Soyoung Ko</span></a><div hidden="hidden" id="id7">
+<h3><span class="name western">Soyoung Ko</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Ko%20S"[Author]' class="usa-link"><span class="name western">Soyoung Ko</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Jung%20H"[Author]' class="usa-link" aria-describedby="id8"><span class="name western">HyoJe Jung</span></a><div hidden="hidden" id="id8">
+<h3><span class="name western">HyoJe Jung</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Jung%20H"[Author]' class="usa-link"><span class="name western">HyoJe Jung</span></a>
+</div>
+</div>
+<sup>1</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20B"[Author]' class="usa-link" aria-describedby="id9"><span class="name western">Byeolhee Kim</span></a><div hidden="hidden" id="id9">
+<h3><span class="name western">Byeolhee Kim</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20B"[Author]' class="usa-link"><span class="name western">Byeolhee Kim</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Choi%20B"[Author]' class="usa-link" aria-describedby="id10"><span class="name western">Boeun Choi</span></a><div hidden="hidden" id="id10">
+<h3><span class="name western">Boeun Choi</span></h3>
+<div class="p">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Choi%20B"[Author]' class="usa-link"><span class="name western">Boeun Choi</span></a>
+</div>
+</div>
+<sup>1,</sup><sup>2</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Park%20S"[Author]' class="usa-link" aria-describedby="id11"><span class="name western">Sanghyun Park</span></a><div hidden="hidden" id="id11">
+<h3><span class="name western">Sanghyun Park</span></h3>
+<div class="p">
+<sup>3</sup>Department of Computer Science, Yonsei University, 50, Yonsei-ro, Seodaemungu, 03722 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Park%20S"[Author]' class="usa-link"><span class="name western">Sanghyun Park</span></a>
+</div>
+</div>
+<sup>3</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Jun%20TJ"[Author]' class="usa-link" aria-describedby="id12"><span class="name western">Tae Joon Jun</span></a><div hidden="hidden" id="id12">
+<h3><span class="name western">Tae Joon Jun</span></h3>
+<div class="p">
+<sup>4</sup>Department of Medical Informatics and Statistics, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Jun%20TJ"[Author]' class="usa-link"><span class="name western">Tae Joon Jun</span></a>
+</div>
+</div>
+<sup>4,</sup><sup>✉,</sup><sup>#</sup>, <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20YH"[Author]' class="usa-link" aria-describedby="id13"><span class="name western">Young-Hak Kim</span></a><div hidden="hidden" id="id13">
+<h3><span class="name western">Young-Hak Kim</span></h3>
+<div class="p">
+<sup>5</sup>Division of Cardiology, Department of Internal Medicine, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="p">Find articles by <a href='https://pubmed.ncbi.nlm.nih.gov/?term="Kim%20YH"[Author]' class="usa-link"><span class="name western">Young-Hak Kim</span></a>
+</div>
+</div>
+<sup>5,</sup><sup>✉,</sup><sup>#</sup>
+</div>
+<ul class="d-buttons inline-list">
+<li><button class="d-button" aria-controls="aip_a" aria-expanded="false">Author information</button></li>
+<li><button class="d-button" aria-controls="anp_a" aria-expanded="false">Article notes</button></li>
+<li><button class="d-button" aria-controls="clp_a" aria-expanded="false">Copyright and License information</button></li>
+</ul>
+<div class="d-panels font-secondary-light">
+<div id="aip_a" class="d-panel p" style="display: none">
+<div class="p" id="Aff1">
+<sup>1</sup>Department of Information Medicine, Asan Medical Center, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div id="Aff2">
+<sup>2</sup>Department of Medical Science, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div id="Aff3">
+<sup>3</sup>Department of Computer Science, Yonsei University, 50, Yonsei-ro, Seodaemungu, 03722 Seoul, Republic of Korea </div>
+<div id="Aff4">
+<sup>4</sup>Department of Medical Informatics and Statistics, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div id="Aff5">
+<sup>5</sup>Division of Cardiology, Department of Internal Medicine, Asan Medical Center, University of Ulsan College of Medicine, 88, Olympicro 43gil, Songpagu, 05505 Seoul, Republic of Korea </div>
+<div class="author-notes p">
+<div class="fn" id="_fncrsp93pmc__">
+<sup>✉</sup><p class="display-inline">Corresponding author.</p>
+</div>
+<div class="fn" id="_eqcntrb93pmc__">
+<sup>#</sup><p class="display-inline">Contributed equally.</p>
+</div>
+</div>
+</div>
+<div id="anp_a" class="d-panel p" style="display: none"><div class="notes p"><section id="historyarticle-meta1" class="history"><p>Received 2025 May 12; Accepted 2025 Aug 4; Collection date 2025.</p></section></div></div>
+<div id="clp_a" class="d-panel p" style="display: none">
+<div>© The Author(s) 2025</div>
+<p><strong>Open Access</strong> This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License, which permits any non-commercial use, sharing, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if you modified the licensed material. You do not have permission under this licence to share adapted material derived from this article or parts of it. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://creativecommons.org/licenses/by-nc-nd/4.0/</a>.</p>
+<div class="p"><a href="/about/copyright/" class="usa-link">PMC Copyright notice</a></div>
+</div>
+</div>
+<div>PMCID: PMC13354230  PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42527470/" class="usa-link">42527470</a>
+</div>
+</div></section></section><section aria-label="Article content"><section class="body main-article-body"><section class="abstract" id="Abs1"><h2>Abstract</h2>
+<p id="Par1">This study introduces a lightweight de-identification software tailored to the Korean healthcare environment, where heterogeneous document formats and limited computing resources hinder clinical data integration. The proposed system protects sensitive patient information while preserving essential clinical content—such as diagnoses, surgical schedules, and prescriptions—for research purposes. We defined de-identification categories specific to the Korean context and implemented a preprocessing pipeline optimized for discharge summaries containing mixed Korean, English, and special characters. To address the lack of high-quality Korean Named Entity Recognition (NER) datasets, we applied Korean-specific data augmentation and fine-tuned the Korean Language Understanding Evaluation (KLUE) Bidirectional Encoder Representations from Transformers (BERT) model to enhance generalizability. Model performance was compared against lightweight Korean large language models (LLMs), including Llama3-Open-Ko-8B and EEVE-Korean-Instruct-10.8B. The KLUE BERT model, trained on an augmented dataset, achieved an F1 score of 91.42% on the internal validation set and maintained 94.30% on real discharge summary data. Notably, it outperformed LLMs in recognizing more than 200 categories of sensitive entities, demonstrating superior performance. This compact solution offers a scalable and privacy-preserving approach for anonymizing electronic medical records (EMRs) in clinical settings.</p>
+<section id="kwd-group1" class="kwd-group"><p><strong>Subject terms:</strong> Information systems and information technology, Health care, Health occupations</p></section></section><section id="Sec1"><h2 class="pmc_sec_title">Introduction</h2>
+<p id="Par2">The digitization of Electronic Medical Records (EMRs) has dramatically improved the efficiency and accuracy of clinical practice, establishing itself as a core infrastructure of modern healthcare systems. EMRs contain not only sensitive personal information such as patient names, dates of birth, and medical histories, but also detailed clinical data, including patient health status and medical progress. As such, EMRs have become an invaluable resource for research and analysis, supporting efforts in disease pattern analysis, prognosis prediction, and novel drug development<sup><a href="#CR1" class="usa-link" aria-describedby="CR1">1</a></sup>. Notably, the potential of EMRs now extends beyond individual institutions, with growing international initiatives—such as those led by the European Union—aiming to establish integrated platforms for cross-border healthcare data interoperability. This expansion underscores EMRs as a driving force behind medical innovation<sup><a href="#CR2" class="usa-link" aria-describedby="CR2">2</a></sup>.</p>
+<p id="Par3">While the integrated use of medical datasets enables advancements in personalized treatment and precision medicine, the protection of patient privacy remains a major challenge<sup><a href="#CR3" class="usa-link" aria-describedby="CR3">3</a></sup>. Despite their clinical value, EMRs are structurally vulnerable to various cybersecurity threats, including hacking, viruses, worms, data breaches, and theft<sup><a href="#CR4" class="usa-link" aria-describedby="CR4">4</a>,<a href="#CR5" class="usa-link" aria-describedby="CR5">5</a></sup>. Recently, concerns have intensified with the emergence of prompt-based adversarial attacks using Large Language Models (LLMs), which pose a novel risk of exposing sensitive personal information embedded in clinical narratives<sup><a href="#CR6" class="usa-link" aria-describedby="CR6">6</a></sup>. Such vulnerabilities make the presence of personally identifiable information in EMRs a significant barrier to data sharing and secondary analysis. In response, regulatory authorities such as the European Medicines Agency (EMA) have recommended the transparent disclosure of clinical trial information<sup><a href="#CR7" class="usa-link" aria-describedby="CR7">7</a></sup>. Consequently, the development and refinement of de-identification technologies has become a fundamental prerequisite for the secure and ethical use of EMR data in healthcare research<sup><a href="#CR8" class="usa-link" aria-describedby="CR8">8</a></sup>.</p>
+<p id="Par4">In line with the global trend toward data utilization, South Korea enacted the Personal Information Protection Act (PIPA) in 2011 to strike a balance between individual privacy protection and the use of data for research and innovation<sup><a href="#CR9" class="usa-link" aria-describedby="CR9">9</a></sup>. In 2020, the revision of Korea’s “Three Data Laws” further expanded the legal framework by enabling the processing and utilization of pseudonymized information, thereby facilitating Artificial Intelligence (AI)-driven medical research and large-scale data analysis. Similar to the United States’ Health Insurance Portability and Accountability Act (HIPAA), which defines a “Safe Harbor” standard requiring the removal of 18 types of Protected Health Information (PHI) to consider clinical data de-identified<sup><a href="#CR10" class="usa-link" aria-describedby="CR10">10</a></sup>, Korea has established official Guidelines for the Utilization of Health and Medical Data. These guidelines aim not only to ensure compliance with privacy protection principles but also to promote national strategies for advancing precision medicine and data-driven healthcare innovation<sup><a href="#CR11" class="usa-link" aria-describedby="CR11">11</a></sup>.</p>
+<p id="Par5">Korean EMRs consist of a complex mixture of Korean, English, and special characters, posing significant challenges to the direct application of conventional English-based Named Entity Recognition (NER) models. In particular, the lack of high-quality training datasets for Korean NER has often necessitated manual annotation or review by domain experts and engineers, resulting in a time-consuming and resource-intensive process. In contrast, a variety of specialized NER technologies and models have been actively developed for English and Chinese<sup><a href="#CR12" class="usa-link" aria-describedby="CR12">12</a>–<a href="#CR14" class="usa-link" aria-describedby="CR14">14</a></sup>, with Deep Learning (DL) approaches—especially those based on self-attention mechanisms—commonly adopted for NER tasks<sup><a href="#CR15" class="usa-link" aria-describedby="CR15">15</a></sup>. Several studies have proposed de-identification techniques that are effective in multi-institutional settings using 500 clinical records<sup><a href="#CR16" class="usa-link" aria-describedby="CR16">16</a></sup>, while others have explored end-to-end frameworks that integrate multiple DL models to enhance de-identification performance<sup><a href="#CR17" class="usa-link" aria-describedby="CR17">17</a></sup>. For the Korean language, a Bidirectional Encoder Representations from Transformers (BERT) model applying WordPiece tokenization was trained using data from online question-and-answer platforms<sup><a href="#CR18" class="usa-link" aria-describedby="CR18">18</a></sup>, and domain-specific Korean medical corpora have also been used to build specialized NER models for medical entity recognition<sup><a href="#CR19" class="usa-link" aria-describedby="CR19">19</a>,<a href="#CR20" class="usa-link" aria-describedby="CR20">20</a></sup>. Nevertheless, rule-based methods such as regular expressions continue to face limitations in accuracy and scalability, making them inefficient and impractical for application to real-world clinical data<sup><a href="#CR21" class="usa-link" aria-describedby="CR21">21</a>,<a href="#CR22" class="usa-link" aria-describedby="CR22">22</a></sup>.</p>
+<p id="Par6">This study aims to develop de-identification software tailored to the Korean healthcare environment, enabling the protection of sensitive patient information while retaining essential clinical content—such as diagnoses, surgical schedules, and medication prescriptions—for research purposes. In practice, it is challenging to implement a universal de-identification tool across medical institutions due to heterogeneous document formats across hospitals and departments, as well as limited computing resources in clinical settings<sup><a href="#CR23" class="usa-link" aria-describedby="CR23">23</a></sup>. Although the theoretical use of LLMs for EMR de-identification via prompt-based input has been proposed, uploading sensitive medical data to external commercial platforms raises serious security and legal concerns under privacy protection laws. To address this, we designed a lightweight LLM-based de-identification tool that can be deployed locally on consumer-grade hospital hardware. The developed software was validated using discharge summary data and compared against open LLMs. The model trained with augmented data demonstrated the best performance. These results confirm that high-accuracy de-identification of real-world clinical documents is feasible even under resource-constrained conditions, and that the proposed model serves as a practical and effective tool for EMR-based NER tasks.</p></section><section id="Sec2"><h2 class="pmc_sec_title">Results</h2>
+<section id="Sec3"><h3 class="pmc_sec_title">Performance of models by entity category</h3>
+<p id="Par7">We used two base models: the Korean Language Understanding Evaluation (KLUE) BERT<sup><a href="#CR24" class="usa-link" aria-describedby="CR24">24</a></sup>, a BERT architecture specialized for the Korean language, and bert-base-multilingual-cased<sup><a href="#CR25" class="usa-link" aria-describedby="CR25">25</a></sup>, a multilingual BERT model. The training datasets consisted of the Base dataset, which includes the Naver dataset and additional institution names from Seoul Asan Medical Center, and the Base+AD dataset, which adds augmented data to the Base dataset. Using these, we developed a total of four models. Table <a href="#Tab1" class="usa-link">1</a> presents the performance evaluation results by entity category for each model.</p>
+<section class="tw xbox font-sm" id="Tab1"><h4 class="obj_head">Table 1.</h4>
+<div class="caption p"><p>Performance comparison of fine-tuned BERT-based models</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="3" rowspan="1">BERT-base-multilingual-cased</th>
+<th colspan="3" rowspan="1">KLUE BERT</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="1" rowspan="1">Precision</th>
+<th colspan="1" rowspan="1">Recall</th>
+<th colspan="1" rowspan="1">F1-score</th>
+<th colspan="1" rowspan="1">Precision</th>
+<th colspan="1" rowspan="1">Recall</th>
+<th colspan="1" rowspan="1">F1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="1" rowspan="1">Base</td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1">0.86</td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1">0.88</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> PER</td>
+<td colspan="1" rowspan="1">0.86</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.91</td>
+<td colspan="1" rowspan="1">0.88</td>
+<td colspan="1" rowspan="1">0.89</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> ORG</td>
+<td colspan="1" rowspan="1">0.86</td>
+<td colspan="1" rowspan="1">0.84</td>
+<td colspan="1" rowspan="1">0.85</td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.85</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> LOC</td>
+<td colspan="1" rowspan="1">0.83</td>
+<td colspan="1" rowspan="1">0.83</td>
+<td colspan="1" rowspan="1">0.83</td>
+<td colspan="1" rowspan="1">0.82</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.85</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> DAT</td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1">0.92</td>
+<td colspan="1" rowspan="1">0.90</td>
+<td colspan="1" rowspan="1">0.88</td>
+<td colspan="1" rowspan="1">0.93</td>
+<td colspan="1" rowspan="1">0.90</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> TIM</td>
+<td colspan="1" rowspan="1">0.70</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.78</td>
+<td colspan="1" rowspan="1">0.83</td>
+<td colspan="1" rowspan="1">0.86</td>
+<td colspan="1" rowspan="1">0.84</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">Base + AD</td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1"></td>
+<td colspan="1" rowspan="1"><strong>0.91</strong></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> PER</td>
+<td colspan="1" rowspan="1">0.91</td>
+<td colspan="1" rowspan="1">0.90</td>
+<td colspan="1" rowspan="1">0.90</td>
+<td colspan="1" rowspan="1">0.90</td>
+<td colspan="1" rowspan="1">0.82</td>
+<td colspan="1" rowspan="1"><strong>0.91</strong></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> ORG</td>
+<td colspan="1" rowspan="1">0.88</td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1">0.88</td>
+<td colspan="1" rowspan="1">0.92</td>
+<td colspan="1" rowspan="1">0.91</td>
+<td colspan="1" rowspan="1"><strong>0.92</strong></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> LOC</td>
+<td colspan="1" rowspan="1">0.84</td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.82</td>
+<td colspan="1" rowspan="1">0.89</td>
+<td colspan="1" rowspan="1"><strong>0.90</strong></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> DAT</td>
+<td colspan="1" rowspan="1">0.91</td>
+<td colspan="1" rowspan="1">0.93</td>
+<td colspan="1" rowspan="1">0.92</td>
+<td colspan="1" rowspan="1">0.93</td>
+<td colspan="1" rowspan="1">0.93</td>
+<td colspan="1" rowspan="1"><strong>0.93</strong></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> TIM</td>
+<td colspan="1" rowspan="1">0.84</td>
+<td colspan="1" rowspan="1">0.91</td>
+<td colspan="1" rowspan="1">0.87</td>
+<td colspan="1" rowspan="1">0.92</td>
+<td colspan="1" rowspan="1">0.85</td>
+<td colspan="1" rowspan="1"><strong>0.88</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab1/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<div class="tw-foot p"><div class="fn" id="_fn_p9">
+<p><em>BERT</em> bidirectional encoder representations from transformers, <em>KLUE</em> Korean language understanding evaluation.</p>
+<p>The bold values represent the highest F1-score within each model category. Since the F1-score evaluates the overall performance of labels without bias toward any specific label, it is an important performance metric in NER.</p>
+</div></div></section><p id="Par8">Among the four models, the KLUE–BERT trained on the Base + AD dataset achieved the highest precision, recall, and F1 scores across categories, with an F1 score of 0.91. This represents an improvement of approximately 0.05 points compared to the model trained with bert-base-multilingual-cased on the Base dataset.</p></section><section id="Sec4"><h3 class="pmc_sec_title">Performances of KLUE BERT</h3>
+<p id="Par9">Among the four models, the KLUE BERT model fine-tuned with the augmented Base + AD dataset demonstrated the highest performance. This model was evaluated on a manually de-identified test dataset derived from real discharge summaries extracted and curated from Seoul Asan Medical Center (AMC). For evaluation, 30% of the test data was reserved, and training was conducted over five epochs. The model achieved F1 scores of 93.87%, 93.54%, 94.30%, 93.71%, and 93.31%, with an average F1 score of 93.74% (Table <a href="#Tab2" class="usa-link">2</a>).</p>
+<section class="tw xbox font-sm" id="Tab2"><h4 class="obj_head">Table 2.</h4>
+<div class="caption p"><p>De-identification performance of KLUE BERT with augmented data</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="6" rowspan="1">KLUE BERT</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="1" rowspan="1">Epoch1</th>
+<th colspan="1" rowspan="1">Epoch2</th>
+<th colspan="1" rowspan="1">Epoch3</th>
+<th colspan="1" rowspan="1">Epoch4</th>
+<th colspan="1" rowspan="1">Epoch5</th>
+<th colspan="1" rowspan="1">Average</th>
+</tr>
+</thead>
+<tbody><tr>
+<td colspan="1" rowspan="1">F1-score</td>
+<td colspan="1" rowspan="1">93.87%</td>
+<td colspan="1" rowspan="1">93.51%</td>
+<td colspan="1" rowspan="1"><strong>94.30%</strong></td>
+<td colspan="1" rowspan="1">93.71%</td>
+<td colspan="1" rowspan="1">93.31%</td>
+<td colspan="1" rowspan="1">93.74%</td>
+</tr></tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab2/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<div class="tw-foot p"><div class="fn" id="_fn_p14">
+<p><em>KLUE</em> Korean language understanding evaluation.</p>
+<p>The bold values represent the highest F1-score achieved at the epoch with the highest performance in KLUE BERT.</p>
+</div></div></section></section><section id="Sec5"><h3 class="pmc_sec_title">Comparison of LLM performance</h3>
+<p id="Par10">To compare our proposed model with open-source LLMs, we applied a manually de-identified discharge summary dataset from Seoul AMC to the following models: Llama3-Open-Ko-8B<sup><a href="#CR26" class="usa-link" aria-describedby="CR26">26</a></sup>, EEVE-Korean-Instruct-10.8B<sup><a href="#CR27" class="usa-link" aria-describedby="CR27">27</a></sup>, and Llama3-8B-Instruct<sup><a href="#CR28" class="usa-link" aria-describedby="CR28">28</a></sup>. We effectively instructed open LLMs using few-shot prompting combined with Chain-of-Thought (CoT) prompting<sup><a href="#CR29" class="usa-link" aria-describedby="CR29">29</a></sup>, along with prompt instructions that included multiple few-shot examples. As shown in Fig. <a href="#Fig1" class="usa-link">1</a>, this approach guided each LLM to perform personal information anonymization. Notably, both Llama3-Open-Ko-8B and EEVE-Korean-Instruct-10.8B were able to accurately tag entity categories for each token as instructed. However, the multilingual Llama3-8B-Instruct model failed to properly understand the discharge summary content and produced inaccurate tagging results. Therefore, this model was excluded from the final performance comparison due to its unsuitability for EMR de-identification.</p>
+<figure class="fig xbox font-sm" id="Fig1"><h4 class="obj_head">Fig. 1. Process of NER tagging using LLM.</h4>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig1_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/c3018fc472bb/44401_2025_36_Fig1_HTML.jpg" loading="lazy" id="d33e719" height="825" width="675" alt="Fig. 1"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig1/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>English interpretation of Korean sentences: <sup>1)</sup> Dr. Hong Gil-dong is scheduled to visit the outpatient clinic, <sup>2)</sup> Kim Cheol-su’s outpatient appointment, <sup>3)</sup> Lee Young-hee’s outpatient appointment. <sup>4)</sup> Kim Gap-su cartentor after opd fu. <sup>5)</sup> Bong Joon-ho’s outpatient appointment.</p></figcaption></figure><p id="Par11">The tagging outputs of all models were assessed using this same procedure, and the proposed model’s NER tagging performance was compared against that of publicly available LLM models. Specifically, KLUE-BERT, Llama3-Open-Ko-8B, and EEVE-Korean-Instruct-10.8B were evaluated against a manually annotated test set. A score of “1” was assigned when both the number and labels of the tagged tokens exactly matched the reference, and “0” was assigned otherwise.</p>
+<p id="Par12">As shown in Fig. <a href="#Fig2" class="usa-link">2</a>, KLUE BERT achieved the highest performance among the baseline test dataset of 1000 samples, with a total of 583 matching tags, which represents the largest overlap with the manually annotated results. In the case of open LLMs, performance was evaluated under two conditions: general prompting and CoT prompting. The CoT approach consistently yielded higher performance. For example, Llama3-Open-Ko-8B achieved 347 matching tags with general prompting, but improved to 366 tags when CoT prompting was applied. Similarly, EEVE-Korean-Instruct-10.8B initially produced 182 matching tags, which increased significantly to 327 with the application of CoT prompting.</p>
+<figure class="fig xbox font-sm" id="Fig2"><h4 class="obj_head">Fig. 2.</h4>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig2_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/804087bd9f62/44401_2025_36_Fig2_HTML.jpg" loading="lazy" id="d33e733" height="501" width="675" alt="Fig. 2"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig2/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>Number of matching tags per model.</p></figcaption></figure><p id="Par13">We conducted an error analysis on KLUE BERT, which was trained using base+AD, as well as on Llama3-Open-Ko-8B and EEVE-Korean-Instruct-10.8B, both of which incorporated the CoT prompting technique, to provide a more detailed understanding of each model’s behavior and error patterns based on their performance on the test dataset. To this end, we analyzed the entity-level tagging results using the confusion matrices shown in Fig. <a href="#Fig3" class="usa-link">3</a>. The results showed that all models exhibited relatively low confusion for the “PER”, “DAT”, and “O” entities. In particular, KLUE BERT demonstrated the highest overall consistency and accuracy, with minimal confusion between entity categories, highlighting its robustness. In contrast, Llama3-Open-Ko-8B and EEVE-Korean-Instruct-10.8B tended to confuse various entities with the “O” category more frequently. Overall, compared to KLUE BERT, these two models showed lower recall but higher precision, suggesting a conservative tendency to predict “O” in ambiguous situations.</p>
+<figure class="fig xbox font-sm" id="Fig3"><h4 class="obj_head">Fig. 3.</h4>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig3_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/47b4b71b86bd/44401_2025_36_Fig3_HTML.jpg" loading="lazy" id="d33e745" height="195" width="691" alt="Fig. 3"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig3/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>Entity-wise confusion matrix per model.</p></figcaption></figure></section><section id="Sec6"><h3 class="pmc_sec_title">Software for de-identification</h3>
+<p id="Par14">The aim of the present study was to develop an affordable and highly usable EMR de-identification software that can be used with ease at any hospital. The proposed NER model was leveraged to automatically de-identify personal information, and the software was implemented with an intuitive user interface using Gradio<sup><a href="#CR30" class="usa-link" aria-describedby="CR30">30</a></sup>. This software accurately analyzed EMR data, protected sensitive patient information, and facilitated the secure sharing of data between hospitals while supporting research and analysis.</p>
+<p id="Par15">The software enabled the input of unstructured text EMR data in CSV format for de-identification. The pre-trained NER model could identify and tag personal information within the text. Two buttons, the “Tagging” and “Color Tag” buttons, were provided during this process. The “Tagging” button enabled the verification of whether the tagging and text processing were accurate. The “Color Tag” ensured that the personal information was properly highlighted and displayed with the correct NER tags.</p>
+<p id="Par16">Figure <a href="#Fig4" class="usa-link">4</a> illustrates the Gradio interface for de-identifying EMRs using the NER model. This interface visually demonstrates the process of identifying and tagging personal information within sample EMR text. For convenience, Table <a href="#Tab3" class="usa-link">3</a> presents both the original Korean EMR text and its de-identified, tagged version translated into English.</p>
+<figure class="fig xbox font-sm" id="Fig4"><h4 class="obj_head">Fig. 4.</h4>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig4_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/843f75f420de/44401_2025_36_Fig4_HTML.jpg" loading="lazy" id="d33e770" height="453" width="700" alt="Fig. 4"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig4/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>EMR de-identification input in Gradio and outcomes (Korean version).</p></figcaption></figure><section class="tw xbox font-sm" id="Tab3"><h4 class="obj_head">Table 3.</h4>
+<div class="caption p"><p>EMR de-identification input in Gradio and outcomes (English version)</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead><tr>
+<th colspan="1" rowspan="1">Original Data</th>
+<th colspan="1" rowspan="1">EMR Text and Tagging</th>
+</tr></thead>
+<tbody><tr>
+<td colspan="1" rowspan="1">From 2021.10, IIP was performed at Korea University Hospital and chronic fibrosing ild probable uip pattern was shown on chest CT on 2022.9.29 and there was no change, so they said to do FU after 1 year. After TA, DOE got worse and on 2023.04.05, DOE got worse to gr3 and visited our hospital for treatment. I was admitted and underwent ild wu and bal, so please check the results at the outpatient clinic. VATS is being considered for differentiation, and Professor Choi Sang-cheol of CS was consulted and readmitted on 09.14 and surgery was scheduled for 09.15.</td>
+<td colspan="1" rowspan="1">From 2021.10 <strong>(DAT-B)</strong>, IIP was performed at Korea University Hospital <strong>(ORG-B)</strong> and chronic fibrosing ild probable uip pattern was shown on chest CT on 2022.9.29 <strong>(DAT-B)</strong> and there was no change, so they said to do FU after <strong>(DAT-I)</strong> 1 year <strong>(DAT-B)</strong>. After TA, DOE got worse and on 2023.04.05 <strong>(DAT-B)</strong>, DOE got worse to gr3 and visited our hospital for treatment. I was admitted and underwent ild wu and bal, so please check the results at the outpatient clinic. VATS is being considered for differentiation, and Professor Choi Sang-cheol <strong>(PER-I)</strong> of CS <strong>(PER-B)</strong> was consulted and readmitted on 09.14 <strong>(DAT-B)</strong> and surgery was scheduled for 09.15 <strong>(DAT-B)</strong>.</td>
+</tr></tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab3/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section></section></section><section id="Sec7"><h2 class="pmc_sec_title">Discussion</h2>
+<p id="Par17">This study presents a lightweight and practical de-identification software designed to protect patient privacy in unstructured Korean EMR text while preserving critical clinical information—such as diagnoses, surgical schedules, and medication prescriptions—essential for research purposes. To achieve this, we proposed a novel preprocessing method for effectively identifying personal information in unstructured EMR text. Furthermore, we enhanced model performance by augmenting the existing Korean-specific NER dataset with newly added data to overcome limitations in coverage and diversity. Most existing NER models are specialized for languages such as English or Chinese<sup><a href="#CR12" class="usa-link" aria-describedby="CR12">12</a>–<a href="#CR14" class="usa-link" aria-describedby="CR14">14</a></sup>, or are trained on pre-defined personal information categories. To address this, we redefined de-identification standards suitable for the Korean healthcare environment, based on the PIPA and relevant national guidelines<sup><a href="#CR9" class="usa-link" aria-describedby="CR9">9</a></sup>, and constructed training data accordingly.</p>
+<p id="Par18">The KLUE BERT model trained on the augmented dataset achieved the best performance with an F1-score of 94.30%, and maintained a high accuracy of 93.74% when applied to real discharge summary data. These results demonstrate that incorporating data augmentation into a Korean-specialized model significantly improves entity recognition performance and enables accurate de-identification even in complex clinical documents containing a mixture of Korean, English, and special characters. This indicates that the proposed model can serve as an effective tool for NER tasks on Korean EMR data.</p>
+<p id="Par19">This KLUE BERT model was evaluated on real discharge summary data in comparative experiments with open-source LLMs, and it demonstrated over 200 more matching tags than the open-source LLMs when assessed on a gold-standard dataset of 1000 samples. These results suggest that lightweight language models, when fine-tuned for a specific language and trained on sufficient domain-specific data, can achieve higher accuracy and greater flexibility than large-scale, computationally intensive LLMs.</p>
+<p id="Par20">Finally, a Gradio-based software prototype was implemented, demonstrating an automated de-identification process wherein users can input patient data and receive anonymized outputs in real time. This prototype highlights the feasibility of deploying the proposed solution in diverse hospital environments as an accessible and practical privacy-preserving tool.</p>
+<p id="Par21">A limitation of the present study is that, rather than training the model on a dataset directly tagged from discharge summary data, de-identification was performed using a model trained on external Korean data. Manual tagging of the discharge summaries after performing NER tasks would enable customized de-identification for each hospital. However, this is a cumbersome process that requires manual effort and consumes a significant amount of time and cost, making it inefficient. Furthermore, by incorporating external data, the model has the advantage of enabling robust identification of personal information not only within a single institution but also across various external hospitals, demonstrating its generalizability and practical applicability. Therefore, a simple and fast learning method was proposed in the present study to address this limitation.</p>
+<p id="Par22">This study applied NER to de-identify personal information in unstructured discharge summaries from a single medical institution in AMC, and thus has limitations in terms of generalizability. However, since the training data used in this study included not only data from our institution but also publicly available Korean datasets, it is expected that identifying common sensitive information in discharge summaries from other Korean medical institutions would not pose significant difficulties. Nevertheless, variations in document formats across different hospitals may inevitably lead to differences in de-identification performance. To address this issue, our research team is collaborating with the Ministry of Health and Welfare of Korea to develop standardized templates based on Fast Healthcare Interoperability Resources (FHIR). Through this initiative, we aim to enhance the applicability of de-identification methods and promote the generalizability of our research outcomes.</p>
+<p id="Par23">Another limitation of the present study is the absence of large-scale parameter LLM models, such as Llama3-70B. Compared with that achieved with the Llama3-8B model, the use of large-scale LLMs specialized for Korean facilitated more precise tagging. However, the BERT model developed herein comprised 110 million parameters, in contrast to the 8 billion parameters of the Llama3-8B model. When compared to the time applied to EMR, a significant difference is observed. In this study, de-identification was performed on 1000 lines of unstructured text data using the BERT model, Llama3-Open-Ko-8B, and EEVE-Korean-Instruct-10.8B. As a result, the BERT model took 106 s, while the Llama3-Open-Ko-8B and EEVE-Korean-Instruct-10.8B models took 292 s and 429 s, respectively. In the case of applying CoT, additional processing time was required. The primary goal of this study was to provide a universal and lightweight solution for efficiently utilizing medical data in real-time research and analysis, supporting doctors, nurses, and engineers within hospitals. At Seoul AMC, an average of 12,000 outpatient visits and 2600 inpatient admissions occur daily, generating vast amounts of EMR data. To handle this efficiently, leveraging BERT-based models for de-identification proves to be an effective approach, ensuring both high performance and fast processing speeds.</p>
+<p id="Par24">Despite these limitations, a high-performance NER model for EMR de-identification was developed in the present study by overcoming the lack of Korean data and enhancing the training dataset through pre-processing tasks and data augmentation for discharge summaries. The proposed model can address these issues in the future by manually modifying physician-labeled notes; however, additional studies must be conducted to provide an automated solution without human intervention. The performance of the KLUE BERT model was superior to that of open LLMs with larger parameters. This finding suggests that the model can effectively de-identify personal information in Korean EMRs, thereby expanding the potential use of clinical texts and broadening the scope of data utilization. Thus, the proposed model could contribute to the advancement of medical research.</p></section><section id="Sec8"><h2 class="pmc_sec_title">Methods</h2>
+<p id="Par25">This retrospective study adhered to the tenets of the Declaration of Helsinki (2008) and was approved by the Institutional Review Board of the Seoul AMC (IRB-2023-1293). The data were extracted from the “data” and “clinical research data” warehouses. No patient-identifying information was provided to the models used in the present study: Llama3-Open-Ko-8B, EEVE-Korean-Instruct-10.8B, Llama3-8B-Instruct. The entire research process is visually summarized in Fig. <a href="#Fig5" class="usa-link">5</a> for clarity.</p>
+<figure class="fig xbox font-sm" id="Fig5"><h3 class="obj_head">Fig. 5.</h3>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig5_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/c069f8ca3943/44401_2025_36_Fig5_HTML.jpg" loading="lazy" id="d33e865" height="439" width="691" alt="Fig. 5"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig5/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>Overall flow in this study.</p></figcaption></figure><section id="Sec9"><h3 class="pmc_sec_title">Study design</h3>
+<p id="Par26">The “Guidelines for the Utilization of Health and Medical Data”<sup><a href="#CR9" class="usa-link" aria-describedby="CR9">9</a></sup> states that personal information refers to information related to living individuals, including details such as name, resident registration number, and images, that can be used on their own or when combined with other information to identify an individual. Therefore, the present study focused on key entity name tagging to extract information in clinical text data that can be used to identify individuals.</p>
+<p id="Par27">Five categories were established for the entity names used for de-identification: person (PER), organization (ORG), location (LOC), time (TIM), and date (DAT) (Table <a href="#Tab4" class="usa-link">4</a>). The entity name tagging categories were created based on meaningful words. For instance, the term “한국사람“ (Korean person) was split into “한국“ (Korea) and “사람“ (person), such that “한국“ could be tagged as a location (LOC) or country (ORG). However, the tagging process was conducted based on the meaning of the word, as “한국사람“ is used as a common noun.</p>
+<section class="tw xbox font-sm" id="Tab4"><h4 class="obj_head">Table 4.</h4>
+<div class="caption p"><p>Tag and definition of entity name category class</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead><tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="1" rowspan="1">Entity Name Category</th>
+<th colspan="1" rowspan="1">Tag</th>
+<th colspan="1" rowspan="1">Definition</th>
+</tr></thead>
+<tbody>
+<tr>
+<td colspan="1" rowspan="1">1</td>
+<td colspan="1" rowspan="1">PERSON</td>
+<td colspan="1" rowspan="1">PER</td>
+<td colspan="1" rowspan="1">Items such as real or virtual names of individuals</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">2</td>
+<td colspan="1" rowspan="1">ORGANIZATION</td>
+<td colspan="1" rowspan="1">ORG</td>
+<td colspan="1" rowspan="1">Items such as organizations and institutions, as well as meetings and conferences</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">3</td>
+<td colspan="1" rowspan="1">LOCATION</td>
+<td colspan="1" rowspan="1">LOC</td>
+<td colspan="1" rowspan="1">Items such as names of regions and administrative divisions</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">4</td>
+<td colspan="1" rowspan="1">TIME</td>
+<td colspan="1" rowspan="1">TIM</td>
+<td colspan="1" rowspan="1">Time</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">5</td>
+<td colspan="1" rowspan="1">DATE</td>
+<td colspan="1" rowspan="1">DAT</td>
+<td colspan="1" rowspan="1">Date</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab4/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><p id="Par28">NER divided a sentence into tokens and assigned tags to each token to distinguish named entities. A single named entity can consist of multiple tokens; therefore, a tagging system was used to correctly group them. BIO, a commonly used tagging system, is characterized by its ease of implementation and interpretation, as well as its ability to ensure a consistent entity structure. This system provided a structure that can distinguish between the beginning and internal tokens of an entity<sup><a href="#CR31" class="usa-link" aria-describedby="CR31">31</a></sup>.</p>
+<ul class="list" style="list-style-type:disc">
+<li><p id="Par29"><strong>B</strong>(Beginning): Beginning of the entity</p></li>
+<li><p id="Par30"><strong>I</strong>(Inside): Inside of the entity</p></li>
+<li><p id="Par31"><strong>O</strong>(Outside): Tokens, not entities</p></li>
+</ul>
+<p id="Par32">BIO can recognize meaningful words and identify entity boundaries. The segmentation of labels enables the model to learn specific tagging patterns. These features of BIO have led to its use in fields such as healthcare and law that require the processing of complex entities. For this reason, the BIO tagging system was used in the present study to assign -B and -I to the five categories. A total of 11 tagging labels were obtained with the inclusion of O (Table <a href="#Tab5" class="usa-link">5</a>). The simplicity of BIO tags and the clear boundary setting enhance the accuracy and consistency of learning, in addition to ensuring compatibility with various datasets.</p>
+<section class="tw xbox font-sm" id="Tab5"><h4 class="obj_head">Table 5.</h4>
+<div class="caption p"><p>Final entity category</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead><tr>
+<th colspan="1" rowspan="1">Total Entity Tagging Category</th>
+<th colspan="1" rowspan="1">Number</th>
+</tr></thead>
+<tbody><tr>
+<td colspan="1" rowspan="1">PER-B, PER-I, ORG-B, ORG-I, LOC-B, LOC-I, TIM-B, TIM-I, DAT-B, DAT-B, O</td>
+<td colspan="1" rowspan="1">11</td>
+</tr></tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab5/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section></section><section id="Sec10"><h3 class="pmc_sec_title">EMR discharge note preprocessing</h3>
+<p id="Par33">The dataset used to apply the trained NER model for de-identification comprises the discharge summaries of patients admitted to Seoul Asan Medical Center between January 2019 and October 2023. The dataset includes 611,681 rows and 22 columns. Eight columns with missing data were removed, yielding a final dataset with 14 columns. The discharge summaries primarily included information related to discharge, such as primary symptoms, allergy symptoms, primary diagnosis, other diagnoses, and surgical or procedure information. These texts were primarily written by administrators, nurses, and physicians. The text contained a mix of Korean, English, stopwords, and special characters. De-identification of this text is essential, given that it includes personally identifiable information such as names of patients and healthcare providers, as well as regions and locations.</p>
+<p id="Par34">An appropriate pre-processing process for the discharge summaries was commenced to apply the trained NER model. The entirety of the text was converted to lowercase. Subsequently, the characters were removed such that only English letters, Korean characters, and numbers were retained. This preprocessing approach differed from standard text data preprocessing. Special characters are typically removed from text to improve text utility in general; however, the correlation between the context and numbers can influence the prediction performance of the model for medical data. Furthermore, the meaning of special characters must be preserved to facilitate precision medicine, personalized treatments, and comparisons with other research.</p>
+<p id="Par35">The data pre-processing steps applied in the present study were as follows. Special characters such as “.”, “:”, “+“, “-“, “&gt;“, “&lt;“, “~“, and “%“ were retained by using regular expressions. The period symbol (“.”) is used in unit notation; thus, it was retained during the pre-processing steps as removing it could lead to incorrect interpretations, such as “2.48 kg” being misread as “248 kg.” The symbols “+“ and “-“ were also retained, given that they may indicate additional information following numbers. The symbols “&gt;“ and “&lt;“ were also retained as they can represent steps in a sequence or size comparisons. The tilde symbol (“~“) was also retained as it is used to represent ranges, e.g., “6–7 months old.” The percentage symbol (“%”) was also retained as it indicates percentages, e.g., “80–90%”.</p>
+<p id="Par36">Consecutive spaces were unified into a single space during the pre-processing process, and newline characters were removed. The NER dataset was tokenized based on simple word spacing, and all data types were converted to strings. The missing values were filled with the text “missing,” and categorical variables were standardized to the most frequent value based on their frequency. For instance, “호전됨“ and “호전됨(improved),” if present, were unified under the variable name “호전됨”.</p></section><section id="Sec11"><h3 class="pmc_sec_title">Training data and data augmentation</h3>
+<p id="Par37">The Korean NER dataset used for training in the present study was sourced from the Naver NLP Challenge 2018 dataset. This dataset, comprising 90,000 sentences labeled with 14 entity categories using the BIO tagging method, was derived from the Korean Wikipedia, processed into text form, and made publicly available. Text data augmentation was applied based on this dataset to obtain a Korean NER dataset with the entity names tagged at the word and spacing token levels.</p>
+<p id="Par38">Data regarding the names of medical institutions for patients transferred from the emergency department to other hospitals at Seoul AMC were extracted to enhance the training for accurate detection of organization names (ORG). The names of 221 medical institutions were extracted, and these data were tagged as ORG-B for the names of other hospitals to which the patients were transferred from AMC.</p>
+<p id="Par39">Improving the performance of the model is one approach to developing an accurate DL model; however, obtaining vast amounts of data through diverse data learning is essential. Data augmentation artificially generates new data based on existing data. This method is often used in the image domain to expand the dataset through the addition of noise while maintaining the core features of the data. Image augmentation, which involves transformations such as rotation or brightness adjustments, is performed to expand the data and enhance the prediction performance of the model when utilized as training data<sup><a href="#CR32" class="usa-link" aria-describedby="CR32">32</a></sup>.</p>
+<p id="Par40">Unlike images, in text data, even a single word modification or a change in word order can alter the meaning of a sentence, making data augmentation more challenging. In this study, additional Korean NER tagging datasets were needed to de-identify personally identifiable information within sentences containing diverse meanings. Therefore, we applied the Easy Data Augmentation (EDA)<sup><a href="#CR33" class="usa-link" aria-describedby="CR33">33</a></sup> technique to the existing Korean dataset from Naver, and used KorEDA (GitHub—catSirup/KorEDA), which leverages the Korean WordNet (KWN) for augmentation specialized in Korean.</p>
+<p id="Par41">There are four main techniques for text data augmentation: Synonym Replacement (SR), Random Insertion (RI), Random Swap (RS), and Random Deletion (RD)<sup><a href="#CR33" class="usa-link" aria-describedby="CR33">33</a></sup>. We chose the SR technique to secure additional words and sentences while preserving the originally tagged dataset. This method randomly selects N non-stop words from a sentence and replaces each with one of its synonyms. KorEDA is a modified version of the original EDA, replacing the WordNet component with Korean WordNet, so the selected words in the original sentence are replaced with semantically similar synonyms. Here is the example provided below. In this way, the position and meaning of each word in the original sentence are preserved as much as possible while augmenting the data.</p>
+<ul class="list" style="list-style-type:disc">
+<li><p id="Par42">Original: “환자가 병원에서 치료를 받았습니다.” <sup>* The patient received treatment at the hospital.</sup></p></li>
+<li><p id="Par43">After SR: “환자가 의료기관에서 치료를 받았습니다.” <sup>* The patient received treatment at the medical institution.</sup></p></li>
+</ul>
+<p id="Par44">The final augmented dataset includes an additional 19,371 rows where the sentence length remained the same, but words were replaced with synonyms. In this dataset, unnecessary classes except for the personally identifiable entity categories “PER,” “ORG,” “LOC,” “TIM,” and “DAT” were replaced with “O,” and the number of augmented samples per entity type is summarized in Table <a href="#Tab6" class="usa-link">6</a>. Since augmentation was applied uniformly across the entire dataset, augmentation rates were not calculated separately for each entity type.</p>
+<section class="tw xbox font-sm" id="Tab6"><h4 class="obj_head">Table 6.</h4>
+<div class="caption p"><p>Count of augmented data by entity type</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead><tr>
+<th colspan="1" rowspan="1">Entity Name Category</th>
+<th colspan="1" rowspan="1">Tag</th>
+<th colspan="1" rowspan="1">Counts</th>
+</tr></thead>
+<tbody>
+<tr>
+<td rowspan="2" colspan="1">PERSON</td>
+<td colspan="1" rowspan="1">PER-B</td>
+<td colspan="1" rowspan="1">10,201</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">PER-I</td>
+<td colspan="1" rowspan="1">1236</td>
+</tr>
+<tr>
+<td rowspan="2" colspan="1">ORGANIZATION</td>
+<td colspan="1" rowspan="1">ORG-B</td>
+<td colspan="1" rowspan="1">11,328</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">ORG-I</td>
+<td colspan="1" rowspan="1">1293</td>
+</tr>
+<tr>
+<td rowspan="2" colspan="1">LOCATION</td>
+<td colspan="1" rowspan="1">LOC-B</td>
+<td colspan="1" rowspan="1">6323</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">LOC-I</td>
+<td colspan="1" rowspan="1">89</td>
+</tr>
+<tr>
+<td rowspan="2" colspan="1">TIME</td>
+<td colspan="1" rowspan="1">TIM-B</td>
+<td colspan="1" rowspan="1">855</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">TIM-I</td>
+<td colspan="1" rowspan="1">290</td>
+</tr>
+<tr>
+<td rowspan="2" colspan="1">DATE</td>
+<td colspan="1" rowspan="1">DAT-B</td>
+<td colspan="1" rowspan="1">7331</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">DAT-I</td>
+<td colspan="1" rowspan="1">2443</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">etc.</td>
+<td colspan="1" rowspan="1">O</td>
+<td colspan="1" rowspan="1">255,739</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab6/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><p id="Par45">The combined dataset, which integrates all data, consists of a total of 109,589 rows. Table <a href="#Tab7" class="usa-link">7</a> provides detailed information on the average sentence length, number of tokens, and tag counts for the Base+AD dataset, which comprises the original Base data set along with the augmented data.</p>
+<section class="tw xbox font-sm" id="Tab7"><h4 class="obj_head">Table 7.</h4>
+<div class="caption p"><p>Description of Base and Base + AD Data</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead>
+<tr>
+<th colspan="1" rowspan="1">Type</th>
+<th colspan="2" rowspan="1">Counts</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="1" rowspan="1">Base</th>
+<th colspan="1" rowspan="1">Base + AD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="1" rowspan="1">Average sentence length</td>
+<td colspan="1" rowspan="1">51.79</td>
+<td colspan="1" rowspan="1">54.02</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">Average number of tokens</td>
+<td colspan="1" rowspan="1">28.37</td>
+<td colspan="1" rowspan="1">29.64</td>
+</tr>
+<tr><td colspan="3" rowspan="1">Number of entities by category</td></tr>
+<tr>
+<td colspan="1" rowspan="1"> PER-B/-I</td>
+<td colspan="1" rowspan="1">43,034/5465</td>
+<td colspan="1" rowspan="1">53,235/6401</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> ORG-B/-I</td>
+<td colspan="1" rowspan="1">41,078/4723</td>
+<td colspan="1" rowspan="1">52,406/6016</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> DAT-B/-I</td>
+<td colspan="1" rowspan="1">25,837/8107</td>
+<td colspan="1" rowspan="1">33,168/10,550</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> LOC-B/-I</td>
+<td colspan="1" rowspan="1">20,885/211</td>
+<td colspan="1" rowspan="1">27,208/300</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> TIM-B/-I</td>
+<td colspan="1" rowspan="1">3263/1074</td>
+<td colspan="1" rowspan="1">4118/1364</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> O</td>
+<td colspan="1" rowspan="1">910,471</td>
+<td colspan="1" rowspan="1">1,166,210</td>
+</tr>
+<tr><td colspan="3" rowspan="1">Average number of entities per sentence by category</td></tr>
+<tr>
+<td colspan="1" rowspan="1"> PER-B/-I</td>
+<td colspan="1" rowspan="1">0.29/0.09</td>
+<td colspan="1" rowspan="1">0.31/0.10</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> ORG-B/-I</td>
+<td colspan="1" rowspan="1">0.46/0.05</td>
+<td colspan="1" rowspan="1">0.48/0.05</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> DAT-B/-I</td>
+<td colspan="1" rowspan="1">0.29/0.09</td>
+<td colspan="1" rowspan="1">0.30/0.10</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> LOC-B/-I</td>
+<td colspan="1" rowspan="1">0.23/0.002</td>
+<td colspan="1" rowspan="1">0.25/0.002</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> TIM-B/-I</td>
+<td colspan="1" rowspan="1">0.04/0.01</td>
+<td colspan="1" rowspan="1">0.04/0.01</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> O</td>
+<td colspan="1" rowspan="1">10.10</td>
+<td colspan="1" rowspan="1">10.64</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab7/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section></section><section id="Sec12"><h3 class="pmc_sec_title">Pretrained language models</h3>
+<section id="Sec13"><h4 class="pmc_sec_title">Tokenization and modeling with Bert base models</h4>
+<p id="Par46">BERT, a transformer-based model, processes bidirectional input sequences to predict randomly masked tokens and understand general patterns and structures of the language. BERT can capture the meaning of words in context, thereby providing contextual embeddings based on the usage within a sentence. This bidirectional context understanding capability of BERT is particularly strong for context-dependent tasks such as NER<sup><a href="#CR25" class="usa-link" aria-describedby="CR25">25</a></sup>. In contrast to the original BERT, which is trained only in English, BERT-base-multilingual-cased<sup><a href="#CR25" class="usa-link" aria-describedby="CR25">25</a></sup> is a multilingual BERT model trained on the top 104 languages available through Wikipedia. It supports an extensive tokenizer that can handle multiple languages and is optimized for multilingual NLP tasks, indicating its utility for de-identifying personal information in text containing a mix of Korean and English. KLUE BERT, a BERT architecture-based model trained using 62 gigabytes of Korean-specific data, can effectively understand Korean grammar, vocabulary, and context<sup><a href="#CR24" class="usa-link" aria-describedby="CR24">24</a></sup>. KLUE BERT has been further fine-tuned with data sourced from news and Wikipedia, thereby optimizing its ability to understand Korean. Thus, the use of KLUE BERT was deemed appropriate for processing the de-identification of personal information in Korean discharge summaries.</p>
+<p id="Par47">The pre-trained weights of the two models were maintained during fine-tuning using the constructed datasets. The datasets were divided into the Naver dataset (Base) and the added augmented dataset (Base+AD), and training was conducted twice. The structure of each dataset was designed such that it was suitable for the NER task. Entity recognition labels were tagged at the word level rather than the morpheme level to enhance the simplicity of implementation and readability. This tagging method improved the accuracy of entity recognition based on the context. Each entity name was mapped with entity tagging information and integers.</p>
+<p id="Par48">The Korean tokenizer based on BERT performs tokenization into optimized subword units that reflect the morphological characteristics of the Korean language<sup><a href="#CR24" class="usa-link" aria-describedby="CR24">24</a></sup>. However, the tokenizer’s vocabulary also includes the English alphabet, numbers, and various special characters, enabling effective segmentation and encoding of not only Korean but also English words and special characters. English words included in the vocabulary are treated as single tokens, while those not included are segmented into subwords. Special characters are similarly handled as separate tokens or subwords. Therefore, the presence of English words and special characters does not significantly affect the model’s performance or preprocessing pipeline. The tokenizer applied to each model split words into subwords, resulting in longer sentence lengths and varying label lengths. Only the first subword of the generated subwords was assigned the original label; the remaining subwords were assigned –99, indicating that no label was provided. The labels corresponding to –99 were ignored during model training, and padding tokens [PAD] were used to maintain a consistent sentence length. [CLS] was added at the beginning, and [SEP] was added at the end to differentiate sentences. Integer encoding was applied for BERT input. In addition, segment encoding and attention masks were also applied. The NER task does not require distinguishing between multiple sentences; consequently, segment encoding filled all tokens with “0”. The value of “1” was assigned from [CLS] to [SEP] for the attention mask, and the value of “0” was assigned after [SEP] to indicate the tokens that the model should focus on. NER is a many-to-many problem wherein each word must be assigned a tag for personal information recognition. The loss function was designed to ignore the error and not compute the loss when the label was –99. This ensured that the –99 value was treated as the [PAD] token in the label and no loss was calculated for it. This processing method improved the efficiency of model training and reduced unnecessary computations.</p>
+<p id="Par49">The hyperparameters used for each model are summarized in Table <a href="#Tab8" class="usa-link">8</a>. They were determined based on prior research and empirical experience, with experimental tuning conducted to achieve optimal performance. Considering the sentence length and token counts in the EMR discharge summaries, the input sequence length was set to 256 tokens, and the Adam optimizer was employed. Learning rates were adjusted individually for each model to optimize performance. For the loss function, SparseCategoricalCrossentropy, suitable for multi-class classification, was used. Additionally, a custom implementation was applied to exclude the masked value of −100 from loss calculation, as processed by the tokenizer. The related formula is presented below.</p>
+<table class="disp-formula p" id="Equ1"><tr>
+<td class="formula"><math id="d33e1293" display="block"><mrow><mi>L</mi><mo>=</mo><mo>−</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>N</mi></mrow></munderover><mrow><msub><mrow><mn>1</mn></mrow><mrow><mo>[</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>≠</mo><mo>−</mo><mn>100</mn><mo>]</mo></mrow></msub></mrow><munderover><mo>∑</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>C</mi></mrow></munderover><mrow><msub><mrow><mn>1</mn></mrow><mrow><mo>[</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>=</mo><mi>C</mi><mo>]</mo></mrow></msub></mrow><mi>log</mi><mrow><mfenced close=")" open="("><mrow><mfrac><mrow><mi>exp</mi><mo>(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>i</mi><mo>,</mo><mi>c</mi></mrow></msub><mo>)</mo></mrow><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>C</mi></mrow></msubsup><mrow><mi>exp</mi><mo>(</mo><msub><mrow><mi>z</mi></mrow><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow></mrow></mfrac></mrow></mfenced></mrow></mrow></math></td>
+<td class="label">1</td>
+</tr></table>
+<p>Here, <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq1"><math id="d33e1391"><mi mathvariant="italic">N</mi></math></span> denotes the total number of tokens, and <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq2"><math id="d33e1401"><mi>C</mi></math></span> represents the number of classes (or labels). The term <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq3"><math id="d33e1410"><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub></math></span> refers to the ground-truth label of the <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq4"><math id="d33e1424"><mi>i</mi></math></span>-th token, while <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq5"><math id="d33e1433"><msub><mrow><mi>z</mi></mrow><mrow><mi>i</mi><mo>,</mo><mi>c</mi></mrow></msub></math></span> indicates the logit corresponding to the <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq6"><math id="d33e1448"><mi>c</mi></math></span>-th class for the <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq7"><math id="d33e1457"><mi>i</mi></math></span>-th token. In addition, <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq8"><math id="d33e1466"><msub><mrow><mn>1</mn></mrow><mrow><mo>[</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>≠</mo><mo>−</mo><mn>100</mn><mo>]</mo></mrow></msub></math></span> is an indicator function that equals 1 if the token is not padding (i.e., the label is not −100), and 0 otherwise. Similarly, <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq9"><math id="d33e1488"><msub><mrow><mn>1</mn></mrow><mrow><mo>[</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>=</mo><mi>C</mi><mo>]</mo></mrow></msub></math></span> is an indicator function that equals 1 if the ground-truth label of the <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq10"><math id="d33e1510"><mi>i</mi></math></span>-th token is <span xmlns:mml="http://www.w3.org/1998/Math/MathML" id="IEq11"><math id="d33e1519"><mi>c</mi></math></span>, and 0 otherwise.</p>
+<section class="tw xbox font-sm" id="Tab8"><h5 class="obj_head">Table 8.</h5>
+<div class="caption p"><p>Hyperparameters for BERT and KLUE BERT</p></div>
+<div class="tbl-box p" tabindex="0"><table class="content" frame="hsides" rules="groups">
+<thead>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="2" rowspan="1">Value</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1"></th>
+<th colspan="1" rowspan="1">BERT-base-multilingual-cased</th>
+<th colspan="1" rowspan="1">KLUE BERT</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="3" rowspan="1">Hyperparameter</td></tr>
+<tr>
+<td colspan="1" rowspan="1"> Input sequence length</td>
+<td colspan="1" rowspan="1">256 tokens</td>
+<td colspan="1" rowspan="1">256 tokens</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> Optimizer</td>
+<td colspan="1" rowspan="1">Adam</td>
+<td colspan="1" rowspan="1">Adam</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> Learning rate</td>
+<td colspan="1" rowspan="1">2e-5</td>
+<td colspan="1" rowspan="1">5e-5</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1"> Loss function</td>
+<td colspan="1" rowspan="1">SparseCategoricalCrossentropy</td>
+<td colspan="1" rowspan="1">SparseCategoricalCrossentropy</td>
+</tr>
+</tbody>
+</table></div>
+<div class="p text-right font-secondary"><a href="table/Tab8/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div></section><p id="Par50">Model training was conducted with a 90% training ratio and a 10% test ratio using the custom dataset. The Precision, Recall, and F1 scores were evaluated to determine model performance. The F1 score was calculated at the end of each epoch to assess overfitting, and the generalization ability of the model was continuously monitored.</p></section><section id="Sec14"><h4 class="pmc_sec_title">Construction of discharge note test dataset</h4>
+<p id="Par51">To construct a test dataset (gold standard) for model performance evaluation, 1000 rows were randomly sampled from the “Treatment Plan” and “Key Notes” columns of the AMC discharge summary data. The most performant model among our four internally developed models was then used to generate tagging results on this data. The tagging results were subsequently reviewed by healthcare professionals with over three years of experience at AMC to ensure accuracy. The finalized dataset was ultimately used as a test set for performance comparison with open LLM models.</p>
+<p id="Par52">The average sentence length in the test dataset was 84.75, with an average token count of 43.80. Through Fig. <a href="#Fig6" class="usa-link">6</a>, we confirmed that most sentence lengths and tokens do not exceed 200.</p>
+<figure class="fig xbox font-sm" id="Fig6"><h5 class="obj_head">Fig. 6.</h5>
+<p class="img-box line-height-none margin-x-neg-2 tablet:margin-x-0 text-center"><a class="tileshop" target="_blank" href="https://www.ncbi.nlm.nih.gov/core/lw/2.0/html/tileshop_pmc/tileshop_pmc_inline.html?title=Click%20on%20image%20to%20zoom&amp;p=PMC3&amp;id=13354230_44401_2025_36_Fig6_HTML.jpg"><img class="graphic zoom-in" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c6cf/13354230/3a302bb96aaa/44401_2025_36_Fig6_HTML.jpg" loading="lazy" id="d33e1592" height="239" width="691" alt="Fig. 6"></a></p>
+<div class="p text-right font-secondary"><a href="figure/Fig6/" class="usa-link" target="_blank" rel="noopener noreferrer">Open in a new tab</a></div>
+<figcaption><p>Distribution of Sentence Lengths and Token Counts in EMR of the test dataset.</p></figcaption></figure></section></section><section id="Sec15"><h3 class="pmc_sec_title">Performance evaluation</h3>
+<p id="Par53">Two BERT-based models were fine-tuned using the dataset, resulting in a total of four models. The F1-score, a standard metric used to evaluate classification model performance, is particularly useful when there is class imbalance in the data. The F1-score is defined as the harmonic mean of precision and recall, reflecting the balance between the two metrics. The F1-score is used to assess whether the model can accurately recognize and classify entities in NER tasks. Errors such as incorrect entity identification or omission may occur in NER. The F1-score provides a balanced evaluation of these errors, thereby offering a comprehensive assessment of the performance of the model. The F1-score offers the advantage of objectively evaluating the performance of specific entity classes, particularly in cases wherein the “O” class dominates in the tagging results, causing significant data imbalance.</p></section><section id="Sec16"><h3 class="pmc_sec_title">Open source LLM &amp; prompt engineering</h3>
+<p id="Par54">API-based closed LLMs<sup><a href="#CR34" class="usa-link" aria-describedby="CR34">34</a>,<a href="#CR35" class="usa-link" aria-describedby="CR35">35</a></sup> pose a risk of data leakage. Thus, publicly available models for academic and research purposes were used to handle EMR data containing personal information. The latest Llama3 series provided by Meta AI<sup><a href="#CR28" class="usa-link" aria-describedby="CR28">28</a></sup> and the Solar model from Upstage were used in the present study. LLMs tailored for the Korean language were used for Korean-specific NER tagging.</p>
+<p id="Par55">The present study aimed to build an LLM that can be easily used in hospitals. Large parameter models such as Llama3 70B did not align with the research intent. Therefore, Llama-3-8B-Instruct and Llama-3-open-ko-8B<sup><a href="#CR26" class="usa-link" aria-describedby="CR26">26</a></sup> based on the LLaMA series by Meta, which comprise 8 billion parameters each, were used for Korean-specific NER tagging. This is significantly higher than the 110 million parameters of the BERT model used for training, allowing for a more complex understanding of language. Llama-3-open-ko-8B is a language model pre-trained specifically for Korean, based on Llama-3-8B. Llama-3-8B-Instruct, which focuses on instruction-based learning, responds naturally and appropriately to user queries. Notably, it supports multiple languages, making it a suitable comparison model for the present study. EEVE-Korean-Instruct-10.8B<sup><a href="#CR27" class="usa-link" aria-describedby="CR27">27</a></sup>, a Korean-specific instruction-based language model with 10.8 billion parameters, is a fine-tuned version of Upstage’s Solar model<sup><a href="#CR36" class="usa-link" aria-describedby="CR36">36</a></sup>, extended with Korean vocabulary and is adjusted to better meet the requirements of Korean users.</p>
+<p id="Par56">LLMs exhibit outstanding zero-shot performance; however, additional improvements are often required for more complex tasks. Few-shot prompting is a technique that incorporates example instances into the prompt, enabling the model to better understand the desired output through contextual learning<sup><a href="#CR37" class="usa-link" aria-describedby="CR37">37</a></sup>. This approach helps reduce ambiguity, improve clarity, and enhance overall efficiency. In particular, we adopt the CoT prompting strategy to guide the model to solve complex problems in a step-by-step and logical manner<sup><a href="#CR29" class="usa-link" aria-describedby="CR29">29</a></sup>. CoT prompting explicitly encourages the model to generate intermediate reasoning steps, which leads to more systematic and reliable outputs. For example, when instructing the model on NER tagging, we provide explicit examples that include not only the correct tag (e.g., “PER-B” to denote the beginning of a person name) but also detailed explanations of the reasoning process behind each tagging decision. In this study, the LLM was guided using a combination of example-based few-shot prompts and CoT prompting, enabling it to perform fine-grained entity tagging on EMR data accurately.</p></section><section id="Sec17"><h3 class="pmc_sec_title">Outputs comparison</h3>
+<p id="Par57">The tagging results of each model were evaluated using Python scripts based on sentence length, token count, and character-level matching. A value of “1” was assigned when all three criteria were fully satisfied, and “0” was assigned if any criterion was not met.</p>
+<p id="Par58">We aimed to gain a deeper understanding of the dataset complexity for each model and to present their error patterns in more detail. To this end, we conducted an in-depth analysis of entity-level tagging results using confusion matrices.</p></section><section id="Sec18"><h3 class="pmc_sec_title">Gradio software</h3>
+<p id="Par59">Gradio, an open-source Python package, facilitates the sharing and testing of machine learning (ML) and DL models<sup><a href="#CR30" class="usa-link" aria-describedby="CR30">30</a></sup>. Traditional ML models, even those built by experts, often present challenges for domain experts or general users to test directly. However, Gradio generates a web-based visual interface that enables non-experts to use ML models and provide feedback without requiring coding, thereby enhancing the ease of use<sup><a href="#CR29" class="usa-link" aria-describedby="CR29">29</a></sup>.</p></section></section><section id="ack1" class="ack"><h2 class="pmc_sec_title">Acknowledgements</h2>
+<p>This research was supported by a grant of the Korea Health Technology R&amp;D Project through the Korea Health Industry Development Institute (KHIDI), funded by the Ministry of Health &amp; Welfare, Republic of Korea (grant number: RS-2025-02213061) and by a grant [grant number: 2023IP0042] from the Asan Institute for Life Sciences, Asan Medical Center, Seoul, Korea. The funder played no role in study design, data collection, analysis and interpretation of data, or the writing of this paper.</p></section><section id="notes1"><h2 class="pmc_sec_title">Author contributions</h2>
+<p>J.S. conceived the research, developed the proposed methods, performed data analysis, experiments, and evaluations, and prepared the tables and figures of the paper. J.S., Y.K., H.C., M.K., J.H., G.K., S.K., H.J., B.K., and B.C. contributed to data collection and preprocessing. S.P. provided a paper review, while T.J.J. and Y.J.K. offered research direction, ideas, and assisted in the final paper review. All authors have read and approved the revised paper.</p></section><section id="notes2"><h2 class="pmc_sec_title">Data availability</h2>
+<p>The data resources generated and analyzed during this study are not publicly available but can be shared upon reasonable request. Interested researchers are encouraged to contact the corresponding author to discuss potential access and usage conditions.</p></section><section id="notes3"><h2 class="pmc_sec_title">Code availability</h2>
+<p>The code supporting this study is available upon request from the corresponding author.</p></section><section id="FPar1"><h2 class="pmc_sec_title">Competing interests</h2>
+<p id="Par60">All authors declare no financial or non-financial competing interests.</p></section><section id="fn-group1" class="fn-group"><h2 class="pmc_sec_title">Footnotes</h2>
+<div class="fn-group p font-secondary-light font-sm">
+<div class="fn p" id="fn1"><p><strong>Publisher’s note</strong> Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.</p></div>
+<div class="fn p" id="fn2"><p>These authors contributed equally: Tae Joon Jun, Young-Hak Kim.</p></div>
+</div></section><section id="_ci93_" lang="en" class="contrib-info"><h2 class="pmc_sec_title">Contributor Information</h2>
+<p>Tae Joon Jun, Email: taejoon@chilab.kr.</p>
+<p>Young-Hak Kim, Email: mdyhkim@amc.seoul.kr.</p></section><section id="Bib1" class="ref-list"><h2 class="pmc_sec_title">References</h2>
+<section id="Bib1_sec2"><ul class="ref-list font-sm" style="list-style-type:none">
+<li id="CR1">
+<span class="label">1.</span><cite>Hanson, J. L. et al. Quality of outpatient clinical notes: a stakeholder definition derived through qualitative research. <em>BMC Health Serv. Res.</em><strong>12</strong>, 1–12 (2012).
+</cite> [<a href="https://doi.org/10.1186/1472-6963-12-407" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC3529118/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/23164470/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Hanson,%20J.%20L.%20et%20al.%20Quality%20of%20outpatient%20clinical%20notes:%20a%20stakeholder%20definition%20derived%20through%20qualitative%20research.%20BMC%20Health%20Serv.%20Res.12,%201%E2%80%9312%20(2012)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR2">
+<span class="label">2.</span><cite>Kierkegaard, P. Electronic health record: wiring Europe’s healthcare. <em>Comput. Law Secur. Rev.</em><strong>27</strong>, 503–515 (2011).</cite> [<a href="https://scholar.google.com/scholar_lookup?Kierkegaard,%20P.%20Electronic%20health%20record:%20wiring%20Europe%E2%80%99s%20healthcare.%20Comput.%20Law%20Secur.%20Rev.27,%20503%E2%80%93515%20(2011)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR3">
+<span class="label">3.</span><cite>Fernández-Alemán, J. L. et al. Security and privacy in electronic health records: a systematic literature review. <em>J. Biomed. Inform.</em><strong>46</strong>, 541–562 (2013).
+</cite> [<a href="https://doi.org/10.1016/j.jbi.2012.12.003" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/23305810/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Fern%C3%A1ndez-Alem%C3%A1n,%20J.%20L.%20et%20al.%20Security%20and%20privacy%20in%20electronic%20health%20records:%20a%20systematic%20literature%20review.%20J.%20Biomed.%20Inform.46,%20541%E2%80%93562%20(2013)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR4">
+<span class="label">4.</span><cite>NHS Lothian Communications Office. NHS Lothian staff member loses patient data. <em>NHS Lothian</em><a href="http://www.nhslothian.scot.nhs.uk/MediaCentre/PressReleases/2008/Pages/0307PatientData.aspx/" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.nhslothian.scot.nhs.uk/MediaCentre/PressReleases/2008/Pages/0307PatientData.aspx/</a> (2008).</cite>
+</li>
+<li id="CR5">
+<span class="label">5.</span><cite>Department of Veterans Affairs Office of Inspector General. Review of issues related to the loss of VA information involving the identity of millions of veterans. <em>Department of Veterans Affairs</em><a href="http://www.va.gov/oig/apps/info/OversightReports.aspx?igRT=ai/&amp;igPG=4" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">http://www.va.gov/oig/apps/info/OversightReports.aspx?igRT=ai/&amp;igPG=4</a> (2006).</cite>
+</li>
+<li id="CR6">
+<span class="label">6.</span><cite>Kim, M. et al. Fine-Tuning LLMs with Medical Data: Can Safety Be Ensured? <em>NEJM AI</em> 2.1 (2025): AIcs2400390.</cite>
+</li>
+<li id="CR7">
+<span class="label">7.</span><cite>European Medicines Agency. External guidance on the implementation of the European Medicines Agency policy on the publication of clinical data for medicinal products for human use. <em>European Medicines Agency</em> (2017).</cite>
+</li>
+<li id="CR8">
+<span class="label">8.</span><cite>Dorr, D. A., Phillips, W. F., Phansalkar, S., Sims, S. A. &amp; Hurdle, J. F. Assessing the difficulty and time cost of de-identification in clinical narratives. <em>Meth. Inf. Med.</em><strong>45</strong>, 246–252 (2006).</cite> [<a href="https://pubmed.ncbi.nlm.nih.gov/16685332/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Dorr,%20D.%20A.,%20Phillips,%20W.%20F.,%20Phansalkar,%20S.,%20Sims,%20S.%20A.%20&amp;%20Hurdle,%20J.%20F.%20Assessing%20the%20difficulty%20and%20time%20cost%20of%20de-identification%20in%20clinical%20narratives.%20Meth.%20Inf.%20Med.45,%20246%E2%80%93252%20(2006)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR9">
+<span class="label">9.</span><cite>Personal Information Protection Commission, Ministry of Health and Welfare. Guidelines on the Utilization of Healthcare Data. Korea Health Information Service Notice. <a href="https://k-his.or.kr/board.es?mid=a10301000000&amp;bid=0001&amp;list_no=1538&amp;act=view" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">https://k-his.or.kr/board.es?mid=a10301000000&amp;bid=0001&amp;list_no=1538&amp;act=view</a> (2024).</cite>
+</li>
+<li id="CR10">
+<span class="label">10.</span><cite>Office for Civil Rights, HHS. Standards for privacy of individually identifiable health information. <em>Fed. Regist</em>. <strong>67</strong>, 53182–53273 (2002).</cite> [<a href="https://pubmed.ncbi.nlm.nih.gov/12180470/" class="usa-link">PubMed</a>]</li>
+<li id="CR11">
+<span class="label">11.</span><cite>Shin, T.-S. The meaning and tasks of guidelines for utilization of healthcare data. <em>Korean Soc. Law Med.</em><strong>22</strong>, 31–55 (2021).</cite> [<a href="https://scholar.google.com/scholar_lookup?Shin,%20T.-S.%20The%20meaning%20and%20tasks%20of%20guidelines%20for%20utilization%20of%20healthcare%20data.%20Korean%20Soc.%20Law%20Med.22,%2031%E2%80%9355%20(2021)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR12">
+<span class="label">12.</span><cite>Hardeniya, N. et al. <em>Natural Language Processing: Python and NLTK</em>. (Packt Publishing Ltd., 2016).</cite>
+</li>
+<li id="CR13">
+<span class="label">13.</span><cite>Liu, P. et al. Chinese named entity recognition: the state of the art. <em>Neurocomputing</em><strong>473</strong>, 37–53 (2022).</cite> [<a href="https://scholar.google.com/scholar_lookup?Liu,%20P.%20et%20al.%20Chinese%20named%20entity%20recognition:%20the%20state%20of%20the%20art.%20Neurocomputing473,%2037%E2%80%9353%20(2022)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR14">
+<span class="label">14.</span><cite>Zaratiana, U. et al. Gliner: generalist model for named entity recognition using bidirectional transformer. In <em>Proc. Conf. North Am. Chapter Assoc. Comput. Linguist.: Hum. Lang. Technol.</em> (Vol. 1: Long Papers) 5364–5376 (Association for ComputationalLinguistics, 2024).</cite>
+</li>
+<li id="CR15">
+<span class="label">15.</span><cite>Ahmed, T., Al Aziz, M. M. &amp; Mohammed, N. De-identification of electronic health record using neural network. <em>Sci. Rep.</em><strong>10</strong>, 18600 (2020).
+</cite> [<a href="https://doi.org/10.1038/s41598-020-75544-1" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC7596089/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/33122735/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Ahmed,%20T.,%20Al%20Aziz,%20M.%20M.%20&amp;%20Mohammed,%20N.%20De-identification%20of%20electronic%20health%20record%20using%20neural%20network.%20Sci.%20Rep.10,%2018600%20(2020)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR16">
+<span class="label">16.</span><cite>Yang, X. et al. A study of deep learning methods for de-identification of clinical notes in cross-institute settings. <em>BMC Med. Inform. Decis. Mak.</em><strong>19</strong>, 1–9 (2019).
+</cite> [<a href="https://doi.org/10.1186/s12911-019-0935-4" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC6894104/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/31801524/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Yang,%20X.%20et%20al.%20A%20study%20of%20deep%20learning%20methods%20for%20de-identification%20of%20clinical%20notes%20in%20cross-institute%20settings.%20BMC%20Med.%20Inform.%20Decis.%20Mak.19,%201%E2%80%939%20(2019)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR17">
+<span class="label">17.</span><cite>Liu, L. et al. De-identifying Australian hospital discharge summaries: An end-to-end framework using ensemble of deep learning models. <em>J. Biomed. Inform.</em><strong>135</strong>, 104215 (2022).
+</cite> [<a href="https://doi.org/10.1016/j.jbi.2022.104215" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/36195240/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Liu,%20L.%20et%20al.%20De-identifying%20Australian%20hospital%20discharge%20summaries:%20An%20end-to-end%20framework%20using%20ensemble%20of%20deep%20learning%20models.%20J.%20Biomed.%20Inform.135,%20104215%20(2022)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR18">
+<span class="label">18.</span><cite>Kim, Y.-M. &amp; Lee, T.-H. Korean clinical entity recognition from diagnosis text using BERT. <em>BMC Med. Inform. Decis. Mak.</em><strong>20</strong>, 1–9 (2020).
+</cite> [<a href="https://doi.org/10.1186/s12911-020-01241-8" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC7526093/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/32998724/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Kim,%20Y.-M.%20&amp;%20Lee,%20T.-H.%20Korean%20clinical%20entity%20recognition%20from%20diagnosis%20text%20using%20BERT.%20BMC%20Med.%20Inform.%20Decis.%20Mak.20,%201%E2%80%939%20(2020)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR19">
+<span class="label">19.</span><cite>Kim, Y. et al. A pre-trained BERT for Korean medical natural language processing. <em>Sci. Rep.</em><strong>12</strong>, 13847 (2022).
+</cite> [<a href="https://doi.org/10.1038/s41598-022-17806-8" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC9381714/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/35974113/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Kim,%20Y.%20et%20al.%20A%20pre-trained%20BERT%20for%20Korean%20medical%20natural%20language%20processing.%20Sci.%20Rep.12,%2013847%20(2022)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR20">
+<span class="label">20.</span><cite>Byun, S. et al. Korean Bio-Medical Corpus (KBMC) for Medical Named Entity Recognition. In <em>Proc. Joint Int. Conf. Comput. Linguist., Lang. Resour. Eval. (LREC-COLING 2024).</em> 9941–9947 (European Language Resources Association, 2024).</cite>
+</li>
+<li id="CR21">
+<span class="label">21.</span><cite>An, J. et al. De-Identification of Clinical Notes with Pseudo-labeling using Regular Expression Rules and Pre-trained BERT. (2023).</cite> [<a href="https://doi.org/10.1186/s12911-025-02913-z" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC11831849/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/39962485/" class="usa-link">PubMed</a>]</li>
+<li id="CR22">
+<span class="label">22.</span><cite>Shin, S.-Y. et al. A de-identification method for bilingual clinical texts of various note types. <em>J. Korean Med. Sci.</em><strong>30</strong>, 7–15 (2015).
+</cite> [<a href="https://doi.org/10.3346/jkms.2015.30.1.7" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC4278030/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/25552878/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Shin,%20S.-Y.%20et%20al.%20A%20de-identification%20method%20for%20bilingual%20clinical%20texts%20of%20various%20note%20types.%20J.%20Korean%20Med.%20Sci.30,%207%E2%80%9315%20(2015)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR23">
+<span class="label">23.</span><cite>Park, Y.-J. et al. Assessing the research landscape and clinical utility of large language models: a scoping review. <em>BMC Med. Inform. Decis. Mak.</em><strong>24</strong>, 72 (2024).
+</cite> [<a href="https://doi.org/10.1186/s12911-024-02459-6" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">DOI</a>] [<a href="/articles/PMC10936025/" class="usa-link">PMC free article</a>] [<a href="https://pubmed.ncbi.nlm.nih.gov/38475802/" class="usa-link">PubMed</a>] [<a href="https://scholar.google.com/scholar_lookup?Park,%20Y.-J.%20et%20al.%20Assessing%20the%20research%20landscape%20and%20clinical%20utility%20of%20large%20language%20models:%20a%20scoping%20review.%20BMC%20Med.%20Inform.%20Decis.%20Mak.24,%2072%20(2024)." class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">Google Scholar</a>]</li>
+<li id="CR24">
+<span class="label">24.</span><cite>Park, S. KLUE: Korean Language Understanding Evaluation. In <em>*Adv. Neural Inf. Process. Syst.*</em> (NeurIPS Datasets &amp;Benchmarks Track, 2021).</cite>
+</li>
+<li id="CR25">
+<span class="label">25.</span><cite>Devlin, J. BERT: Pre-training of deep bidirectional transformers for language understanding. In <em>*Proc. Conf. North Am. Chapter Assoc. Comput. Linguist.: Hum. Lang. Technol.*</em> (Long Papers) 4171–4186 (Association for Computational Linguistics, 2019).</cite>
+</li>
+<li id="CR26">
+<span class="label">26.</span><cite>Llama-3-Open-Ko L. <em>Llama-3-Open-Ko</em><a href="https://huggingface.co/beomi/Llama-3-Open-Ko-8B" class="usa-link usa-link--external" data-ga-action="click_feat_suppl" target="_blank" rel="noopener noreferrer">https://huggingface.co/beomi/Llama-3-Open-Ko-8B</a> (2024).</cite>
+</li>
+<li id="CR27">
+<span class="label">27.</span><cite>Kim, S., Choi, S. &amp; Jeong, M. Efficient and effective vocabulary expansion towards multilingual large language models. Preprint at <em>arXiv</em>10.48550/arXiv.2402.14714 (2024).</cite>
+</li>
+<li id="CR28">
+<span class="label">28.</span><cite>Dubey, A. et al. The Llama 3 herd of models. Preprint at <em>arXiv</em>10.48550/arXiv.2407.21783 (2024).</cite>
+</li>
+<li id="CR29">
+<span class="label">29.</span><cite>Wei, J. et al. Chain-of-thought prompting elicits reasoning in large language models. Preprint at <em>arXiv</em>10.48550/arXiv.2201.11903 (2022).</cite>
+</li>
+<li id="CR30">
+<span class="label">30.</span><cite>Abid, A. et al. Gradio: Hassle-free sharing and testing of ML models in the wild. In <em>*Proc. ICML Workshop Human in the Loop Learning (HILL 2019)*</em> (Long Beach, CA, 2019).</cite>
+</li>
+<li id="CR31">
+<span class="label">31.</span><cite>Ramshaw, L. A. &amp; Marcus, M. P. Text chunking using transformation-based learning. <em>Nat. Lang. Process. Using Very Large Corpora</em> 157–176 (Springer Netherlands, 1999).</cite>
+</li>
+<li id="CR32">
+<span class="label">32.</span><cite>Taylor, L. &amp; Nitschke, G. Improving deep learning with generic data augmentation. In <em>2018 IEEE Symposium Series on Computational Intelligence (SSCI)</em> 1542–1547 (IEEE, 2018).</cite>
+</li>
+<li id="CR33">
+<span class="label">33.</span><cite>Wei, J. &amp; Zou, K. EDA: Easy data augmentation techniques for boosting performance on text classification tasks. In <em>*Proc. Conf. Empir. Methods Nat. Lang. Process. &amp; Int. Joint Conf. Nat. Lang. Process</em>.<em>*</em> 6383–6389 (Association for Computational Linguistics, 2019).</cite>
+</li>
+<li id="CR34">
+<span class="label">34.</span><cite>Brown, T. B. et al. Language models are few-shot learners. In <em>*Adv. Neural Inf. Process. Syst.*</em> (NeurIPS 2020) (Curran Associates, Inc., 2020).</cite>
+</li>
+<li id="CR35">
+<span class="label">35.</span><cite>Achiam, J. et al. GPT-4 technical report. Preprint at <em>arXiv</em>10.48550/arXiv.2303.08774 (2023).</cite>
+</li>
+<li id="CR36">
+<span class="label">36.</span><cite>Kim, D. et al. Solar 10.7 B: Scaling large language models with simple yet effective depth up-scaling. Preprint at <em>arXiv</em>10.48550/arXiv.2312.15166 (2023).</cite>
+</li>
+<li id="CR37">
+<span class="label">37.</span><cite>Gu, Y. et al. PPT: Pre-trained prompt tuning for few-shot learning. In <em>*Proc. Annual Meeting Assoc. Comput. Linguist.*</em> (Vol. 1: Long Papers) 8410–8423 (Association for Computational Linguistics, 2022).</cite>
+</li>
+</ul></section></section><section id="_ad93_" lang="en" class="associated-data"><h2 class="pmc_sec_title">Associated Data</h2>
+<p class="font-secondary"><em>This section collects any data citations, data availability statements, or supplementary materials included in this article.</em></p>
+<section id="_adda93_" lang="en" class="data-availability-statement"><h3 class="pmc_sec_title">Data Availability Statement</h3>
+<p>The data resources generated and analyzed during this study are not publicly available but can be shared upon reasonable request. Interested researchers are encouraged to contact the corresponding author to discuss potential access and usage conditions.</p>
+<p>The code supporting this study is available upon request from the corresponding author.</p></section></section></section><footer class="p courtesy-note font-secondary font-sm text-center"><hr class="headless">
+<p>Articles from npj Health Systems are provided here courtesy of <strong>Nature Publishing Group</strong></p></footer></section></article>
+
+                      
+
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+<!-- Secondary navigation placeholder -->
+<div class="pmc-sidenav desktop:grid-col-4 display-flex">
+    <section class="pmc-sidenav__container" aria-label="Article resources and navigation">
+        <button type="button" class="pmc-sidenav__container__close">
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/close.svg" role="img" alt="Close" />
+        </button>
+    <div class="display-none desktop:display-block">
+       <section class="margin-top-4 desktop:margin-top-0">
+              <h2 class="margin-top-0">ACTIONS</h2>
+           <ul class="usa-list usa-list--unstyled usa-list--actions">
+               
+               <li>
+                     <a
+                             href="https://doi.org/10.1038/s44401-025-00036-1"
+                             class="usa-button usa-button--outline width-24 font-xs display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                             target="_blank"
+                             rel="noreferrer noopener"
+                             data-ga-category="actions"
+                             data-ga-action="click"
+                             data-ga-label="publisher_link_desktop"
+                     >
+                         <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/launch.svg" alt="View on publisher site icon" class="usa-icon usa-icon--size-3 usa-icon--link"/>
+                         <span class="display-inline-flex flex-justify-center flex-1 padding-right-2">View on publisher site</span>
+                     </a>
+               </li>
+               
+               
+               <li>
+                    <a
+                            href="pdf/44401_2025_Article_36.pdf"
+                            class="usa-button usa-button--outline width-24 display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                            data-ga-category="actions"
+                            data-ga-action="click"
+                            data-ga-label="pdf_download_desktop"
+                    >
+                         <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/file_download.svg" alt="Download PDF icon" class="usa-icon usa-icon--size-3 usa-icon--link"/>
+                        <span class="display-inline-flex flex-justify-center flex-1">PDF (1.5 MB)</span>
+                    </a>
+               </li>
+               
+                
+               <li>
+                   <button role="button" class="usa-button width-24 citation-dialog-trigger display-inline-flex flex-align-center flex-justify-start padding-left-1"
+                        aria-label="Open dialog with citation text in different styles"
+                        data-ga-category="actions"
+                        data-ga-action="open"
+                        data-ga-label="cite_desktop"
+                        data-all-citations-url="/resources/citations/13354230/"
+                        data-citation-style="nlm"
+                        data-download-format-link="/resources/citations/13354230/export/"
+                    >
+                       <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/format_quote.svg" alt="Cite icon" class="usa-icon usa-icon--size-3 usa-icon--white"/>
+                       <span class="display-inline-flex flex-justify-center flex-1 button-label">Cite</span>
+                    </button>
+               </li>
+                
+               <li>
+
+                        <button class="usa-button width-24 collections-dialog-trigger collections-button display-inline-flex flex-align-center flex-justify-start padding-left-1 collections-button-empty"
+                              aria-label="Save article in MyNCBI collections."
+                              data-ga-category="actions"
+                              data-ga-action="click"
+                              data-ga-label="collections_button_desktop"
+                              data-collections-open-dialog-enabled="false"
+                              data-collections-open-dialog-url="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpmc.ncbi.nlm.nih.gov%2Farticles%2FPMC13354230%2F%23open-collections-dialog"
+                              data-in-collections="false">
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/action-bookmark-full.svg" alt="Collections icon" class="usa-icon usa-icon--size-3 usa-icon--white usa-icon--bookmark-full" hidden />
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/action-bookmark-empty.svg" alt="Collections icon" class="usa-icon usa-icon--size-3 usa-icon--white usa-icon--bookmark-empty" hidden />
+                            <span class="display-inline-flex flex-justify-center flex-1">Collections</span>
+                       </button>
+               </li>
+               <li class="pmc-permalink">
+                    <button
+                            type="button"
+                            class="usa-button width-24 display-inline-flex flex-align-center flex-justify padding-left-1 shadow-none"
+                            aria-label="Show article permalink"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-ga-category="actions"
+                            data-ga-action="open"
+                            data-ga-label="permalink_desktop"
+                    >
+                        <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/share.svg" alt="Permalink icon" class="usa-icon usa-icon--size-3 usa-icon--white"/>
+                        <span class="display-inline-flex flex-justify-center flex-1 button-label">Permalink</span>
+                    </button>
+                   
+
+<div class="pmc-permalink__dropdown" hidden>
+    <div class="pmc-permalink__dropdown__container">
+          <h2 class="usa-modal__heading margin-top-0 margin-bottom-2 text-uppercase font-sans-xs">PERMALINK</h2>
+          <div class="pmc-permalink__dropdown__content">
+              <input type="text" class="usa-input" value="https://pmc.ncbi.nlm.nih.gov/articles/PMC13354230/" aria-label="Article permalink">
+              <button class="usa-button display-inline-flex pmc-permalink__dropdown__copy__btn margin-right-0" title="Copy article permalink" data-ga-category="save_share" data-ga-action="link" data-ga-label="copy_link">
+                  <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/content_copy.svg" alt="Copy icon" aria-hidden="true" class="usa-icon usa-icon--white" />
+                  <span class="margin-left-1">Copy</span>
+              </button>
+          </div>
+    </div>
+</div>
+               </li>
+           </ul>
+       </section>
+     </div>
+
+        <section class="pmc-resources margin-top-6 desktop:margin-top-4" data-page-path="/articles/PMC13354230/">
+            <h2 class="margin-top-0">RESOURCES</h2>
+            
+                <div class="usa-accordion usa-accordion--multiselectable" data-allow-multiple>
+                    <h3 class="usa-accordion__heading">
+                        <button
+                        type="button"
+                        class="usa-accordion__button"
+                        aria-expanded="false"
+                        aria-controls="resources-similar-articles"
+                        data-ga-category="resources_accordion"
+                        data-ga-action="open_similar_articles"
+                        data-ga-label="/articles/PMC13354230/"
+                        data-action-open="open_similar_articles"
+                        data-action-close="close_similar_articles"
+                        >
+                            Similar articles
+                        </button>
+                    </h3>
+                    <div
+                            id="resources-similar-articles"
+                            class="usa-accordion__content usa-prose"
+                            
+                                data-source-url="/resources/similar-article-links/42527470/"
+                            
+                    >
+                        
+                    </div>
+                    <h3 class="usa-accordion__heading">
+                        <button
+                        type="button"
+                        class="usa-accordion__button"
+                        aria-expanded="false"
+                        aria-controls="resources-cited-by-other-articles"
+                        data-ga-category="resources_accordion"
+                        data-ga-action="open_cited_by"
+                        data-ga-label="/articles/PMC13354230/"
+                        data-action-open="open_cited_by"
+                        data-action-close="close_cited_by"
+                        >
+                             Cited by other articles
+                        </button>
+                    </h3>
+                    <div
+                            id="resources-cited-by-other-articles"
+                            class="usa-accordion__content usa-prose"
+                            
+                                data-source-url="/resources/cited-by-links/42527470/"
+                            
+                    >
+                          
+                    </div>
+                    
+                        <h3 class="usa-accordion__heading">
+                            <button
+                            type="button"
+                            class="usa-accordion__button"
+                            aria-expanded="false"
+                            aria-controls="resources-links-to-ncbi-databases"
+                            data-ga-category="resources_accordion"
+                            data-ga-action="open_NCBI_links"
+                            data-ga-label="/articles/PMC13354230/"
+                            data-action-open="open_NCBI_links"
+                            data-action-close="close_NCBI_link"
+                            >
+                                 Links to NCBI Databases
+                            </button>
+                        </h3>
+                        <div
+                                id="resources-links-to-ncbi-databases"
+                                class="usa-accordion__content usa-prose"
+                                data-source-url="/resources/db-links/13354230/"
+                        >
+                        </div>
+                    
+                    
+                </div>
+            
+        </section>
+
+
+        <section
+        class="usa-in-page-nav usa-in-page-nav--wide margin-top-6 desktop:margin-top-4"
+        data-title-text="On this page"
+        data-title-heading-level="h2"
+        data-scroll-offset="0"
+        data-root-margin="-10% 0px -80% 0px"
+        data-main-content-selector="main"
+        data-threshold="1"
+        hidden
+        ></section>
+    </section>
+</div>
+
+        
+
+<div class="overlay" role="dialog" aria-label="Citation Dialog" hidden>
+    <div class="dialog citation-dialog" aria-hidden="true">
+        <div class="display-inline-flex flex-align-center flex-justify width-full margin-bottom-2">
+            <h2 class="usa-modal__heading margin-0">Cite</h2>
+             <button type="button" class="usa-button usa-button--unstyled close-overlay text-black width-auto"  tabindex="1">
+                 <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/close.svg" alt="Close icon" class="usa-icon usa-icon--size-3 usa-icon--button" />
+             </button>
+        </div>
+
+        
+
+<div class="citation-text-block">
+  <div class="citation-text margin-bottom-2"></div>
+  <ul class="usa-list usa-list--unstyled display-inline-flex flex-justify width-full flex-align-center">
+      <li>
+        <button
+          class="usa-button usa-button--unstyled text-no-underline display-flex flex-align-center copy-button dialog-focus"
+          data-ga-category="save_share"
+          data-ga-action="cite"
+          data-ga-label="copy"
+          tabindex="2">
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/content_copy.svg" alt="Copy icon" class="usa-icon usa-icon--size-3 usa-icon--link" />
+            <span>Copy</span>
+        </button>
+      </li>
+      <li>
+          <a
+              href="#"
+              role="button"
+              class="usa-button usa-button--unstyled text-no-underline display-flex flex-align-center export-button"
+              data-ga-category="save_share"
+              data-ga-action="cite"
+              data-ga-label="download"
+              title="Download a file for external citation management software"
+              tabindex="3">
+                <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/file_download.svg" alt="Download icon" aria-hidden="true" class="usa-icon usa-icon--size-3 usa-icon--link" />
+                <span class="display-none mobile-lg:display-inline">Download .nbib</span>
+                <span class="display-inline mobile-lg:display-none">.nbib</span>
+            </a>
+      </li>
+      <li>
+          
+
+<div class="display-inline-flex flex-align-center">
+  <label class="usa-label margin-top-0">Format:</label>
+  <select aria-label="Format" class="usa-select citation-style-selector padding-1 margin-top-0 border-0 padding-right-4" tabindex="4" >
+    
+      <option data-style-url-name="ama"
+              value="AMA"
+              >
+        AMA
+      </option>
+    
+      <option data-style-url-name="apa"
+              value="APA"
+              >
+        APA
+      </option>
+    
+      <option data-style-url-name="mla"
+              value="MLA"
+              >
+        MLA
+      </option>
+    
+      <option data-style-url-name="nlm"
+              value="NLM"
+              selected="selected">
+        NLM
+      </option>
+    
+  </select>
+</div>
+      </li>
+  </ul>
+</div>
+    </div>
+</div>
+
+        <div class="overlay" role="dialog" hidden>
+  <div id="collections-action-dialog" class="dialog collections-dialog" aria-hidden="true">
+   <div class="display-inline-flex flex-align-center flex-justify width-full margin-bottom-2">
+        <h2 class="usa-modal__heading margin-0">Add to Collections</h2>
+    </div>
+    <div class="collections-action-panel action-panel">
+      
+
+
+<form id="collections-action-dialog-form"
+      class="usa-form maxw-full collections-action-panel-form action-panel-content action-form action-panel-smaller-selectors"
+      data-existing-collections-url="/list-existing-collections/"
+      data-add-to-existing-collection-url="/add-to-existing-collection/"
+      data-create-and-add-to-new-collection-url="/create-and-add-to-new-collection/"
+      data-myncbi-max-collection-name-length="100"
+      data-collections-root-url="https://www.ncbi.nlm.nih.gov/myncbi/collections/">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="tpYft6zmu9Ywh9Lix7qoEBwPDSHqkJ9NUX2P5H6DMtizqnlQNfEIzPpMtde6q1Av">
+
+    <fieldset class="usa-fieldset margin-bottom-2">
+        <div class="usa-radio">
+            <input type="radio"
+            id="collections-action-dialog-new"
+            class="usa-radio__input usa-radio__input--tile collections-new  margin-top-0"
+            name="collections"
+            value="new"
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="collections_radio_new" />
+            <label class="usa-radio__label" for="collections-action-dialog-new">Create a new collection</label>
+        </div>
+        <div class="usa-radio">
+            <input type="radio"
+            id="collections-action-dialog-existing"
+            class="usa-radio__input usa-radio__input--tile collections-existing"
+            name="collections"
+            value="existing"
+            checked="true"
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="collections_radio_existing" />
+            <label class="usa-radio__label" for="collections-action-dialog-existing">Add to an existing collection</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="usa-fieldset margin-bottom-2">
+        <div class="action-panel-control-wrap new-collections-controls">
+           <label for="collections-action-dialog-add-to-new" class="usa-label margin-top-0">
+                Name your collection
+               <abbr title="required" class="usa-hint usa-hint--required text-no-underline">*</abbr>
+          </label>
+          <input
+            type="text"
+            name="add-to-new-collection"
+            id="collections-action-dialog-add-to-new"
+            class="usa-input collections-action-add-to-new"
+            pattern="[^&quot;&amp;=&lt;&gt;/]*" title="The following characters are not allowed in the Name field: &quot;&amp;=&lt;&gt;/"
+            maxlength=""
+            data-ga-category="collections_button"
+            data-ga-action="create_collection"
+            data-ga-label="non_favorties_collection"
+            required
+          />
+        </div>
+        <div class="action-panel-control-wrap existing-collections-controls">
+             <label for="collections-action-dialog-add-to-existing" class="usa-label margin-top-0">
+                Choose a collection
+              </label>
+              <select id="collections-action-dialog-add-to-existing"
+                      class="usa-select collections-action-add-to-existing"
+                      data-ga-category="collections_button"
+                      data-ga-action="select_collection"
+                      data-ga-label="($('.collections-action-add-to-existing').val() === 'Favorites') ? 'Favorites' : 'non_favorites_collection'">
+              </select>
+              <div class="collections-retry-load-on-error usa-input-error-message selection-validation-message">
+                Unable to load your collection due to an error<br>
+                <a href="#">Please try again</a>
+              </div>
+        </div>
+    </fieldset>
+
+    <div class="display-inline-flex">
+        <button class="usa-button margin-top-0 action-panel-submit"
+            type="submit"
+            data-loading-label="Adding..."
+            data-pinger-ignore
+            data-ga-category="collections_button"
+            data-ga-action="click"
+            data-ga-label="add">
+          Add
+        </button>
+        <button class="usa-button usa-button--outline margin-top-0 action-panel-cancel"
+                aria-label="Close 'Add to Collections' panel"
+                ref="linksrc=close_collections_panel"
+                data-ga-category="collections_button"
+                data-ga-action="click"
+                data-ga-label="cancel">
+          Cancel
+        </button>
+    </div>
+</form>
+    </div>
+  </div>
+</div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+
+
+        
+    
+    
+
+<footer class="ncbi-footer ncbi-dark-background " >
+    
+        <div class="ncbi-footer__icon-section">
+            <div class="ncbi-footer__social-header">
+                Follow NCBI
+            </div>
+
+            <div class="grid-container ncbi-footer__ncbi-social-icons-container">
+                
+                    <a href="https://twitter.com/ncbi"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="40"
+                             height="40"
+                             viewBox="0 0 40 40"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="m6.067 8 10.81 13.9L6 33.2h4.2l8.4-9.1 7.068 9.1H34L22.8 18.5 31.9 8h-3.5l-7.7 8.4L14.401 8H6.067Zm3.6 1.734h3.266l16.8 21.732H26.57L9.668 9.734Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on X (formerly known as Twitter)</span>
+                    </a>
+                
+
+                
+                    <a href="https://www.facebook.com/ncbi.nlm"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="16"
+                             height="29"
+                             focusable="false"
+                             aria-hidden="true"
+                             viewBox="0 0 16 29"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.8809 21.4002C3.8809 19.0932 3.8809 16.7876 3.8809 14.478C3.8809 14.2117 3.80103 14.1452 3.54278 14.1492C2.53372 14.1638 1.52334 14.1492 0.514288 14.1598C0.302626 14.1598 0.248047 14.0972 0.248047 13.8936C0.256034 12.4585 0.256034 11.0239 0.248047 9.58978C0.248047 9.37013 0.302626 9.30224 0.528931 9.3049C1.53798 9.31688 2.54837 9.3049 3.55742 9.31555C3.80103 9.31555 3.8809 9.26097 3.87957 9.00272C3.87158 8.00565 3.85428 7.00592 3.90753 6.00884C3.97142 4.83339 4.31487 3.73115 5.04437 2.78467C5.93095 1.63318 7.15699 1.09005 8.56141 0.967577C10.5582 0.79319 12.555 0.982221 14.5518 0.927641C14.7102 0.927641 14.7462 0.99287 14.7449 1.13664C14.7449 2.581 14.7449 4.02668 14.7449 5.47104C14.7449 5.67604 14.6517 5.68669 14.4946 5.68669C13.4523 5.68669 12.4113 5.68669 11.3703 5.68669C10.3506 5.68669 9.92057 6.10868 9.90593 7.13904C9.89661 7.7647 9.91525 8.39303 9.89794 9.01869C9.88995 9.26364 9.96583 9.31822 10.2015 9.31688C11.7204 9.30623 13.2393 9.31688 14.7595 9.3049C15.0257 9.3049 15.0723 9.3728 15.0444 9.62439C14.89 10.9849 14.7515 12.3467 14.6144 13.7085C14.5691 14.1571 14.5785 14.1585 14.1458 14.1585C12.8386 14.1585 11.5313 14.1665 10.2254 14.1518C9.95119 14.1518 9.89794 14.2317 9.89794 14.4899C9.90593 19.0799 9.89794 23.6752 9.91125 28.2612C9.91125 28.5674 9.8407 28.646 9.53186 28.6433C7.77866 28.6273 6.02414 28.6366 4.27094 28.634C3.82499 28.634 3.87158 28.6992 3.87158 28.22C3.87602 25.9472 3.87913 23.6739 3.8809 21.4002Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on Facebook</span>
+                    </a>
+                
+
+                
+                    <a href="https://www.linkedin.com/company/ncbinlm"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="25"
+                             height="23"
+                             viewBox="0 0 26 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M14.6983 9.98423C15.6302 9.24808 16.5926 8.74754 17.6762 8.51991C19.673 8.09126 21.554 8.30824 23.1262 9.7526C24.2351 10.7723 24.7529 12.1115 25.0165 13.5612C25.1486 14.3363 25.2105 15.1218 25.2015 15.9081C25.2015 18.3043 25.2015 20.6898 25.2082 23.0806C25.2082 23.3468 25.1549 23.444 24.8621 23.4414C23.1297 23.4272 21.3992 23.4272 19.6704 23.4414C19.4041 23.4414 19.3429 23.3588 19.3442 23.1019C19.3535 20.5194 19.3442 17.9368 19.3442 15.3543C19.3442 14.0005 18.3258 12.9448 17.0266 12.9488C15.7273 12.9528 14.6983 14.0071 14.6983 15.361C14.6983 17.9328 14.6917 20.5047 14.6983 23.0753C14.6983 23.3708 14.6198 23.444 14.3296 23.4427C12.6185 23.4294 10.9079 23.4294 9.19779 23.4427C8.93155 23.4427 8.86099 23.3735 8.86232 23.1086C8.8783 19.7619 8.88628 16.4144 8.88628 13.066C8.88628 11.5688 8.87874 10.0708 8.86365 8.57182C8.86365 8.3575 8.90758 8.27896 9.14054 8.28029C10.9048 8.29094 12.6687 8.29094 14.4321 8.28029C14.6464 8.28029 14.6983 8.34818 14.6983 8.54653C14.6903 9.00047 14.6983 9.45441 14.6983 9.98423Z">
+                            </path>
+                            <path d="M6.55316 15.8443C6.55316 18.2564 6.55316 20.6699 6.55316 23.082C6.55316 23.3629 6.48127 23.4388 6.19906 23.4374C4.47737 23.4241 2.75568 23.4241 1.03399 23.4374C0.767751 23.4374 0.69986 23.3629 0.701191 23.1006C0.709178 18.2648 0.709178 13.4281 0.701191 8.59053C0.701191 8.34026 0.765089 8.27237 1.01669 8.2737C2.74991 8.28435 4.48048 8.28435 6.20838 8.2737C6.47462 8.2737 6.5465 8.33627 6.54517 8.6065C6.54783 11.0186 6.55316 13.4308 6.55316 15.8443Z">
+                            </path>
+                            <path d="M3.65878 0.243898C5.36804 0.243898 6.58743 1.45529 6.58743 3.1406C6.58743 4.75801 5.32145 5.95742 3.60819 5.96807C3.22177 5.97614 2.83768 5.90639 2.47877 5.76299C2.11985 5.61959 1.79344 5.40546 1.51897 5.13334C1.24449 4.86123 1.02755 4.53668 0.881058 4.17902C0.734563 3.82136 0.661505 3.43788 0.666231 3.05141C0.67555 1.42601 1.9362 0.242566 3.65878 0.243898Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on LinkedIn</span>
+                    </a>
+                
+
+                
+                    <a href="https://github.com/ncbi"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="28"
+                             height="27"
+                             viewBox="0 0 28 28"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M16.7228 20.6334C17.5057 20.5527 18.2786 20.3944 19.0301 20.1608C21.3108 19.4193 22.5822 17.8259 22.963 15.4909C23.1228 14.5112 23.1814 13.5287 22.9883 12.5437C22.8106 11.6423 22.4013 10.8028 21.8007 10.1076C21.7526 10.0605 21.7197 10 21.7064 9.934C21.6931 9.86799 21.7 9.79952 21.7262 9.73748C22.0856 8.6206 21.9711 7.51969 21.601 6.42677C21.582 6.3497 21.5345 6.2827 21.468 6.23923C21.4016 6.19577 21.3211 6.17906 21.2429 6.19248C20.7329 6.21649 20.2313 6.33051 19.7611 6.52928C19.1103 6.7908 18.4899 7.12198 17.9104 7.51703C17.84 7.56996 17.7581 7.60551 17.6713 7.62078C17.5846 7.63605 17.4954 7.6306 17.4112 7.60489C15.2596 7.05882 13.0054 7.06203 10.8554 7.61421C10.7806 7.63586 10.7018 7.63967 10.6253 7.62534C10.5487 7.611 10.4766 7.57892 10.4148 7.53167C9.64788 7.03247 8.85171 6.58918 7.96368 6.33359C7.65781 6.24338 7.34123 6.19458 7.02239 6.18849C6.94879 6.17986 6.87462 6.19893 6.81432 6.242C6.75402 6.28507 6.71191 6.34904 6.69621 6.42145C6.32342 7.51437 6.2209 8.61527 6.56307 9.73348C6.59635 9.84264 6.64694 9.93316 6.54177 10.0516C5.47666 11.2604 5.09988 12.6834 5.19574 14.2676C5.2663 15.4244 5.46201 16.5466 6.01454 17.5769C6.84399 19.1171 8.21664 19.9119 9.85158 20.3352C10.3938 20.4706 10.9444 20.5698 11.4998 20.632C11.5384 20.7492 11.4506 20.7798 11.408 20.8291C11.1734 21.1179 10.9894 21.4441 10.8634 21.7942C10.7622 22.0458 10.8315 22.4039 10.6065 22.5516C10.263 22.7766 9.83827 22.8485 9.42421 22.8871C8.17936 23.0056 7.26471 22.4877 6.6283 21.4348C6.25552 20.8184 5.76956 20.3325 5.08523 20.0663C4.76981 19.9325 4.42139 19.8967 4.08537 19.9638C3.7898 20.029 3.73788 20.1901 3.93891 20.4111C4.03639 20.5234 4.14989 20.6207 4.27575 20.6999C4.9796 21.1318 5.51717 21.7884 5.80152 22.5636C6.37002 23.9973 7.48039 24.5697 8.93825 24.6323C9.43741 24.6575 9.93768 24.615 10.4254 24.5058C10.5892 24.4672 10.6531 24.4872 10.6517 24.6762C10.6451 25.4936 10.6637 26.3123 10.6517 27.131C10.6517 27.6635 10.1684 27.9297 9.58663 27.7393C8.17396 27.2671 6.84977 26.5631 5.66838 25.656C2.59555 23.2891 0.720966 20.1861 0.217704 16.3376C-0.357453 11.9127 0.911353 8.00824 3.98551 4.73881C6.11909 2.42656 8.99932 0.939975 12.1203 0.540191C16.5351 -0.0601815 20.4347 1.14323 23.7232 4.16373C26.2449 6.47869 27.724 9.37672 28.1048 12.7726C28.5828 17.0325 27.3686 20.7945 24.4768 23.9827C22.9762 25.6323 21.0956 26.8908 18.9982 27.6488C18.8783 27.6927 18.7585 27.738 18.636 27.7726C18.0356 27.9404 17.6189 27.6395 17.6189 27.0098C17.6189 25.7452 17.6308 24.4806 17.6295 23.2159C17.6329 22.9506 17.6128 22.6856 17.5696 22.4238C17.4325 21.6664 17.3419 21.484 16.7228 20.6334Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI on GitHub</span>
+                    </a>
+                
+
+                
+                    <a href="https://ncbiinsights.ncbi.nlm.nih.gov/"
+                       class="ncbi-footer__social-icon ncbi-footer__social-icon--gray"
+                       target="_blank"
+                       rel="noreferrer noopener">
+                        <svg width="26"
+                             height="26"
+                             viewBox="0 0 27 27"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             focusable="false"
+                             aria-hidden="true">
+                            <path d="M23.7778 26.4574C23.1354 26.3913 22.0856 26.8024 21.636 26.3087C21.212 25.8444 21.4359 24.8111 21.324 24.0347C19.9933 14.8323 14.8727 8.80132 6.09057 5.85008C4.37689 5.28406 2.58381 4.99533 0.779072 4.99481C0.202773 4.99481 -0.0229751 4.83146 0.00455514 4.21479C0.0660406 3.08627 0.0660406 1.95525 0.00455514 0.826734C-0.0413285 0.0815827 0.259669 -0.0193618 0.896534 0.00266238C6.96236 0.222904 12.3693 2.24179 16.9889 6.16209C22.9794 11.2478 26.1271 17.7688 26.4372 25.648C26.4629 26.294 26.3179 26.5271 25.6609 26.4684C25.0827 26.417 24.4991 26.4574 23.7778 26.4574Z">
+                            </path>
+                            <path d="M14.8265 26.441C14.0924 26.441 13.2371 26.6795 12.6626 26.3786C12.0092 26.0372 12.3781 25.0644 12.246 24.378C11.1154 18.5324 6.6849 14.5497 0.74755 14.1001C0.217135 14.0615 -0.0104482 13.9422 0.0134113 13.3659C0.0519536 12.1454 0.0482829 10.9213 0.0134113 9.69524C-0.00127145 9.14464 0.196946 9.03268 0.703502 9.04736C9.21217 9.27128 16.5994 16.2511 17.2804 24.7231C17.418 26.4446 17.418 26.4446 15.6579 26.4446H14.832L14.8265 26.441Z">
+                            </path>
+                            <path d="M3.58928 26.4555C2.64447 26.4618 1.73584 26.0925 1.06329 25.4289C0.39073 24.7653 0.00933763 23.8617 0.0030097 22.9169C-0.00331824 21.9721 0.365937 21.0635 1.02954 20.3909C1.69315 19.7184 2.59675 19.337 3.54156 19.3306C4.48637 19.3243 5.39499 19.6936 6.06755 20.3572C6.7401 21.0208 7.1215 21.9244 7.12782 22.8692C7.13415 23.814 6.7649 24.7226 6.10129 25.3952C5.43768 26.0677 4.53409 26.4491 3.58928 26.4555Z">
+                            </path>
+                        </svg>
+                        <span class="usa-sr-only">NCBI RSS feed</span>
+                    </a>
+                
+            </div>
+        </div>
+    
+
+    <div data-testid="gridContainer"
+         class="grid-container ncbi-footer__container">
+        <div class="grid-row ncbi-footer__main-content-container"
+             data-testid="grid">
+            
+                <div class="ncbi-footer__column">
+                    
+                        <p class="ncbi-footer__circled-icons-heading">
+                            Connect with NLM
+                        </p>
+                    
+
+                    <div class="ncbi-footer__circled-icons-list">
+                        
+                            <a href=https://twitter.com/nlm_nih class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="32"
+                                     height="32"
+                                     viewBox="0 0 40 40"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="m6.067 8 10.81 13.9L6 33.2h4.2l8.4-9.1 7.068 9.1H34L22.8 18.5 31.9 8h-3.5l-7.7 8.4L14.401 8H6.067Zm3.6 1.734h3.266l16.8 21.732H26.57L9.668 9.734Z">
+                                    </path>
+                                </svg>
+                                <span class="usa-sr-only">NLM on X (formerly known as Twitter)</span>
+                            </a>
+                        
+
+                        
+                            <a href=https://www.facebook.com/nationallibraryofmedicine class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="13"
+                                     height="24"
+                                     viewBox="0 0 13 24"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="M4.11371 23.1369C4.11371 23.082 4.11371 23.0294 4.11371 22.9745V12.9411H0.817305C0.6709 12.9411 0.670898 12.9411 0.670898 12.8016C0.670898 11.564 0.670898 10.3287 0.670898 9.09341C0.670898 8.97903 0.705213 8.95158 0.815017 8.95158C1.8673 8.95158 2.91959 8.95158 3.97417 8.95158H4.12057V8.83263C4.12057 7.8055 4.12057 6.7738 4.12057 5.74897C4.1264 4.92595 4.31387 4.11437 4.66959 3.37217C5.12916 2.38246 5.94651 1.60353 6.95717 1.1921C7.64827 0.905008 8.3913 0.764035 9.13953 0.778051C10.0019 0.791777 10.8644 0.830666 11.7268 0.860404C11.8869 0.860404 12.047 0.894717 12.2072 0.90158C12.2964 0.90158 12.3261 0.940469 12.3261 1.02968C12.3261 1.5421 12.3261 2.05452 12.3261 2.56465C12.3261 3.16857 12.3261 3.7725 12.3261 4.37642C12.3261 4.48165 12.2964 4.51367 12.1912 4.51138C11.5369 4.51138 10.8804 4.51138 10.2261 4.51138C9.92772 4.51814 9.63058 4.5526 9.33855 4.61433C9.08125 4.6617 8.84537 4.78881 8.66431 4.97766C8.48326 5.16652 8.3662 5.40755 8.32972 5.66661C8.28476 5.89271 8.26027 6.1224 8.25652 6.35289C8.25652 7.19014 8.25652 8.02969 8.25652 8.86923C8.25652 8.89439 8.25652 8.91955 8.25652 8.95615H12.0219C12.1797 8.95615 12.182 8.95616 12.1614 9.10714C12.0768 9.76596 11.9876 10.4248 11.9029 11.0813C11.8312 11.6319 11.7626 12.1824 11.697 12.733C11.6719 12.9434 11.6787 12.9434 11.4683 12.9434H8.26338V22.899C8.26338 22.979 8.26338 23.0591 8.26338 23.1392L4.11371 23.1369Z">
+                                    </path>
+                                </svg>
+                                <span class="usa-sr-only">NLM on Facebook</span>
+                            </a>
+                        
+
+                        
+                            <a href=https://www.youtube.com/user/NLMNIH class="ncbi-footer__social-icon ncbi-footer__social-icon--circled" target="_blank" rel="noreferrer noopener">
+                                <svg width="21"
+                                     height="15"
+                                     viewBox="0 0 21 15"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     focusable="false"
+                                     aria-hidden="true">
+                                    <path d="M19.2561 1.47914C18.9016 1.15888 18.5699 0.957569 17.2271 0.834039C15.5503 0.678484 13.2787 0.655608 11.563 0.65332H9.43556C7.71987 0.65332 5.4483 0.678484 3.77151 0.834039C2.43098 0.957569 2.097 1.15888 1.74242 1.47914C0.813665 2.32097 0.619221 4.62685 0.598633 6.89384C0.598633 7.31781 0.598633 7.74101 0.598633 8.16345C0.626084 10.4121 0.827391 12.686 1.74242 13.521C2.097 13.8412 2.4287 14.0425 3.77151 14.1661C5.4483 14.3216 7.71987 14.3445 9.43556 14.3468H11.563C13.2787 14.3468 15.5503 14.3216 17.2271 14.1661C18.5676 14.0425 18.9016 13.8412 19.2561 13.521C20.1712 12.6929 20.3725 10.451 20.3999 8.22064C20.3999 7.74025 20.3999 7.25986 20.3999 6.77946C20.3725 4.54907 20.1689 2.30724 19.2561 1.47914ZM8.55942 10.5311V4.65201L13.5601 7.50005L8.55942 10.5311Z"
+                                          fill="white" />
+                                </svg>
+                                <span class="usa-sr-only">NLM on YouTube</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            
+
+            
+                <address class="ncbi-footer__address ncbi-footer__column">
+                    
+        <p>
+            <a class="usa-link usa-link--external"
+            href="https://www.google.com/maps/place/8600+Rockville+Pike,+Bethesda,+MD+20894/%4038.9959508,
+            -77.101021,17z/data%3D!3m1!4b1!4m5!3m4!1s0x89b7c95e25765ddb%3A0x19156f88b27635b8!8m2!3d38.9959508!
+            4d-77.0988323"
+            rel="noopener noreferrer" target="_blank">National Library of Medicine
+            <br/> 8600 Rockville Pike<br/> Bethesda, MD 20894</a>
+        </p>
+    
+                </address>
+            
+
+            
+                <ul class="usa-list usa-list--unstyled ncbi-footer__vertical-list ncbi-footer__column">
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/web_policies.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Web Policies
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nih.gov/institutes-nih/nih-office-director/office-communications-public-liaison/freedom-information-act-office" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            FOIA
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            HHS Vulnerability Disclosure
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <ul class="usa-list usa-list--unstyled ncbi-footer__vertical-list ncbi-footer__column">
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://support.nlm.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Help
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/accessibility.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Accessibility
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__vertical-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/careers/careers.html" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            Careers
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            
+        </div>
+
+        
+            <div class="grid-row grid-col-12" data-testid="grid">
+                <ul class="ncbi-footer__bottom-links-list">
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nlm.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            NLM
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.nih.gov/" class="usa-link  usa-link--alt ncbi-footer__link"  >
+        
+
+        
+            NIH
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.hhs.gov/" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            HHS
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                        <li class="ncbi-footer__bottom-list-item">
+                            
+
+
+
+
+
+
+
+
+
+    <a href="https://www.usa.gov/" class="usa-link usa-link--external usa-link--alt ncbi-footer__link" rel="noreferrer noopener" target='_blank' >
+        
+
+        
+            USA.gov
+        
+
+        
+    </a>
+
+
+                        </li>
+                    
+                </ul>
+            </div>
+        
+    </div>
+</footer>
+
+    
+
+
+        
+        
+    
+  <script  type="text/javascript" src="https://cdn.ncbi.nlm.nih.gov/core/pinger/pinger.js"> </script>
+
+
+    
+        
+
+<button class="back-to-top" data-ga-category="pagination" data-ga-action="back_to_top">
+    <label>Back to Top</label>
+    <img src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/img/usa-icons/arrow_upward.svg" alt="back to top icon" class="usa-icon usa-icon--size-3 order-0 usa-icon--white" />
+</button>
+    
+
+
+        
+    
+    <div id="icon-container" style="display: none;"></div>
+    
+    
+        
+    <script type="application/javascript">
+    window.ncbi = window.ncbi || {};
+    window.ncbi.pmc = window.ncbi.pmc || {};
+    window.ncbi.pmc.options = {
+        logLevel: 'INFO',
+        
+        staticEndpoint: 'https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/',
+        
+        citeCookieName: 'pmc-cf',
+    };
+</script>
+    <script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/base-Cp_Il6gk.js"></script>
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/vendor-Co8Vdmw2.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+    
+    <script type="text/javascript" src="https://cdn.ncbi.nlm.nih.gov/core/jquery/jquery-3.6.0.min.js">&#xA0;</script>
+    <script type="text/javascript">
+        jQuery.getScript("https://cdn.ncbi.nlm.nih.gov/core/alerts/alerts.js", function () {
+            galert(['div.nav_and_browser', 'div.header', '#universal_header', '.usa-banner', 'body > *:nth-child(1)'])
+        });
+    </script>
+
+
+    <script type="text/javascript">var exports = {};</script>
+     <script src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/CACHE/js/output.4e25b6297b38.js"></script>
+
+    <script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/article-D47MIn9n.js"></script>
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/vendor-Co8Vdmw2.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/index-DXSA0fsx.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/secure-cookie-Br6x5jtB.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+    
+        <script type="module" crossorigin="" src="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/math-CjjrG8hn.js"></script>
+<link href="https://cdn.ncbi.nlm.nih.gov/pmc/pd-medc-pmc-cloudpmc-viewer/production/9b1d9d87/var/data/static/assets/vendor-Co8Vdmw2.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+    
+    
+
+    </body>
+</html>
