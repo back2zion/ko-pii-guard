@@ -1,0 +1,545 @@
+{
+  "scope": "previously_inspected_synthetic_public_API_diagnosis",
+  "guard_score_threshold": 0.0,
+  "threshold_reason": "Research head threshold controls acceptance; avoid a second gate",
+  "source_sha256": {
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_span_public.py": "e6ea71e9a37d808cc630a5d689421982f41824ed0de436f0b2ea8e98d6583315",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/data/name_context_v11.jsonl": "86b9eff44f9ffa3fa75a9f7d67ae00ef58edbc0fa55e6b9314463cb0c77115ba",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_span_adapter.py": "73861de60af93c44333162505dd93fce8e2d445b35db8d6d4c58025a675c5bef",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_span_experiment.py": "8ebbd43c03fc61b64cb112155fb79716624846f9f1b44f1a5490864b67f4c357",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_span_experiment.py": "6f5cabfb46379aa29098516965311f7e7b3b4fe63e67227b46dd2a8abe4e37ba",
+    "artifacts/name-span-experiment-v1/report.json": "ab54d3a3f312f16584aefce758604b5ca1dbb6578ac449ac2426454f0c89449a",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/span_filter.safetensors": "246e3388fb01c04c34b4b7b4b5e6f2fbfabe7327cc410f56997169d97e0c5a38",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context_2.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/name_context_config.json": "5a1c497193f02309e5639bec6e4105671dbb0adbb8604fda864dd77b2d8056c1",
+    "artifacts/name-span-experiment-v1/seed-20261011/head.safetensors": "e77ad30988516aa74974a7767897448173f5b7f091f1ad284a0a393a9b8794e8",
+    "artifacts/name-span-experiment-v1/seed-20261011/config.json": "eaa0ec4322a877b75d06e55fdeed2bee25242358504b49bd2b93c6290869e347",
+    "artifacts/name-span-experiment-v1/seed-20261012/head.safetensors": "929b2029cc5cd4cfbeab08604b7f3602602483b709e74802e79177fe700f2447",
+    "artifacts/name-span-experiment-v1/seed-20261012/config.json": "b176570c69df7a4f0797478123521cf5fb18e8e92218f1f7367499ca6cb9f26e",
+    "artifacts/name-span-experiment-v1/seed-20261010/head.safetensors": "4ff7da4cb0e57bf2f8c4b1471e9d29f8179d9e8389b3903eb0af70d57a0b61ea",
+    "artifacts/name-span-experiment-v1/seed-20261010/config.json": "fd54b51eacc4cb07f7977205a9df0cd8c5c70543b919ebe55e6c4754b750f6df"
+  },
+  "baseline": {
+    "tp": 211,
+    "fp": 17,
+    "fn": 23,
+    "f1": 0.9134199134199135,
+    "fully_covered_names": 212,
+    "unnecessary_masked_characters": 4,
+    "errors": [
+      {
+        "id": "v11-evaluation-person-00-001",
+        "missed": [
+          [
+            10,
+            13
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-00-012",
+        "missed": [
+          [
+            10,
+            12
+          ]
+        ],
+        "false": [
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-00-013",
+        "missed": [
+          [
+            10,
+            12
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-00-016",
+        "missed": [
+          [
+            27,
+            30
+          ]
+        ],
+        "false": [
+          [
+            27,
+            28
+          ],
+          [
+            29,
+            30
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-01-000",
+        "missed": [],
+        "false": [
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-01-001",
+        "missed": [
+          [
+            9,
+            12
+          ]
+        ],
+        "false": [
+          [
+            5,
+            6
+          ],
+          [
+            9,
+            11
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-01-003",
+        "missed": [],
+        "false": [
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-01-010",
+        "missed": [],
+        "false": [
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-03-001",
+        "missed": [
+          [
+            16,
+            19
+          ]
+        ],
+        "false": [
+          [
+            16,
+            18
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-03-012",
+        "missed": [
+          [
+            16,
+            18
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-04-001",
+        "missed": [
+          [
+            23,
+            26
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-05-001",
+        "missed": [
+          [
+            4,
+            7
+          ]
+        ],
+        "false": [
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-05-016",
+        "missed": [
+          [
+            22,
+            25
+          ]
+        ],
+        "false": [
+          [
+            22,
+            24
+          ],
+          [
+            24,
+            25
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-06-001",
+        "missed": [
+          [
+            15,
+            18
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-06-005",
+        "missed": [
+          [
+            20,
+            24
+          ]
+        ],
+        "false": [
+          [
+            20,
+            23
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-06-006",
+        "missed": [
+          [
+            20,
+            24
+          ]
+        ],
+        "false": [
+          [
+            20,
+            23
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-06-009",
+        "missed": [
+          [
+            15,
+            19
+          ],
+          [
+            21,
+            23
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-06-010",
+        "missed": [
+          [
+            18,
+            20
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-06-012",
+        "missed": [
+          [
+            15,
+            17
+          ],
+          [
+            19,
+            22
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-06-015",
+        "missed": [
+          [
+            20,
+            23
+          ]
+        ],
+        "false": [
+          [
+            20,
+            21
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-06-016",
+        "missed": [
+          [
+            28,
+            31
+          ]
+        ],
+        "false": [
+          [
+            28,
+            30
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-07-001",
+        "missed": [
+          [
+            4,
+            7
+          ]
+        ],
+        "false": [
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "v11-evaluation-person-07-013",
+        "missed": [
+          [
+            4,
+            6
+          ]
+        ],
+        "false": []
+      },
+      {
+        "id": "v11-evaluation-person-07-016",
+        "missed": [
+          [
+            25,
+            28
+          ]
+        ],
+        "false": []
+      }
+    ]
+  },
+  "models": {
+    "seed-20261010": {
+      "metrics": {
+        "tp": 232,
+        "fp": 2,
+        "fn": 2,
+        "f1": 0.9914529914529915,
+        "fully_covered_names": 232,
+        "unnecessary_masked_characters": 0,
+        "errors": [
+          {
+            "id": "v11-evaluation-person-03-001",
+            "missed": [
+              [
+                16,
+                19
+              ]
+            ],
+            "false": [
+              [
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "v11-evaluation-person-06-016",
+            "missed": [
+              [
+                28,
+                31
+              ]
+            ],
+            "false": [
+              [
+                28,
+                30
+              ]
+            ]
+          }
+        ]
+      },
+      "regression_gate": {
+        "lost_correct_spans": [],
+        "introduced_false_spans": [],
+        "newly_exposed_names": [],
+        "passed": true,
+        "actual_stars_newly_exposed_names": []
+      }
+    },
+    "seed-20261011": {
+      "metrics": {
+        "tp": 231,
+        "fp": 2,
+        "fn": 3,
+        "f1": 0.9892933618843683,
+        "fully_covered_names": 231,
+        "unnecessary_masked_characters": 0,
+        "errors": [
+          {
+            "id": "v11-evaluation-person-03-001",
+            "missed": [
+              [
+                16,
+                19
+              ]
+            ],
+            "false": [
+              [
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "v11-evaluation-person-06-001",
+            "missed": [
+              [
+                15,
+                18
+              ]
+            ],
+            "false": []
+          },
+          {
+            "id": "v11-evaluation-person-06-016",
+            "missed": [
+              [
+                28,
+                31
+              ]
+            ],
+            "false": [
+              [
+                28,
+                30
+              ]
+            ]
+          }
+        ]
+      },
+      "regression_gate": {
+        "lost_correct_spans": [],
+        "introduced_false_spans": [],
+        "newly_exposed_names": [],
+        "passed": true,
+        "actual_stars_newly_exposed_names": []
+      }
+    },
+    "seed-20261012": {
+      "metrics": {
+        "tp": 231,
+        "fp": 3,
+        "fn": 3,
+        "f1": 0.9871794871794872,
+        "fully_covered_names": 231,
+        "unnecessary_masked_characters": 0,
+        "errors": [
+          {
+            "id": "v11-evaluation-person-00-001",
+            "missed": [
+              [
+                10,
+                13
+              ]
+            ],
+            "false": [
+              [
+                10,
+                12
+              ]
+            ]
+          },
+          {
+            "id": "v11-evaluation-person-03-001",
+            "missed": [
+              [
+                16,
+                19
+              ]
+            ],
+            "false": [
+              [
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "id": "v11-evaluation-person-06-016",
+            "missed": [
+              [
+                28,
+                31
+              ]
+            ],
+            "false": [
+              [
+                28,
+                30
+              ]
+            ]
+          }
+        ]
+      },
+      "regression_gate": {
+        "lost_correct_spans": [],
+        "introduced_false_spans": [
+          [
+            "v11-evaluation-person-00-001",
+            10,
+            12
+          ]
+        ],
+        "newly_exposed_names": [],
+        "passed": false,
+        "actual_stars_newly_exposed_names": []
+      }
+    }
+  },
+  "runtime_promotion": false,
+  "source_changed_during_run": false
+}

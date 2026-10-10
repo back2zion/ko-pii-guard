@@ -12,6 +12,8 @@ guard.mask("홍길동 고객(주민번호 900101-1234567, 연락처 010-0000-000
 
 [한국어 안내](#한국어-안내)
 
+[제품 요구사항과 개발 우선순위](docs/PRD.md)
+
 This checkout includes **unreleased improvements** beyond PyPI v0.2.0. Use the
 [development installation](#development) to try them. See [evaluation results and
 reproduction commands](docs/evaluation.md) and [account-format sources](docs/account-format-sources.md).
@@ -145,6 +147,30 @@ not apply its model card's suffix-removal heuristic: characters such as `은` ca
 belong to the name itself. Explicit non-person fields and missing-value markers
 veto model predictions; address predictions need a numeric component. Filename
 context does not suppress names: `김철수_이력서.pdf` contains a detectable name.
+
+An opt-in [contextual name model v11](artifacts/name-context-v11/README.md)
+is available in this unreleased checkout:
+
+```python
+ner = KoreanNER.from_pretrained(name_context_path="artifacts/name-context-v11")
+```
+
+It fixes the five known v9 missed names and two false spans; that original
+192-sentence split now scores TP234/FP0/FN0. All 1,391 integration tests pass.
+Historical acceptance protects all 3,222 correct spans across 3,049 sentences.
+A separate, frozen 192-sentence synthetic evaluation preserves all 211
+baseline-correct spans with no new false span (TP/FP/FN 211/19/23 → 211/17/23).
+Those 23 misses and 17 false spans remain; finite synthetic results do not
+establish accuracy on arbitrary real-world text.
+
+V11 preserves all existing name decoders and refines learned non-person filtering
+with hard-example replay and stricter name retention. V10 was rejected for losing
+a previously correct name despite better aggregate scores. See
+[evaluation and reproduction](docs/name-context-v11-evaluation.md),
+[regression contracts and experiment history](docs/name-context-nonregression.md),
+and the [research review](docs/name-context-research.md).
+A research-only [joint span experiment](docs/name-span-experiment-v1.md) evaluates
+span scoring and global selection; it does not replace the default runtime.
 
 Detection and replacement policy are separate. `analyze` always reports accepted
 findings; `mask(..., should_mask=callback)` lets the caller preserve selected spans,

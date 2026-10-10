@@ -1,0 +1,1248 @@
+{
+  "manifest": {
+    "data_sha256": "8a999183ffbaac6fd12af274abd52462abd0e47504ece6c13bb4fa49ede868e4",
+    "source_sha256": {
+      "scripts/train_name_context.py": "2e7992eb7757c3197e61f6ef3acc089480f8bf063b7682430362e90d289f16f9",
+      "src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+      "src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+      "src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+      "src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+      "src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+      "src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+      "src/ko_pii_guard/name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+      "src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+      "src/ko_pii_guard/ner.py": "dcbe234cbc1ec2963eb710ee41ea9c97382bbe30bcced3abbcd495729ada1128",
+      "src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+      "src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+      "src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+      "src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f",
+      "benchmarks/name_address_benchmark.py": "0cec759b79f2b604782daf18c257492b3144ce325a78641d84b8b3c35deb057a",
+      "benchmarks/name_context_training_cases.py": "a0c47d85f3ee36c547db25b91908741b814ac4f986fbf0c7b93756a45268bd8f",
+      "benchmarks/name_context_v2_cases.py": "ff284547c82ed7090660e1eb7019907b840d7d1fa21bc2f6162a2616190b735d"
+    },
+    "seed": 20261010,
+    "epochs": 50,
+    "threads": 2,
+    "batch_size": 32,
+    "learning_rate": 0.002,
+    "confidence_threshold": 0.9,
+    "class_weights": [
+      0.25,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "selected_by": "fewest development regression errors, validation exact-span F1, then fewer validation FP; earliest tie",
+    "regression_data_sha256": {
+      "benchmarks/data/name_context_training.jsonl": "1c73e1c12324520833c83d8071fff1d66882f282442b51f34211ca51948677b3",
+      "benchmarks/data/name_address.jsonl": "b1bc48b6a4f1786ed8cc79ff5e057956923d323264ae4824e82a76c8c776bd20",
+      "benchmarks/data/business_korean.jsonl": "3c6a871257c6f817fcf06a160e5663146581adfa7e2a422db557be4c2332cf7c",
+      "benchmarks/data/name_field_boundaries.jsonl": "441ac44049227674ef25dba8a503b1036292194c6781bce7c67cbbcc440e8e6f"
+    },
+    "frozen_at_utc": "2026-10-10T02:35:36.288342+00:00",
+    "split_counts": {
+      "train": 4488,
+      "validation": 168,
+      "evaluation": 232
+    },
+    "torch_version": "2.14.1+cpu",
+    "format_version": 1,
+    "base_model_id": "FrameByFrame/korean-pii-e5-base",
+    "base_revision": "a308c54b4407819624a5661e31e162a269f39818",
+    "labels": [
+      "O",
+      "B-private_person",
+      "I-private_person",
+      "E-private_person",
+      "S-private_person"
+    ],
+    "char_buckets": 4096,
+    "architecture": {
+      "hidden_size": 768,
+      "projection_size": 64,
+      "char_size": 16,
+      "recurrent_size": 64
+    }
+  },
+  "selected_epoch": 24,
+  "history": [
+    {
+      "epoch": 1,
+      "loss_sum": 30.4536195397377,
+      "tp": 137,
+      "fp": 7,
+      "fn": 73,
+      "f1": 0.7740112994350282,
+      "development_regression": {
+        "tp": 1607,
+        "fp": 33,
+        "fn": 234,
+        "f1": 0.9232979029014651
+      }
+    },
+    {
+      "epoch": 2,
+      "loss_sum": 6.6117730010300875,
+      "tp": 179,
+      "fp": 15,
+      "fn": 31,
+      "f1": 0.8861386138613861,
+      "development_regression": {
+        "tp": 1791,
+        "fp": 58,
+        "fn": 50,
+        "f1": 0.9707317073170731
+      }
+    },
+    {
+      "epoch": 3,
+      "loss_sum": 3.0113880166318268,
+      "tp": 182,
+      "fp": 4,
+      "fn": 28,
+      "f1": 0.9191919191919192,
+      "development_regression": {
+        "tp": 1831,
+        "fp": 42,
+        "fn": 10,
+        "f1": 0.9859989229940764
+      }
+    },
+    {
+      "epoch": 4,
+      "loss_sum": 2.027746855164878,
+      "tp": 181,
+      "fp": 1,
+      "fn": 29,
+      "f1": 0.923469387755102,
+      "development_regression": {
+        "tp": 1820,
+        "fp": 12,
+        "fn": 21,
+        "f1": 0.9910155186496052
+      }
+    },
+    {
+      "epoch": 5,
+      "loss_sum": 1.3390620279824361,
+      "tp": 192,
+      "fp": 5,
+      "fn": 18,
+      "f1": 0.9434889434889435,
+      "development_regression": {
+        "tp": 1831,
+        "fp": 19,
+        "fn": 10,
+        "f1": 0.9921430506637767
+      }
+    },
+    {
+      "epoch": 6,
+      "loss_sum": 0.9451041105785407,
+      "tp": 190,
+      "fp": 0,
+      "fn": 20,
+      "f1": 0.95,
+      "development_regression": {
+        "tp": 1824,
+        "fp": 7,
+        "fn": 17,
+        "f1": 0.9934640522875817
+      }
+    },
+    {
+      "epoch": 7,
+      "loss_sum": 0.6250709585146978,
+      "tp": 187,
+      "fp": 4,
+      "fn": 23,
+      "f1": 0.9326683291770573,
+      "development_regression": {
+        "tp": 1823,
+        "fp": 7,
+        "fn": 18,
+        "f1": 0.9931898665213839
+      }
+    },
+    {
+      "epoch": 8,
+      "loss_sum": 1.5775554262218066,
+      "tp": 194,
+      "fp": 6,
+      "fn": 16,
+      "f1": 0.9463414634146341,
+      "development_regression": {
+        "tp": 1834,
+        "fp": 59,
+        "fn": 7,
+        "f1": 0.9823245848955544
+      }
+    },
+    {
+      "epoch": 9,
+      "loss_sum": 0.8274678659654455,
+      "tp": 193,
+      "fp": 0,
+      "fn": 17,
+      "f1": 0.9578163771712159,
+      "development_regression": {
+        "tp": 1817,
+        "fp": 3,
+        "fn": 24,
+        "f1": 0.9926249658563234
+      }
+    },
+    {
+      "epoch": 10,
+      "loss_sum": 0.30835999523696955,
+      "tp": 190,
+      "fp": 0,
+      "fn": 20,
+      "f1": 0.95,
+      "development_regression": {
+        "tp": 1824,
+        "fp": 1,
+        "fn": 17,
+        "f1": 0.9950900163666121
+      }
+    },
+    {
+      "epoch": 11,
+      "loss_sum": 0.2302208461042028,
+      "tp": 195,
+      "fp": 4,
+      "fn": 15,
+      "f1": 0.9535452322738386,
+      "development_regression": {
+        "tp": 1838,
+        "fp": 2,
+        "fn": 3,
+        "f1": 0.9986416734582994
+      }
+    },
+    {
+      "epoch": 12,
+      "loss_sum": 0.619366356622777,
+      "tp": 197,
+      "fp": 3,
+      "fn": 13,
+      "f1": 0.9609756097560975,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 5,
+        "fn": 0,
+        "f1": 0.9986438839164633
+      }
+    },
+    {
+      "epoch": 13,
+      "loss_sum": 0.22496165920165367,
+      "tp": 190,
+      "fp": 0,
+      "fn": 20,
+      "f1": 0.95,
+      "development_regression": {
+        "tp": 1831,
+        "fp": 2,
+        "fn": 10,
+        "f1": 0.9967338051170387
+      }
+    },
+    {
+      "epoch": 14,
+      "loss_sum": 0.7933272944610508,
+      "tp": 188,
+      "fp": 2,
+      "fn": 22,
+      "f1": 0.94,
+      "development_regression": {
+        "tp": 1815,
+        "fp": 3,
+        "fn": 26,
+        "f1": 0.9920743372506149
+      }
+    },
+    {
+      "epoch": 15,
+      "loss_sum": 0.6177868811500957,
+      "tp": 187,
+      "fp": 0,
+      "fn": 23,
+      "f1": 0.9420654911838791,
+      "development_regression": {
+        "tp": 1817,
+        "fp": 1,
+        "fn": 24,
+        "f1": 0.9931675321125991
+      }
+    },
+    {
+      "epoch": 16,
+      "loss_sum": 0.3969883200552431,
+      "tp": 189,
+      "fp": 2,
+      "fn": 21,
+      "f1": 0.942643391521197,
+      "development_regression": {
+        "tp": 1828,
+        "fp": 2,
+        "fn": 13,
+        "f1": 0.9959139199128303
+      }
+    },
+    {
+      "epoch": 17,
+      "loss_sum": 0.4828716227275436,
+      "tp": 193,
+      "fp": 0,
+      "fn": 17,
+      "f1": 0.9578163771712159,
+      "development_regression": {
+        "tp": 1840,
+        "fp": 1,
+        "fn": 1,
+        "f1": 0.9994568169473113
+      }
+    },
+    {
+      "epoch": 18,
+      "loss_sum": 0.42504447847022675,
+      "tp": 196,
+      "fp": 3,
+      "fn": 14,
+      "f1": 0.9584352078239609,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 5,
+        "fn": 0,
+        "f1": 0.9986438839164633
+      }
+    },
+    {
+      "epoch": 19,
+      "loss_sum": 0.2313528655358823,
+      "tp": 199,
+      "fp": 7,
+      "fn": 11,
+      "f1": 0.9567307692307693,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 11,
+        "fn": 0,
+        "f1": 0.9970213918223666
+      }
+    },
+    {
+      "epoch": 20,
+      "loss_sum": 0.1409578023267386,
+      "tp": 200,
+      "fp": 6,
+      "fn": 10,
+      "f1": 0.9615384615384616,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 4,
+        "fn": 0,
+        "f1": 0.9989148128052089
+      }
+    },
+    {
+      "epoch": 21,
+      "loss_sum": 0.07032266132409859,
+      "tp": 200,
+      "fp": 3,
+      "fn": 10,
+      "f1": 0.9685230024213075,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 22,
+      "loss_sum": 0.048881339413128444,
+      "tp": 199,
+      "fp": 1,
+      "fn": 11,
+      "f1": 0.9707317073170731,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 23,
+      "loss_sum": 0.05214202547540481,
+      "tp": 197,
+      "fp": 3,
+      "fn": 13,
+      "f1": 0.9609756097560975,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 1,
+        "fn": 0,
+        "f1": 0.9997284822155851
+      }
+    },
+    {
+      "epoch": 24,
+      "loss_sum": 0.030836122116852493,
+      "tp": 202,
+      "fp": 0,
+      "fn": 8,
+      "f1": 0.9805825242718447,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 25,
+      "loss_sum": 0.038932463681703666,
+      "tp": 195,
+      "fp": 5,
+      "fn": 15,
+      "f1": 0.9512195121951219,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 2,
+        "fn": 0,
+        "f1": 0.999457111834962
+      }
+    },
+    {
+      "epoch": 26,
+      "loss_sum": 0.05107849628984695,
+      "tp": 195,
+      "fp": 1,
+      "fn": 15,
+      "f1": 0.9605911330049262,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 27,
+      "loss_sum": 0.49413306664064294,
+      "tp": 199,
+      "fp": 15,
+      "fn": 11,
+      "f1": 0.9386792452830188,
+      "development_regression": {
+        "tp": 1839,
+        "fp": 25,
+        "fn": 2,
+        "f1": 0.9927125506072875
+      }
+    },
+    {
+      "epoch": 28,
+      "loss_sum": 0.8272798088146374,
+      "tp": 198,
+      "fp": 5,
+      "fn": 12,
+      "f1": 0.9588377723970944,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 4,
+        "fn": 0,
+        "f1": 0.9989148128052089
+      }
+    },
+    {
+      "epoch": 29,
+      "loss_sum": 0.35339226892392617,
+      "tp": 192,
+      "fp": 1,
+      "fn": 18,
+      "f1": 0.9528535980148883,
+      "development_regression": {
+        "tp": 1828,
+        "fp": 3,
+        "fn": 13,
+        "f1": 0.9956427015250545
+      }
+    },
+    {
+      "epoch": 30,
+      "loss_sum": 0.5547560072154738,
+      "tp": 192,
+      "fp": 21,
+      "fn": 18,
+      "f1": 0.9078014184397163,
+      "development_regression": {
+        "tp": 1839,
+        "fp": 67,
+        "fn": 2,
+        "f1": 0.9815852682145717
+      }
+    },
+    {
+      "epoch": 31,
+      "loss_sum": 0.23900517602305626,
+      "tp": 194,
+      "fp": 1,
+      "fn": 16,
+      "f1": 0.9580246913580247,
+      "development_regression": {
+        "tp": 1832,
+        "fp": 0,
+        "fn": 9,
+        "f1": 0.9975496869044378
+      }
+    },
+    {
+      "epoch": 32,
+      "loss_sum": 0.09978788714033726,
+      "tp": 195,
+      "fp": 1,
+      "fn": 15,
+      "f1": 0.9605911330049262,
+      "development_regression": {
+        "tp": 1840,
+        "fp": 0,
+        "fn": 1,
+        "f1": 0.9997283346916599
+      }
+    },
+    {
+      "epoch": 33,
+      "loss_sum": 0.2618911813333398,
+      "tp": 194,
+      "fp": 5,
+      "fn": 16,
+      "f1": 0.9486552567237164,
+      "development_regression": {
+        "tp": 1840,
+        "fp": 0,
+        "fn": 1,
+        "f1": 0.9997283346916599
+      }
+    },
+    {
+      "epoch": 34,
+      "loss_sum": 0.2907318528050382,
+      "tp": 195,
+      "fp": 11,
+      "fn": 15,
+      "f1": 0.9375,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 3,
+        "fn": 0,
+        "f1": 0.9991858887381275
+      }
+    },
+    {
+      "epoch": 35,
+      "loss_sum": 0.2061698428751697,
+      "tp": 193,
+      "fp": 0,
+      "fn": 17,
+      "f1": 0.9578163771712159,
+      "development_regression": {
+        "tp": 1838,
+        "fp": 0,
+        "fn": 3,
+        "f1": 0.9991845610220168
+      }
+    },
+    {
+      "epoch": 36,
+      "loss_sum": 0.2208284528551303,
+      "tp": 197,
+      "fp": 0,
+      "fn": 13,
+      "f1": 0.9680589680589681,
+      "development_regression": {
+        "tp": 1837,
+        "fp": 4,
+        "fn": 4,
+        "f1": 0.997827267789245
+      }
+    },
+    {
+      "epoch": 37,
+      "loss_sum": 0.21365844984211435,
+      "tp": 189,
+      "fp": 4,
+      "fn": 21,
+      "f1": 0.9379652605459057,
+      "development_regression": {
+        "tp": 1830,
+        "fp": 4,
+        "fn": 11,
+        "f1": 0.9959183673469387
+      }
+    },
+    {
+      "epoch": 38,
+      "loss_sum": 0.1018101527743056,
+      "tp": 202,
+      "fp": 3,
+      "fn": 8,
+      "f1": 0.9734939759036144,
+      "development_regression": {
+        "tp": 1840,
+        "fp": 0,
+        "fn": 1,
+        "f1": 0.9997283346916599
+      }
+    },
+    {
+      "epoch": 39,
+      "loss_sum": 0.02705236454767146,
+      "tp": 197,
+      "fp": 4,
+      "fn": 13,
+      "f1": 0.9586374695863747,
+      "development_regression": {
+        "tp": 1839,
+        "fp": 2,
+        "fn": 2,
+        "f1": 0.9989136338946225
+      }
+    },
+    {
+      "epoch": 40,
+      "loss_sum": 0.14687696653527382,
+      "tp": 198,
+      "fp": 1,
+      "fn": 12,
+      "f1": 0.9682151589242054,
+      "development_regression": {
+        "tp": 1839,
+        "fp": 0,
+        "fn": 2,
+        "f1": 0.9994565217391305
+      }
+    },
+    {
+      "epoch": 41,
+      "loss_sum": 0.35673953456625895,
+      "tp": 191,
+      "fp": 1,
+      "fn": 19,
+      "f1": 0.9502487562189055,
+      "development_regression": {
+        "tp": 1795,
+        "fp": 12,
+        "fn": 46,
+        "f1": 0.9841008771929824
+      }
+    },
+    {
+      "epoch": 42,
+      "loss_sum": 0.4307509106511134,
+      "tp": 201,
+      "fp": 2,
+      "fn": 9,
+      "f1": 0.9733656174334141,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 43,
+      "loss_sum": 0.08667893926394754,
+      "tp": 206,
+      "fp": 16,
+      "fn": 4,
+      "f1": 0.9537037037037037,
+      "development_regression": {
+        "tp": 1840,
+        "fp": 22,
+        "fn": 1,
+        "f1": 0.9937888198757764
+      }
+    },
+    {
+      "epoch": 44,
+      "loss_sum": 0.06630528111509193,
+      "tp": 196,
+      "fp": 1,
+      "fn": 14,
+      "f1": 0.9631449631449631,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 45,
+      "loss_sum": 0.00452294321894442,
+      "tp": 200,
+      "fp": 1,
+      "fn": 10,
+      "f1": 0.9732360097323601,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 46,
+      "loss_sum": 0.002477550596722722,
+      "tp": 201,
+      "fp": 1,
+      "fn": 9,
+      "f1": 0.9757281553398058,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 47,
+      "loss_sum": 0.0019583108175993402,
+      "tp": 201,
+      "fp": 1,
+      "fn": 9,
+      "f1": 0.9757281553398058,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 48,
+      "loss_sum": 0.0017101297460158094,
+      "tp": 201,
+      "fp": 1,
+      "fn": 9,
+      "f1": 0.9757281553398058,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 49,
+      "loss_sum": 0.0015324557932672178,
+      "tp": 201,
+      "fp": 1,
+      "fn": 9,
+      "f1": 0.9757281553398058,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    },
+    {
+      "epoch": 50,
+      "loss_sum": 0.001389037646504221,
+      "tp": 201,
+      "fp": 1,
+      "fn": 9,
+      "f1": 0.9757281553398058,
+      "development_regression": {
+        "tp": 1841,
+        "fp": 0,
+        "fn": 0,
+        "f1": 1.0
+      }
+    }
+  ],
+  "training_seconds": 345.63663572999985,
+  "checkpoint_sha256": "720e9ecfd006ef50c20def8650d81d878fabd3added768b63768b86bcacc33e7",
+  "evaluation_baseline": {
+    "counts": {
+      "sentences": 232,
+      "true_positive": 191,
+      "false_positive": 35,
+      "false_negative": 109,
+      "sensitive_spans": 300,
+      "fully_covered_spans": 195,
+      "negative_sentences": 32,
+      "false_positive_sentences": 1
+    },
+    "exact_span_precision": 0.8451327433628318,
+    "exact_span_recall": 0.6366666666666667,
+    "exact_span_f1": 0.7262357414448669,
+    "full_sensitive_span_coverage": 0.65,
+    "negative_sentence_false_positive_rate": 0.03125,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 191,
+          "false_positive": 35,
+          "false_negative": 109,
+          "sensitive_spans": 300,
+          "fully_covered_spans": 195,
+          "negative_sentences": 32,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.8451327433628318,
+        "exact_span_recall": 0.6366666666666667,
+        "exact_span_f1": 0.7262357414448669,
+        "full_sensitive_span_coverage": 0.65,
+        "negative_sentence_false_positive_rate": 0.03125
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 232,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 191,
+          "false_positive": 35,
+          "false_negative": 109,
+          "sensitive_spans": 300,
+          "fully_covered_spans": 195,
+          "negative_sentences": 32,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.8451327433628318,
+        "exact_span_recall": 0.6366666666666667,
+        "exact_span_f1": 0.7262357414448669,
+        "full_sensitive_span_coverage": 0.65,
+        "negative_sentence_false_positive_rate": 0.03125,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 232,
+              "true_positive": 191,
+              "false_positive": 35,
+              "false_negative": 109,
+              "sensitive_spans": 300,
+              "fully_covered_spans": 195,
+              "negative_sentences": 32,
+              "false_positive_sentences": 1
+            },
+            "exact_span_precision": 0.8451327433628318,
+            "exact_span_recall": 0.6366666666666667,
+            "exact_span_f1": 0.7262357414448669,
+            "full_sensitive_span_coverage": 0.65,
+            "negative_sentence_false_positive_rate": 0.03125
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 232,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 232,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 20.805112535999797,
+    "error_ids": {
+      "exact_span": [
+        "v2-evaluation-person-00-016",
+        "v2-evaluation-person-00-018",
+        "v2-evaluation-person-00-019",
+        "v2-evaluation-person-01-006",
+        "v2-evaluation-person-01-008",
+        "v2-evaluation-person-01-010",
+        "v2-evaluation-person-01-012",
+        "v2-evaluation-person-01-013",
+        "v2-evaluation-person-01-015",
+        "v2-evaluation-person-01-016",
+        "v2-evaluation-person-01-017",
+        "v2-evaluation-person-01-018",
+        "v2-evaluation-person-01-019",
+        "v2-evaluation-person-02-006",
+        "v2-evaluation-person-02-007",
+        "v2-evaluation-person-02-012",
+        "v2-evaluation-person-02-013",
+        "v2-evaluation-person-02-016",
+        "v2-evaluation-person-02-017",
+        "v2-evaluation-person-02-018",
+        "v2-evaluation-person-02-019",
+        "v2-evaluation-person-03-000",
+        "v2-evaluation-person-03-002",
+        "v2-evaluation-person-03-007",
+        "v2-evaluation-person-03-008",
+        "v2-evaluation-person-03-009",
+        "v2-evaluation-person-03-010",
+        "v2-evaluation-person-03-012",
+        "v2-evaluation-person-03-013",
+        "v2-evaluation-person-03-015",
+        "v2-evaluation-person-03-018",
+        "v2-evaluation-person-03-019",
+        "v2-evaluation-person-04-007",
+        "v2-evaluation-person-04-008",
+        "v2-evaluation-person-04-009",
+        "v2-evaluation-person-04-010",
+        "v2-evaluation-person-04-012",
+        "v2-evaluation-person-04-013",
+        "v2-evaluation-person-04-015",
+        "v2-evaluation-person-04-016",
+        "v2-evaluation-person-04-018",
+        "v2-evaluation-person-04-019",
+        "v2-evaluation-person-05-002",
+        "v2-evaluation-person-05-009",
+        "v2-evaluation-person-05-010",
+        "v2-evaluation-person-05-012",
+        "v2-evaluation-person-05-013",
+        "v2-evaluation-person-05-015",
+        "v2-evaluation-person-05-016",
+        "v2-evaluation-person-05-018",
+        "v2-evaluation-person-05-019",
+        "v2-evaluation-person-06-001",
+        "v2-evaluation-person-06-002",
+        "v2-evaluation-person-06-006",
+        "v2-evaluation-person-06-007",
+        "v2-evaluation-person-06-008",
+        "v2-evaluation-person-06-009",
+        "v2-evaluation-person-06-010",
+        "v2-evaluation-person-06-012",
+        "v2-evaluation-person-06-013",
+        "v2-evaluation-person-06-014",
+        "v2-evaluation-person-06-015",
+        "v2-evaluation-person-06-017",
+        "v2-evaluation-person-06-018",
+        "v2-evaluation-person-06-019",
+        "v2-evaluation-person-07-002",
+        "v2-evaluation-person-07-006",
+        "v2-evaluation-person-07-009",
+        "v2-evaluation-person-07-010",
+        "v2-evaluation-person-07-012",
+        "v2-evaluation-person-07-013",
+        "v2-evaluation-person-07-015",
+        "v2-evaluation-person-07-016",
+        "v2-evaluation-person-07-017",
+        "v2-evaluation-person-07-018",
+        "v2-evaluation-person-07-019",
+        "v2-evaluation-person-08-002",
+        "v2-evaluation-person-08-003",
+        "v2-evaluation-person-08-004",
+        "v2-evaluation-person-08-005",
+        "v2-evaluation-person-08-006",
+        "v2-evaluation-person-08-007",
+        "v2-evaluation-person-08-009",
+        "v2-evaluation-person-08-010",
+        "v2-evaluation-person-08-012",
+        "v2-evaluation-person-08-013",
+        "v2-evaluation-person-08-015",
+        "v2-evaluation-person-08-016",
+        "v2-evaluation-person-08-018",
+        "v2-evaluation-person-08-019",
+        "v2-evaluation-person-09-007",
+        "v2-evaluation-person-09-009",
+        "v2-evaluation-person-09-013",
+        "v2-evaluation-person-09-015",
+        "v2-evaluation-person-09-016",
+        "v2-evaluation-person-09-018",
+        "v2-evaluation-negative-03-01"
+      ],
+      "uncovered_sensitive_span": [
+        "v2-evaluation-person-00-016",
+        "v2-evaluation-person-00-018",
+        "v2-evaluation-person-00-019",
+        "v2-evaluation-person-01-006",
+        "v2-evaluation-person-01-008",
+        "v2-evaluation-person-01-010",
+        "v2-evaluation-person-01-012",
+        "v2-evaluation-person-01-013",
+        "v2-evaluation-person-01-015",
+        "v2-evaluation-person-01-016",
+        "v2-evaluation-person-01-017",
+        "v2-evaluation-person-01-018",
+        "v2-evaluation-person-01-019",
+        "v2-evaluation-person-02-006",
+        "v2-evaluation-person-02-007",
+        "v2-evaluation-person-02-012",
+        "v2-evaluation-person-02-013",
+        "v2-evaluation-person-02-016",
+        "v2-evaluation-person-02-017",
+        "v2-evaluation-person-02-018",
+        "v2-evaluation-person-02-019",
+        "v2-evaluation-person-03-002",
+        "v2-evaluation-person-03-007",
+        "v2-evaluation-person-03-008",
+        "v2-evaluation-person-03-009",
+        "v2-evaluation-person-03-010",
+        "v2-evaluation-person-03-012",
+        "v2-evaluation-person-03-013",
+        "v2-evaluation-person-03-015",
+        "v2-evaluation-person-03-018",
+        "v2-evaluation-person-03-019",
+        "v2-evaluation-person-04-007",
+        "v2-evaluation-person-04-010",
+        "v2-evaluation-person-04-012",
+        "v2-evaluation-person-04-013",
+        "v2-evaluation-person-04-015",
+        "v2-evaluation-person-04-016",
+        "v2-evaluation-person-04-018",
+        "v2-evaluation-person-04-019",
+        "v2-evaluation-person-05-009",
+        "v2-evaluation-person-05-010",
+        "v2-evaluation-person-05-012",
+        "v2-evaluation-person-05-013",
+        "v2-evaluation-person-05-015",
+        "v2-evaluation-person-05-016",
+        "v2-evaluation-person-05-018",
+        "v2-evaluation-person-05-019",
+        "v2-evaluation-person-06-001",
+        "v2-evaluation-person-06-002",
+        "v2-evaluation-person-06-006",
+        "v2-evaluation-person-06-007",
+        "v2-evaluation-person-06-008",
+        "v2-evaluation-person-06-009",
+        "v2-evaluation-person-06-010",
+        "v2-evaluation-person-06-012",
+        "v2-evaluation-person-06-013",
+        "v2-evaluation-person-06-014",
+        "v2-evaluation-person-06-015",
+        "v2-evaluation-person-06-017",
+        "v2-evaluation-person-06-018",
+        "v2-evaluation-person-06-019",
+        "v2-evaluation-person-07-002",
+        "v2-evaluation-person-07-006",
+        "v2-evaluation-person-07-009",
+        "v2-evaluation-person-07-010",
+        "v2-evaluation-person-07-012",
+        "v2-evaluation-person-07-013",
+        "v2-evaluation-person-07-015",
+        "v2-evaluation-person-07-016",
+        "v2-evaluation-person-07-017",
+        "v2-evaluation-person-07-018",
+        "v2-evaluation-person-07-019",
+        "v2-evaluation-person-08-002",
+        "v2-evaluation-person-08-003",
+        "v2-evaluation-person-08-004",
+        "v2-evaluation-person-08-005",
+        "v2-evaluation-person-08-006",
+        "v2-evaluation-person-08-007",
+        "v2-evaluation-person-08-009",
+        "v2-evaluation-person-08-010",
+        "v2-evaluation-person-08-012",
+        "v2-evaluation-person-08-013",
+        "v2-evaluation-person-08-015",
+        "v2-evaluation-person-08-016",
+        "v2-evaluation-person-08-018",
+        "v2-evaluation-person-08-019",
+        "v2-evaluation-person-09-007",
+        "v2-evaluation-person-09-009",
+        "v2-evaluation-person-09-013",
+        "v2-evaluation-person-09-015",
+        "v2-evaluation-person-09-016",
+        "v2-evaluation-person-09-018"
+      ],
+      "negative_false_positive": [
+        "v2-evaluation-negative-03-01"
+      ]
+    }
+  },
+  "evaluation_candidate": {
+    "counts": {
+      "sentences": 232,
+      "true_positive": 276,
+      "false_positive": 5,
+      "false_negative": 24,
+      "sensitive_spans": 300,
+      "fully_covered_spans": 277,
+      "negative_sentences": 32,
+      "false_positive_sentences": 1
+    },
+    "exact_span_precision": 0.9822064056939501,
+    "exact_span_recall": 0.92,
+    "exact_span_f1": 0.9500860585197934,
+    "full_sensitive_span_coverage": 0.9233333333333333,
+    "negative_sentence_false_positive_rate": 0.03125,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 276,
+          "false_positive": 5,
+          "false_negative": 24,
+          "sensitive_spans": 300,
+          "fully_covered_spans": 277,
+          "negative_sentences": 32,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.9822064056939501,
+        "exact_span_recall": 0.92,
+        "exact_span_f1": 0.9500860585197934,
+        "full_sensitive_span_coverage": 0.9233333333333333,
+        "negative_sentence_false_positive_rate": 0.03125
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 232,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 232,
+          "true_positive": 276,
+          "false_positive": 5,
+          "false_negative": 24,
+          "sensitive_spans": 300,
+          "fully_covered_spans": 277,
+          "negative_sentences": 32,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.9822064056939501,
+        "exact_span_recall": 0.92,
+        "exact_span_f1": 0.9500860585197934,
+        "full_sensitive_span_coverage": 0.9233333333333333,
+        "negative_sentence_false_positive_rate": 0.03125,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 232,
+              "true_positive": 276,
+              "false_positive": 5,
+              "false_negative": 24,
+              "sensitive_spans": 300,
+              "fully_covered_spans": 277,
+              "negative_sentences": 32,
+              "false_positive_sentences": 1
+            },
+            "exact_span_precision": 0.9822064056939501,
+            "exact_span_recall": 0.92,
+            "exact_span_f1": 0.9500860585197934,
+            "full_sensitive_span_coverage": 0.9233333333333333,
+            "negative_sentence_false_positive_rate": 0.03125
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 232,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 232,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 21.24215758900027,
+    "error_ids": {
+      "exact_span": [
+        "v2-evaluation-person-01-010",
+        "v2-evaluation-person-01-012",
+        "v2-evaluation-person-01-013",
+        "v2-evaluation-person-01-015",
+        "v2-evaluation-person-02-013",
+        "v2-evaluation-person-03-002",
+        "v2-evaluation-person-03-010",
+        "v2-evaluation-person-03-013",
+        "v2-evaluation-person-04-007",
+        "v2-evaluation-person-04-008",
+        "v2-evaluation-person-04-009",
+        "v2-evaluation-person-04-010",
+        "v2-evaluation-person-04-013",
+        "v2-evaluation-person-05-010",
+        "v2-evaluation-person-05-013",
+        "v2-evaluation-person-06-007",
+        "v2-evaluation-person-06-010",
+        "v2-evaluation-person-06-012",
+        "v2-evaluation-person-06-013",
+        "v2-evaluation-person-06-015",
+        "v2-evaluation-person-07-013",
+        "v2-evaluation-person-08-010",
+        "v2-evaluation-person-08-012",
+        "v2-evaluation-person-08-013",
+        "v2-evaluation-person-09-007",
+        "v2-evaluation-negative-03-01"
+      ],
+      "uncovered_sensitive_span": [
+        "v2-evaluation-person-01-010",
+        "v2-evaluation-person-01-012",
+        "v2-evaluation-person-01-013",
+        "v2-evaluation-person-01-015",
+        "v2-evaluation-person-02-013",
+        "v2-evaluation-person-03-002",
+        "v2-evaluation-person-03-010",
+        "v2-evaluation-person-03-013",
+        "v2-evaluation-person-04-007",
+        "v2-evaluation-person-04-009",
+        "v2-evaluation-person-04-013",
+        "v2-evaluation-person-05-010",
+        "v2-evaluation-person-05-013",
+        "v2-evaluation-person-06-007",
+        "v2-evaluation-person-06-010",
+        "v2-evaluation-person-06-012",
+        "v2-evaluation-person-06-013",
+        "v2-evaluation-person-06-015",
+        "v2-evaluation-person-07-013",
+        "v2-evaluation-person-08-010",
+        "v2-evaluation-person-08-012",
+        "v2-evaluation-person-08-013",
+        "v2-evaluation-person-09-007"
+      ],
+      "negative_false_positive": [
+        "v2-evaluation-negative-03-01"
+      ]
+    }
+  },
+  "source_changed_during_run": false
+}

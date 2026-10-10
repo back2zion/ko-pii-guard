@@ -273,10 +273,13 @@ class KoreanPIIGuard:
         if self.ner is not None and {"KR_NAME", "KR_ADDRESS"}.intersection(self.entities):
             model_results = self.ner.analyze(text)
             for result in model_results:
-                if (result.entity_type not in ("KR_NAME", "KR_ADDRESS")
+                if (not isinstance(result, RecognizerResult)
+                        or result.entity_type not in ("KR_NAME", "KR_ADDRESS")
                         or type(result.start) is not int
                         or type(result.end) is not int
                         or not 0 <= result.start < result.end <= len(text)
+                        or isinstance(result.score, bool)
+                        or not isinstance(result.score, (int, float))
                         or not 0 <= result.score <= 1):
                     raise ValueError("NER returned an invalid name/address span")
             # Explicit fields/grammatical addresses take priority over a model's

@@ -1,0 +1,548 @@
+{
+  "corpus": "curated synthetic development regression; not independent evaluation",
+  "measured_at_utc": "2026-10-10T03:09:39.668964+00:00",
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "benchmarks/name_address_benchmark.py",
+    "--ner",
+    "--name-context-path",
+    "artifacts/name-context-v3",
+    "--numeric-negatives",
+    "--check",
+    "--check-negatives",
+    "--output",
+    "benchmarks/results/name-context-v3-numeric-regression.json"
+  ],
+  "data_sha256": "b1bc48b6a4f1786ed8cc79ff5e057956923d323264ae4824e82a76c8c776bd20",
+  "benchmark_sha256": "0cec759b79f2b604782daf18c257492b3144ce325a78641d84b8b3c35deb057a",
+  "source_sha256": "71f1682b59c3be87b1fefb3686fe2da379c33f7f37175c5fd14b309ce3afecd6",
+  "source_files_sha256": {
+    "__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+    "names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "ner.py": "dcbe234cbc1ec2963eb710ee41ea9c97382bbe30bcced3abbcd495729ada1128",
+    "normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+  },
+  "python": "3.12.13",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "dependency_versions": {
+    "ko-pii-guard": "0.2.0",
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "regex": "2026.9.29",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0"
+  },
+  "entities": [
+    "KR_RRN",
+    "KR_FRN",
+    "KR_BRN",
+    "KR_DRIVER_LICENSE",
+    "KR_PASSPORT",
+    "PHONE_NUMBER",
+    "EMAIL_ADDRESS",
+    "CREDIT_CARD",
+    "KR_ACCOUNT",
+    "KR_NAME",
+    "KR_ADDRESS"
+  ],
+  "guard_score_threshold": 0.4,
+  "coverage_definition": "actual stars masking covers every character of each gold span",
+  "per_entity_negative_definition": "sentences without gold spans of that entity type",
+  "timing_definition": "wall time for analyze and mask; excludes model loading",
+  "models": {
+    "name_address_rules": null,
+    "name_address_ner": {
+      "model_id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "score_threshold": 0.9,
+      "device": "cpu",
+      "max_length": 512,
+      "stride": 64,
+      "batch_size": 4,
+      "torch_threads": 2,
+      "local_files_only": true,
+      "load_seconds": 3.3432900950001567,
+      "name_context_checkpoint": {
+        "name_context_config.json": "69f00ed191e3925607a25189457a9f11c7b3cc32fbf4a8eec37b2c907a6094bb",
+        "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f"
+      }
+    }
+  },
+  "results": {
+    "name_address_rules": {
+      "counts": {
+        "sentences": 109,
+        "true_positive": 56,
+        "false_positive": 0,
+        "false_negative": 19,
+        "sensitive_spans": 75,
+        "fully_covered_spans": 56,
+        "negative_sentences": 38,
+        "false_positive_sentences": 0
+      },
+      "exact_span_precision": 1.0,
+      "exact_span_recall": 0.7466666666666667,
+      "exact_span_f1": 0.8549618320610687,
+      "full_sensitive_span_coverage": 0.7466666666666667,
+      "negative_sentence_false_positive_rate": 0.0,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 109,
+            "true_positive": 29,
+            "false_positive": 0,
+            "false_negative": 18,
+            "sensitive_spans": 47,
+            "fully_covered_spans": 29,
+            "negative_sentences": 64,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.6170212765957447,
+          "exact_span_f1": 0.7631578947368421,
+          "full_sensitive_span_coverage": 0.6170212765957447,
+          "negative_sentence_false_positive_rate": 0.0
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 109,
+            "true_positive": 27,
+            "false_positive": 0,
+            "false_negative": 1,
+            "sensitive_spans": 28,
+            "fully_covered_spans": 27,
+            "negative_sentences": 81,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.9642857142857143,
+          "exact_span_f1": 0.9818181818181818,
+          "full_sensitive_span_coverage": 0.9642857142857143,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "free_prose": {
+          "counts": {
+            "sentences": 35,
+            "true_positive": 5,
+            "false_positive": 0,
+            "false_negative": 19,
+            "sensitive_spans": 24,
+            "fully_covered_spans": 5,
+            "negative_sentences": 13,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 0.20833333333333334,
+          "exact_span_f1": 0.3448275862068966,
+          "full_sensitive_span_coverage": 0.20833333333333334,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 35,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 18,
+                "sensitive_spans": 18,
+                "fully_covered_spans": 0,
+                "negative_sentences": 18,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 35,
+                "true_positive": 5,
+                "false_positive": 0,
+                "false_negative": 1,
+                "sensitive_spans": 6,
+                "fully_covered_spans": 5,
+                "negative_sentences": 29,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 0.8333333333333334,
+              "exact_span_f1": 0.9090909090909091,
+              "full_sensitive_span_coverage": 0.8333333333333334,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "structured": {
+          "counts": {
+            "sentences": 74,
+            "true_positive": 51,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 51,
+            "fully_covered_spans": 51,
+            "negative_sentences": 25,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 74,
+                "true_positive": 29,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 29,
+                "fully_covered_spans": 29,
+                "negative_sentences": 46,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 74,
+                "true_positive": 22,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 22,
+                "fully_covered_spans": 22,
+                "negative_sentences": 52,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 0.03551378999964072,
+      "error_ids": {
+        "exact_span": [
+          "prose-name-subject",
+          "prose-name-object",
+          "prose-name-companion",
+          "prose-name-genitive",
+          "prose-name-role-sang",
+          "prose-name-role-wish",
+          "prose-name-common-ending",
+          "prose-name-honorific",
+          "prose-name-said",
+          "prose-name-copula",
+          "prose-name-uncommon",
+          "prose-name-transliterated",
+          "prose-name-latin",
+          "prose-name-two",
+          "prose-address-short",
+          "prose-mixed",
+          "prose-name-resume-file",
+          "prose-name-resume-path"
+        ],
+        "uncovered_sensitive_span": [
+          "prose-name-subject",
+          "prose-name-object",
+          "prose-name-companion",
+          "prose-name-genitive",
+          "prose-name-role-sang",
+          "prose-name-role-wish",
+          "prose-name-common-ending",
+          "prose-name-honorific",
+          "prose-name-said",
+          "prose-name-copula",
+          "prose-name-uncommon",
+          "prose-name-transliterated",
+          "prose-name-latin",
+          "prose-name-two",
+          "prose-address-short",
+          "prose-mixed",
+          "prose-name-resume-file",
+          "prose-name-resume-path"
+        ],
+        "negative_false_positive": []
+      }
+    },
+    "name_address_ner": {
+      "counts": {
+        "sentences": 109,
+        "true_positive": 75,
+        "false_positive": 0,
+        "false_negative": 0,
+        "sensitive_spans": 75,
+        "fully_covered_spans": 75,
+        "negative_sentences": 38,
+        "false_positive_sentences": 0
+      },
+      "exact_span_precision": 1.0,
+      "exact_span_recall": 1.0,
+      "exact_span_f1": 1.0,
+      "full_sensitive_span_coverage": 1.0,
+      "negative_sentence_false_positive_rate": 0.0,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 109,
+            "true_positive": 47,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 47,
+            "fully_covered_spans": 47,
+            "negative_sentences": 64,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 109,
+            "true_positive": 28,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 28,
+            "fully_covered_spans": 28,
+            "negative_sentences": 81,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "free_prose": {
+          "counts": {
+            "sentences": 35,
+            "true_positive": 24,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 24,
+            "fully_covered_spans": 24,
+            "negative_sentences": 13,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 35,
+                "true_positive": 18,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 18,
+                "fully_covered_spans": 18,
+                "negative_sentences": 18,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 35,
+                "true_positive": 6,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 6,
+                "fully_covered_spans": 6,
+                "negative_sentences": 29,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        },
+        "structured": {
+          "counts": {
+            "sentences": 74,
+            "true_positive": 51,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 51,
+            "fully_covered_spans": 51,
+            "negative_sentences": 25,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 74,
+                "true_positive": 29,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 29,
+                "fully_covered_spans": 29,
+                "negative_sentences": 46,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 74,
+                "true_positive": 22,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 22,
+                "fully_covered_spans": 22,
+                "negative_sentences": 52,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 27.947998450999876,
+      "error_ids": {
+        "exact_span": [],
+        "uncovered_sensitive_span": [],
+        "negative_false_positive": []
+      }
+    }
+  },
+  "ambiguous_cases": {
+    "scored": false,
+    "reason": "filename alone cannot establish whether a real person is referenced",
+    "data_sha256": "3a99fe4a55ccabbcdb2a78a55f7dc10ec18d9e44b74c0e797997685f894ad6a9",
+    "predictions": {
+      "name_address_rules": [
+        {
+          "id": "negative-name-file",
+          "spans": []
+        },
+        {
+          "id": "prose-negative-file",
+          "spans": []
+        }
+      ],
+      "name_address_ner": [
+        {
+          "id": "negative-name-file",
+          "spans": [
+            [
+              "KR_NAME",
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": "prose-negative-file",
+          "spans": [
+            [
+              "KR_NAME",
+              0,
+              3
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "numeric_negative_probe": {
+    "default": {
+      "sentences": 2200,
+      "false_positive_sentences": 0,
+      "false_positive_findings": 0,
+      "seed": 2026,
+      "samples_per_template": 200,
+      "data_sha256": "455cef430f3d50d3aa785e8df312b2fa50756579ee09fa68a7615db162138640",
+      "errors": [],
+      "entities": [
+        "KR_RRN",
+        "KR_FRN",
+        "KR_BRN",
+        "KR_DRIVER_LICENSE",
+        "KR_PASSPORT",
+        "PHONE_NUMBER",
+        "EMAIL_ADDRESS",
+        "CREDIT_CARD",
+        "KR_ACCOUNT"
+      ],
+      "scope": "numeric synthetic negatives, not prose name accuracy"
+    },
+    "name_address_ner": {
+      "sentences": 2200,
+      "false_positive_sentences": 0,
+      "false_positive_findings": 0,
+      "seed": 2026,
+      "samples_per_template": 200,
+      "data_sha256": "455cef430f3d50d3aa785e8df312b2fa50756579ee09fa68a7615db162138640",
+      "errors": [],
+      "entities": [
+        "KR_RRN",
+        "KR_FRN",
+        "KR_BRN",
+        "KR_DRIVER_LICENSE",
+        "KR_PASSPORT",
+        "PHONE_NUMBER",
+        "EMAIL_ADDRESS",
+        "CREDIT_CARD",
+        "KR_ACCOUNT",
+        "KR_NAME",
+        "KR_ADDRESS"
+      ],
+      "scope": "numeric synthetic negatives, not prose name accuracy"
+    }
+  },
+  "source_changed_during_run": false,
+  "structured_rules_check_passed": true
+}

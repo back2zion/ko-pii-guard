@@ -1,0 +1,13 @@
+{
+  "scope": "TDD Green: v3 full optional-model suite",
+  "tests": 999,
+  "failures": [],
+  "skipped": 0,
+  "all_passed": true,
+  "checkpoint": "artifacts/name-context-v3",
+  "sha256": {
+    "tests/test_name_context_v3_regressions.py": "3ae3ffaed69df7466205b94a730cc40a7f32fe8d05b0cf2bfa73f7d5f81d75a2",
+    "artifacts/name-context-v3/name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "artifacts/name-context-v3/name_context_config.json": "69f00ed191e3925607a25189457a9f11c7b3cc32fbf4a8eec37b2c907a6094bb"
+  }
+}

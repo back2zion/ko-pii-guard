@@ -29,7 +29,8 @@ class KoreanNER:
     """
 
     def __init__(self, tokenizer: Any, model: Any, *, score_threshold: float = 0.9,
-                 device: str = "cpu", batch_size: int = 4, stride: int = 64):
+                 device: str = "cpu", batch_size: int = 4, stride: int = 64,
+                 name_context_head: Any = None):
         if not 0 <= score_threshold <= 1:
             raise ValueError("NER score_threshold must be between 0 and 1")
         if not tokenizer.is_fast:
@@ -43,6 +44,7 @@ class KoreanNER:
         self.score_threshold = score_threshold
         self.batch_size = batch_size
         self.stride = stride
+        self.name_context_head = name_context_head
 
     @staticmethod
     def download(*, model: str = "e5", cache_dir: str | Path | None = None) -> str:
@@ -59,8 +61,14 @@ class KoreanNER:
 
     @classmethod
     def from_pretrained(cls, *, model: str = "e5", model_path: str | Path | None = None,
-                        local_files_only: bool = True, **kwargs: Any) -> KoreanNER:
-        """Load safetensors with no remote code; offline unless explicitly allowed."""
+                        local_files_only: bool = True,
+                        name_context_path: str | Path | None = None, **kwargs: Any) -> KoreanNER:
+        """Load safetensors with no remote code; offline unless explicitly allowed.
+
+        name_context_path explicitly selects an experimental trained character
+        name head. It replaces name predictions, preserving address predictions.
+        It requires the matching pinned base model, not a custom model_path.
+        """
         try:
             from transformers import AutoModelForTokenClassification, AutoTokenizer
         except ImportError as error:
@@ -80,6 +88,15 @@ class KoreanNER:
                     "B-private_address", "I-private_address"})
         if not any(schema <= labels for schema in schemas):
             raise ValueError("Model must provide supported person/address BIO or BIOES labels")
+        if name_context_path is not None:
+            if model_path is not None:
+                raise ValueError("Name context checkpoints require the pinned base model")
+            from ko_pii_guard.name_context import load_name_head
+
+            kwargs["name_context_head"] = load_name_head(
+                name_context_path, model_id=model_id, revision=revision,
+                device=kwargs.get("device", "cpu"),
+            )
         return cls(tokenizer, classifier, **kwargs)
 
     def analyze(self, text: str) -> list[RecognizerResult]:
@@ -97,11 +114,18 @@ class KoreanNER:
         # Overlap tokens get the prediction from the window with more context
         # on both sides, rather than whichever window happens to run first.
         tokens: dict[tuple[int, int], tuple[int, str, float]] = {}
+        characters: dict[tuple[int, int], tuple[int, str, float]] = {}
+        rescue_characters = []
+        filter_features, filter_origin = None, 0
         with torch.inference_mode():
             for base in range(0, len(offsets), self.batch_size):
                 inputs = {key: value[base:base + self.batch_size].to(self.device)
                           for key, value in encoded.items()}
-                scores, labels = self.model(**inputs).logits.softmax(-1).max(-1)
+                if self.name_context_head is None:
+                    output = self.model(**inputs)
+                else:
+                    output = self.model(**inputs, output_hidden_states=True)
+                scores, labels = output.logits.softmax(-1).max(-1)
                 for row, (row_scores, row_labels) in enumerate(
                     zip(scores.cpu().tolist(), labels.cpu().tolist(), strict=True)
                 ):
@@ -109,6 +133,50 @@ class KoreanNER:
                     valid = [i for i, (start, end) in enumerate(spans) if end > start]
                     if not valid:
                         continue
+                    if self.name_context_head is not None:
+                        from ko_pii_guard.name_context import HEAD_LABELS, character_features
+
+                        left = min(spans[i][0] for i in valid)
+                        right = max(spans[i][1] for i in valid)
+                        features, char_ids, positions = character_features(
+                            text, output.hidden_states[-1][row], spans, left, right,
+                        )
+                        # Filtering requires complete context. Partial windows
+                        # retain every baseline prediction in long documents.
+                        if len(offsets) == 1:
+                            filter_features, filter_origin = features, left
+                        char_logits = self.name_context_head(
+                            features.unsqueeze(0), char_ids.unsqueeze(0), positions.unsqueeze(0),
+                            torch.tensor([right-left]),
+                        )
+                        char_scores, char_labels = char_logits[0].softmax(-1).max(-1)
+                        from ko_pii_guard.name_context import rescue_decoders
+
+                        for rescue, threshold in (
+                            rescue_decoders(self.name_context_head) if len(offsets) == 1 else ()
+                        ):
+                            rescue_logits = rescue(
+                                features.unsqueeze(0), char_ids.unsqueeze(0),
+                                positions.unsqueeze(0),
+                                torch.tensor([right-left]),
+                            )
+                            rescue_scores, rescue_labels = rescue_logits[0].softmax(-1).max(-1)
+                            rescue_tokens = {}
+                            for i, (score, label) in enumerate(zip(
+                                rescue_scores.cpu().tolist(), rescue_labels.cpu().tolist(),
+                                strict=True,
+                            )):
+                                rescue_tokens[left+i, left+i+1] = (0, HEAD_LABELS[label], score)
+                            rescue_characters.append((threshold, rescue_tokens))
+                        for i, (score, label) in enumerate(zip(
+                            char_scores.cpu().tolist(), char_labels.cpu().tolist(), strict=True,
+                        )):
+                            start = left+i
+                            rank = min(i, right-left-1-i)
+                            if (start, start+1) not in characters or rank > characters[
+                                start, start+1
+                            ][0]:
+                                characters[start, start+1] = (rank, HEAD_LABELS[label], score)
                     for i in valid:
                         start, end = spans[i]
                         rank = min(i - valid[0], valid[-1] - i)
@@ -116,7 +184,28 @@ class KoreanNER:
                             tokens[start, end] = (
                                 rank, self.model.config.id2label[row_labels[i]], row_scores[i]
                             )
-        return _decode_tokens(tokens, self.score_threshold)
+        results = _decode_tokens(tokens, self.score_threshold)
+        if self.name_context_head is not None:
+            results = [r for r in results if r.entity_type != "KR_NAME"]
+            results.extend(_decode_tokens(characters, self.score_threshold))
+            results.sort(key=lambda r: r.start)
+            from ko_pii_guard.name_context import filter_name_results
+
+            with torch.inference_mode():
+                results = filter_name_results(
+                    results, filter_features, getattr(self.name_context_head, "span_filter", None),
+                    filter_origin,
+                )
+                for threshold, rescue_tokens in rescue_characters:
+                    from ko_pii_guard.name_context import add_nonoverlapping_name_results
+
+                    candidates = _decode_tokens(rescue_tokens, threshold)
+                    candidates = filter_name_results(
+                        candidates, filter_features,
+                        getattr(self.name_context_head, "span_filter", None), filter_origin,
+                    )
+                    results = add_nonoverlapping_name_results(results, candidates)
+        return results
 
 
 def _decode_tokens(tokens: dict[tuple[int, int], tuple[int, str, float]],

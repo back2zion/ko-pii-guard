@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+- Fix five v9 missed names and two false spans with exact masking regressions. Reject v10 after a fresh evaluation loses a correct name; adopt opt-in v11 with preserved decoders, an expanded filter and hard-example replay. All 1,391 tests pass; 3,222 historical correct spans are preserved with no new false span. New synthetic evaluation retains all 211 correct spans and reduces FP19→17; FN23/FP17 remain. Add CI per-span gates and document the rejected runs.
+
+- Fix the six known v7 missed names and four false spans as ten named Red/Green contracts; original evaluation now TP234/FP0/FN0 and all 1,381 integration tests pass.
+- Reject v8 for losing one previously correct name; preserve the original v7 rescue and add the refined decoder in opt-in v9. Freeze a new evaluation and CI per-span gates: all 228 correct spans preserved, no new false span, TP/FP/FN 228/3/6 to 229/2/5. Document the five different remaining misses and two false spans.
+
+- Close all nine known v6 misses with named Red/Green exact-span and masking tests. Add an opt-in v7 rescue head while preserving v6 decoder/filter weights and accepted spans; all 1,366 tests pass.
+- Freeze a separate v7 evaluation and enforce per-span nonregression in CI: preserve 224 correct spans with no new false span; TP/FP/FN improves 224/4/10 to 228/4/6. Retain the remaining six new misses and four existing false spans in the report.
+
+- Add an opt-in learned non-person candidate filter with byte-identical v3 name decoder weights; preserve all 225 baseline-correct spans on a new 192-sentence evaluation while reducing false-positive spans from 8 to 0 (9 existing misses remain).
+- Reject v4/v5 recall regressions; add exact-span/masking contracts, strict per-span CI gates and frozen evaluation provenance. Full optional-model integration: 1,354 tests passed.
+
+- Fix the remaining v2 error sentences as 26 named Red/Green regression tests; train an opt-in v3 head with all inspected v2 data explicitly retired into development, and evaluate a separately frozen 280-sentence synthetic split after checkpoint selection. Preserve remaining false positives and misses in the evaluation report.
+- Train and validate opt-in name context head v2 with single-character, filename, multiple-person and common-word contrast examples; close the 21 known v1 misses and seven regressions without changing their gold annotations.
+- Preserve v1 and inspected data as development history; add new split-separated v2 evaluation, explicit checkpoint selection provenance and CI acceptance gates.
+- Add an experimental opt-in character name decoder, reproducible local training, a split-separated synthetic evaluation and a recent Korean de-identification research review; retain the default E5 decoder because regressions remain.
+- Apply the explicit non-person owner field veto consistently to contextual model predictions.
+- Correct the name-field corpus's prose-name annotation, preserving v1 and historical reports.
+- Preserve complete middle-dot names in explicit person fields and separate tab/multiple-space honorifics; add before/after boundary regression reports.
+- Reject malformed custom NER result objects and nonnumeric/boolean confidence values explicitly.
+- Add a product requirements document with quality contracts and development priorities.
 - Document the KR_NAME span contract and keep small name/address diagnostics out of README accuracy claims.
 - Add a frozen synthetic name-context contrast evaluation and benchmark-only lexicon score ablation before considering retraining.
 - Add opt-in KR_NAME and KR_ADDRESS; keep the default nine identifier entities unchanged.

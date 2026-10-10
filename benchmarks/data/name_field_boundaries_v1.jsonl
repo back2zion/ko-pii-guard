@@ -1,0 +1,24 @@
+{"id": "middle-dot-korean", "track": "structured", "category": "person", "text": "성명: 안나·가온", "expected": [{"entity": "KR_NAME", "start": 4, "end": 9}]}
+{"id": "middle-dot-latin", "track": "structured", "category": "person", "text": "예금주: Anna·Example", "expected": [{"entity": "KR_NAME", "start": 5, "end": 17}]}
+{"id": "middle-dot-cyrillic", "track": "structured", "category": "person", "text": "수취인: Анна·Пример", "expected": [{"entity": "KR_NAME", "start": 5, "end": 16}]}
+{"id": "middle-dot-combining", "track": "structured", "category": "person", "text": "성명: José·Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 17}]}
+{"id": "tab-honorific", "track": "structured", "category": "person", "text": "성명: 김가온\t님", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "double-space-honorific", "track": "structured", "category": "person", "text": "성명: 박다온  씨", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "tab-recipient", "track": "structured", "category": "person", "text": "수령인: 이나래\t귀하", "expected": [{"entity": "KR_NAME", "start": 5, "end": 8}]}
+{"id": "multiple-honorific-space", "track": "structured", "category": "person", "text": "신청인: Anna Example \t 님", "expected": [{"entity": "KR_NAME", "start": 5, "end": 17}]}
+{"id": "dot-tab-honorific", "track": "structured", "category": "person", "text": "성명: 안나·가온\t님", "expected": [{"entity": "KR_NAME", "start": 4, "end": 9}]}
+{"id": "dot-next-field", "track": "structured", "category": "person", "text": "성명: 안나·가온 이메일: 미기재", "expected": [{"entity": "KR_NAME", "start": 4, "end": 9}]}
+{"id": "dot-quoted", "track": "structured", "category": "person", "text": "성명: \"안나·가온\"", "expected": [{"entity": "KR_NAME", "start": 5, "end": 10}]}
+{"id": "dot-fullwidth", "track": "structured", "category": "person", "text": "성명： Ａｎｎａ·Ｅｘａｍｐｌｅ", "expected": [{"entity": "KR_NAME", "start": 4, "end": 16}]}
+{"id": "plain-control", "track": "structured", "category": "person", "text": "성명: 최가온", "expected": [{"entity": "KR_NAME", "start": 4, "end": 7}]}
+{"id": "hyphen-control", "track": "structured", "category": "person", "text": "성명: Anna-Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 16}]}
+{"id": "apostrophe-control", "track": "structured", "category": "person", "text": "성명: O'Example", "expected": [{"entity": "KR_NAME", "start": 4, "end": 13}]}
+{"id": "punctuation-after", "track": "structured", "category": "person", "text": "성명: 안나·가온, 확인", "expected": [{"entity": "KR_NAME", "start": 4, "end": 9}]}
+{"id": "product", "track": "structured", "category": "negative", "text": "상품 이름: 안나·가온", "expected": []}
+{"id": "file", "track": "structured", "category": "negative", "text": "파일 이름: 안나·가온", "expected": []}
+{"id": "company", "track": "structured", "category": "negative", "text": "회사명: 안나·가온", "expected": []}
+{"id": "instruction", "track": "structured", "category": "negative", "text": "성명 입력 필요", "expected": []}
+{"id": "placeholder", "track": "structured", "category": "negative", "text": "성명: 미기재", "expected": []}
+{"id": "role", "track": "structured", "category": "negative", "text": "담당자: 미정", "expected": []}
+{"id": "prose", "track": "structured", "category": "negative", "text": "안나·가온 씨가 방문했다.", "expected": []}
+{"id": "list", "track": "structured", "category": "negative", "text": "안내: 접수·심사·승인", "expected": []}

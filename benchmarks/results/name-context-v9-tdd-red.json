@@ -1,0 +1,12 @@
+{
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "checkpoint_sha256": {
+    "rescue_name_context.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "span_filter.safetensors": "d00bdcb2e8357264361087099ea47ea3e732857e4ce26b6b39722730b6566486",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f"
+  },
+  "scope": "Historical tests only; v8 was rejected by fresh per-span gate"
+}

@@ -1,0 +1,13 @@
+{
+  "tests": 1381,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "checkpoint_sha256": {
+    "rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "span_filter.safetensors": "d00bdcb2e8357264361087099ea47ea3e732857e4ce26b6b39722730b6566486",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f"
+  },
+  "command": "KO_PII_TEST_NER=1 KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v9 OTEL_SDK_DISABLED=true .venv/bin/pytest -q"
+}

@@ -1,0 +1,11 @@
+{
+  "phase": "red",
+  "baseline": "artifacts/name-context-v9",
+  "tests": 6,
+  "failures": 6,
+  "known_false_negatives": 5,
+  "known_false_positives": 2,
+  "cases": 6,
+  "command": "KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v9 .venv/bin/pytest -q tests/test_name_context_v10_regressions.py",
+  "test_sha256": "0eebea944c987cb49ab29836a81a65641107c8249a7844cd17d770b451d96a59"
+}

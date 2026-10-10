@@ -1,0 +1,1329 @@
+{
+  "manifest": {
+    "data_sha256": "069216888570c65db724ae52f5cef13b6c8d6ece198334ea8109ad369258a656",
+    "source_sha256": {
+      "scripts/train_name_context.py": "d9342b8625446266edf750f59b7d5c17c8aef3ddc41ea7b85e68a9adf96511bf",
+      "src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+      "src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+      "src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+      "src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+      "src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+      "src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+      "src/ko_pii_guard/name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+      "src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+      "src/ko_pii_guard/ner.py": "dcbe234cbc1ec2963eb710ee41ea9c97382bbe30bcced3abbcd495729ada1128",
+      "src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+      "src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+      "src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+      "src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f",
+      "benchmarks/name_address_benchmark.py": "0cec759b79f2b604782daf18c257492b3144ce325a78641d84b8b3c35deb057a",
+      "benchmarks/name_context_training_cases.py": "a0c47d85f3ee36c547db25b91908741b814ac4f986fbf0c7b93756a45268bd8f",
+      "benchmarks/name_context_v2_cases.py": "ff284547c82ed7090660e1eb7019907b840d7d1fa21bc2f6162a2616190b735d",
+      "benchmarks/name_context_v3_cases.py": "ad51ce10df232d3d882f1fcdb67395f06db0b0c42ab30fdf341ef38047436dc2"
+    },
+    "seed": 20261010,
+    "epochs": 50,
+    "threads": 2,
+    "batch_size": 32,
+    "learning_rate": 0.002,
+    "confidence_threshold": 0.9,
+    "class_weights": [
+      0.25,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "selected_by": "fewest development regression errors, validation exact-span F1, then fewer validation FP; earliest tie",
+    "regression_data_sha256": {
+      "benchmarks/data/name_context_training.jsonl": "1c73e1c12324520833c83d8071fff1d66882f282442b51f34211ca51948677b3",
+      "benchmarks/data/name_context_v2_regressions.jsonl": "12203fd20aef631d2327b7e18ef1bee4f39b3535b85c722df9eae2fa3416b841",
+      "benchmarks/data/name_address.jsonl": "b1bc48b6a4f1786ed8cc79ff5e057956923d323264ae4824e82a76c8c776bd20",
+      "benchmarks/data/business_korean.jsonl": "3c6a871257c6f817fcf06a160e5663146581adfa7e2a422db557be4c2332cf7c",
+      "benchmarks/data/name_field_boundaries.jsonl": "441ac44049227674ef25dba8a503b1036292194c6781bce7c67cbbcc440e8e6f"
+    },
+    "frozen_at_utc": "2026-10-10T02:58:29.030264+00:00",
+    "split_counts": {
+      "train": 6520,
+      "validation": 84,
+      "evaluation": 280
+    },
+    "torch_version": "2.14.1+cpu",
+    "format_version": 1,
+    "base_model_id": "FrameByFrame/korean-pii-e5-base",
+    "base_revision": "a308c54b4407819624a5661e31e162a269f39818",
+    "labels": [
+      "O",
+      "B-private_person",
+      "I-private_person",
+      "E-private_person",
+      "S-private_person"
+    ],
+    "char_buckets": 4096,
+    "architecture": {
+      "hidden_size": 768,
+      "projection_size": 64,
+      "char_size": 16,
+      "recurrent_size": 64
+    }
+  },
+  "selected_epoch": 17,
+  "history": [
+    {
+      "epoch": 1,
+      "loss_sum": 31.88730667717755,
+      "tp": 102,
+      "fp": 9,
+      "fn": 18,
+      "f1": 0.8831168831168831,
+      "development_regression": {
+        "tp": 1963,
+        "fp": 26,
+        "fn": 178,
+        "f1": 0.9506053268765133
+      }
+    },
+    {
+      "epoch": 2,
+      "loss_sum": 4.871430159546435,
+      "tp": 108,
+      "fp": 10,
+      "fn": 12,
+      "f1": 0.907563025210084,
+      "development_regression": {
+        "tp": 2095,
+        "fp": 37,
+        "fn": 46,
+        "f1": 0.9805757079335362
+      }
+    },
+    {
+      "epoch": 3,
+      "loss_sum": 2.560082597832661,
+      "tp": 115,
+      "fp": 7,
+      "fn": 5,
+      "f1": 0.9504132231404959,
+      "development_regression": {
+        "tp": 2110,
+        "fp": 21,
+        "fn": 31,
+        "f1": 0.9878277153558053
+      }
+    },
+    {
+      "epoch": 4,
+      "loss_sum": 1.800941203138791,
+      "tp": 119,
+      "fp": 6,
+      "fn": 1,
+      "f1": 0.9714285714285714,
+      "development_regression": {
+        "tp": 2118,
+        "fp": 19,
+        "fn": 23,
+        "f1": 0.9901823281907434
+      }
+    },
+    {
+      "epoch": 5,
+      "loss_sum": 1.1981841587403324,
+      "tp": 115,
+      "fp": 7,
+      "fn": 5,
+      "f1": 0.9504132231404959,
+      "development_regression": {
+        "tp": 2133,
+        "fp": 15,
+        "fn": 8,
+        "f1": 0.9946374446257868
+      }
+    },
+    {
+      "epoch": 6,
+      "loss_sum": 0.9220259115973022,
+      "tp": 114,
+      "fp": 10,
+      "fn": 6,
+      "f1": 0.9344262295081968,
+      "development_regression": {
+        "tp": 2126,
+        "fp": 7,
+        "fn": 15,
+        "f1": 0.9948525970987365
+      }
+    },
+    {
+      "epoch": 7,
+      "loss_sum": 0.9289672117738519,
+      "tp": 117,
+      "fp": 10,
+      "fn": 3,
+      "f1": 0.9473684210526315,
+      "development_regression": {
+        "tp": 2129,
+        "fp": 11,
+        "fn": 12,
+        "f1": 0.9946274234991824
+      }
+    },
+    {
+      "epoch": 8,
+      "loss_sum": 0.419663798827969,
+      "tp": 119,
+      "fp": 6,
+      "fn": 1,
+      "f1": 0.9714285714285714,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 3,
+        "fn": 2,
+        "f1": 0.998832593976185
+      }
+    },
+    {
+      "epoch": 9,
+      "loss_sum": 0.3619149919759366,
+      "tp": 110,
+      "fp": 8,
+      "fn": 10,
+      "f1": 0.9243697478991597,
+      "development_regression": {
+        "tp": 2115,
+        "fp": 6,
+        "fn": 26,
+        "f1": 0.992491787893008
+      }
+    },
+    {
+      "epoch": 10,
+      "loss_sum": 0.6119835230711033,
+      "tp": 118,
+      "fp": 9,
+      "fn": 2,
+      "f1": 0.9554655870445344,
+      "development_regression": {
+        "tp": 2137,
+        "fp": 43,
+        "fn": 4,
+        "f1": 0.9891228882203194
+      }
+    },
+    {
+      "epoch": 11,
+      "loss_sum": 0.8663045963767217,
+      "tp": 117,
+      "fp": 9,
+      "fn": 3,
+      "f1": 0.9512195121951219,
+      "development_regression": {
+        "tp": 2131,
+        "fp": 18,
+        "fn": 10,
+        "f1": 0.9934731934731935
+      }
+    },
+    {
+      "epoch": 12,
+      "loss_sum": 0.564485014489037,
+      "tp": 118,
+      "fp": 7,
+      "fn": 2,
+      "f1": 0.963265306122449,
+      "development_regression": {
+        "tp": 2125,
+        "fp": 5,
+        "fn": 16,
+        "f1": 0.9950831187075626
+      }
+    },
+    {
+      "epoch": 13,
+      "loss_sum": 0.4180698396739899,
+      "tp": 117,
+      "fp": 6,
+      "fn": 3,
+      "f1": 0.9629629629629629,
+      "development_regression": {
+        "tp": 2127,
+        "fp": 4,
+        "fn": 14,
+        "f1": 0.9957865168539326
+      }
+    },
+    {
+      "epoch": 14,
+      "loss_sum": 0.41703807124940795,
+      "tp": 118,
+      "fp": 6,
+      "fn": 2,
+      "f1": 0.9672131147540983,
+      "development_regression": {
+        "tp": 2135,
+        "fp": 3,
+        "fn": 6,
+        "f1": 0.9978967048375789
+      }
+    },
+    {
+      "epoch": 15,
+      "loss_sum": 0.737294516122347,
+      "tp": 117,
+      "fp": 10,
+      "fn": 3,
+      "f1": 0.9473684210526315,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 6,
+        "fn": 2,
+        "f1": 0.998133457769482
+      }
+    },
+    {
+      "epoch": 16,
+      "loss_sum": 0.5815995613738778,
+      "tp": 119,
+      "fp": 7,
+      "fn": 1,
+      "f1": 0.967479674796748,
+      "development_regression": {
+        "tp": 2137,
+        "fp": 2,
+        "fn": 4,
+        "f1": 0.9985981308411215
+      }
+    },
+    {
+      "epoch": 17,
+      "loss_sum": 0.3236652200721437,
+      "tp": 120,
+      "fp": 6,
+      "fn": 0,
+      "f1": 0.975609756097561,
+      "development_regression": {
+        "tp": 2141,
+        "fp": 3,
+        "fn": 0,
+        "f1": 0.9992998833138856
+      }
+    },
+    {
+      "epoch": 18,
+      "loss_sum": 0.3560926494283194,
+      "tp": 118,
+      "fp": 7,
+      "fn": 2,
+      "f1": 0.963265306122449,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 2,
+        "fn": 2,
+        "f1": 0.9990658570761326
+      }
+    },
+    {
+      "epoch": 19,
+      "loss_sum": 0.6876119353637478,
+      "tp": 110,
+      "fp": 7,
+      "fn": 10,
+      "f1": 0.9282700421940928,
+      "development_regression": {
+        "tp": 2045,
+        "fp": 24,
+        "fn": 96,
+        "f1": 0.9714964370546318
+      }
+    },
+    {
+      "epoch": 20,
+      "loss_sum": 0.843446199738537,
+      "tp": 112,
+      "fp": 5,
+      "fn": 8,
+      "f1": 0.9451476793248945,
+      "development_regression": {
+        "tp": 2095,
+        "fp": 4,
+        "fn": 46,
+        "f1": 0.9882075471698113
+      }
+    },
+    {
+      "epoch": 21,
+      "loss_sum": 0.2719964492844156,
+      "tp": 120,
+      "fp": 6,
+      "fn": 0,
+      "f1": 0.975609756097561,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 11,
+        "fn": 2,
+        "f1": 0.9969704031694244
+      }
+    },
+    {
+      "epoch": 22,
+      "loss_sum": 1.1419801958691096,
+      "tp": 118,
+      "fp": 6,
+      "fn": 2,
+      "f1": 0.9672131147540983,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 5,
+        "fn": 2,
+        "f1": 0.9983663943990665
+      }
+    },
+    {
+      "epoch": 23,
+      "loss_sum": 0.48558795267308597,
+      "tp": 116,
+      "fp": 7,
+      "fn": 4,
+      "f1": 0.9547325102880658,
+      "development_regression": {
+        "tp": 2133,
+        "fp": 4,
+        "fn": 8,
+        "f1": 0.9971949509116409
+      }
+    },
+    {
+      "epoch": 24,
+      "loss_sum": 0.20954881293073413,
+      "tp": 119,
+      "fp": 10,
+      "fn": 1,
+      "f1": 0.9558232931726908,
+      "development_regression": {
+        "tp": 2141,
+        "fp": 16,
+        "fn": 0,
+        "f1": 0.9962773382968823
+      }
+    },
+    {
+      "epoch": 25,
+      "loss_sum": 0.2619853603246156,
+      "tp": 117,
+      "fp": 5,
+      "fn": 3,
+      "f1": 0.9669421487603306,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 1,
+        "fn": 2,
+        "f1": 0.9992992291520673
+      }
+    },
+    {
+      "epoch": 26,
+      "loss_sum": 0.17000848166389915,
+      "tp": 118,
+      "fp": 3,
+      "fn": 2,
+      "f1": 0.979253112033195,
+      "development_regression": {
+        "tp": 2093,
+        "fp": 5,
+        "fn": 48,
+        "f1": 0.9874970511913187
+      }
+    },
+    {
+      "epoch": 27,
+      "loss_sum": 0.1958788551746693,
+      "tp": 120,
+      "fp": 6,
+      "fn": 0,
+      "f1": 0.975609756097561,
+      "development_regression": {
+        "tp": 2140,
+        "fp": 3,
+        "fn": 1,
+        "f1": 0.9990662931839402
+      }
+    },
+    {
+      "epoch": 28,
+      "loss_sum": 0.20793600819524727,
+      "tp": 116,
+      "fp": 9,
+      "fn": 4,
+      "f1": 0.9469387755102041,
+      "development_regression": {
+        "tp": 2138,
+        "fp": 6,
+        "fn": 3,
+        "f1": 0.9978996499416569
+      }
+    },
+    {
+      "epoch": 29,
+      "loss_sum": 0.21363749686133815,
+      "tp": 117,
+      "fp": 8,
+      "fn": 3,
+      "f1": 0.9551020408163265,
+      "development_regression": {
+        "tp": 2138,
+        "fp": 4,
+        "fn": 3,
+        "f1": 0.9983656315666589
+      }
+    },
+    {
+      "epoch": 30,
+      "loss_sum": 0.13705575599942676,
+      "tp": 120,
+      "fp": 8,
+      "fn": 0,
+      "f1": 0.967741935483871,
+      "development_regression": {
+        "tp": 2138,
+        "fp": 11,
+        "fn": 3,
+        "f1": 0.9967365967365968
+      }
+    },
+    {
+      "epoch": 31,
+      "loss_sum": 0.22784558188595838,
+      "tp": 119,
+      "fp": 1,
+      "fn": 1,
+      "f1": 0.9916666666666667,
+      "development_regression": {
+        "tp": 2132,
+        "fp": 0,
+        "fn": 9,
+        "f1": 0.9978937514626726
+      }
+    },
+    {
+      "epoch": 32,
+      "loss_sum": 0.09749105788523593,
+      "tp": 118,
+      "fp": 8,
+      "fn": 2,
+      "f1": 0.959349593495935,
+      "development_regression": {
+        "tp": 2140,
+        "fp": 6,
+        "fn": 1,
+        "f1": 0.9983671565197108
+      }
+    },
+    {
+      "epoch": 33,
+      "loss_sum": 1.4226760788005777,
+      "tp": 118,
+      "fp": 6,
+      "fn": 2,
+      "f1": 0.9672131147540983,
+      "development_regression": {
+        "tp": 2123,
+        "fp": 4,
+        "fn": 18,
+        "f1": 0.9948453608247423
+      }
+    },
+    {
+      "epoch": 34,
+      "loss_sum": 0.3742971791198215,
+      "tp": 116,
+      "fp": 9,
+      "fn": 4,
+      "f1": 0.9469387755102041,
+      "development_regression": {
+        "tp": 2132,
+        "fp": 4,
+        "fn": 9,
+        "f1": 0.9969604863221885
+      }
+    },
+    {
+      "epoch": 35,
+      "loss_sum": 0.4001196731624077,
+      "tp": 119,
+      "fp": 7,
+      "fn": 1,
+      "f1": 0.967479674796748,
+      "development_regression": {
+        "tp": 2137,
+        "fp": 5,
+        "fn": 4,
+        "f1": 0.9978986691571329
+      }
+    },
+    {
+      "epoch": 36,
+      "loss_sum": 0.3350636680097523,
+      "tp": 119,
+      "fp": 8,
+      "fn": 1,
+      "f1": 0.9635627530364372,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 3,
+        "fn": 2,
+        "f1": 0.998832593976185
+      }
+    },
+    {
+      "epoch": 37,
+      "loss_sum": 0.28149290953479067,
+      "tp": 118,
+      "fp": 9,
+      "fn": 2,
+      "f1": 0.9554655870445344,
+      "development_regression": {
+        "tp": 2125,
+        "fp": 9,
+        "fn": 16,
+        "f1": 0.9941520467836257
+      }
+    },
+    {
+      "epoch": 38,
+      "loss_sum": 0.28596150865996606,
+      "tp": 119,
+      "fp": 3,
+      "fn": 1,
+      "f1": 0.9834710743801653,
+      "development_regression": {
+        "tp": 2127,
+        "fp": 10,
+        "fn": 14,
+        "f1": 0.9943899018232819
+      }
+    },
+    {
+      "epoch": 39,
+      "loss_sum": 0.19010729250430813,
+      "tp": 116,
+      "fp": 11,
+      "fn": 4,
+      "f1": 0.9392712550607287,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 7,
+        "fn": 2,
+        "f1": 0.9979006298110566
+      }
+    },
+    {
+      "epoch": 40,
+      "loss_sum": 0.1986091619983199,
+      "tp": 118,
+      "fp": 7,
+      "fn": 2,
+      "f1": 0.963265306122449,
+      "development_regression": {
+        "tp": 2133,
+        "fp": 0,
+        "fn": 8,
+        "f1": 0.9981282171268133
+      }
+    },
+    {
+      "epoch": 41,
+      "loss_sum": 0.13430497348599602,
+      "tp": 117,
+      "fp": 10,
+      "fn": 3,
+      "f1": 0.9473684210526315,
+      "development_regression": {
+        "tp": 2134,
+        "fp": 5,
+        "fn": 7,
+        "f1": 0.997196261682243
+      }
+    },
+    {
+      "epoch": 42,
+      "loss_sum": 0.2709005021224584,
+      "tp": 120,
+      "fp": 8,
+      "fn": 0,
+      "f1": 0.967741935483871,
+      "development_regression": {
+        "tp": 2139,
+        "fp": 2,
+        "fn": 2,
+        "f1": 0.9990658570761326
+      }
+    },
+    {
+      "epoch": 43,
+      "loss_sum": 0.06034752968889734,
+      "tp": 119,
+      "fp": 11,
+      "fn": 1,
+      "f1": 0.952,
+      "development_regression": {
+        "tp": 2141,
+        "fp": 7,
+        "fn": 0,
+        "f1": 0.9983679179295873
+      }
+    },
+    {
+      "epoch": 44,
+      "loss_sum": 0.17782869702205062,
+      "tp": 118,
+      "fp": 5,
+      "fn": 2,
+      "f1": 0.9711934156378601,
+      "development_regression": {
+        "tp": 2135,
+        "fp": 2,
+        "fn": 6,
+        "f1": 0.9981299672744273
+      }
+    },
+    {
+      "epoch": 45,
+      "loss_sum": 0.8050256168990018,
+      "tp": 117,
+      "fp": 7,
+      "fn": 3,
+      "f1": 0.9590163934426229,
+      "development_regression": {
+        "tp": 2136,
+        "fp": 12,
+        "fn": 5,
+        "f1": 0.9960363721147121
+      }
+    },
+    {
+      "epoch": 46,
+      "loss_sum": 0.3834226346516516,
+      "tp": 117,
+      "fp": 10,
+      "fn": 3,
+      "f1": 0.9473684210526315,
+      "development_regression": {
+        "tp": 2121,
+        "fp": 33,
+        "fn": 20,
+        "f1": 0.9876600698486613
+      }
+    },
+    {
+      "epoch": 47,
+      "loss_sum": 0.3438279602360126,
+      "tp": 120,
+      "fp": 30,
+      "fn": 0,
+      "f1": 0.8888888888888888,
+      "development_regression": {
+        "tp": 2140,
+        "fp": 5,
+        "fn": 1,
+        "f1": 0.9986000933271115
+      }
+    },
+    {
+      "epoch": 48,
+      "loss_sum": 0.24500145548518049,
+      "tp": 119,
+      "fp": 9,
+      "fn": 1,
+      "f1": 0.9596774193548387,
+      "development_regression": {
+        "tp": 2134,
+        "fp": 3,
+        "fn": 7,
+        "f1": 0.9976624590930341
+      }
+    },
+    {
+      "epoch": 49,
+      "loss_sum": 0.3849755003429891,
+      "tp": 117,
+      "fp": 6,
+      "fn": 3,
+      "f1": 0.9629629629629629,
+      "development_regression": {
+        "tp": 2130,
+        "fp": 2,
+        "fn": 11,
+        "f1": 0.9969576410016382
+      }
+    },
+    {
+      "epoch": 50,
+      "loss_sum": 0.30513800594235363,
+      "tp": 114,
+      "fp": 3,
+      "fn": 6,
+      "f1": 0.9620253164556962,
+      "development_regression": {
+        "tp": 2121,
+        "fp": 4,
+        "fn": 20,
+        "f1": 0.9943741209563994
+      }
+    }
+  ],
+  "training_seconds": 526.8458492569998,
+  "checkpoint_sha256": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+  "evaluation_baseline": {
+    "counts": {
+      "sentences": 280,
+      "true_positive": 257,
+      "false_positive": 62,
+      "false_negative": 143,
+      "sensitive_spans": 400,
+      "fully_covered_spans": 262,
+      "negative_sentences": 40,
+      "false_positive_sentences": 10
+    },
+    "exact_span_precision": 0.8056426332288401,
+    "exact_span_recall": 0.6425,
+    "exact_span_f1": 0.7148817802503477,
+    "full_sensitive_span_coverage": 0.655,
+    "negative_sentence_false_positive_rate": 0.25,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 257,
+          "false_positive": 62,
+          "false_negative": 143,
+          "sensitive_spans": 400,
+          "fully_covered_spans": 262,
+          "negative_sentences": 40,
+          "false_positive_sentences": 10
+        },
+        "exact_span_precision": 0.8056426332288401,
+        "exact_span_recall": 0.6425,
+        "exact_span_f1": 0.7148817802503477,
+        "full_sensitive_span_coverage": 0.655,
+        "negative_sentence_false_positive_rate": 0.25
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 280,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 257,
+          "false_positive": 62,
+          "false_negative": 143,
+          "sensitive_spans": 400,
+          "fully_covered_spans": 262,
+          "negative_sentences": 40,
+          "false_positive_sentences": 10
+        },
+        "exact_span_precision": 0.8056426332288401,
+        "exact_span_recall": 0.6425,
+        "exact_span_f1": 0.7148817802503477,
+        "full_sensitive_span_coverage": 0.655,
+        "negative_sentence_false_positive_rate": 0.25,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 280,
+              "true_positive": 257,
+              "false_positive": 62,
+              "false_negative": 143,
+              "sensitive_spans": 400,
+              "fully_covered_spans": 262,
+              "negative_sentences": 40,
+              "false_positive_sentences": 10
+            },
+            "exact_span_precision": 0.8056426332288401,
+            "exact_span_recall": 0.6425,
+            "exact_span_f1": 0.7148817802503477,
+            "full_sensitive_span_coverage": 0.655,
+            "negative_sentence_false_positive_rate": 0.25
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 280,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 280,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 64.44690187000015,
+    "error_ids": {
+      "exact_span": [
+        "v3-evaluation-person-00-002",
+        "v3-evaluation-person-00-007",
+        "v3-evaluation-person-00-013",
+        "v3-evaluation-person-00-014",
+        "v3-evaluation-person-00-015",
+        "v3-evaluation-person-00-018",
+        "v3-evaluation-person-01-006",
+        "v3-evaluation-person-01-009",
+        "v3-evaluation-person-01-013",
+        "v3-evaluation-person-01-015",
+        "v3-evaluation-person-01-018",
+        "v3-evaluation-person-02-002",
+        "v3-evaluation-person-02-005",
+        "v3-evaluation-person-02-006",
+        "v3-evaluation-person-02-007",
+        "v3-evaluation-person-02-009",
+        "v3-evaluation-person-02-010",
+        "v3-evaluation-person-02-013",
+        "v3-evaluation-person-02-014",
+        "v3-evaluation-person-02-015",
+        "v3-evaluation-person-02-017",
+        "v3-evaluation-person-02-018",
+        "v3-evaluation-person-03-002",
+        "v3-evaluation-person-03-007",
+        "v3-evaluation-person-03-008",
+        "v3-evaluation-person-03-009",
+        "v3-evaluation-person-03-010",
+        "v3-evaluation-person-03-012",
+        "v3-evaluation-person-03-014",
+        "v3-evaluation-person-03-015",
+        "v3-evaluation-person-03-016",
+        "v3-evaluation-person-03-017",
+        "v3-evaluation-person-03-018",
+        "v3-evaluation-person-03-019",
+        "v3-evaluation-person-04-005",
+        "v3-evaluation-person-04-007",
+        "v3-evaluation-person-04-012",
+        "v3-evaluation-person-04-013",
+        "v3-evaluation-person-04-018",
+        "v3-evaluation-person-04-019",
+        "v3-evaluation-person-05-002",
+        "v3-evaluation-person-05-004",
+        "v3-evaluation-person-05-006",
+        "v3-evaluation-person-05-007",
+        "v3-evaluation-person-05-008",
+        "v3-evaluation-person-05-009",
+        "v3-evaluation-person-05-010",
+        "v3-evaluation-person-05-012",
+        "v3-evaluation-person-05-013",
+        "v3-evaluation-person-05-014",
+        "v3-evaluation-person-05-015",
+        "v3-evaluation-person-05-017",
+        "v3-evaluation-person-05-018",
+        "v3-evaluation-person-06-001",
+        "v3-evaluation-person-06-002",
+        "v3-evaluation-person-06-003",
+        "v3-evaluation-person-06-007",
+        "v3-evaluation-person-06-009",
+        "v3-evaluation-person-06-010",
+        "v3-evaluation-person-06-011",
+        "v3-evaluation-person-06-012",
+        "v3-evaluation-person-06-013",
+        "v3-evaluation-person-06-014",
+        "v3-evaluation-person-06-015",
+        "v3-evaluation-person-06-016",
+        "v3-evaluation-person-06-017",
+        "v3-evaluation-person-06-018",
+        "v3-evaluation-person-07-002",
+        "v3-evaluation-person-07-007",
+        "v3-evaluation-person-07-008",
+        "v3-evaluation-person-07-010",
+        "v3-evaluation-person-07-011",
+        "v3-evaluation-person-07-012",
+        "v3-evaluation-person-07-013",
+        "v3-evaluation-person-07-014",
+        "v3-evaluation-person-07-015",
+        "v3-evaluation-person-07-016",
+        "v3-evaluation-person-07-017",
+        "v3-evaluation-person-07-018",
+        "v3-evaluation-person-07-019",
+        "v3-evaluation-person-08-007",
+        "v3-evaluation-person-08-013",
+        "v3-evaluation-person-08-018",
+        "v3-evaluation-person-09-002",
+        "v3-evaluation-person-09-006",
+        "v3-evaluation-person-09-007",
+        "v3-evaluation-person-09-009",
+        "v3-evaluation-person-09-010",
+        "v3-evaluation-person-09-011",
+        "v3-evaluation-person-09-013",
+        "v3-evaluation-person-09-014",
+        "v3-evaluation-person-09-015",
+        "v3-evaluation-person-09-016",
+        "v3-evaluation-person-09-017",
+        "v3-evaluation-person-09-018",
+        "v3-evaluation-person-09-019",
+        "v3-evaluation-person-10-002",
+        "v3-evaluation-person-10-005",
+        "v3-evaluation-person-10-006",
+        "v3-evaluation-person-10-007",
+        "v3-evaluation-person-10-008",
+        "v3-evaluation-person-10-009",
+        "v3-evaluation-person-10-010",
+        "v3-evaluation-person-10-011",
+        "v3-evaluation-person-10-012",
+        "v3-evaluation-person-10-013",
+        "v3-evaluation-person-10-014",
+        "v3-evaluation-person-10-015",
+        "v3-evaluation-person-10-016",
+        "v3-evaluation-person-10-017",
+        "v3-evaluation-person-11-000",
+        "v3-evaluation-person-11-001",
+        "v3-evaluation-person-11-002",
+        "v3-evaluation-person-11-005",
+        "v3-evaluation-person-11-007",
+        "v3-evaluation-person-11-008",
+        "v3-evaluation-person-11-009",
+        "v3-evaluation-person-11-010",
+        "v3-evaluation-person-11-011",
+        "v3-evaluation-person-11-012",
+        "v3-evaluation-person-11-013",
+        "v3-evaluation-person-11-014",
+        "v3-evaluation-person-11-015",
+        "v3-evaluation-person-11-016",
+        "v3-evaluation-person-11-017",
+        "v3-evaluation-person-11-018",
+        "v3-evaluation-person-11-019",
+        "v3-evaluation-negative-02-00",
+        "v3-evaluation-negative-02-01",
+        "v3-evaluation-negative-02-02",
+        "v3-evaluation-negative-02-03",
+        "v3-evaluation-negative-02-04",
+        "v3-evaluation-negative-02-05",
+        "v3-evaluation-negative-02-06",
+        "v3-evaluation-negative-02-07",
+        "v3-evaluation-negative-03-00",
+        "v3-evaluation-negative-03-02"
+      ],
+      "uncovered_sensitive_span": [
+        "v3-evaluation-person-00-002",
+        "v3-evaluation-person-00-007",
+        "v3-evaluation-person-00-014",
+        "v3-evaluation-person-00-015",
+        "v3-evaluation-person-00-018",
+        "v3-evaluation-person-01-013",
+        "v3-evaluation-person-01-015",
+        "v3-evaluation-person-01-018",
+        "v3-evaluation-person-02-002",
+        "v3-evaluation-person-02-005",
+        "v3-evaluation-person-02-007",
+        "v3-evaluation-person-02-009",
+        "v3-evaluation-person-02-010",
+        "v3-evaluation-person-02-013",
+        "v3-evaluation-person-02-014",
+        "v3-evaluation-person-02-015",
+        "v3-evaluation-person-02-017",
+        "v3-evaluation-person-02-018",
+        "v3-evaluation-person-03-002",
+        "v3-evaluation-person-03-007",
+        "v3-evaluation-person-03-008",
+        "v3-evaluation-person-03-009",
+        "v3-evaluation-person-03-010",
+        "v3-evaluation-person-03-012",
+        "v3-evaluation-person-03-014",
+        "v3-evaluation-person-03-015",
+        "v3-evaluation-person-03-016",
+        "v3-evaluation-person-03-017",
+        "v3-evaluation-person-03-018",
+        "v3-evaluation-person-03-019",
+        "v3-evaluation-person-04-005",
+        "v3-evaluation-person-04-007",
+        "v3-evaluation-person-04-012",
+        "v3-evaluation-person-04-013",
+        "v3-evaluation-person-04-018",
+        "v3-evaluation-person-04-019",
+        "v3-evaluation-person-05-002",
+        "v3-evaluation-person-05-004",
+        "v3-evaluation-person-05-006",
+        "v3-evaluation-person-05-007",
+        "v3-evaluation-person-05-008",
+        "v3-evaluation-person-05-009",
+        "v3-evaluation-person-05-010",
+        "v3-evaluation-person-05-012",
+        "v3-evaluation-person-05-013",
+        "v3-evaluation-person-05-014",
+        "v3-evaluation-person-05-015",
+        "v3-evaluation-person-05-017",
+        "v3-evaluation-person-05-018",
+        "v3-evaluation-person-06-001",
+        "v3-evaluation-person-06-002",
+        "v3-evaluation-person-06-003",
+        "v3-evaluation-person-06-007",
+        "v3-evaluation-person-06-009",
+        "v3-evaluation-person-06-010",
+        "v3-evaluation-person-06-011",
+        "v3-evaluation-person-06-012",
+        "v3-evaluation-person-06-013",
+        "v3-evaluation-person-06-014",
+        "v3-evaluation-person-06-015",
+        "v3-evaluation-person-06-016",
+        "v3-evaluation-person-06-017",
+        "v3-evaluation-person-06-018",
+        "v3-evaluation-person-07-002",
+        "v3-evaluation-person-07-007",
+        "v3-evaluation-person-07-008",
+        "v3-evaluation-person-07-010",
+        "v3-evaluation-person-07-011",
+        "v3-evaluation-person-07-012",
+        "v3-evaluation-person-07-013",
+        "v3-evaluation-person-07-014",
+        "v3-evaluation-person-07-015",
+        "v3-evaluation-person-07-016",
+        "v3-evaluation-person-07-017",
+        "v3-evaluation-person-07-018",
+        "v3-evaluation-person-07-019",
+        "v3-evaluation-person-08-007",
+        "v3-evaluation-person-08-013",
+        "v3-evaluation-person-08-018",
+        "v3-evaluation-person-09-002",
+        "v3-evaluation-person-09-007",
+        "v3-evaluation-person-09-009",
+        "v3-evaluation-person-09-010",
+        "v3-evaluation-person-09-011",
+        "v3-evaluation-person-09-013",
+        "v3-evaluation-person-09-014",
+        "v3-evaluation-person-09-015",
+        "v3-evaluation-person-09-016",
+        "v3-evaluation-person-09-017",
+        "v3-evaluation-person-09-018",
+        "v3-evaluation-person-09-019",
+        "v3-evaluation-person-10-002",
+        "v3-evaluation-person-10-005",
+        "v3-evaluation-person-10-006",
+        "v3-evaluation-person-10-007",
+        "v3-evaluation-person-10-008",
+        "v3-evaluation-person-10-009",
+        "v3-evaluation-person-10-010",
+        "v3-evaluation-person-10-011",
+        "v3-evaluation-person-10-012",
+        "v3-evaluation-person-10-013",
+        "v3-evaluation-person-10-014",
+        "v3-evaluation-person-10-015",
+        "v3-evaluation-person-10-016",
+        "v3-evaluation-person-10-017",
+        "v3-evaluation-person-11-000",
+        "v3-evaluation-person-11-001",
+        "v3-evaluation-person-11-002",
+        "v3-evaluation-person-11-005",
+        "v3-evaluation-person-11-007",
+        "v3-evaluation-person-11-008",
+        "v3-evaluation-person-11-009",
+        "v3-evaluation-person-11-010",
+        "v3-evaluation-person-11-011",
+        "v3-evaluation-person-11-012",
+        "v3-evaluation-person-11-013",
+        "v3-evaluation-person-11-014",
+        "v3-evaluation-person-11-015",
+        "v3-evaluation-person-11-016",
+        "v3-evaluation-person-11-017",
+        "v3-evaluation-person-11-018",
+        "v3-evaluation-person-11-019"
+      ],
+      "negative_false_positive": [
+        "v3-evaluation-negative-02-00",
+        "v3-evaluation-negative-02-01",
+        "v3-evaluation-negative-02-02",
+        "v3-evaluation-negative-02-03",
+        "v3-evaluation-negative-02-04",
+        "v3-evaluation-negative-02-05",
+        "v3-evaluation-negative-02-06",
+        "v3-evaluation-negative-02-07",
+        "v3-evaluation-negative-03-00",
+        "v3-evaluation-negative-03-02"
+      ]
+    }
+  },
+  "evaluation_candidate": {
+    "counts": {
+      "sentences": 280,
+      "true_positive": 395,
+      "false_positive": 31,
+      "false_negative": 5,
+      "sensitive_spans": 400,
+      "fully_covered_spans": 395,
+      "negative_sentences": 40,
+      "false_positive_sentences": 12
+    },
+    "exact_span_precision": 0.9272300469483568,
+    "exact_span_recall": 0.9875,
+    "exact_span_f1": 0.9564164648910412,
+    "full_sensitive_span_coverage": 0.9875,
+    "negative_sentence_false_positive_rate": 0.3,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 395,
+          "false_positive": 31,
+          "false_negative": 5,
+          "sensitive_spans": 400,
+          "fully_covered_spans": 395,
+          "negative_sentences": 40,
+          "false_positive_sentences": 12
+        },
+        "exact_span_precision": 0.9272300469483568,
+        "exact_span_recall": 0.9875,
+        "exact_span_f1": 0.9564164648910412,
+        "full_sensitive_span_coverage": 0.9875,
+        "negative_sentence_false_positive_rate": 0.3
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 280,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 280,
+          "true_positive": 395,
+          "false_positive": 31,
+          "false_negative": 5,
+          "sensitive_spans": 400,
+          "fully_covered_spans": 395,
+          "negative_sentences": 40,
+          "false_positive_sentences": 12
+        },
+        "exact_span_precision": 0.9272300469483568,
+        "exact_span_recall": 0.9875,
+        "exact_span_f1": 0.9564164648910412,
+        "full_sensitive_span_coverage": 0.9875,
+        "negative_sentence_false_positive_rate": 0.3,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 280,
+              "true_positive": 395,
+              "false_positive": 31,
+              "false_negative": 5,
+              "sensitive_spans": 400,
+              "fully_covered_spans": 395,
+              "negative_sentences": 40,
+              "false_positive_sentences": 12
+            },
+            "exact_span_precision": 0.9272300469483568,
+            "exact_span_recall": 0.9875,
+            "exact_span_f1": 0.9564164648910412,
+            "full_sensitive_span_coverage": 0.9875,
+            "negative_sentence_false_positive_rate": 0.3
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 280,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 280,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 96.6312603309998,
+    "error_ids": {
+      "exact_span": [
+        "v3-evaluation-person-00-015",
+        "v3-evaluation-person-02-002",
+        "v3-evaluation-person-02-005",
+        "v3-evaluation-person-02-007",
+        "v3-evaluation-person-02-010",
+        "v3-evaluation-person-04-000",
+        "v3-evaluation-person-04-001",
+        "v3-evaluation-person-04-003",
+        "v3-evaluation-person-04-004",
+        "v3-evaluation-person-04-007",
+        "v3-evaluation-person-04-008",
+        "v3-evaluation-person-04-009",
+        "v3-evaluation-person-04-010",
+        "v3-evaluation-person-04-011",
+        "v3-evaluation-person-04-013",
+        "v3-evaluation-person-04-014",
+        "v3-evaluation-person-04-016",
+        "v3-evaluation-person-04-018",
+        "v3-evaluation-person-04-019",
+        "v3-evaluation-person-05-010",
+        "v3-evaluation-person-05-014",
+        "v3-evaluation-negative-00-00",
+        "v3-evaluation-negative-00-03",
+        "v3-evaluation-negative-01-00",
+        "v3-evaluation-negative-01-03",
+        "v3-evaluation-negative-01-05",
+        "v3-evaluation-negative-03-00",
+        "v3-evaluation-negative-03-01",
+        "v3-evaluation-negative-03-02",
+        "v3-evaluation-negative-03-03",
+        "v3-evaluation-negative-03-04",
+        "v3-evaluation-negative-03-05",
+        "v3-evaluation-negative-03-07"
+      ],
+      "uncovered_sensitive_span": [
+        "v3-evaluation-person-00-015",
+        "v3-evaluation-person-02-002",
+        "v3-evaluation-person-02-005",
+        "v3-evaluation-person-05-010",
+        "v3-evaluation-person-05-014"
+      ],
+      "negative_false_positive": [
+        "v3-evaluation-negative-00-00",
+        "v3-evaluation-negative-00-03",
+        "v3-evaluation-negative-01-00",
+        "v3-evaluation-negative-01-03",
+        "v3-evaluation-negative-01-05",
+        "v3-evaluation-negative-03-00",
+        "v3-evaluation-negative-03-01",
+        "v3-evaluation-negative-03-02",
+        "v3-evaluation-negative-03-03",
+        "v3-evaluation-negative-03-04",
+        "v3-evaluation-negative-03-05",
+        "v3-evaluation-negative-03-07"
+      ]
+    }
+  },
+  "source_changed_during_run": false
+}

@@ -1,0 +1,435 @@
+{
+  "scope": "previously_inspected_synthetic_corpus_diagnosis",
+  "not_independent_generalization_evidence": true,
+  "methodology": "Exact span union across heads; first unavailable stage. Boundary FP classification is coordinate overlap, not a semantic judgment.",
+  "sha256": {
+    "benchmarks/data/name_context_v11.jsonl": "86b9eff44f9ffa3fa75a9f7d67ae00ef58edbc0fa55e6b9314463cb0c77115ba",
+    "benchmarks/name_context_stage_diagnostic.py": "969ac21feffe494c45e2dd05b559e168d8b56236732d1611f4fdca0a9dce7741",
+    "src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea",
+    "src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "artifacts/name-context-v11/rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "artifacts/name-context-v11/rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "artifacts/name-context-v11/span_filter.safetensors": "246e3388fb01c04c34b4b7b4b5e6f2fbfabe7327cc410f56997169d97e0c5a38",
+    "artifacts/name-context-v11/name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "artifacts/name-context-v11/rescue_name_context_2.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f",
+    "artifacts/name-context-v11/name_context_config.json": "5a1c497193f02309e5639bec6e4105671dbb0adbb8604fda864dd77b2d8056c1"
+  },
+  "source_changed_during_run": false,
+  "counts": {
+    "false_negative": 23,
+    "false_positive": 17,
+    "filtered_exact_proposal_coverage": 214,
+    "fn_below_threshold": 10,
+    "fn_no_exact_proposal": 10,
+    "fn_overlap_blocked": 3,
+    "fp_disjoint_from_gold": 4,
+    "fp_overlapping_gold_boundary": 13,
+    "gold": 234,
+    "raw_exact_proposal_coverage": 224,
+    "sentences": 192,
+    "threshold_exact_proposal_coverage": 214,
+    "true_positive": 211
+  },
+  "failures": [
+    {
+      "id": "v11-evaluation-person-00-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        10,
+        13
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-00-012",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        10,
+        12
+      ],
+      "stage": "overlap_blocked"
+    },
+    {
+      "id": "v11-evaluation-person-00-012",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        10,
+        11
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-00-013",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        10,
+        12
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-00-016",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        27,
+        30
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-00-016",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        27,
+        28
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-00-016",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        29,
+        30
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-01-000",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        5,
+        6
+      ],
+      "stage": "disjoint_from_gold"
+    },
+    {
+      "id": "v11-evaluation-person-01-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        9,
+        12
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-01-001",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        5,
+        6
+      ],
+      "stage": "disjoint_from_gold"
+    },
+    {
+      "id": "v11-evaluation-person-01-001",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        9,
+        11
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-01-003",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        5,
+        6
+      ],
+      "stage": "disjoint_from_gold"
+    },
+    {
+      "id": "v11-evaluation-person-01-010",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        5,
+        6
+      ],
+      "stage": "disjoint_from_gold"
+    },
+    {
+      "id": "v11-evaluation-person-03-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        16,
+        19
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-03-001",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        16,
+        18
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-03-012",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        16,
+        18
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-04-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        23,
+        26
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-05-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        4,
+        7
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-05-001",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        4,
+        6
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-05-016",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        22,
+        25
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-05-016",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        22,
+        24
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-05-016",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        24,
+        25
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-06-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        15,
+        18
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-06-005",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        20,
+        24
+      ],
+      "stage": "overlap_blocked"
+    },
+    {
+      "id": "v11-evaluation-person-06-005",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        20,
+        23
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-06-006",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        20,
+        24
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-06-006",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        20,
+        23
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-06-009",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        15,
+        19
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-06-009",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        21,
+        23
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-06-010",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        18,
+        20
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-06-012",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        15,
+        17
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-06-012",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        19,
+        22
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-06-015",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        20,
+        23
+      ],
+      "stage": "overlap_blocked"
+    },
+    {
+      "id": "v11-evaluation-person-06-015",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        20,
+        21
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-06-016",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        28,
+        31
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-06-016",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        28,
+        30
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-07-001",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        4,
+        7
+      ],
+      "stage": "below_threshold"
+    },
+    {
+      "id": "v11-evaluation-person-07-001",
+      "kind": "false_positive",
+      "span": [
+        "KR_NAME",
+        4,
+        6
+      ],
+      "stage": "overlapping_gold_boundary"
+    },
+    {
+      "id": "v11-evaluation-person-07-013",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        4,
+        6
+      ],
+      "stage": "no_exact_proposal"
+    },
+    {
+      "id": "v11-evaluation-person-07-016",
+      "kind": "false_negative",
+      "span": [
+        "KR_NAME",
+        25,
+        28
+      ],
+      "stage": "no_exact_proposal"
+    }
+  ]
+}

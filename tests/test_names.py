@@ -18,6 +18,10 @@ STRUCTURED_CASES = [
     row for line in DATA.read_text(encoding="utf-8").splitlines()
     if (row := json.loads(line))["track"] == "structured" and row["category"] != "address"
 ]
+FIELD_BOUNDARY_CASES = [case for line in
+                        DATA.with_name("name_field_boundaries.jsonl").read_text(
+                            encoding="utf-8").splitlines()
+                        if (case := json.loads(line))["track"] == "structured"]
 
 
 def extended_guard(**kwargs):
@@ -68,7 +72,8 @@ def guard():
     return extended_guard()
 
 
-@pytest.mark.parametrize("case", STRUCTURED_CASES, ids=lambda row: row["id"])
+@pytest.mark.parametrize("case", [*STRUCTURED_CASES, *FIELD_BOUNDARY_CASES],
+                         ids=lambda row: row["id"])
 def test_structured_name_fixture_and_mixed_fields(guard, case):
     text = case["text"]
     expected = [(e["entity"], e["start"], e["end"]) for e in case["expected"]]
@@ -96,6 +101,11 @@ def test_structured_name_fixture_and_mixed_fields(guard, case):
 ])
 def test_partial_names_keep_one_character(guard, name, expected):
     assert guard.mask(f"성명: {name}", style="partial") == f"성명: {expected}"
+
+
+@pytest.mark.parametrize("value", ["안나·", "안나··가온", "안나·123", "안나·_가온"])
+def test_incomplete_middle_dot_names_do_not_return_a_partial_name(guard, value):
+    assert guard.analyze(f"성명: {value}") == []
 
 
 def test_unassigned_role_is_not_a_global_name_denylist(guard):
@@ -291,6 +301,8 @@ def test_name_does_not_consume_a_following_field_label(guard):
 
 
 @pytest.mark.parametrize("text,candidate", [
+    ("상품 이름: 안나·가온", "안나·가온"),
+    ("파일 이름: 안나·가온", "안나·가온"),
     ("회사명: 가상테크", "가상테크"),
     ("상품명: 소망", "소망"),
     ("프로젝트명: 오지은", "오지은"),

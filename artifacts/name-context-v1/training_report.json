@@ -1,0 +1,596 @@
+{
+  "manifest": {
+    "data_sha256": "1c73e1c12324520833c83d8071fff1d66882f282442b51f34211ca51948677b3",
+    "source_sha256": {
+      "scripts/train_name_context.py": "88303fc6a860e91e883d9a480ffb42209c70af3b7eb92726b128f81fa6d6a313",
+      "src/ko_pii_guard/name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+      "src/ko_pii_guard/ner.py": "9ffaae08514e4d879d8a7cd08cffc02fd2a9100f485d56cb574c28ac95797dc2",
+      "benchmarks/name_context_training_cases.py": "a0c47d85f3ee36c547db25b91908741b814ac4f986fbf0c7b93756a45268bd8f"
+    },
+    "seed": 20261010,
+    "epochs": 25,
+    "threads": 2,
+    "batch_size": 32,
+    "learning_rate": 0.002,
+    "confidence_threshold": 0.9,
+    "class_weights": [
+      0.25,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "selected_by": "validation exact-span F1, then fewer FP; earliest tie",
+    "frozen_at_utc": "2026-10-10T02:06:38.821237+00:00",
+    "split_counts": {
+      "train": 1758,
+      "validation": 80,
+      "evaluation": 140
+    },
+    "torch_version": "2.14.1+cpu",
+    "format_version": 1,
+    "base_model_id": "FrameByFrame/korean-pii-e5-base",
+    "base_revision": "a308c54b4407819624a5661e31e162a269f39818",
+    "labels": [
+      "O",
+      "B-private_person",
+      "I-private_person",
+      "E-private_person",
+      "S-private_person"
+    ],
+    "char_buckets": 4096,
+    "architecture": {
+      "hidden_size": 768,
+      "projection_size": 64,
+      "char_size": 16,
+      "recurrent_size": 64
+    }
+  },
+  "selected_epoch": 10,
+  "history": [
+    {
+      "epoch": 1,
+      "loss_sum": 16.630090404301882,
+      "tp": 61,
+      "fp": 2,
+      "fn": 11,
+      "f1": 0.9037037037037037
+    },
+    {
+      "epoch": 2,
+      "loss_sum": 3.612416159361601,
+      "tp": 68,
+      "fp": 0,
+      "fn": 4,
+      "f1": 0.9714285714285714
+    },
+    {
+      "epoch": 3,
+      "loss_sum": 2.194335300475359,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 4,
+      "loss_sum": 0.9286287976428866,
+      "tp": 68,
+      "fp": 0,
+      "fn": 4,
+      "f1": 0.9714285714285714
+    },
+    {
+      "epoch": 5,
+      "loss_sum": 0.6501126675866544,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 6,
+      "loss_sum": 0.49104177625849843,
+      "tp": 69,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.9787234042553191
+    },
+    {
+      "epoch": 7,
+      "loss_sum": 0.4098495366051793,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 8,
+      "loss_sum": 0.3325046470272355,
+      "tp": 68,
+      "fp": 0,
+      "fn": 4,
+      "f1": 0.9714285714285714
+    },
+    {
+      "epoch": 9,
+      "loss_sum": 0.21302621735958382,
+      "tp": 69,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.9787234042553191
+    },
+    {
+      "epoch": 10,
+      "loss_sum": 0.3005841950653121,
+      "tp": 71,
+      "fp": 0,
+      "fn": 1,
+      "f1": 0.993006993006993
+    },
+    {
+      "epoch": 11,
+      "loss_sum": 0.1171556647750549,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 12,
+      "loss_sum": 0.05738785058201756,
+      "tp": 67,
+      "fp": 0,
+      "fn": 5,
+      "f1": 0.9640287769784173
+    },
+    {
+      "epoch": 13,
+      "loss_sum": 0.035016821551835164,
+      "tp": 69,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.9787234042553191
+    },
+    {
+      "epoch": 14,
+      "loss_sum": 0.043940289891907014,
+      "tp": 69,
+      "fp": 1,
+      "fn": 3,
+      "f1": 0.971830985915493
+    },
+    {
+      "epoch": 15,
+      "loss_sum": 0.18378041530377232,
+      "tp": 71,
+      "fp": 0,
+      "fn": 1,
+      "f1": 0.993006993006993
+    },
+    {
+      "epoch": 16,
+      "loss_sum": 0.1475314519193489,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 17,
+      "loss_sum": 0.03225075779482722,
+      "tp": 71,
+      "fp": 0,
+      "fn": 1,
+      "f1": 0.993006993006993
+    },
+    {
+      "epoch": 18,
+      "loss_sum": 0.03233609326707665,
+      "tp": 69,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.9787234042553191
+    },
+    {
+      "epoch": 19,
+      "loss_sum": 0.02785159468476195,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 20,
+      "loss_sum": 0.05617714462277945,
+      "tp": 69,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.9787234042553191
+    },
+    {
+      "epoch": 21,
+      "loss_sum": 0.031551575266348664,
+      "tp": 69,
+      "fp": 1,
+      "fn": 3,
+      "f1": 0.971830985915493
+    },
+    {
+      "epoch": 22,
+      "loss_sum": 0.015496023730520392,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 23,
+      "loss_sum": 0.010217996663413942,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 24,
+      "loss_sum": 0.006143083162896801,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    },
+    {
+      "epoch": 25,
+      "loss_sum": 0.005502955860720249,
+      "tp": 70,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9859154929577465
+    }
+  ],
+  "training_seconds": 72.46746891999987,
+  "checkpoint_sha256": "ff750f365ebb8e29991f2213285e1fb4323a5b07134e51955b2e79ebc87d801b",
+  "evaluation_baseline": {
+    "counts": {
+      "sentences": 140,
+      "true_positive": 91,
+      "false_positive": 23,
+      "false_negative": 37,
+      "sensitive_spans": 128,
+      "fully_covered_spans": 98,
+      "negative_sentences": 12,
+      "false_positive_sentences": 0
+    },
+    "exact_span_precision": 0.7982456140350878,
+    "exact_span_recall": 0.7109375,
+    "exact_span_f1": 0.7520661157024794,
+    "full_sensitive_span_coverage": 0.765625,
+    "negative_sentence_false_positive_rate": 0.0,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 91,
+          "false_positive": 23,
+          "false_negative": 37,
+          "sensitive_spans": 128,
+          "fully_covered_spans": 98,
+          "negative_sentences": 12,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.7982456140350878,
+        "exact_span_recall": 0.7109375,
+        "exact_span_f1": 0.7520661157024794,
+        "full_sensitive_span_coverage": 0.765625,
+        "negative_sentence_false_positive_rate": 0.0
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 140,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 91,
+          "false_positive": 23,
+          "false_negative": 37,
+          "sensitive_spans": 128,
+          "fully_covered_spans": 98,
+          "negative_sentences": 12,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.7982456140350878,
+        "exact_span_recall": 0.7109375,
+        "exact_span_f1": 0.7520661157024794,
+        "full_sensitive_span_coverage": 0.765625,
+        "negative_sentence_false_positive_rate": 0.0,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 140,
+              "true_positive": 91,
+              "false_positive": 23,
+              "false_negative": 37,
+              "sensitive_spans": 128,
+              "fully_covered_spans": 98,
+              "negative_sentences": 12,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.7982456140350878,
+            "exact_span_recall": 0.7109375,
+            "exact_span_f1": 0.7520661157024794,
+            "full_sensitive_span_coverage": 0.765625,
+            "negative_sentence_false_positive_rate": 0.0
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 140,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 140,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 14.337228144999926,
+    "error_ids": {
+      "exact_span": [
+        "evaluation-person-00-14",
+        "evaluation-person-01-04",
+        "evaluation-person-01-09",
+        "evaluation-person-01-10",
+        "evaluation-person-01-11",
+        "evaluation-person-01-14",
+        "evaluation-person-02-03",
+        "evaluation-person-02-07",
+        "evaluation-person-02-08",
+        "evaluation-person-02-09",
+        "evaluation-person-02-10",
+        "evaluation-person-02-11",
+        "evaluation-person-02-14",
+        "evaluation-person-03-14",
+        "evaluation-person-04-03",
+        "evaluation-person-04-08",
+        "evaluation-person-04-09",
+        "evaluation-person-04-10",
+        "evaluation-person-04-11",
+        "evaluation-person-04-14",
+        "evaluation-person-05-02",
+        "evaluation-person-05-04",
+        "evaluation-person-05-05",
+        "evaluation-person-05-06",
+        "evaluation-person-05-07",
+        "evaluation-person-05-08",
+        "evaluation-person-05-09",
+        "evaluation-person-05-10",
+        "evaluation-person-05-11",
+        "evaluation-person-05-13",
+        "evaluation-person-05-14",
+        "evaluation-person-05-15",
+        "evaluation-person-06-09",
+        "evaluation-person-06-11",
+        "evaluation-person-06-14",
+        "evaluation-person-07-14",
+        "evaluation-person-07-15"
+      ],
+      "uncovered_sensitive_span": [
+        "evaluation-person-00-14",
+        "evaluation-person-01-10",
+        "evaluation-person-01-11",
+        "evaluation-person-01-14",
+        "evaluation-person-02-07",
+        "evaluation-person-02-08",
+        "evaluation-person-02-10",
+        "evaluation-person-02-11",
+        "evaluation-person-02-14",
+        "evaluation-person-03-14",
+        "evaluation-person-04-08",
+        "evaluation-person-04-10",
+        "evaluation-person-04-11",
+        "evaluation-person-04-14",
+        "evaluation-person-05-02",
+        "evaluation-person-05-04",
+        "evaluation-person-05-05",
+        "evaluation-person-05-06",
+        "evaluation-person-05-07",
+        "evaluation-person-05-08",
+        "evaluation-person-05-09",
+        "evaluation-person-05-10",
+        "evaluation-person-05-11",
+        "evaluation-person-05-13",
+        "evaluation-person-05-14",
+        "evaluation-person-05-15",
+        "evaluation-person-06-11",
+        "evaluation-person-06-14",
+        "evaluation-person-07-14",
+        "evaluation-person-07-15"
+      ],
+      "negative_false_positive": []
+    }
+  },
+  "evaluation_candidate": {
+    "counts": {
+      "sentences": 140,
+      "true_positive": 107,
+      "false_positive": 0,
+      "false_negative": 21,
+      "sensitive_spans": 128,
+      "fully_covered_spans": 107,
+      "negative_sentences": 12,
+      "false_positive_sentences": 0
+    },
+    "exact_span_precision": 1.0,
+    "exact_span_recall": 0.8359375,
+    "exact_span_f1": 0.9106382978723404,
+    "full_sensitive_span_coverage": 0.8359375,
+    "negative_sentence_false_positive_rate": 0.0,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 107,
+          "false_positive": 0,
+          "false_negative": 21,
+          "sensitive_spans": 128,
+          "fully_covered_spans": 107,
+          "negative_sentences": 12,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 1.0,
+        "exact_span_recall": 0.8359375,
+        "exact_span_f1": 0.9106382978723404,
+        "full_sensitive_span_coverage": 0.8359375,
+        "negative_sentence_false_positive_rate": 0.0
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 140,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 140,
+          "true_positive": 107,
+          "false_positive": 0,
+          "false_negative": 21,
+          "sensitive_spans": 128,
+          "fully_covered_spans": 107,
+          "negative_sentences": 12,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 1.0,
+        "exact_span_recall": 0.8359375,
+        "exact_span_f1": 0.9106382978723404,
+        "full_sensitive_span_coverage": 0.8359375,
+        "negative_sentence_false_positive_rate": 0.0,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 140,
+              "true_positive": 107,
+              "false_positive": 0,
+              "false_negative": 21,
+              "sensitive_spans": 128,
+              "fully_covered_spans": 107,
+              "negative_sentences": 12,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 1.0,
+            "exact_span_recall": 0.8359375,
+            "exact_span_f1": 0.9106382978723404,
+            "full_sensitive_span_coverage": 0.8359375,
+            "negative_sentence_false_positive_rate": 0.0
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 140,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 140,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 14.759438604000024,
+    "error_ids": {
+      "exact_span": [
+        "evaluation-person-00-13",
+        "evaluation-person-01-10",
+        "evaluation-person-01-11",
+        "evaluation-person-01-13",
+        "evaluation-person-02-08",
+        "evaluation-person-02-09",
+        "evaluation-person-02-10",
+        "evaluation-person-02-11",
+        "evaluation-person-02-13",
+        "evaluation-person-03-13",
+        "evaluation-person-04-09",
+        "evaluation-person-04-10",
+        "evaluation-person-04-11",
+        "evaluation-person-04-13",
+        "evaluation-person-05-11",
+        "evaluation-person-05-13",
+        "evaluation-person-06-09",
+        "evaluation-person-06-11",
+        "evaluation-person-06-13",
+        "evaluation-person-06-14",
+        "evaluation-person-07-13"
+      ],
+      "uncovered_sensitive_span": [
+        "evaluation-person-00-13",
+        "evaluation-person-01-10",
+        "evaluation-person-01-11",
+        "evaluation-person-01-13",
+        "evaluation-person-02-08",
+        "evaluation-person-02-09",
+        "evaluation-person-02-10",
+        "evaluation-person-02-11",
+        "evaluation-person-02-13",
+        "evaluation-person-03-13",
+        "evaluation-person-04-09",
+        "evaluation-person-04-10",
+        "evaluation-person-04-11",
+        "evaluation-person-04-13",
+        "evaluation-person-05-11",
+        "evaluation-person-05-13",
+        "evaluation-person-06-09",
+        "evaluation-person-06-11",
+        "evaluation-person-06-13",
+        "evaluation-person-06-14",
+        "evaluation-person-07-13"
+      ],
+      "negative_false_positive": []
+    }
+  },
+  "source_changed_during_run": false
+}

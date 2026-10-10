@@ -1,0 +1,27 @@
+...F                                                                     [100%]
+=================================== FAILURES ===================================
+___________ test_addresses_and_joint_names_share_one_encoder_forward ___________
+
+    def test_addresses_and_joint_names_share_one_encoder_forward():
+        ner = adapter()
+        ner.analyze("가나다라마바")
+>       assert ner.backbone.model.calls == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = <test_name_span_adapter.adapter.<locals>.Model object at 0x79597e263e60>.calls
+E        +    where <test_name_span_adapter.adapter.<locals>.Model object at 0x79597e263e60> = namespace(device='cpu', tokenizer=<test_name_span_adapter.adapter.<locals>.Tokenizer object at 0x79597e263170>, max_le...odel object at 0x79597e263e60>, analyze=<function adapter.<locals>.old_analyze at 0x79597e2cea20>, score_threshold=0.9).model
+E        +      where namespace(device='cpu', tokenizer=<test_name_span_adapter.adapter.<locals>.Tokenizer object at 0x79597e263170>, max_le...odel object at 0x79597e263e60>, analyze=<function adapter.<locals>.old_analyze at 0x79597e2cea20>, score_threshold=0.9) = <name_span_adapter.JointSpanNER object at 0x79597e2da8d0>.backbone
+
+tests/test_name_span_adapter.py:115: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/typer/__init__.py:24
+  /home/woodcross/projects/ko-pii-guard/.venv/lib/python3.12/site-packages/typer/__init__.py:24: DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_binary_stream as get_binary_stream
+
+.venv/lib/python3.12/site-packages/typer/__init__.py:25
+  /home/woodcross/projects/ko-pii-guard/.venv/lib/python3.12/site-packages/typer/__init__.py:25: DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_text_stream as get_text_stream
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_name_span_adapter.py::test_addresses_and_joint_names_share_one_encoder_forward
+1 failed, 3 passed, 2 warnings in 6.01s

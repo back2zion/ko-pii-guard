@@ -1,0 +1,54 @@
+{
+  "format_version": 1,
+  "base_model_id": "FrameByFrame/korean-pii-e5-base",
+  "base_revision": "a308c54b4407819624a5661e31e162a269f39818",
+  "labels": [
+    "O",
+    "B-private_person",
+    "I-private_person",
+    "E-private_person",
+    "S-private_person"
+  ],
+  "char_buckets": 4096,
+  "architecture": {
+    "hidden_size": 768,
+    "projection_size": 64,
+    "char_size": 16,
+    "recurrent_size": 64
+  },
+  "span_filter": {
+    "hidden_size": 768,
+    "intermediate_size": 64,
+    "threshold": 0.99,
+    "local_context": true
+  },
+  "rescue_head": {
+    "architecture": {
+      "hidden_size": 768,
+      "projection_size": 64,
+      "char_size": 16,
+      "recurrent_size": 64
+    },
+    "score_threshold": 0.99
+  },
+  "extra_rescue_heads": [
+    {
+      "architecture": {
+        "hidden_size": 768,
+        "projection_size": 64,
+        "char_size": 16,
+        "recurrent_size": 64
+      },
+      "score_threshold": 0.99
+    },
+    {
+      "architecture": {
+        "hidden_size": 768,
+        "projection_size": 64,
+        "char_size": 16,
+        "recurrent_size": 64
+      },
+      "score_threshold": 0.99
+    }
+  ]
+}

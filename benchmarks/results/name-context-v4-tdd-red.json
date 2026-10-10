@@ -1,0 +1,24 @@
+{
+  "failed_count": 12,
+  "passed_count": 29,
+  "failed_case_ids": [
+    "v3-evaluation-negative-00-00",
+    "v3-evaluation-negative-00-03",
+    "v3-evaluation-negative-01-00",
+    "v3-evaluation-negative-01-03",
+    "v3-evaluation-negative-01-05",
+    "v3-evaluation-negative-03-00",
+    "v3-evaluation-negative-03-01",
+    "v3-evaluation-negative-03-02",
+    "v3-evaluation-negative-03-03",
+    "v3-evaluation-negative-03-04",
+    "v3-evaluation-negative-03-05",
+    "v3-evaluation-negative-03-07"
+  ],
+  "exact_match_to_known_errors": true,
+  "sha256": {
+    "tests/test_name_context_v4_negatives.py": "6037f2ba1d1e22d541453169dbdc5cb0b52c5b9e97ae2868c945b287e129e87b",
+    "artifacts/name-context-v3/name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "benchmarks/data/name_context_v3.jsonl": "069216888570c65db724ae52f5cef13b6c8d6ece198334ea8109ad369258a656"
+  }
+}

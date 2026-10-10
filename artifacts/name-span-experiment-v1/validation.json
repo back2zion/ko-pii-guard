@@ -1,0 +1,10 @@
+{
+  "tests": 1422,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "ruff": "passed",
+  "diff_check": "passed",
+  "runtime_promotion": false,
+  "scope": "Full existing suite with real NER and v11; experimental model behavior covered by unit tests and separate evaluation reports."
+}

@@ -18,10 +18,9 @@ _LABEL = re.compile(
     r"|수신자|발신인|책임자|참고인|수신|발신)"
     r"[\"']?[ \t]*(?:[:=：][ \t]*(?:\r?\n[ \t]*)?|[ \t]+)[\"']?"
 )
-_VALUE = regex.compile(
-    r"\p{L}[\p{L}\p{M}'’\-]{0,24}"
-    r"(?:[ \t]+\p{L}[\p{L}\p{M}'’\-]{0,24}){0,3}"
-)
+_NAME_PART = r"\p{L}[\p{L}\p{M}'’\-]{0,24}(?:·\p{L}[\p{L}\p{M}'’\-]{0,24}){0,3}"
+_VALUE = regex.compile(_NAME_PART + rf"(?:[ \t]+{_NAME_PART}){{0,3}}")
+_HONORIFIC = re.compile(r"[ \t]+(?:님|씨|귀하)$")
 _NOT_NAMES = frozenset((
     "없음", "미기재", "미입력", "비공개", "익명", "알수없음", "해당없음", "테스트",
     "고객센터", "담당자", "관리자", "이름", "성명", "회사", "회사명", "주식회사",
@@ -76,6 +75,15 @@ def allows_contextual_name(text: str, start: int, end: int) -> bool:
         return False
     if _NON_PERSON_FIELD.search(text[max(0, start - 40):start]):
         return False
+    # Apply the same explicit non-person owner policy to model output as to
+    # field rules. A high model score must not turn "상품 이름:" into a person
+    # field. This inspects labels, without blacklisting candidate spellings.
+    prefix_start = max(0, start - 70)
+    for label in _LABEL.finditer(text, prefix_start, start):
+        if label.end() == start and _NON_PERSON_OWNER.search(
+            text[max(0, label.start() - 15):label.start()]
+        ):
+            return False
     if _role_placeholder(value) and _ROLE_FIELD.search(text[max(0, start - 40):start]):
         return False
     # The classifier may include the copula in its span. Inspect the candidate
@@ -105,17 +113,16 @@ def recognize_name_fields(text: str) -> list[RecognizerResult]:
         # Respect explicit field boundaries. Do not grab the beginning of a
         # number, organization, identifier, or longer free-form sentence.
         end = match.end()
-        if end < len(text) and (text[end].isalnum() or text[end] in "_-@"):
+        if end < len(text) and (text[end].isalnum() or text[end] in "_-@·"):
             continue
         if (_INSTRUCTION.search(value)
                 or (not any(ch in label.group() for ch in ":=：")
                     and _BARE_ACTION.match(value))):
             continue
-        honorific = next((suffix for suffix in (" 님", " 씨", " 귀하")
-                          if value.endswith(suffix)), None)
+        honorific = _HONORIFIC.search(value)
         if honorific:
-            value = value[:-len(honorific)]
-            end -= len(honorific)
+            end -= len(value) - honorific.start()
+            value = value[:honorific.start()]
         elif len(value) >= 4 and value.endswith(("님", "씨")):
             value = value[:-1]
             end -= 1

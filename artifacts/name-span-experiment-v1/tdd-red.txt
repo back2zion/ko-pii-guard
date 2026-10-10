@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_name_span_experiment.py ______________
+ImportError while importing test module '/home/woodcross/projects/ko-pii-guard/tests/test_name_span_experiment.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_name_span_experiment.py:11: in <module>
+    from name_span_experiment import (  # noqa: E402
+E   ModuleNotFoundError: No module named 'name_span_experiment'
+=========================== short test summary info ============================
+ERROR tests/test_name_span_experiment.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.20s

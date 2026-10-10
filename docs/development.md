@@ -62,10 +62,21 @@ uv run ruff check .
 uv run python benchmarks/synthetic_benchmark.py --check
 uv run python benchmarks/robustness_benchmark.py --check
 uv run python benchmarks/name_address_benchmark.py --check
+uv run python benchmarks/name_address_benchmark.py --data benchmarks/data/name_field_boundaries.jsonl --check --check-negatives
 ```
 
 CI는 위 검사를 Python 3.10~3.13에서 실행합니다. 평가 결과와 명령은
 [평가 문서](evaluation.md)에 있습니다. 합성 회귀, 외부 합성 평가, 속도 측정을 구분합니다.
+
+이름 필드의 가운데점·호칭 공백 회귀는 필드 양성 16건·음성 7건과 별도 자유 문장
+양성 1건을 포함합니다. 원본 v1은 자유 문장 양성을 음성으로 잘못 주석했으므로
+현행 자료에서는 고쳤고 [주석 수정 기록](../benchmarks/data/README.md)을 남겼습니다.
+2026-10-10 v1 변경 전/후 동일 자료에서 필드 정확 구간은 3/16→16/16,
+전체 마스킹은 7/16→16/16, 음성 오탐은 0/8→0/8이었습니다.
+[변경 전 보고서](../benchmarks/results/name-field-boundaries-before.json)와
+[변경 후 보고서](../benchmarks/results/name-field-boundaries-after.json)에 소스·자료 해시가
+있습니다. 수정에 사용한 개발 회귀이며 자유 문장 NER의 정확도 개선으로 해석하지 않습니다.
+기존 이름 문맥 동결 자료와 보고서는 그대로 보존합니다.
 
 새 유형이나 은행 형태를 추가할 때는 다음을 함께 제출해 주세요.
 
@@ -107,3 +118,51 @@ import한다. `ner`만 전달하면 기본 식별번호 범위가 그대로 유�
 이름 개선은 [문맥 대조 평가](name-context-evaluation.md)의 데이터·설정을 먼저 동결하고
 현재 모델을 측정하는 순서로 진행한다. 사전 점수 가산은 벤치마크에만 있는 비교 실험이며
 제품 설정이나 재학습 모델이 아니다. 작은 회귀 세트의 점수를 README 정확도로 옮기지 않는다.
+
+v2 문자 판정기는 `KoreanNER.from_pretrained(name_context_path="artifacts/name-context-v2")`로
+명시적으로 연결한다. 알려진 v1 미탐 21건과 회귀 7건을 해결했고 파일명·다중 인물·긴 문장
+통합 검사를 포함한다. 새 평가의 성능과 남은 오류는 [v2 평가](name-context-v2-evaluation.md)를
+따른다. 기존 v1 분할은 v2의 학습/개발 자료이며 새 평가 성능에 합산하지 않는다.
+
+```bash
+uv run --frozen python benchmarks/name_context_v2_cases.py --check
+uv run --frozen python benchmarks/name_context_v2_benchmark.py --output /tmp/name-context-v2-acceptance.json --check
+```
+
+v3는 기존 v2 오류 26문장을 개별 테스트로 고정한 후 학습한 별도 선택 체크포인트다.
+`name_context_path="artifacts/name-context-v3"`로 연결한다. v2 전체 자료는 v3에서
+개발 자료이며, 별도로 고정한 새 280문장의 성능과 한계는
+[v3 재현·평가 기록](name-context-v3-evaluation.md)을 따른다.
+
+```bash
+uv run --frozen python benchmarks/name_context_v3_cases.py --check
+KO_PII_TEST_NER=1 KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v3 uv run --frozen pytest -q
+uv run --frozen python benchmarks/name_context_v3_benchmark.py --split development --output /tmp/name-context-v3-acceptance.json --check
+```
+
+
+v6 후보 판정기는 기존 v3 이름 가중치를 보존하며 비인물 후보를 추가 판정한다.
+`name_context_path="artifacts/name-context-v6-filter-retry"`로 명시적으로 선택한다.
+[평가와 실행 명령](name-context-v6-evaluation.md), [회귀 계약](name-context-nonregression.md)을
+따른다. CI는 기존 이름 구간 손실과 새 오탐 구간을 각각 거부한다. 전체 선택 모델
+통합 테스트 1,354개가 통과했으며, 새 평가의 기존 미탐 9개는 남아 있다.
+
+
+v7은 `name_context_path="artifacts/name-context-v7"`로 명시적으로 선택한다. 기존 v6
+미탐 9개를 별도 테스트로 고정해 모두 해결했고 전체 통합 테스트 1,366개가 통과했다.
+기존 판정기는 보존하며 겹치지 않는 이름 후보만 추가한다. CI는 새 평가와 과거 자료의
+기존 정답 손실·새 오탐을 구간별로 거부한다. [명령·결과·한계](name-context-v7-evaluation.md).
+
+
+v9는 `name_context_path="artifacts/name-context-v9"`로 선택한다. v7의 남은 미탐
+6개·오탐 4개를 모두 해결했고 전체 1,381개 테스트를 통과했다. 추가 학습으로
+기존 정답을 잃은 v8은 채택하지 않는다. v9는 v7 보조 판정기를 그대로 두고
+개선 판정기를 추가하며, CI는 과거 자료와 새 평가를 구간별로 비교한다.
+[실패 재현·원인·명령·새 평가 한계](name-context-v9-evaluation.md).
+
+v11은 `name_context_path="artifacts/name-context-v11"`로 선택한다. v9의 미탐
+5개·오탐 2개를 재현 테스트로 고정해 모두 해결했다. 새 평가에서 기존 이름을 잃은
+v10은 거부했으며 해당 구간도 별도 테스트로 고정했다. 전체 1,391개 테스트와
+과거 3,049문장의 구간별 보존 검사를 통과했다. 별도 새 평가에는 FN23/FP17이
+남는다. CI는 기존 정답 손실이나 새 오탐을 각각 거부한다.
+[검사 명령·선택·캐시 재생성·한계](name-context-v11-evaluation.md).

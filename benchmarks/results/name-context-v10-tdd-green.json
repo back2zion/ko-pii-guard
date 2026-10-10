@@ -1,0 +1,18 @@
+{
+  "phase": "green",
+  "tests": 1389,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 136.225,
+  "command": "KO_PII_TEST_NER=1 KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v10-retry OTEL_SDK_DISABLED=true .venv/bin/pytest -q",
+  "checkpoint_sha256": {
+    "rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "selected_rescue.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f",
+    "rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "span_filter.safetensors": "cbc5789d57a6730051d062a2e0e18b96a2328ada61074ec2d3292db8f4c0ee6d",
+    "name_context_config.json": "95d82cca29949e44a314fd0a3ca28b6ca9033e160e3b5d5b1a38d7298752f9db",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "rescue_name_context_2.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f"
+  }
+}

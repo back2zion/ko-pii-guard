@@ -1,0 +1,10 @@
+{
+  "tests": 9,
+  "failures": 9,
+  "errors": 0,
+  "checkpoint_sha256": {
+    "span_filter.safetensors": "998d8ca83ff83843ee4b03db7b425e3f26f356605988f4457b9dd9492f9b6161",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f"
+  },
+  "command": "KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v6-filter-retry .venv/bin/pytest -q tests/test_name_context_v7_regressions.py"
+}

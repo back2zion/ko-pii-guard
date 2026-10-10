@@ -1,0 +1,16 @@
+{
+  "case_id": "v5-evaluation-person-02-010",
+  "checkpoint": "artifacts/name-context-v5-filter",
+  "failed": 1,
+  "lost_span": [
+    "KR_NAME",
+    25,
+    27
+  ],
+  "lost_surface": "온화",
+  "command": "KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v5-filter .venv/bin/pytest -q tests/test_name_context_role_regression.py",
+  "checkpoint_sha256": {
+    "span_filter.safetensors": "e6578ba5071bc259bfb48d5962934efdeb6a841de87779c205a5c4c8dea436eb",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f"
+  }
+}

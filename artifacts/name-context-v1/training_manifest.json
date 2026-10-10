@@ -1,0 +1,47 @@
+{
+  "data_sha256": "1c73e1c12324520833c83d8071fff1d66882f282442b51f34211ca51948677b3",
+  "source_sha256": {
+    "scripts/train_name_context.py": "88303fc6a860e91e883d9a480ffb42209c70af3b7eb92726b128f81fa6d6a313",
+    "src/ko_pii_guard/name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+    "src/ko_pii_guard/ner.py": "9ffaae08514e4d879d8a7cd08cffc02fd2a9100f485d56cb574c28ac95797dc2",
+    "benchmarks/name_context_training_cases.py": "a0c47d85f3ee36c547db25b91908741b814ac4f986fbf0c7b93756a45268bd8f"
+  },
+  "seed": 20261010,
+  "epochs": 25,
+  "threads": 2,
+  "batch_size": 32,
+  "learning_rate": 0.002,
+  "confidence_threshold": 0.9,
+  "class_weights": [
+    0.25,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "selected_by": "validation exact-span F1, then fewer FP; earliest tie",
+  "frozen_at_utc": "2026-10-10T02:06:38.821237+00:00",
+  "split_counts": {
+    "train": 1758,
+    "validation": 80,
+    "evaluation": 140
+  },
+  "torch_version": "2.14.1+cpu",
+  "format_version": 1,
+  "base_model_id": "FrameByFrame/korean-pii-e5-base",
+  "base_revision": "a308c54b4407819624a5661e31e162a269f39818",
+  "labels": [
+    "O",
+    "B-private_person",
+    "I-private_person",
+    "E-private_person",
+    "S-private_person"
+  ],
+  "char_buckets": 4096,
+  "architecture": {
+    "hidden_size": 768,
+    "projection_size": 64,
+    "char_size": 16,
+    "recurrent_size": 64
+  }
+}

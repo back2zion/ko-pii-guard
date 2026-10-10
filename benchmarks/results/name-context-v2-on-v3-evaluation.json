@@ -1,0 +1,247 @@
+{
+  "scope": "NEW split-separated SYNTHETIC evaluation; not real-world accuracy",
+  "measured_at_utc": "2026-10-10T03:12:36.364136+00:00",
+  "benchmark_sha256": "ea5406990e4c8ef25bf79cb26efb22fc8b09dd4e238a337ef09d6ec4e93a5b5c",
+  "source": {
+    "source_sha256": "71f1682b59c3be87b1fefb3686fe2da379c33f7f37175c5fd14b309ce3afecd6",
+    "source_files_sha256": {
+      "__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+      "account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+      "addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+      "analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+      "context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+      "guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+      "name_context.py": "40c10753acc4b0dee7c452baa0c5730a928c0b61bee8609b88621b42f08b959e",
+      "names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+      "ner.py": "dcbe234cbc1ec2963eb710ee41ea9c97382bbe30bcced3abbcd495729ada1128",
+      "normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+      "recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+      "spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+      "validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+    }
+  },
+  "data_sha256": {
+    "name_context_v3.jsonl": "069216888570c65db724ae52f5cef13b6c8d6ece198334ea8109ad369258a656",
+    "name_context_v2.jsonl": "8a999183ffbaac6fd12af274abd52462abd0e47504ece6c13bb4fa49ede868e4",
+    "name_context_v2_regressions.jsonl": "12203fd20aef631d2327b7e18ef1bee4f39b3535b85c722df9eae2fa3416b841",
+    "name_context.jsonl": "ae05994342856537a54f071eab3230710a61c9e91aac06ef93ec0075e8f8a994",
+    "name_context_training.jsonl": "1c73e1c12324520833c83d8071fff1d66882f282442b51f34211ca51948677b3"
+  },
+  "checkpoint_sha256": {
+    "name_context_config.json": "69f00ed191e3925607a25189457a9f11c7b3cc32fbf4a8eec37b2c907a6094bb",
+    "name_context.safetensors": "720e9ecfd006ef50c20def8650d81d878fabd3added768b63768b86bcacc33e7"
+  },
+  "results": {
+    "v3_new_evaluation": {
+      "counts": {
+        "sentences": 280,
+        "true_positive": 368,
+        "false_positive": 31,
+        "false_negative": 32,
+        "sensitive_spans": 400,
+        "fully_covered_spans": 368,
+        "negative_sentences": 40,
+        "false_positive_sentences": 10
+      },
+      "exact_span_precision": 0.9223057644110275,
+      "exact_span_recall": 0.92,
+      "exact_span_f1": 0.9211514392991239,
+      "full_sensitive_span_coverage": 0.92,
+      "negative_sentence_false_positive_rate": 0.25,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 280,
+            "true_positive": 368,
+            "false_positive": 31,
+            "false_negative": 32,
+            "sensitive_spans": 400,
+            "fully_covered_spans": 368,
+            "negative_sentences": 40,
+            "false_positive_sentences": 10
+          },
+          "exact_span_precision": 0.9223057644110275,
+          "exact_span_recall": 0.92,
+          "exact_span_f1": 0.9211514392991239,
+          "full_sensitive_span_coverage": 0.92,
+          "negative_sentence_false_positive_rate": 0.25
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 280,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 280,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "prose": {
+          "counts": {
+            "sentences": 280,
+            "true_positive": 368,
+            "false_positive": 31,
+            "false_negative": 32,
+            "sensitive_spans": 400,
+            "fully_covered_spans": 368,
+            "negative_sentences": 40,
+            "false_positive_sentences": 10
+          },
+          "exact_span_precision": 0.9223057644110275,
+          "exact_span_recall": 0.92,
+          "exact_span_f1": 0.9211514392991239,
+          "full_sensitive_span_coverage": 0.92,
+          "negative_sentence_false_positive_rate": 0.25,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 280,
+                "true_positive": 368,
+                "false_positive": 31,
+                "false_negative": 32,
+                "sensitive_spans": 400,
+                "fully_covered_spans": 368,
+                "negative_sentences": 40,
+                "false_positive_sentences": 10
+              },
+              "exact_span_precision": 0.9223057644110275,
+              "exact_span_recall": 0.92,
+              "exact_span_f1": 0.9211514392991239,
+              "full_sensitive_span_coverage": 0.92,
+              "negative_sentence_false_positive_rate": 0.25
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 280,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 280,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 104.68900920800024,
+      "error_ids": {
+        "exact_span": [
+          "v3-evaluation-person-01-009",
+          "v3-evaluation-person-02-002",
+          "v3-evaluation-person-02-003",
+          "v3-evaluation-person-02-005",
+          "v3-evaluation-person-02-008",
+          "v3-evaluation-person-02-009",
+          "v3-evaluation-person-02-013",
+          "v3-evaluation-person-02-014",
+          "v3-evaluation-person-02-015",
+          "v3-evaluation-person-03-008",
+          "v3-evaluation-person-03-013",
+          "v3-evaluation-person-03-014",
+          "v3-evaluation-person-04-000",
+          "v3-evaluation-person-04-003",
+          "v3-evaluation-person-04-006",
+          "v3-evaluation-person-04-007",
+          "v3-evaluation-person-04-008",
+          "v3-evaluation-person-04-009",
+          "v3-evaluation-person-04-010",
+          "v3-evaluation-person-04-011",
+          "v3-evaluation-person-04-012",
+          "v3-evaluation-person-04-014",
+          "v3-evaluation-person-04-018",
+          "v3-evaluation-person-05-002",
+          "v3-evaluation-person-05-007",
+          "v3-evaluation-person-05-008",
+          "v3-evaluation-person-05-009",
+          "v3-evaluation-person-05-010",
+          "v3-evaluation-person-05-014",
+          "v3-evaluation-person-06-013",
+          "v3-evaluation-person-06-014",
+          "v3-evaluation-person-10-008",
+          "v3-evaluation-person-10-009",
+          "v3-evaluation-person-10-010",
+          "v3-evaluation-person-10-013",
+          "v3-evaluation-person-10-014",
+          "v3-evaluation-person-10-015",
+          "v3-evaluation-person-11-008",
+          "v3-evaluation-person-11-013",
+          "v3-evaluation-person-11-014",
+          "v3-evaluation-person-11-016",
+          "v3-evaluation-negative-00-00",
+          "v3-evaluation-negative-00-04",
+          "v3-evaluation-negative-01-00",
+          "v3-evaluation-negative-01-05",
+          "v3-evaluation-negative-03-00",
+          "v3-evaluation-negative-03-01",
+          "v3-evaluation-negative-03-03",
+          "v3-evaluation-negative-03-04",
+          "v3-evaluation-negative-03-05",
+          "v3-evaluation-negative-03-07"
+        ],
+        "uncovered_sensitive_span": [
+          "v3-evaluation-person-01-009",
+          "v3-evaluation-person-02-003",
+          "v3-evaluation-person-02-008",
+          "v3-evaluation-person-02-009",
+          "v3-evaluation-person-02-013",
+          "v3-evaluation-person-02-014",
+          "v3-evaluation-person-02-015",
+          "v3-evaluation-person-03-008",
+          "v3-evaluation-person-03-013",
+          "v3-evaluation-person-03-014",
+          "v3-evaluation-person-04-008",
+          "v3-evaluation-person-04-012",
+          "v3-evaluation-person-04-014",
+          "v3-evaluation-person-05-002",
+          "v3-evaluation-person-05-007",
+          "v3-evaluation-person-05-008",
+          "v3-evaluation-person-05-009",
+          "v3-evaluation-person-05-010",
+          "v3-evaluation-person-05-014",
+          "v3-evaluation-person-06-013",
+          "v3-evaluation-person-06-014",
+          "v3-evaluation-person-10-008",
+          "v3-evaluation-person-10-009",
+          "v3-evaluation-person-10-010",
+          "v3-evaluation-person-10-013",
+          "v3-evaluation-person-10-014",
+          "v3-evaluation-person-10-015",
+          "v3-evaluation-person-11-008",
+          "v3-evaluation-person-11-013",
+          "v3-evaluation-person-11-014",
+          "v3-evaluation-person-11-016"
+        ],
+        "negative_false_positive": [
+          "v3-evaluation-negative-00-00",
+          "v3-evaluation-negative-00-04",
+          "v3-evaluation-negative-01-00",
+          "v3-evaluation-negative-01-05",
+          "v3-evaluation-negative-03-00",
+          "v3-evaluation-negative-03-01",
+          "v3-evaluation-negative-03-03",
+          "v3-evaluation-negative-03-04",
+          "v3-evaluation-negative-03-05",
+          "v3-evaluation-negative-03-07"
+        ]
+      }
+    }
+  },
+  "acceptance_passed": null,
+  "source_changed_during_run": false
+}

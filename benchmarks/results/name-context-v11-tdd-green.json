@@ -1,0 +1,17 @@
+{
+  "phase": "green",
+  "tests": 1391,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 122.059,
+  "command": "KO_PII_TEST_NER=1 KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v11 OTEL_SDK_DISABLED=true .venv/bin/pytest -q",
+  "checkpoint_sha256": {
+    "rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "span_filter.safetensors": "246e3388fb01c04c34b4b7b4b5e6f2fbfabe7327cc410f56997169d97e0c5a38",
+    "name_context_config.json": "5a1c497193f02309e5639bec6e4105671dbb0adbb8604fda864dd77b2d8056c1",
+    "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "rescue_name_context_2.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f"
+  }
+}

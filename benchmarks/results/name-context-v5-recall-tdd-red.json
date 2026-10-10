@@ -1,0 +1,20 @@
+{
+  "failed_count": 8,
+  "passed_count": 129,
+  "rejected_checkpoint": "name-context-v4",
+  "failed_case_ids": [
+    "v4-evaluation-person-00-007",
+    "v4-evaluation-person-01-003",
+    "v4-evaluation-person-06-007",
+    "v4-evaluation-person-06-008",
+    "v4-evaluation-person-06-012",
+    "v4-evaluation-person-08-007",
+    "v4-evaluation-person-08-012",
+    "v4-evaluation-person-08-013"
+  ],
+  "sha256": {
+    "tests/test_name_context_no_recall_regression.py": "69b42e1a8d1dda5e41a93466116ce5f9155af75c44a6b4fd3455166ae74c62bb",
+    "artifacts/name-context-v4/name_context.safetensors": "d276051de375a0e7b7490c2f3fdb4d660a085e171217ad2faff6b7c6a07d6d88",
+    "benchmarks/data/name_context_v4.jsonl": "1b2c570701e5d439cd658a1a2ef21e96714f3bc7daf952ac0494c5385095d1b0"
+  }
+}

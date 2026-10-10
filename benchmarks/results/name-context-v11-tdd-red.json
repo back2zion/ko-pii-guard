@@ -1,0 +1,13 @@
+{
+  "phase": "red",
+  "baseline": "artifacts/name-context-v10-rejected",
+  "tests": 1,
+  "failures": 1,
+  "case": "v10-evaluation-person-02-012",
+  "lost_span": [
+    "KR_NAME",
+    11,
+    13
+  ],
+  "test_sha256": "d2714cace80e9096dab6c5a35727cc4cc201cb543c9ee530f5d829da2579aa9b"
+}

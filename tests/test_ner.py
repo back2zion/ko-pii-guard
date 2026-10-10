@@ -4,9 +4,31 @@ import os
 from types import SimpleNamespace
 
 import pytest
+from presidio_analyzer import RecognizerResult
 
 from ko_pii_guard import SUPPORTED_ENTITIES, KoreanPIIGuard
 from ko_pii_guard.ner import KoreanNER, _decode_tokens
+
+
+@pytest.mark.parametrize("result", [
+    None,
+    SimpleNamespace(entity_type="KR_NAME", start=0, end=2, score=.9),
+    *[RecognizerResult("KR_NAME", 0, 2, score)
+      for score in (None, "0.9", True, float("nan"), float("inf"), -.1, 1.1)],
+    RecognizerResult("KR_NAME", True, 2, .9),
+    RecognizerResult("KR_NAME", 0, 100, .9),
+    RecognizerResult("KR_NAME", 2, 1, .9),
+    RecognizerResult("PHONE_NUMBER", 0, 2, .9),
+])
+@pytest.mark.parametrize("operation", ["analyze", "contains_pii", "mask"])
+def test_invalid_custom_ner_results_fail_explicitly(result, operation):
+    class InvalidNER:
+        def analyze(self, text):
+            return [result]
+
+    guard = KoreanPIIGuard(entities=["KR_NAME"], ner=InvalidNER())
+    with pytest.raises(ValueError, match="NER returned an invalid name/address span"):
+        getattr(guard, operation)("이상 씨가 방문했습니다.")
 
 
 def test_bio_spans_keep_name_letters_and_split_adjacent_people():

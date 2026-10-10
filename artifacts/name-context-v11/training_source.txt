@@ -1,0 +1,333 @@
+"""Refine rescue and non-person heads together; fresh evaluation follows all dev gates."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+import random
+import re
+import shutil
+import sys
+from pathlib import Path
+
+import torch
+from safetensors.torch import save_file
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "benchmarks"))
+from name_address_benchmark import evaluate  # noqa: E402
+from name_context_v6_benchmark import RecordedGuard, nonregression_gate  # noqa: E402
+from train_name_context import collate, encode, validate_splits  # noqa: E402
+
+from ko_pii_guard import SUPPORTED_ENTITIES, KoreanPIIGuard  # noqa: E402
+from ko_pii_guard.name_context import (  # noqa: E402
+    HEAD_LABELS,
+    ContextSpanFilter,
+    load_name_head,
+    rescue_decoders,
+    span_context_features,
+)
+from ko_pii_guard.ner import MODEL_ID, MODEL_REVISION, KoreanNER, _decode_tokens  # noqa: E402
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def candidate_samples(cases, cached, primary, rescue):
+    """Train from gold and both decoders' wrong spans, including mixed-person prose."""
+    inputs, labels, required = [], [], []
+    with torch.inference_mode():
+        for base in range(0, len(cases), 64):
+            f, c, p, lengths, _ = collate(cached[base:base+64])
+            outputs = [head(f, c, p, lengths).softmax(-1).max(-1)
+                       for head in (primary, *[h for h, _ in rescue_decoders(primary)], rescue)]
+            for row, case in enumerate(cases[base:base+64]):
+                predicted = set()
+                thresholds = (.9, *[t for _, t in rescue_decoders(primary)], .99)
+                for (scores, classes), threshold in zip(outputs, thresholds, strict=True):
+                    tokens = {(i, i+1): (0, HEAD_LABELS[int(classes[row, i])],
+                                         float(scores[row, i])) for i in range(len(case["text"]))}
+                    predicted.update((r.start, r.end) for r in _decode_tokens(tokens, threshold))
+                gold = {(e["start"], e["end"]) for e in case["expected"]
+                        if e["entity"] == "KR_NAME"}
+                negative = predicted - gold
+                if not gold:
+                    words = list(re.finditer(r"[가-힣A-Za-z]+", case["text"]))
+                    for word in words[::max(1, len(words)//3)][:3]:
+                        negative.add((word.start(), min(word.end(), word.start()+3)))
+                spans = sorted(gold | negative)
+                if spans:
+                    values = span_context_features(cached[base+row][0], spans, local_context=True)
+                    for span, value in zip(spans, values, strict=True):
+                        inputs.append(value.clone())
+                        labels.append(float(span not in gold))
+                        required.append(span in predicted - gold)
+    return torch.stack(inputs).clone(), torch.tensor(labels), torch.tensor(required)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data", type=Path,
+                        default=ROOT / "benchmarks/data/name_context_v11.jsonl")
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--rescue-epochs", type=int, default=30)
+    parser.add_argument("--filter-epochs", type=int, default=600)
+    args = parser.parse_args()
+    if args.output.exists() and any(args.output.iterdir()):
+        parser.error("output must be new or empty")
+    if min(args.rescue_epochs, args.filter_epochs) < 1:
+        parser.error("epochs must be positive")
+    torch.set_num_threads(2)
+    torch.manual_seed(20261010)
+    random.seed(20261010)
+    torch.use_deterministic_algorithms(True)
+    base = ROOT / "artifacts/name-context-v9"
+    parent = ROOT / "artifacts/name-context-v10-rejected"
+    feature_cache = Path("/tmp/name-context-v10-filter-training-cache.pt")
+    cases = [json.loads(line) for line in args.data.read_text().splitlines()]
+    splits = validate_splits(cases)
+    regressions = [json.loads(line) for version in (6, 7, 9) for line in (
+        ROOT / f"benchmarks/data/name_context_v{version}_regressions.jsonl"
+    ).read_text().splitlines()]
+    train_texts = {c["text"] for c in splits["train"]}
+    if not all(c["text"] in train_texts for c in regressions):
+        raise ValueError("Every development regression must be retired into training")
+    sources = [Path(__file__), ROOT / "scripts/train_name_context.py",
+               ROOT / "benchmarks/name_address_benchmark.py",
+               ROOT / "benchmarks/name_context_v6_benchmark.py",
+               ROOT / "benchmarks/name_context_v11_cases.py",
+               *sorted((ROOT / "src/ko_pii_guard").glob("*.py"))]
+    hashes = {str(p.relative_to(ROOT)): digest(p) for p in sources}
+    data_hashes = {str(p.relative_to(ROOT)): digest(p) for p in [*sorted(
+        (ROOT / "benchmarks/data").glob("*.jsonl")), *[
+        ROOT / f"benchmarks/data/name_context_v{v}_regressions.jsonl" for v in (6, 7, 9)
+    ]]}
+    base_hashes = {p.name: digest(p) for p in base.iterdir()
+                   if p.suffix == ".safetensors" or p.name == "name_context_config.json"}
+    parent_hashes = {p.name: digest(p) for p in parent.iterdir()
+                     if p.suffix == ".safetensors" or p.name in (
+                         "name_context_config.json", "training_report.json",
+                         "training_manifest.json"
+                     )}
+    cache_hash = digest(feature_cache)
+    manifest = dict(parent_sha256=parent_hashes, feature_cache_sha256=cache_hash,
+                    seed=20261010, split_counts={s: len(v) for s, v in splits.items()},
+                    source_sha256=hashes, data_sha256=data_hashes, baseline_sha256=base_hashes,
+                    rescue_epochs=0, filter_epochs=args.filter_epochs,
+                    rescue_learning_rate=0., filter_learning_rate=.0001,
+                    gold_retention_max_probability=.5, gold_loss_weight=5.,
+                    filter_intermediate_size=128, hard_example_replays=64,
+                    hard_gold_margin=.2, hard_false_margin=.999,
+                    required_negative_weight=5.,
+                    rescue_threshold=.99, filter_threshold=.99,
+                    rescue_selection="frozen v10 rescue selected on development at epoch 5",
+                    filter_selection="all train/validation gold below 0.5 non-person probability; "
+                                     "reject every predicted "
+                                     "train false span including mixed prose; most validation "
+                                     "negative rejections; earliest tie",
+                    fresh_gate="after public dev zero: preserve every baseline-correct span; "
+                               "no newly introduced false span")
+    args.output.mkdir(parents=True, exist_ok=True)
+    (args.output / "training_manifest.json").write_text(json.dumps(manifest, indent=2)+"\n")
+    report = dict(manifest=manifest, rescue_history=[], filter_history=[], evaluation_run=False)
+
+    def unchanged():
+        return (all(digest(ROOT / name) == value for name, value in hashes.items())
+                and all(digest(ROOT / name) == value for name, value in data_hashes.items())
+                and all(digest(base / name) == value for name, value in base_hashes.items())
+                and all(digest(parent / name) == value for name, value in parent_hashes.items())
+                and digest(feature_cache) == cache_hash)
+
+    def reject(reason):
+        report.update(accepted=False, rejected_reason=reason,
+                      source_changed_during_run=not unchanged())
+        (args.output / "rejected_training_report.json").write_text(
+            json.dumps(report, ensure_ascii=False, indent=2)+"\n"
+        )
+        raise RuntimeError(reason)
+
+    ner = KoreanNER.from_pretrained(name_context_path=base)
+    for parameter in ner.model.parameters():
+        parameter.requires_grad_(False)
+    # Reuse frozen E5 features for the 9,768 old training rows; encode only retired
+    # validation/evaluation rows and the genuinely new validation partition.
+    prior = json.loads((parent / "training_manifest.json").read_text())
+    for name, expected in prior["source_sha256"].items():
+        if name.startswith("src/") and digest(ROOT / name) != expected:
+            reject("Cached feature encoder source differs")
+    if prior["baseline_sha256"] != base_hashes:
+        reject("Cached feature baseline differs")
+    old_path = ROOT / "benchmarks/data/name_context_v10.jsonl"
+    if digest(old_path) != prior["data_sha256"][str(old_path.relative_to(ROOT))]:
+        reject("Cached feature data differs")
+    old_cases = [json.loads(line) for line in old_path.read_text().splitlines()]
+    old_train_texts = {c["text"] for c in old_cases if c["split"] == "train"}
+    extra_cases = [c for c in splits["train"] if c["text"] not in old_train_texts]
+    assert len(extra_cases) == 288
+    extra = encode(extra_cases, ner, 64)
+    validation = encode(splits["validation"], ner, 64)
+    parent_head = load_name_head(parent, model_id=MODEL_ID, revision=MODEL_REVISION, device="cpu")
+    rescue = parent_head.extra_rescue_heads[-1]
+    cached = torch.load(feature_cache, weights_only=True)
+    nx, ny, nr = candidate_samples(extra_cases, extra, ner.name_context_head, rescue)
+    x, y, required = (torch.cat((cached[key], value)) for key, value in (
+        ("x", nx), ("y", ny), ("required", nr)
+    ))
+    vx, vy, _ = candidate_samples(splits["validation"], validation, ner.name_context_head, rescue)
+    del extra, validation, cached, nx, ny, nr
+    report["rescue_selection"] = "v10 epoch 5 frozen; no decoder retraining"
+    model = ContextSpanFilter(local_context=True, intermediate_size=128)
+    # Expand the hidden layer while preserving the parent's initial function.
+    state = model.state_dict()
+    for name, value in parent_head.span_filter.state_dict().items():
+        if state[name].shape == value.shape:
+            state[name].copy_(value)
+        elif name == "classifier.3.weight":
+            state[name].zero_()
+            state[name][:, :value.shape[1]].copy_(value)
+        else:
+            state[name][:value.shape[0]].copy_(value)
+    model.load_state_dict(state)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=.0001)
+    weights = torch.where(y == 0, 5*len(y)/(2*(y == 0).sum()), len(y)/(2*(y == 1).sum()))
+    # Every decoder's actual false proposal is harder than randomly sampled negatives.
+    weights = weights * torch.where(required, 5., 1.)
+
+    best, best_filter = None, None
+    probs = None
+    for epoch in range(1, args.filter_epochs+1):
+        model.train()
+        order = torch.randperm(len(y))
+        if probs is not None:
+            hard = torch.where(((y == 0) & (probs >= .2))
+                               | (required & (probs < .999)))[0]
+            if len(hard):
+                hard = hard[torch.randperm(len(hard))[:64]].repeat(64)
+                order = torch.cat((order, hard))
+                order = order[torch.randperm(len(order))]
+        for offset in range(0, len(order), 256):
+            indices = order[offset:offset+256]
+            loss = (torch.nn.functional.binary_cross_entropy_with_logits(
+                model(x[indices]), y[indices], reduction="none"
+            ) * weights[indices]).mean()
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+        model.eval()
+        with torch.inference_mode():
+            probs = torch.cat([model(x[b:b+512]).sigmoid() for b in range(0, len(x), 512)])
+            val_probs = model(vx).sigmoid()
+        metrics = dict(epoch=epoch,
+                       train_person_rejected=int(((probs >= .5) & (y == 0)).sum()),
+                       validation_person_rejected=int(((val_probs >= .5) & (vy == 0)).sum()),
+                       known_false_spans_left=int(((probs < .99) & required).sum()),
+                       validation_negative_rejected=int(((val_probs >= .99) & (vy == 1)).sum()))
+        eligible = (metrics["train_person_rejected"] == 0
+                    and metrics["validation_person_rejected"] == 0
+                    and metrics["known_false_spans_left"] == 0)
+        report["filter_history"].append(dict(**metrics, eligible=eligible))
+        key = metrics["validation_negative_rejected"]
+        if eligible and (best is None or key > best):
+            best, best_filter = key, copy.deepcopy(model.state_dict())
+            report["selected_filter_epoch"] = epoch
+        print(json.dumps(dict(stage="filter", **report["filter_history"][-1])), flush=True)
+    if best_filter is None:
+        reject("No filter preserved all gold and removed every known false span; "
+               "fresh eval not run")
+    model.load_state_dict(best_filter)
+    model.eval()
+    for filename in ("name_context.safetensors", "rescue_name_context.safetensors",
+                     "rescue_name_context_1.safetensors", "rescue_name_context_2.safetensors",
+                     "name_context_config.json"):
+        shutil.copyfile(parent / filename, args.output / filename)
+    config_path = args.output / "name_context_config.json"
+    config = json.loads(config_path.read_text())
+    config["span_filter"]["intermediate_size"] = 128
+    config_path.write_text(json.dumps(config, indent=2)+"\n")
+    save_file(best_filter, str(args.output / "span_filter.safetensors"))
+    ner.name_context_head = load_name_head(
+        args.output, model_id=MODEL_ID, revision=MODEL_REVISION, device="cpu"
+    )
+    report["development_candidate"] = evaluate(
+        regressions, KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=ner)
+    )
+    dev = report["development_candidate"]["counts"]
+    if dev["false_positive"] or dev["false_negative"] or dev["fully_covered_spans"] != 702:
+        reject("Public development masking gate failed; fresh evaluation not run")
+    if not unchanged():
+        reject("Frozen inputs changed; fresh evaluation not run")
+    # Historical acceptance precedes the first untouched evaluation.
+    historical = {name: [json.loads(line) for line in (ROOT / "benchmarks/data" / name)
+                        .read_text().splitlines()] for name in (
+        "name_context.jsonl", "name_address.jsonl", "business_korean.jsonl",
+        "name_field_boundaries.jsonl", "name_context_v2_regressions.jsonl",
+        "name_context_v3_regressions.jsonl", "name_context_v4_regressions.jsonl",
+        "name_context_v6_regressions.jsonl", "name_context_v7_regressions.jsonl",
+        "name_context_v8_regressions.jsonl", "name_context_v9_regressions.jsonl",
+        "name_context_v10_regressions.jsonl",
+    )}
+    for version in (1, 5):
+        name = "name_context_training.jsonl" if version == 1 else "name_context_v5.jsonl"
+        historical[name] = [json.loads(line) for line in (ROOT / "benchmarks/data" / name)
+                            .read_text().splitlines() if json.loads(line)["split"] == "evaluation"]
+    report["historical"] = {}
+    for name, rows in historical.items():
+        # Reuse the frozen actual v9 baseline report. All error-free rows have
+        # exactly their gold findings; refresh only error rows with the public API.
+        prior_report = json.loads((parent / "training_report.json").read_text())
+        baseline = (prior_report["evaluation_baseline"]
+                    if name == "name_context_v10_regressions.jsonl"
+                    else prior_report["historical"][name]["metrics"]["baseline"])
+        error_ids = set(baseline["error_ids"]["exact_span"])
+        ner.name_context_head = load_name_head(
+            base, model_id=MODEL_ID, revision=MODEL_REVISION, device="cpu"
+        )
+        baseline_guard = RecordedGuard(KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=ner))
+        baseline_predictions = {}
+        for case in rows:
+            if case["id"] in error_ids:
+                baseline_guard.analyze(case["text"])
+                baseline_predictions[case["text"]] = baseline_guard.predictions[case["text"]]
+            else:
+                baseline_predictions[case["text"]] = {
+                    (e["entity"], e["start"], e["end"]) for e in case["expected"]
+                }
+        ner.name_context_head = load_name_head(
+            args.output, model_id=MODEL_ID, revision=MODEL_REVISION, device="cpu"
+        )
+        guard = RecordedGuard(KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=ner))
+        metrics = dict(baseline=baseline, candidate=evaluate(rows, guard))
+        predictions = dict(baseline=baseline_predictions, candidate=guard.predictions)
+        gate = nonregression_gate(rows, predictions["baseline"], predictions["candidate"])
+        report["historical"][name] = dict(metrics=metrics, span_gate=gate)
+        print("Historical", name, gate, flush=True)
+        if not gate["nonregression_passed"]:
+            reject("Historical per-span gate failed; fresh evaluation not run")
+    if not unchanged():
+        reject("Frozen inputs changed; fresh evaluation not run")
+    guards = {}
+    for profile, path in (("baseline", base), ("candidate", args.output)):
+        ner.name_context_head = load_name_head(
+            path, model_id=MODEL_ID, revision=MODEL_REVISION, device="cpu"
+        )
+        guard = RecordedGuard(KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=ner))
+        report[f"evaluation_{profile}"] = evaluate(splits["evaluation"], guard)
+        guards[profile] = guard.predictions
+    report["evaluation_run"] = True
+    report["span_gate"] = nonregression_gate(
+        splits["evaluation"], guards["baseline"], guards["candidate"]
+    )
+    report["accepted"] = report["span_gate"]["nonregression_passed"]
+    report["source_changed_during_run"] = not unchanged()
+    (args.output / "training_report.json").write_text(json.dumps(report, ensure_ascii=False,
+                                                               indent=2)+"\n")
+    if not report["accepted"] or not unchanged():
+        raise RuntimeError("Fresh per-span nonregression gate rejected candidate")
+    print("Accepted frozen rescue; filter", report["selected_filter_epoch"], flush=True)
+
+
+if __name__ == "__main__":
+    main()

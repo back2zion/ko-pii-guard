@@ -1,0 +1,40 @@
+{
+  "scope": "TDD Red: same authored requirements, previous v2 checkpoint",
+  "failed_case_ids": [
+    "v2-evaluation-negative-03-01",
+    "v2-evaluation-person-01-010",
+    "v2-evaluation-person-01-012",
+    "v2-evaluation-person-01-013",
+    "v2-evaluation-person-01-015",
+    "v2-evaluation-person-02-013",
+    "v2-evaluation-person-03-002",
+    "v2-evaluation-person-03-010",
+    "v2-evaluation-person-03-013",
+    "v2-evaluation-person-04-007",
+    "v2-evaluation-person-04-008",
+    "v2-evaluation-person-04-009",
+    "v2-evaluation-person-04-010",
+    "v2-evaluation-person-04-013",
+    "v2-evaluation-person-05-010",
+    "v2-evaluation-person-05-013",
+    "v2-evaluation-person-06-007",
+    "v2-evaluation-person-06-010",
+    "v2-evaluation-person-06-012",
+    "v2-evaluation-person-06-013",
+    "v2-evaluation-person-06-015",
+    "v2-evaluation-person-07-013",
+    "v2-evaluation-person-08-010",
+    "v2-evaluation-person-08-012",
+    "v2-evaluation-person-08-013",
+    "v2-evaluation-person-09-007"
+  ],
+  "failed_count": 26,
+  "passed_count": 1,
+  "exactly_matches_previous_error_ids": true,
+  "sha256": {
+    "tests/test_name_context_v3_regressions.py": "3ae3ffaed69df7466205b94a730cc40a7f32fe8d05b0cf2bfa73f7d5f81d75a2",
+    "benchmarks/data/name_context_v2.jsonl": "8a999183ffbaac6fd12af274abd52462abd0e47504ece6c13bb4fa49ede868e4",
+    "benchmarks/results/name-context-v2-holdout.json": "323511da609f082e6b3dc310b584aa9809a3201e1793c1fc680a6b64bea2b662",
+    "artifacts/name-context-v2/name_context.safetensors": "720e9ecfd006ef50c20def8650d81d878fabd3added768b63768b86bcacc33e7"
+  }
+}

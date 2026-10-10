@@ -1,0 +1,186 @@
+{
+  "corpus": "curated synthetic development regression; not independent evaluation",
+  "measured_at_utc": "2026-10-10T01:57:10.093860+00:00",
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "benchmarks/name_address_benchmark.py",
+    "--data",
+    "benchmarks/data/name_field_boundaries.jsonl",
+    "--check",
+    "--check-negatives",
+    "--output",
+    "benchmarks/results/name-field-boundaries-after.json"
+  ],
+  "data_sha256": "70d8bd92c6be75cbb68c11d7f364a39f67c91d044d83bc0eb88e91a75ae4384e",
+  "benchmark_sha256": "8d2636ff8ad1a9ffba4344d2207c1528734f16e05dd4a2198e76c955ddeeef9f",
+  "source_sha256": "4c902d5249c25f882e94cec7aa1c09b6cc2fbf2f20951c6bf5ae8282afcda1a9",
+  "source_files_sha256": {
+    "__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+    "context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "names.py": "712ce3832d624c4c2d7363fdc2b7364b3180d8ac9a166816bb0583c568a9bf46",
+    "ner.py": "ffaf53d3317d5f769bbfdb009e4978bf7c7b0ec83371812f2eec1822f374b55d",
+    "normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+  },
+  "python": "3.12.13",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "dependency_versions": {
+    "ko-pii-guard": "0.2.0",
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "regex": "2026.9.29",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0"
+  },
+  "entities": [
+    "KR_RRN",
+    "KR_FRN",
+    "KR_BRN",
+    "KR_DRIVER_LICENSE",
+    "KR_PASSPORT",
+    "PHONE_NUMBER",
+    "EMAIL_ADDRESS",
+    "CREDIT_CARD",
+    "KR_ACCOUNT",
+    "KR_NAME",
+    "KR_ADDRESS"
+  ],
+  "guard_score_threshold": 0.4,
+  "coverage_definition": "actual stars masking covers every character of each gold span",
+  "per_entity_negative_definition": "sentences without gold spans of that entity type",
+  "timing_definition": "wall time for analyze and mask; excludes model loading",
+  "models": {
+    "name_address_rules": null
+  },
+  "results": {
+    "name_address_rules": {
+      "counts": {
+        "sentences": 24,
+        "true_positive": 16,
+        "false_positive": 0,
+        "false_negative": 0,
+        "sensitive_spans": 16,
+        "fully_covered_spans": 16,
+        "negative_sentences": 8,
+        "false_positive_sentences": 0
+      },
+      "exact_span_precision": 1.0,
+      "exact_span_recall": 1.0,
+      "exact_span_f1": 1.0,
+      "full_sensitive_span_coverage": 1.0,
+      "negative_sentence_false_positive_rate": 0.0,
+      "per_entity": {
+        "KR_NAME": {
+          "counts": {
+            "sentences": 24,
+            "true_positive": 16,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 16,
+            "fully_covered_spans": 16,
+            "negative_sentences": 8,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0
+        },
+        "KR_ADDRESS": {
+          "counts": {
+            "sentences": 24,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 0,
+            "fully_covered_spans": 0,
+            "negative_sentences": 24,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 0.0,
+          "exact_span_recall": 0.0,
+          "exact_span_f1": 0.0,
+          "full_sensitive_span_coverage": 0.0,
+          "negative_sentence_false_positive_rate": 0.0
+        }
+      },
+      "per_track": {
+        "structured": {
+          "counts": {
+            "sentences": 24,
+            "true_positive": 16,
+            "false_positive": 0,
+            "false_negative": 0,
+            "sensitive_spans": 16,
+            "fully_covered_spans": 16,
+            "negative_sentences": 8,
+            "false_positive_sentences": 0
+          },
+          "exact_span_precision": 1.0,
+          "exact_span_recall": 1.0,
+          "exact_span_f1": 1.0,
+          "full_sensitive_span_coverage": 1.0,
+          "negative_sentence_false_positive_rate": 0.0,
+          "per_entity": {
+            "KR_NAME": {
+              "counts": {
+                "sentences": 24,
+                "true_positive": 16,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 16,
+                "fully_covered_spans": 16,
+                "negative_sentences": 8,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 1.0,
+              "exact_span_recall": 1.0,
+              "exact_span_f1": 1.0,
+              "full_sensitive_span_coverage": 1.0,
+              "negative_sentence_false_positive_rate": 0.0
+            },
+            "KR_ADDRESS": {
+              "counts": {
+                "sentences": 24,
+                "true_positive": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+                "sensitive_spans": 0,
+                "fully_covered_spans": 0,
+                "negative_sentences": 24,
+                "false_positive_sentences": 0
+              },
+              "exact_span_precision": 0.0,
+              "exact_span_recall": 0.0,
+              "exact_span_f1": 0.0,
+              "full_sensitive_span_coverage": 0.0,
+              "negative_sentence_false_positive_rate": 0.0
+            }
+          }
+        }
+      },
+      "seconds_analyze_and_mask": 0.009222593000004053,
+      "error_ids": {
+        "exact_span": [],
+        "uncovered_sensitive_span": [],
+        "negative_false_positive": []
+      }
+    }
+  },
+  "source_changed_during_run": false,
+  "structured_rules_check_passed": true
+}

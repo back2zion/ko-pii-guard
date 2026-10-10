@@ -31,6 +31,8 @@ jobs:
         run: uv run --frozen python benchmarks/robustness_benchmark.py --check
       - name: Name and address regression
         run: uv run --frozen python benchmarks/name_address_benchmark.py --check
+      - name: Name field boundary regression
+        run: uv run --frozen python benchmarks/name_address_benchmark.py --data benchmarks/data/name_field_boundaries.jsonl --check --check-negatives
       - name: Business Korean negative regression
         run: uv run --frozen python benchmarks/name_address_benchmark.py --data benchmarks/data/business_korean.jsonl --check-negatives
 
@@ -53,6 +55,32 @@ jobs:
         run: uv run --frozen python -m ko_pii_guard.ner --download
       - name: Real model and long-input integration
         run: KO_PII_TEST_NER=1 uv run --frozen pytest -q tests/test_ner.py
+      - name: Experimental trained name context regression
+        run: KO_PII_TEST_NAME_CONTEXT=1 uv run --frozen pytest -q tests/test_name_context_head.py tests/test_name_context_v3_regressions.py
+      - name: V3 historical context and long-window contracts
+        run: KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v3 uv run --frozen pytest -q tests/test_name_context_head.py
+      - name: V2 known name misses and regressions
+        run: uv run --frozen python benchmarks/name_context_v2_benchmark.py --output /tmp/name-context-v2-acceptance.json --check
+      - name: V3 retired evaluation and historical regressions
+        run: uv run --frozen python benchmarks/name_context_v3_benchmark.py --split development --output /tmp/name-context-v3-acceptance.json --check
+      - name: V11 complete known-miss, false-positive and preservation contracts
+        run: KO_PII_TEST_NER=1 KO_PII_TEST_NAME_CONTEXT=1 KO_PII_TEST_NAME_CONTEXT_PATH=artifacts/name-context-v11 uv run --frozen pytest -q
+      - name: V6 historical name and non-person acceptance
+        run: uv run --frozen python benchmarks/name_context_filter_benchmark.py --output /tmp/name-context-v6-acceptance.json --check
+      - name: V6 strict per-span nonregression on the frozen new evaluation
+        run: uv run --frozen python benchmarks/name_context_v6_benchmark.py --split evaluation --output /tmp/name-context-v6-nonregression.json --check
+      - name: V7 historical per-span preservation and all nine known misses
+        run: uv run --frozen python benchmarks/name_context_v7_benchmark.py --split development --output /tmp/name-context-v7-acceptance.json --check
+      - name: V7 frozen new evaluation without new false spans
+        run: uv run --frozen python benchmarks/name_context_v7_benchmark.py --split evaluation --output /tmp/name-context-v7-nonregression.json --check
+      - name: V9 historical preservation and known error fixes
+        run: uv run --frozen python benchmarks/name_context_v9_benchmark.py --split development --output /tmp/name-context-v9-acceptance.json --check
+      - name: V9 frozen new evaluation without lost names or new false spans
+        run: uv run --frozen python benchmarks/name_context_v9_benchmark.py --split evaluation --output /tmp/name-context-v9-nonregression.json --check
+      - name: V11 historical preservation including the rejected V10 regression
+        run: uv run --frozen python benchmarks/name_context_v11_benchmark.py --split development --output /tmp/name-context-v11-acceptance.json --check
+      - name: V11 frozen new evaluation without lost names or new false spans
+        run: uv run --frozen python benchmarks/name_context_v11_benchmark.py --split evaluation --output /tmp/name-context-v11-nonregression.json --check
       - name: Contextual name and business-language regressions
         run: |
           uv run --frozen python benchmarks/name_address_benchmark.py --ner --check --check-negatives --output /tmp/name-address.json
@@ -64,3 +92,13 @@ jobs:
           path: |
             /tmp/name-address.json
             /tmp/business-korean.json
+            /tmp/name-context-v2-acceptance.json
+            /tmp/name-context-v3-acceptance.json
+            /tmp/name-context-v6-acceptance.json
+            /tmp/name-context-v6-nonregression.json
+            /tmp/name-context-v7-acceptance.json
+            /tmp/name-context-v7-nonregression.json
+            /tmp/name-context-v9-acceptance.json
+            /tmp/name-context-v9-nonregression.json
+            /tmp/name-context-v11-acceptance.json
+            /tmp/name-context-v11-nonregression.json

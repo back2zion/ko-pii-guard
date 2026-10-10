@@ -1,0 +1,985 @@
+{
+  "manifest": {
+    "data_sha256": "93eb6ad87f3d8e82a706d6348b4320371527e2a38ef5110fe649973091be236c",
+    "source_sha256": {
+      "scripts/train_name_span_filter.py": "abadaefb8916f8ed13f30a72402d13068884e65a600c86552ca5e3f63e50aed1",
+      "scripts/train_name_context.py": "4bf8f7f9f2411c434554ef035738120e588a60fe1cfd5c0dcd8f6f90a905b40a",
+      "benchmarks/name_context_v5_cases.py": "7caef09e5f769a317feea6a188af9a10e4aa3d56739ccee58f7ef287655d7d3f",
+      "benchmarks/name_context_v5_benchmark.py": "f6d02d0b0139e9121d7301fcd0186983f3454600148111e7568991733e15bc0c",
+      "benchmarks/name_address_benchmark.py": "0cec759b79f2b604782daf18c257492b3144ce325a78641d84b8b3c35deb057a",
+      "src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+      "src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+      "src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+      "src/ko_pii_guard/analyzer.py": "ad69a82b0745bce0ebacdcf2965deb9ba52847c3663b768fe2623d07054b4426",
+      "src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+      "src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+      "src/ko_pii_guard/name_context.py": "a384161c57a4767018652f2c42b976c0be21cb6baf634cba8a642a52fd371e8d",
+      "src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+      "src/ko_pii_guard/ner.py": "377b3eefff7eb14b0cd5cf9ed807f3e3b9a1fbdc79eb6a44a644776fbe357085",
+      "src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+      "src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+      "src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+      "src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+    },
+    "baseline_sha256": {
+      "name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+      "name_context_config.json": "69f00ed191e3925607a25189457a9f11c7b3cc32fbf4a8eec37b2c907a6094bb"
+    },
+    "seed": 20261010,
+    "epochs": 80,
+    "threshold": 0.99,
+    "learning_rate": 0.001,
+    "split_counts": {
+      "train": 8328,
+      "validation": 96,
+      "evaluation": 192
+    },
+    "selection": "zero rejected train/validation gold, reject every known non-person baseline false span, then maximum validation rejections, earliest tie"
+  },
+  "selected_epoch": 69,
+  "history": [
+    {
+      "epoch": 1,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 100,
+      "validation_negative_rejected": 0,
+      "eligible": false
+    },
+    {
+      "epoch": 2,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 100,
+      "validation_negative_rejected": 0,
+      "eligible": false
+    },
+    {
+      "epoch": 3,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 100,
+      "validation_negative_rejected": 23,
+      "eligible": false
+    },
+    {
+      "epoch": 4,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 100,
+      "validation_negative_rejected": 26,
+      "eligible": false
+    },
+    {
+      "epoch": 5,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 100,
+      "validation_negative_rejected": 31,
+      "eligible": false
+    },
+    {
+      "epoch": 6,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 95,
+      "validation_negative_rejected": 52,
+      "eligible": false
+    },
+    {
+      "epoch": 7,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 92,
+      "validation_negative_rejected": 37,
+      "eligible": false
+    },
+    {
+      "epoch": 8,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 75,
+      "validation_negative_rejected": 59,
+      "eligible": false
+    },
+    {
+      "epoch": 9,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 79,
+      "validation_negative_rejected": 59,
+      "eligible": false
+    },
+    {
+      "epoch": 10,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 92,
+      "validation_negative_rejected": 48,
+      "eligible": false
+    },
+    {
+      "epoch": 11,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 88,
+      "validation_negative_rejected": 46,
+      "eligible": false
+    },
+    {
+      "epoch": 12,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 67,
+      "validation_negative_rejected": 57,
+      "eligible": false
+    },
+    {
+      "epoch": 13,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 86,
+      "validation_negative_rejected": 53,
+      "eligible": false
+    },
+    {
+      "epoch": 14,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 84,
+      "validation_negative_rejected": 56,
+      "eligible": false
+    },
+    {
+      "epoch": 15,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 79,
+      "validation_negative_rejected": 55,
+      "eligible": false
+    },
+    {
+      "epoch": 16,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 80,
+      "validation_negative_rejected": 51,
+      "eligible": false
+    },
+    {
+      "epoch": 17,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 67,
+      "validation_negative_rejected": 48,
+      "eligible": false
+    },
+    {
+      "epoch": 18,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 78,
+      "validation_negative_rejected": 62,
+      "eligible": false
+    },
+    {
+      "epoch": 19,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 44,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 20,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 28,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 21,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 28,
+      "validation_negative_rejected": 61,
+      "eligible": false
+    },
+    {
+      "epoch": 22,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 15,
+      "validation_negative_rejected": 70,
+      "eligible": false
+    },
+    {
+      "epoch": 23,
+      "train_person_rejected": 1,
+      "validation_person_rejected": 0,
+      "known_negative_left": 23,
+      "validation_negative_rejected": 71,
+      "eligible": false
+    },
+    {
+      "epoch": 24,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 22,
+      "validation_negative_rejected": 71,
+      "eligible": false
+    },
+    {
+      "epoch": 25,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 46,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 26,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 59,
+      "validation_negative_rejected": 56,
+      "eligible": false
+    },
+    {
+      "epoch": 27,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 16,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 28,
+      "train_person_rejected": 4,
+      "validation_person_rejected": 0,
+      "known_negative_left": 18,
+      "validation_negative_rejected": 74,
+      "eligible": false
+    },
+    {
+      "epoch": 29,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 37,
+      "validation_negative_rejected": 61,
+      "eligible": false
+    },
+    {
+      "epoch": 30,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 31,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 31,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 11,
+      "validation_negative_rejected": 68,
+      "eligible": false
+    },
+    {
+      "epoch": 32,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 34,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 33,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 18,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 34,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 10,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 35,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 26,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 36,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 5,
+      "validation_negative_rejected": 72,
+      "eligible": false
+    },
+    {
+      "epoch": 37,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 24,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 38,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 29,
+      "validation_negative_rejected": 58,
+      "eligible": false
+    },
+    {
+      "epoch": 39,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 17,
+      "validation_negative_rejected": 64,
+      "eligible": false
+    },
+    {
+      "epoch": 40,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 27,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 41,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 39,
+      "validation_negative_rejected": 57,
+      "eligible": false
+    },
+    {
+      "epoch": 42,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 16,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 43,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 42,
+      "validation_negative_rejected": 55,
+      "eligible": false
+    },
+    {
+      "epoch": 44,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 8,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 45,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 5,
+      "validation_negative_rejected": 72,
+      "eligible": false
+    },
+    {
+      "epoch": 46,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 13,
+      "validation_negative_rejected": 64,
+      "eligible": false
+    },
+    {
+      "epoch": 47,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 5,
+      "validation_negative_rejected": 68,
+      "eligible": false
+    },
+    {
+      "epoch": 48,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 9,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 49,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 14,
+      "validation_negative_rejected": 62,
+      "eligible": false
+    },
+    {
+      "epoch": 50,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 29,
+      "validation_negative_rejected": 57,
+      "eligible": false
+    },
+    {
+      "epoch": 51,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 9,
+      "validation_negative_rejected": 66,
+      "eligible": false
+    },
+    {
+      "epoch": 52,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 46,
+      "validation_negative_rejected": 48,
+      "eligible": false
+    },
+    {
+      "epoch": 53,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 24,
+      "validation_negative_rejected": 63,
+      "eligible": false
+    },
+    {
+      "epoch": 54,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 8,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 55,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 5,
+      "validation_negative_rejected": 66,
+      "eligible": false
+    },
+    {
+      "epoch": 56,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 13,
+      "validation_negative_rejected": 66,
+      "eligible": false
+    },
+    {
+      "epoch": 57,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 21,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 58,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 6,
+      "validation_negative_rejected": 72,
+      "eligible": false
+    },
+    {
+      "epoch": 59,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 0,
+      "validation_negative_rejected": 69,
+      "eligible": true
+    },
+    {
+      "epoch": 60,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 19,
+      "validation_negative_rejected": 64,
+      "eligible": false
+    },
+    {
+      "epoch": 61,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 1,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 62,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 7,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 63,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 3,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 64,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 1,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 65,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 3,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 66,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 0,
+      "validation_negative_rejected": 68,
+      "eligible": true
+    },
+    {
+      "epoch": 67,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 4,
+      "validation_negative_rejected": 65,
+      "eligible": false
+    },
+    {
+      "epoch": 68,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 5,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 69,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 0,
+      "validation_negative_rejected": 74,
+      "eligible": true
+    },
+    {
+      "epoch": 70,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 22,
+      "validation_negative_rejected": 66,
+      "eligible": false
+    },
+    {
+      "epoch": 71,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 0,
+      "validation_negative_rejected": 68,
+      "eligible": true
+    },
+    {
+      "epoch": 72,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 7,
+      "validation_negative_rejected": 69,
+      "eligible": false
+    },
+    {
+      "epoch": 73,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 6,
+      "validation_negative_rejected": 67,
+      "eligible": false
+    },
+    {
+      "epoch": 74,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 46,
+      "validation_negative_rejected": 57,
+      "eligible": false
+    },
+    {
+      "epoch": 75,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 2,
+      "validation_negative_rejected": 68,
+      "eligible": false
+    },
+    {
+      "epoch": 76,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 8,
+      "validation_negative_rejected": 73,
+      "eligible": false
+    },
+    {
+      "epoch": 77,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 29,
+      "validation_negative_rejected": 70,
+      "eligible": false
+    },
+    {
+      "epoch": 78,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 24,
+      "validation_negative_rejected": 64,
+      "eligible": false
+    },
+    {
+      "epoch": 79,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 14,
+      "validation_negative_rejected": 64,
+      "eligible": false
+    },
+    {
+      "epoch": 80,
+      "train_person_rejected": 0,
+      "validation_person_rejected": 0,
+      "known_negative_left": 13,
+      "validation_negative_rejected": 66,
+      "eligible": false
+    }
+  ],
+  "evaluation_baseline": {
+    "counts": {
+      "sentences": 192,
+      "true_positive": 230,
+      "false_positive": 17,
+      "false_negative": 4,
+      "sensitive_spans": 234,
+      "fully_covered_spans": 230,
+      "negative_sentences": 48,
+      "false_positive_sentences": 8
+    },
+    "exact_span_precision": 0.9311740890688259,
+    "exact_span_recall": 0.9829059829059829,
+    "exact_span_f1": 0.9563409563409564,
+    "full_sensitive_span_coverage": 0.9829059829059829,
+    "negative_sentence_false_positive_rate": 0.16666666666666666,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 230,
+          "false_positive": 17,
+          "false_negative": 4,
+          "sensitive_spans": 234,
+          "fully_covered_spans": 230,
+          "negative_sentences": 48,
+          "false_positive_sentences": 8
+        },
+        "exact_span_precision": 0.9311740890688259,
+        "exact_span_recall": 0.9829059829059829,
+        "exact_span_f1": 0.9563409563409564,
+        "full_sensitive_span_coverage": 0.9829059829059829,
+        "negative_sentence_false_positive_rate": 0.16666666666666666
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 192,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 230,
+          "false_positive": 17,
+          "false_negative": 4,
+          "sensitive_spans": 234,
+          "fully_covered_spans": 230,
+          "negative_sentences": 48,
+          "false_positive_sentences": 8
+        },
+        "exact_span_precision": 0.9311740890688259,
+        "exact_span_recall": 0.9829059829059829,
+        "exact_span_f1": 0.9563409563409564,
+        "full_sensitive_span_coverage": 0.9829059829059829,
+        "negative_sentence_false_positive_rate": 0.16666666666666666,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 192,
+              "true_positive": 230,
+              "false_positive": 17,
+              "false_negative": 4,
+              "sensitive_spans": 234,
+              "fully_covered_spans": 230,
+              "negative_sentences": 48,
+              "false_positive_sentences": 8
+            },
+            "exact_span_precision": 0.9311740890688259,
+            "exact_span_recall": 0.9829059829059829,
+            "exact_span_f1": 0.9563409563409564,
+            "full_sensitive_span_coverage": 0.9829059829059829,
+            "negative_sentence_false_positive_rate": 0.16666666666666666
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 192,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 192,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 16.701294073999634,
+    "error_ids": {
+      "exact_span": [
+        "v5-evaluation-person-01-011",
+        "v5-evaluation-person-02-008",
+        "v5-evaluation-person-03-010",
+        "v5-evaluation-person-04-012",
+        "v5-evaluation-person-05-002",
+        "v5-evaluation-person-05-003",
+        "v5-evaluation-person-05-008",
+        "v5-evaluation-person-05-010",
+        "v5-evaluation-person-05-012",
+        "v5-evaluation-person-05-013",
+        "v5-evaluation-person-05-016",
+        "v5-evaluation-person-05-017",
+        "v5-evaluation-person-06-008",
+        "v5-evaluation-negative-00-01",
+        "v5-evaluation-negative-00-02",
+        "v5-evaluation-negative-00-07",
+        "v5-evaluation-negative-01-01",
+        "v5-evaluation-negative-01-02",
+        "v5-evaluation-negative-01-07",
+        "v5-evaluation-negative-05-01",
+        "v5-evaluation-negative-05-03"
+      ],
+      "uncovered_sensitive_span": [
+        "v5-evaluation-person-01-011",
+        "v5-evaluation-person-03-010",
+        "v5-evaluation-person-04-012",
+        "v5-evaluation-person-06-008"
+      ],
+      "negative_false_positive": [
+        "v5-evaluation-negative-00-01",
+        "v5-evaluation-negative-00-02",
+        "v5-evaluation-negative-00-07",
+        "v5-evaluation-negative-01-01",
+        "v5-evaluation-negative-01-02",
+        "v5-evaluation-negative-01-07",
+        "v5-evaluation-negative-05-01",
+        "v5-evaluation-negative-05-03"
+      ]
+    }
+  },
+  "evaluation_candidate": {
+    "counts": {
+      "sentences": 192,
+      "true_positive": 229,
+      "false_positive": 8,
+      "false_negative": 5,
+      "sensitive_spans": 234,
+      "fully_covered_spans": 229,
+      "negative_sentences": 48,
+      "false_positive_sentences": 1
+    },
+    "exact_span_precision": 0.9662447257383966,
+    "exact_span_recall": 0.9786324786324786,
+    "exact_span_f1": 0.9723991507430998,
+    "full_sensitive_span_coverage": 0.9786324786324786,
+    "negative_sentence_false_positive_rate": 0.020833333333333332,
+    "per_entity": {
+      "KR_NAME": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 229,
+          "false_positive": 8,
+          "false_negative": 5,
+          "sensitive_spans": 234,
+          "fully_covered_spans": 229,
+          "negative_sentences": 48,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.9662447257383966,
+        "exact_span_recall": 0.9786324786324786,
+        "exact_span_f1": 0.9723991507430998,
+        "full_sensitive_span_coverage": 0.9786324786324786,
+        "negative_sentence_false_positive_rate": 0.020833333333333332
+      },
+      "KR_ADDRESS": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "sensitive_spans": 0,
+          "fully_covered_spans": 0,
+          "negative_sentences": 192,
+          "false_positive_sentences": 0
+        },
+        "exact_span_precision": 0.0,
+        "exact_span_recall": 0.0,
+        "exact_span_f1": 0.0,
+        "full_sensitive_span_coverage": 0.0,
+        "negative_sentence_false_positive_rate": 0.0
+      }
+    },
+    "per_track": {
+      "prose": {
+        "counts": {
+          "sentences": 192,
+          "true_positive": 229,
+          "false_positive": 8,
+          "false_negative": 5,
+          "sensitive_spans": 234,
+          "fully_covered_spans": 229,
+          "negative_sentences": 48,
+          "false_positive_sentences": 1
+        },
+        "exact_span_precision": 0.9662447257383966,
+        "exact_span_recall": 0.9786324786324786,
+        "exact_span_f1": 0.9723991507430998,
+        "full_sensitive_span_coverage": 0.9786324786324786,
+        "negative_sentence_false_positive_rate": 0.020833333333333332,
+        "per_entity": {
+          "KR_NAME": {
+            "counts": {
+              "sentences": 192,
+              "true_positive": 229,
+              "false_positive": 8,
+              "false_negative": 5,
+              "sensitive_spans": 234,
+              "fully_covered_spans": 229,
+              "negative_sentences": 48,
+              "false_positive_sentences": 1
+            },
+            "exact_span_precision": 0.9662447257383966,
+            "exact_span_recall": 0.9786324786324786,
+            "exact_span_f1": 0.9723991507430998,
+            "full_sensitive_span_coverage": 0.9786324786324786,
+            "negative_sentence_false_positive_rate": 0.020833333333333332
+          },
+          "KR_ADDRESS": {
+            "counts": {
+              "sentences": 192,
+              "true_positive": 0,
+              "false_positive": 0,
+              "false_negative": 0,
+              "sensitive_spans": 0,
+              "fully_covered_spans": 0,
+              "negative_sentences": 192,
+              "false_positive_sentences": 0
+            },
+            "exact_span_precision": 0.0,
+            "exact_span_recall": 0.0,
+            "exact_span_f1": 0.0,
+            "full_sensitive_span_coverage": 0.0,
+            "negative_sentence_false_positive_rate": 0.0
+          }
+        }
+      }
+    },
+    "seconds_analyze_and_mask": 16.5016946249998,
+    "error_ids": {
+      "exact_span": [
+        "v5-evaluation-person-01-011",
+        "v5-evaluation-person-02-008",
+        "v5-evaluation-person-02-010",
+        "v5-evaluation-person-03-010",
+        "v5-evaluation-person-04-012",
+        "v5-evaluation-person-05-003",
+        "v5-evaluation-person-05-008",
+        "v5-evaluation-person-05-010",
+        "v5-evaluation-person-05-012",
+        "v5-evaluation-person-05-016",
+        "v5-evaluation-person-05-017",
+        "v5-evaluation-person-06-008",
+        "v5-evaluation-negative-01-07"
+      ],
+      "uncovered_sensitive_span": [
+        "v5-evaluation-person-01-011",
+        "v5-evaluation-person-02-010",
+        "v5-evaluation-person-03-010",
+        "v5-evaluation-person-04-012",
+        "v5-evaluation-person-06-008"
+      ],
+      "negative_false_positive": [
+        "v5-evaluation-negative-01-07"
+      ]
+    }
+  },
+  "span_gate": {
+    "protected_correct_spans": 230,
+    "lost_correct_spans": [
+      [
+        "v5-evaluation-person-02-010",
+        "KR_NAME",
+        25,
+        27
+      ]
+    ],
+    "introduced_false_positive_spans": [],
+    "previous_false_positive_spans": 17,
+    "current_false_positive_spans": 8,
+    "nonregression_passed": false
+  },
+  "accepted": false,
+  "source_changed_during_run": false
+}

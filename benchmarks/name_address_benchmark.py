@@ -183,6 +183,8 @@ def main() -> None:
     parser.add_argument("--output", type=Path)
     parser.add_argument("--ner", action="store_true",
                         help="Also evaluate the pinned local NER model")
+    parser.add_argument("--name-context-path", type=Path,
+                        help="Opt-in trained character name checkpoint (requires --ner)")
     parser.add_argument("--ner-threshold", type=float, default=0.9)
     parser.add_argument("--ner-model", choices=("e5", "kcelectra"), default="e5")
     parser.add_argument("--numeric-negatives", action="store_true",
@@ -192,6 +194,8 @@ def main() -> None:
     parser.add_argument("--check", action="store_true",
                         help="Require perfect rules-only structured results; prose is diagnostic")
     args = parser.parse_args()
+    if args.name_context_path is not None and not args.ner:
+        parser.error("--name-context-path requires --ner")
     if not 0 <= args.ner_threshold <= 1:
         parser.error("--ner-threshold must be between 0 and 1")
     cases = load_cases(args.data)
@@ -241,7 +245,8 @@ def main() -> None:
         torch.set_num_threads(2)
         loaded = time.perf_counter()
         ner = KoreanNER.from_pretrained(model=args.ner_model,
-                                       score_threshold=args.ner_threshold, device="cpu")
+                                       score_threshold=args.ner_threshold, device="cpu",
+                                       name_context_path=args.name_context_path)
         model_id, revision = MODELS[args.ner_model]
         report["models"]["name_address_ner"] = {
             "model_id": model_id, "revision": revision,
@@ -250,6 +255,13 @@ def main() -> None:
             "batch_size": ner.batch_size, "torch_threads": torch.get_num_threads(),
             "local_files_only": True, "load_seconds": time.perf_counter() - loaded,
         }
+        if args.name_context_path is not None:
+            report["models"]["name_address_ner"]["name_context_checkpoint"] = {
+                filename: hashlib.sha256(
+                    (args.name_context_path / filename).read_bytes()
+                ).hexdigest()
+                for filename in ("name_context_config.json", "name_context.safetensors")
+            }
         contextual = KoreanPIIGuard(entities=SUPPORTED_ENTITIES, ner=ner)
         report["results"]["name_address_ner"] = evaluate(cases, contextual)
         if ambiguous:

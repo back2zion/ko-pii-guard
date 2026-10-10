@@ -1,0 +1,118 @@
+{
+  "scope": "cached_synthetic_validation_ablation_not_public_API",
+  "factor": "only legal BIOES transitions; same heads, confidences, thresholds and filter",
+  "address_limitation": "Cached name-only ablation; no backbone address conflict handling",
+  "results": {
+    "A0_argmax": {
+      "tp": 105,
+      "fp": 2,
+      "fn": 3,
+      "f1": 0.9767441860465116,
+      "fully_covered_names": 106,
+      "unnecessary_masked_characters": 4,
+      "errors": [
+        {
+          "id": "v11-validation-person-00-007",
+          "missed": [],
+          "false": [
+            [
+              10,
+              11
+            ]
+          ]
+        },
+        {
+          "id": "v11-validation-person-00-008",
+          "missed": [
+            [
+              9,
+              11
+            ]
+          ],
+          "false": []
+        },
+        {
+          "id": "v11-validation-person-00-009",
+          "missed": [
+            [
+              9,
+              11
+            ]
+          ],
+          "false": []
+        },
+        {
+          "id": "v11-validation-person-05-005",
+          "missed": [
+            [
+              15,
+              17
+            ]
+          ],
+          "false": [
+            [
+              12,
+              17
+            ]
+          ]
+        }
+      ]
+    },
+    "A1_constrained_BIOES": {
+      "tp": 105,
+      "fp": 1,
+      "fn": 3,
+      "f1": 0.9813084112149533,
+      "fully_covered_names": 106,
+      "unnecessary_masked_characters": 3,
+      "errors": [
+        {
+          "id": "v11-validation-person-00-008",
+          "missed": [
+            [
+              9,
+              11
+            ]
+          ],
+          "false": []
+        },
+        {
+          "id": "v11-validation-person-00-009",
+          "missed": [
+            [
+              9,
+              11
+            ]
+          ],
+          "false": []
+        },
+        {
+          "id": "v11-validation-person-05-005",
+          "missed": [
+            [
+              15,
+              17
+            ]
+          ],
+          "false": [
+            [
+              12,
+              17
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "sha256": {
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_bioes_ablation.py": "d2d9d35e6c16e02fe3f2293a556fecf82963ad43c7dd743bf8cf59fa9ecd5c7d",
+    "/home/woodcross/projects/ko-pii-guard/scripts/name_bioes_ablation.py": "f0d56155d15d10aec376f16742f3e0d3ffb4defb9dd5ed55ff77673dc65244de",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/data/name_context_v11.jsonl": "86b9eff44f9ffa3fa75a9f7d67ae00ef58edbc0fa55e6b9314463cb0c77115ba",
+    "/tmp/name-span-features-v1.pt": "0ca2d0b5dd7d97257645e24b7b4f28ac0cd5b43e98a1529efb3df4da34162f2d",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context.safetensors": "84afb2196d9efc81a48b453c22a591d033ade1ac881a4b7354ed17a1a3e2a782",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context_1.safetensors": "16617ed91e07b168cfab2409537499c438c950da2a87cff3f7daec7be1006936",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/span_filter.safetensors": "246e3388fb01c04c34b4b7b4b5e6f2fbfabe7327cc410f56997169d97e0c5a38",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/name_context.safetensors": "94ca5d520a706ff93b2c41e472e5798290385f0f60ec594dbddf302862c2f58f",
+    "/home/woodcross/projects/ko-pii-guard/artifacts/name-context-v11/rescue_name_context_2.safetensors": "9682abfbdea7b47d5299f91dfba73585555a28dd9674988c89d2010a1d870d5f"
+  }
+}
