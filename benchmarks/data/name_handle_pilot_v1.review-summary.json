@@ -1,0 +1,72 @@
+{
+  "items": 400,
+  "validation_problems": {
+    "A": [],
+    "B": []
+  },
+  "agreement": 0.895,
+  "cohen_kappa": 0.8189,
+  "verdict_counts": {
+    "A": {
+      "personal": 165,
+      "non_personal": 204,
+      "insufficient": 31
+    },
+    "B": {
+      "personal": 156,
+      "non_personal": 196,
+      "insufficient": 48
+    }
+  },
+  "policy_pending": {
+    "A": 19,
+    "B": 21
+  },
+  "span_not_ok": {
+    "A": 2,
+    "B": 3
+  },
+  "adjudication_queue": 65,
+  "queue_reasons": {
+    "disagreement": 42,
+    "insufficient": 58,
+    "policy_pending": 24,
+    "span_questioned": 4
+  },
+  "agreed": 335,
+  "audit_sample": 34,
+  "audit_extra_source_contradictions": 1,
+  "audit_sample_by_verdict": {
+    "non_personal": 20,
+    "personal": 14
+  },
+  "result_by_source_stratum": {
+    "account_id": {
+      "queue": 16,
+      "personal": 44
+    },
+    "club_group_name": {
+      "queue": 8,
+      "non_personal": 112
+    },
+    "nickname": {
+      "personal": 100,
+      "queue": 39,
+      "non_personal": 1
+    },
+    "school_name": {
+      "non_personal": 40
+    },
+    "workplace_name": {
+      "non_personal": 38,
+      "queue": 2
+    }
+  },
+  "note": "stratum counts are aggregate only; reviewers never saw source labels",
+  "audit_seed": 20261031,
+  "audit_fraction": 0.1,
+  "input_sha256": {
+    "input/items.jsonl": "6fcdfc4a5ad63315bdf0b158d22c28caf94381234762622885c822ab3fbb32cd",
+    "input/guideline.md": "83a22ae394d1d78be663708f75b65dc57663f5c393c50e60b2b295ea0cf93dbf"
+  }
+}

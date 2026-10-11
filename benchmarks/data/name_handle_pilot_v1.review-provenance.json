@@ -1,0 +1,45 @@
+{
+  "scope": "name_handle_pilot_v1_review_provenance",
+  "procedure": "two blind agent reviewers (fresh contexts, different model families) + adjudicator/final approver (project owner); not a human double review",
+  "prompt_template_sha256": "2c9bab513635c93713266c1980670eb16d71b12f5f397d220c94c11535693de4",
+  "guideline_sha256": "83a22ae394d1d78be663708f75b65dc57663f5c393c50e60b2b295ea0cf93dbf",
+  "items_sha256": "6fcdfc4a5ad63315bdf0b158d22c28caf94381234762622885c822ab3fbb32cd",
+  "reviewer_models": "recorded outside the repository (repository files carry no vendor attribution); reviewer A is a smaller-tier model and reviewer B a larger-tier model of the same vendor",
+  "shuffle_seed": 20261030,
+  "audit_seed": 20261031,
+  "hidden_from_reviewers": [
+    "KDPII source labels",
+    "stratum names",
+    "positive/negative composition",
+    "E5 predictions",
+    "candidate B results",
+    "the other reviewer's output"
+  ],
+  "tool_call_audit": {
+    "method": "reviewer transcripts scanned for every tool call",
+    "reviewer_A": {
+      "reads": [
+        "guideline.md x1",
+        "items.jsonl x3"
+      ],
+      "writes": "reviewerA/part1-4 via one local script",
+      "other_files_opened": false,
+      "run_seconds": 74
+    },
+    "reviewer_B": {
+      "reads": [
+        "guideline.md x1",
+        "items.jsonl x3"
+      ],
+      "writes": "reviewerB/part1-4 (Write x4, Edit x1) and one read-only validation script",
+      "other_files_opened": false,
+      "run_seconds": 375
+    }
+  },
+  "reviewer_process_limits": [
+    "Reviewer A recorded decisions as index sets in one script and wrote default non_personal/P4 for every item not listed; its evidence field is a mechanical window around the span, not a written rationale.",
+    "Reviewer B wrote per-item evidence; evidence strings are verbatim sentence substrings for both (validated).",
+    "Agreement between the two reviewers is not evidence of correctness."
+  ],
+  "status_counts_note": "see name_handle_pilot_v1.review-summary.json"
+}

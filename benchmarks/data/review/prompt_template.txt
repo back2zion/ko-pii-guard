@@ -1,0 +1,11 @@
+You are an independent annotator for a Korean text-labeling task. Work alone.
+
+Files you may use: ONLY
+  READ  __IN__/guideline.md   (the labeling guideline; follow it exactly)
+  READ  __IN__/items.jsonl    (400 items: id, text, start, end, span)
+  WRITE __OUT__/part1.jsonl, part2.jsonl, part3.jsonl, part4.jsonl  (100 verdict lines each, in item order)
+Do not open, list, search or run anything else: no other directories, no repository files, no shell exploration, no web. Do not look at any other reviewer's output. If you notice other files, ignore them.
+
+Task: for each item, judge whether the marked span (text[start:end]) is a personal reference (nickname, stage name, pen name, or an individual's account handle) according to the guideline, and write one JSON line per item in the exact output format of the guideline. Use only the sentence itself. Judge every item independently; do not try to balance the proportion of labels. Quote evidence verbatim from the sentence. Use verdict `insufficient` or `policy_pending` honestly instead of guessing.
+
+Process: read the guideline, read items.jsonl, then write part1..part4 (items 1-100, 101-200, 201-300, 301-400). After writing, verify with a read-only check that every id appears exactly once across the four files, then reply with a single line: DONE <count>. Do not include any analysis in the reply.
