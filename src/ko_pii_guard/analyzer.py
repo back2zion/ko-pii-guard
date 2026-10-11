@@ -137,6 +137,15 @@ class _OfflineEmailRecognizer(EmailRecognizer):
         return bool(self._extract(pattern_text).fqdn)
 
 
+# A 16-digit number directly attached to a card label ("카드번호:", "법인 카드 ")
+# is card data even when a typo fails Luhn. "카드" elsewhere in the sentence, or a
+# different label between it and the digits (승인번호, 주문번호), does not qualify.
+_LABELED_CARD_REGEX = (
+    r"(?<=카드(?:\s?번호)?(?:은|는|인|이|가)?[\s:：=]{0,3})"
+    r"(?<![A-Za-z0-9_-])\d{4}([ -]?)\d{4}\1\d{4}\1\d{4}(?![A-Za-z0-9_-])"
+)
+
+
 def _build_analyzer() -> AnalyzerEngine:
     registry = RecognizerRegistry(supported_languages=[LANGUAGE])
     for recognizer in (
@@ -165,6 +174,12 @@ def _build_analyzer() -> AnalyzerEngine:
                 + r"(?![A-Za-z0-9_-])",
                 pattern.score,
             ) for pattern in CreditCardRecognizer.PATTERNS],
+        ),
+        PatternRecognizer(
+            supported_entity="CREDIT_CARD",
+            patterns=[Pattern("labeled_card_without_luhn", _LABELED_CARD_REGEX, 0.5)],
+            supported_language=LANGUAGE,
+            name="KrLabeledCardRecognizer",
         ),
         PatternRecognizer(
             supported_entity="KR_ACCOUNT",
