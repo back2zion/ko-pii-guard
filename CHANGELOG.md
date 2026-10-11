@@ -35,7 +35,7 @@ Name and address detection is **opt-in**. `KR_NAME` and `KR_ADDRESS` are not ena
 
 ### Fixed
 
-- A 16-digit number directly attached to a card label (`카드번호:`, `법인 카드 `) is now detected even when it fails the Luhn check; numbers under other labels (승인번호, 주문번호, ...) and unlabeled non-Luhn numbers are unchanged. External K-PII-Bench slices, same conditions before/after: dev (offset 0) card TP 3→35, F1 91.70→93.85%; holdout (offset 10000) card TP 4→35, F1 91.69→93.83%, no new false positives; 0/4,000 synthetic non-Luhn 16-digit numbers under non-card labels detected.
+- A 16-digit number directly attached to an explicit card label (`카드번호:`, `법인 카드 `) is now detected even when it fails the Luhn check; numbers under other labels (승인번호, 주문번호, ...), unlabeled non-Luhn numbers and all other rules are unchanged. Before/after on two already-used external K-PII-Bench comparison slices (offset 0 and offset 10000; neither is an unused test set): card TP 3→35 and 4→35, F1 91.70→93.85% and 91.69→93.83%, no new false positives observed; 0 of 4,000 synthetic non-Luhn 16-digit numbers under non-card labels were detected. This is not evidence of a zero real-world false-positive rate.
 - Name-context regressions closed as named Red/Green tests: 21 known v1 misses and seven regressions (v2), 26 v2 error sentences (v3), all nine known v6 misses (v7), six v7 misses and four false spans (v9; original evaluation TP234/FP0/FN0), and five v9 missed names and two false spans (v11).
 - Complete middle-dot names are preserved in explicit person fields, and tab/multiple-space honorifics are separated; before/after boundary regression reports added.
 - Names are still detected in filenames.
