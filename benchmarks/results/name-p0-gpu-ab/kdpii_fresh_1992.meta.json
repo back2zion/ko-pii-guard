@@ -1,0 +1,21 @@
+{
+  "dataset": "kdpii_fresh_1992",
+  "rows": 1992,
+  "seconds": 59.6,
+  "precision": {
+    "dtype": "float32",
+    "autocast": false,
+    "tf32_matmul": false,
+    "tf32_cudnn": false,
+    "matmul_precision": "highest"
+  },
+  "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+  "name_threshold": 0.9,
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+  "context_set_sha256": null,
+  "sidecar_sha256": "792da45c97e0b8f5d96fcb2417aa0cc72458556c24950f157dc6c7c7f3cdc06b"
+}

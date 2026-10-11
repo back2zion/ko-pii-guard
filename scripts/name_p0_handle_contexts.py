@@ -40,7 +40,8 @@ def build():
             for kind, template in (("personal", personal), ("non_personal", other)):
                 text = template.format(w=w)
                 start = text.index(w)
-                rows.append(dict(id=f"handle-{t}-{WORDS.index(w)}-{kind}", pair=f"{t}-{WORDS.index(w)}",
+                number = WORDS.index(w)
+                rows.append(dict(id=f"handle-{t}-{number}-{kind}", pair=f"{t}-{number}",
                                  kind=kind, text=text, span=[start, start + len(w)],
                                  expected_protected=kind == "personal"))
     return rows

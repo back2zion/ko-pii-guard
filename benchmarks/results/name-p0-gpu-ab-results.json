@@ -1,0 +1,526 @@
+{
+  "scope": "name_p0_gpu_ab_results",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261020
+  },
+  "datasets": {
+    "klue_dev_1000": {
+      "rows": 1000,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "primary": {
+          "guard_gpu_A": {
+            "tp": 765,
+            "fp": 126,
+            "fn": 143,
+            "f1": 0.85047
+          },
+          "raw_A": {
+            "tp": 769,
+            "fp": 128,
+            "fn": 139,
+            "f1": 0.85208
+          },
+          "raw_B": {
+            "tp": 770,
+            "fp": 129,
+            "fn": 138,
+            "f1": 0.85224
+          },
+          "gold_names": 908,
+          "delta_f1": 0.00016,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 1,
+          "spans_added_by_B": 2,
+          "added_spans_matching_gold": 1
+        }
+      },
+      "unannotated_handle_spans_added_by_B": 2,
+      "note": "No nickname gold: added spans are unannotated, not scored as false positives."
+    },
+    "klue_dev_999": {
+      "rows": 999,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "primary": {
+          "guard_gpu_A": {
+            "tp": 743,
+            "fp": 138,
+            "fn": 133,
+            "f1": 0.84576
+          },
+          "raw_A": {
+            "tp": 745,
+            "fp": 140,
+            "fn": 131,
+            "f1": 0.84611
+          },
+          "raw_B": {
+            "tp": 745,
+            "fp": 140,
+            "fn": 131,
+            "f1": 0.84611
+          },
+          "gold_names": 876,
+          "delta_f1": 0.0,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 0,
+          "spans_added_by_B": 0,
+          "added_spans_matching_gold": 0
+        }
+      },
+      "unannotated_handle_spans_added_by_B": 0,
+      "note": "No nickname gold: added spans are unannotated, not scored as false positives."
+    },
+    "klue_fresh_1000": {
+      "rows": 1000,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "primary": {
+          "guard_gpu_A": {
+            "tp": 734,
+            "fp": 138,
+            "fn": 133,
+            "f1": 0.84416
+          },
+          "raw_A": {
+            "tp": 736,
+            "fp": 139,
+            "fn": 131,
+            "f1": 0.84501
+          },
+          "raw_B": {
+            "tp": 736,
+            "fp": 140,
+            "fn": 131,
+            "f1": 0.84452
+          },
+          "gold_names": 867,
+          "delta_f1": -0.00048,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 1,
+          "spans_added_by_B": 1,
+          "added_spans_matching_gold": 0
+        }
+      },
+      "unannotated_handle_spans_added_by_B": 1,
+      "note": "No nickname gold: added spans are unannotated, not scored as false positives."
+    },
+    "kdpii_test_500": {
+      "rows": 500,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "PS_NAME": {
+          "guard_gpu_A": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.85714
+          },
+          "raw_A": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.85714
+          },
+          "raw_B": {
+            "tp": 15,
+            "fp": 24,
+            "fn": 3,
+            "f1": 0.52632
+          },
+          "gold_names": 18,
+          "delta_f1": -0.33083,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 22,
+          "spans_added_by_B": 22,
+          "added_spans_matching_gold": 0,
+          "bootstrap": {
+            "groups": 310,
+            "delta_f1_ci95": [
+              -0.4898,
+              -0.20448
+            ]
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "guard_gpu_A": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.61224
+          },
+          "raw_A": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.61224
+          },
+          "raw_B": {
+            "tp": 27,
+            "fp": 12,
+            "fn": 5,
+            "f1": 0.76056
+          },
+          "gold_names": 32,
+          "delta_f1": 0.14832,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 10,
+          "spans_added_by_B": 22,
+          "added_spans_matching_gold": 12,
+          "bootstrap": {
+            "groups": 310,
+            "delta_f1_ci95": [
+              -0.00548,
+              0.3239
+            ]
+          }
+        }
+      }
+    },
+    "kdpii_fresh_1992": {
+      "rows": 1992,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "PS_NAME": {
+          "guard_gpu_A": {
+            "tp": 66,
+            "fp": 8,
+            "fn": 14,
+            "f1": 0.85714
+          },
+          "raw_A": {
+            "tp": 66,
+            "fp": 8,
+            "fn": 14,
+            "f1": 0.85714
+          },
+          "raw_B": {
+            "tp": 66,
+            "fp": 78,
+            "fn": 14,
+            "f1": 0.58929
+          },
+          "gold_names": 80,
+          "delta_f1": -0.26786,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 70,
+          "spans_added_by_B": 70,
+          "added_spans_matching_gold": 0,
+          "bootstrap": {
+            "groups": 455,
+            "delta_f1_ci95": [
+              -0.34685,
+              -0.19986
+            ]
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "guard_gpu_A": {
+            "tp": 67,
+            "fp": 7,
+            "fn": 47,
+            "f1": 0.71277
+          },
+          "raw_A": {
+            "tp": 67,
+            "fp": 7,
+            "fn": 47,
+            "f1": 0.71277
+          },
+          "raw_B": {
+            "tp": 97,
+            "fp": 47,
+            "fn": 17,
+            "f1": 0.75194
+          },
+          "gold_names": 114,
+          "delta_f1": 0.03917,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 40,
+          "spans_added_by_B": 70,
+          "added_spans_matching_gold": 30,
+          "bootstrap": {
+            "groups": 455,
+            "delta_f1_ci95": [
+              -0.04323,
+              0.12424
+            ]
+          }
+        }
+      }
+    },
+    "synthetic_v11_192": {
+      "rows": 192,
+      "raw_unpatched_equals_arm_A": true,
+      "guard_gpu_vs_cpu_predictions_differing_sentences": 0,
+      "policies": {
+        "primary": {
+          "guard_gpu_A": {
+            "tp": 141,
+            "fp": 12,
+            "fn": 93,
+            "f1": 0.72868
+          },
+          "raw_A": {
+            "tp": 141,
+            "fp": 12,
+            "fn": 93,
+            "f1": 0.72868
+          },
+          "raw_B": {
+            "tp": 144,
+            "fp": 12,
+            "fn": 90,
+            "f1": 0.73846
+          },
+          "gold_names": 234,
+          "delta_f1": 0.00978,
+          "lost_exact_spans_A_to_B": 0,
+          "new_false_positive_spans_in_B": 0,
+          "spans_added_by_B": 3,
+          "added_spans_matching_gold": 3
+        }
+      },
+      "unannotated_handle_spans_added_by_B": 3,
+      "note": "No nickname gold: added spans are unannotated, not scored as false positives."
+    }
+  },
+  "paired_contexts": {
+    "by_kind": {
+      "personal": {
+        "n": 96,
+        "flagged_A": 4,
+        "flagged_B": 94
+      },
+      "non_personal": {
+        "n": 96,
+        "flagged_A": 11,
+        "flagged_B": 76
+      }
+    },
+    "non_personal_newly_flagged_by_B": 65,
+    "newly_flagged_ids": [
+      "handle-0-1-non_personal",
+      "handle-0-3-non_personal",
+      "handle-0-5-non_personal",
+      "handle-0-7-non_personal",
+      "handle-0-8-non_personal",
+      "handle-0-9-non_personal",
+      "handle-0-10-non_personal",
+      "handle-0-13-non_personal",
+      "handle-0-14-non_personal",
+      "handle-0-15-non_personal",
+      "handle-1-3-non_personal",
+      "handle-1-5-non_personal",
+      "handle-1-7-non_personal",
+      "handle-1-8-non_personal",
+      "handle-1-9-non_personal",
+      "handle-1-10-non_personal",
+      "handle-1-11-non_personal",
+      "handle-1-12-non_personal",
+      "handle-1-13-non_personal",
+      "handle-1-14-non_personal",
+      "handle-2-0-non_personal",
+      "handle-2-1-non_personal",
+      "handle-2-2-non_personal",
+      "handle-2-3-non_personal",
+      "handle-2-5-non_personal",
+      "handle-2-7-non_personal",
+      "handle-2-8-non_personal",
+      "handle-2-9-non_personal",
+      "handle-2-10-non_personal",
+      "handle-2-11-non_personal",
+      "handle-2-12-non_personal",
+      "handle-2-13-non_personal",
+      "handle-2-14-non_personal",
+      "handle-2-15-non_personal",
+      "handle-3-1-non_personal",
+      "handle-3-2-non_personal",
+      "handle-3-5-non_personal",
+      "handle-3-7-non_personal",
+      "handle-3-8-non_personal",
+      "handle-3-9-non_personal",
+      "handle-3-10-non_personal",
+      "handle-3-11-non_personal",
+      "handle-3-12-non_personal",
+      "handle-3-13-non_personal",
+      "handle-3-14-non_personal",
+      "handle-3-15-non_personal",
+      "handle-4-5-non_personal",
+      "handle-4-7-non_personal",
+      "handle-4-10-non_personal",
+      "handle-4-11-non_personal",
+      "handle-4-12-non_personal",
+      "handle-4-13-non_personal",
+      "handle-4-14-non_personal",
+      "handle-4-15-non_personal",
+      "handle-5-3-non_personal",
+      "handle-5-5-non_personal",
+      "handle-5-7-non_personal",
+      "handle-5-8-non_personal",
+      "handle-5-9-non_personal",
+      "handle-5-10-non_personal",
+      "handle-5-11-non_personal",
+      "handle-5-12-non_personal",
+      "handle-5-13-non_personal",
+      "handle-5-14-non_personal",
+      "handle-5-15-non_personal"
+    ]
+  },
+  "meta": {
+    "handle_contexts.meta.json": {
+      "dataset": "handle_contexts",
+      "rows": 192,
+      "seconds": 6.7,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": "c425cfe6b35d865737d3741582f089d6a3a167dd419ea274d0cc9ece13234b51",
+      "sidecar_sha256": "613812c67082e8ca5c20f7ef46060684897cca9e61d5834b06fc888aeac01a99"
+    },
+    "kdpii_fresh_1992.meta.json": {
+      "dataset": "kdpii_fresh_1992",
+      "rows": 1992,
+      "seconds": 59.6,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "792da45c97e0b8f5d96fcb2417aa0cc72458556c24950f157dc6c7c7f3cdc06b"
+    },
+    "kdpii_test_500.meta.json": {
+      "dataset": "kdpii_test_500",
+      "rows": 500,
+      "seconds": 15.3,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "06766bc5e2067f248cf41facc28b7bd6a519f99a04fec873302d449f490a2d53"
+    },
+    "klue_dev_1000.meta.json": {
+      "dataset": "klue_dev_1000",
+      "rows": 1000,
+      "seconds": 28.9,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "de2a9b2417589200122380048d74661e7720f4a3ef634eade2457663e9c6c8b9"
+    },
+    "klue_dev_999.meta.json": {
+      "dataset": "klue_dev_999",
+      "rows": 999,
+      "seconds": 32.3,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "138172f412a8342ab86853f6ada693107e7b9e05d8641f304f4c447c93921898"
+    },
+    "klue_fresh_1000.meta.json": {
+      "dataset": "klue_fresh_1000",
+      "rows": 1000,
+      "seconds": 31.0,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "71cef68a161a2a78fff3471d30a292e43d31cadf3f1bcdd906476b9c29845f41"
+    },
+    "synthetic_v11_192.meta.json": {
+      "dataset": "synthetic_v11_192",
+      "rows": 192,
+      "seconds": 6.4,
+      "precision": {
+        "dtype": "float32",
+        "autocast": false,
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "matmul_precision": "highest"
+      },
+      "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+      "name_threshold": 0.9,
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+      "context_set_sha256": null,
+      "sidecar_sha256": "811d0aabcc1f3f2b4f2ec9be92d4dd8117fa69659604ac00c6b40f0a6ab18067"
+    }
+  }
+}
