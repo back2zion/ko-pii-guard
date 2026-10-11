@@ -1,0 +1,75 @@
+{
+  "scope": "name_p0_preregistration_amendment_2",
+  "created_utc": "2026-10-11",
+  "supersedes": "name-p0-preregistration-amendment-1.json (approved parts only; the rest of amendment 1 stays proposed)",
+  "status": "Decision principles conditionally approved by the user. NOT a fully frozen training preregistration: checkpoint selection is verified below but no training grid is registered. Training experiments remain on hold.",
+  "decision_rules": {
+    "primary_metric": "Per source and per protection policy exact-span F1 (TP/FP/FN, precision, recall always reported). No pooled average offsets a source.",
+    "improvement_target": "Each candidate must name its source x policy target(s) before running. The best-improving item after the fact is never promoted to primary.",
+    "training_seeds": "Learned candidates: all three pre-registered seeds (20261010, 20261011, 20261012) must individually pass every regression and improvement condition. Mean/SD/min reported; no best-seed selection. Not required for projections of identical predictions (no training).",
+    "regressions": "Three per-span regressions at zero tolerance (lost exact spans, new false-positive spans, newly exposed previously-masked names); unit = span per sentence; no offsetting by other gains.",
+    "improvement_criterion": "Delta F1 = candidate - baseline; the lower bound of the two-sided 95% percentile interval must be > 0.",
+    "ties_and_uncertainty": "Not adopted. No post-hoc change of criteria, thresholds, seeds or evaluation scope after seeing the same evaluation result."
+  },
+  "bootstrap": {
+    "type": "paired, same resampled indices for baseline and candidate",
+    "resamples": 10000,
+    "interval": "two-sided 95% percentile",
+    "statistic": "pooled TP/FP/FN summed over resampled units, then F1 and Delta F1; not a mean of per-document F1",
+    "resample_unit": "document (sentence record); KDPII records are grouped by the conversation prefix before the first underscore of the ID when that prefix groups >1 record (assumption: ID structure 'DataN.M_a_b'; group counts are reported)",
+    "bootstrap_rng_seed": 20261020,
+    "note": "Bootstrap seed is unrelated to the training seeds."
+  },
+  "checkpoint_selection": {
+    "verified_from_source": "scripts/train_name_multisource.py source_macro_rank (sha256 1d401b185c1c6f03de217705bdd4107ded6f9dbac6db83bb4a272adc5641d6ed)",
+    "formula": "Maximize the tuple (mean exact F1 over validation sources, -sum of FP over those sources, threshold, -epoch), compared lexicographically; higher threshold then earlier epoch break ties.",
+    "validation_sources": "KLUE validation NSMC, KLUE validation Wikitree, KDPII validation (equal macro weights); synthetic validation is reporting only.",
+    "thresholds_and_epochs": "Grid and EPOCHS=3 are defined in that script; any candidate trainer must pin its own grid in its own amendment.",
+    "role_separation": "Validation sets select checkpoints only. Development comparison sets (ledger) judge candidates. A set used for both purposes is reported as development/selection, never as generalization.",
+    "status": "Applies only to trainers that reuse this selection. A different trainer needs its selection formula pinned in a new amendment before training starts."
+  },
+  "product_requirement": {
+    "statement": "The protected scope includes real names AND nicknames, stage names, and user names/handles that identify an individual account. Protection does not require a verified link to a real name. Ordinary words, project code names, organization or shared accounts are not detected merely because they look like names.",
+    "paired_contexts": "Same surface string in a personal-reference context and a non-personal context must be judged differently; see handle_scope_experiment.",
+    "scope_vs_adoption": "Accepting the scope is separate from adopting an implementation. personal_handle is not merged into KR_NAME or any API/metric meaning changed. If the experiment fails, record 'nickname protection requirement unmet'; the requirement is not narrowed to keep scores."
+  },
+  "gpu_baseline": {
+    "environment_python": "/home/woodcross/.venvs/ko-pii-gpu/bin/python",
+    "torch": "2.14.1+cu130",
+    "device": "RTX 3090 (cuda:0)",
+    "dtype": "float32 weights and inputs; autocast OFF; TF32 OFF (matmul and cudnn); torch.set_float32_matmul_precision('highest')",
+    "inference": "Same pinned E5 revision a308c54b, threshold 0.9, 512-token windows, stride 64, batch size 4, same frozen document-ID sets (999/1992 etc.).",
+    "rule": "CPU baseline is preserved and never replaced; candidates compare only with the GPU baseline of identical device/dtype/library settings."
+  },
+  "handle_scope_experiment": {
+    "status": "approved single-factor contrast; no training, no threshold/particle/dictionary change",
+    "arms": {
+      "A": "current output: private_person -> KR_NAME only",
+      "B": "A plus personal_handle spans, projected from the SAME raw model output"
+    },
+    "implementation_note": "Both arms are projected from one raw KoreanNER pass with personal_handle decoded as a separate experimental entity. A is verified to equal the unpatched raw KR_NAME output before use. src/ is not modified.",
+    "declared_targets": "KDPII test 500 and KDPII fresh 1992 under policy PS_NAME+PS_NICKNAME: recall and F1 (primary metric F1).",
+    "fixed_gold": "Both arms are scored against the same gold within each policy. PS_NAME+PS_NICKNAME is the nickname-aware gold; PS_NAME-only gold is used to report regressions on real names and spans added by B that are not real names.",
+    "unannotated_sets": "KLUE and synthetic have no nickname gold: B-added spans there are counted and reported as unannotated handle-type spans, not scored as true or false positives; nickname F1 is not claimed for them.",
+    "paired_context_set": {
+      "generator": "scripts/name_p0_handle_contexts.py",
+      "rows": 192,
+      "sha256": "c425cfe6b35d865737d3741582f089d6a3a167dd419ea274d0cc9ece13234b51",
+      "expected": "kind=personal -> protected; kind=non_personal -> not protected",
+      "note": "Fixed before any model output on these sentences; reserve KLUE/KDPII not used."
+    },
+    "acceptance_for_scope_check": [
+      "Delta F1 lower bound > 0 on both KDPII sets (PS_NAME+PS_NICKNAME)",
+      "zero lost exact spans and zero new spans on real-name gold beyond B-added handle spans (reported individually)",
+      "zero non_personal paired contexts newly flagged by B relative to A",
+      "all counts, including residual misses after the expansion, are reported separately from the scope effect"
+    ],
+    "interpretation": "Result is the effect of widening the output scope of the same model, not a learned improvement."
+  },
+  "not_started": [
+    "training grids",
+    "reserve opening",
+    "product/API change",
+    "push"
+  ]
+}
