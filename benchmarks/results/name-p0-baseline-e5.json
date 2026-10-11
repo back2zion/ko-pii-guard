@@ -1,0 +1,1042 @@
+{
+  "scope": "name_p0_baseline_e5_frozen",
+  "milestone": "M0 / P0-0",
+  "created_at_utc": "2026-10-11T01:15:06Z",
+  "status_of_data": "development only (all consumed); no independent heldout exists",
+  "reserve_unopened_confirmation": "KLUE dev (ID header lines only) and KDPII test (whole file parsed in memory, sent_idx read) files containing the 2,000/2,391 reserve rows were accessed to enumerate IDs; no reserve sentence or label was displayed, selected, scored or used. See name-p0-m0-review.json.",
+  "documented_comparison": [
+    {
+      "dataset": "klue_dev_1000",
+      "policy": "primary",
+      "source": "__all__",
+      "documented": {
+        "tp": 765,
+        "fp": 126,
+        "fn": 143,
+        "fully_covered_names": 812,
+        "f1": 0.8505
+      },
+      "measured": {
+        "tp": 765,
+        "fp": 126,
+        "fn": 143,
+        "fully_covered_names": 812,
+        "f1": 0.8504724847137298
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "klue_dev_999",
+      "policy": "primary",
+      "source": "__all__",
+      "documented": {
+        "f1": 0.8458,
+        "fp": 138,
+        "fn": 133,
+        "mask_failures": 80
+      },
+      "measured": {
+        "f1": 0.8457598178713717,
+        "fp": 138,
+        "fn": 133,
+        "mask_failures": 80
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "kdpii_test_500",
+      "policy": "PS_NAME",
+      "source": "__all__",
+      "documented": {
+        "f1": 0.8571
+      },
+      "measured": {
+        "f1": 0.8571428571428571
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "kdpii_test_500",
+      "policy": "PS_NAME+PS_NICKNAME",
+      "source": "__all__",
+      "documented": {
+        "f1": 0.6122
+      },
+      "measured": {
+        "f1": 0.6122448979591837
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "klue_fresh_1000",
+      "policy": "primary",
+      "source": "nsmc",
+      "documented": {
+        "f1": 0.8058
+      },
+      "measured": {
+        "f1": 0.8058361391694725
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "klue_fresh_1000",
+      "policy": "primary",
+      "source": "wikitree",
+      "documented": {
+        "f1": 0.8844
+      },
+      "measured": {
+        "f1": 0.8844339622641509
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "kdpii_fresh_1992",
+      "policy": "PS_NAME",
+      "source": "__all__",
+      "documented": {
+        "f1": 0.8571
+      },
+      "measured": {
+        "f1": 0.8571428571428571
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    },
+    {
+      "dataset": "kdpii_fresh_1992",
+      "policy": "PS_NAME+PS_NICKNAME",
+      "source": "__all__",
+      "documented": {
+        "f1": 0.7128
+      },
+      "measured": {
+        "f1": 0.7127659574468085
+      },
+      "matches": true,
+      "f1_matched_at": "4 significant digits (percent to 2 decimals)"
+    }
+  ],
+  "execution_conditions": {
+    "code_commit": "36c2c4f9645cc9f7989b684e86c9c28f00a1102e",
+    "working_tree_status": "M scripts/measure_name_p0_baseline.py\n?? benchmarks/results/name-p0-preregistration.json\n?? scripts/measure_name_p0_baseline_raw.py",
+    "model_id": "FrameByFrame/korean-pii-e5-base",
+    "model_revision": "a308c54b4407819624a5661e31e162a269f39818",
+    "hf_cache_snapshot": "/home/woodcross/.cache/huggingface/hub/models--FrameByFrame--korean-pii-e5-base/snapshots/a308c54b4407819624a5661e31e162a269f39818",
+    "snapshot_file_sha256": {
+      "LICENSE": "4bb37c06ecb0da28b1d4f76e9c587bacea0b0cd9991e8771846d13bfde35f221",
+      "README.md": "80de16bb26f08636d611430d71673c69b5692d3b4be2f67844551ca3aea526a8",
+      "config.json": "06b000685c6d52f89bbc1e7328564f088045a96bba1f51f3bd27bb12f5950d9b",
+      "model.safetensors": "923ff800e1743c25abbbe9eda86a66ec23b5983754c1af66c09dbe3633e4d56b",
+      "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+      "tokenizer.json": "d0091a328b3441d754e481db5a390d7f3b8dabc6016869fd13ba350d23ddc4cd",
+      "tokenizer_config.json": "0eed0b0f1a74f1f82c20b5d34d500efc1c3382aa5698678d149edb5487362407"
+    },
+    "tokenizer": "XLMRobertaTokenizerFast",
+    "id2label": {
+      "0": "O",
+      "1": "B-private_person",
+      "2": "I-private_person",
+      "3": "E-private_person",
+      "4": "S-private_person",
+      "5": "B-personal_handle",
+      "6": "I-personal_handle",
+      "7": "E-personal_handle",
+      "8": "S-personal_handle",
+      "9": "B-private_phone",
+      "10": "I-private_phone",
+      "11": "E-private_phone",
+      "12": "S-private_phone",
+      "13": "B-private_email",
+      "14": "I-private_email",
+      "15": "E-private_email",
+      "16": "S-private_email",
+      "17": "B-private_address",
+      "18": "I-private_address",
+      "19": "E-private_address",
+      "20": "S-private_address",
+      "21": "B-private_date",
+      "22": "I-private_date",
+      "23": "E-private_date",
+      "24": "S-private_date",
+      "25": "B-private_url",
+      "26": "I-private_url",
+      "27": "E-private_url",
+      "28": "S-private_url",
+      "29": "B-account_number",
+      "30": "I-account_number",
+      "31": "E-account_number",
+      "32": "S-account_number",
+      "33": "B-ip_address",
+      "34": "I-ip_address",
+      "35": "E-ip_address",
+      "36": "S-ip_address"
+    },
+    "name_threshold": 0.9,
+    "max_window_tokens": 512,
+    "window_stride": 64,
+    "batch_size": 4,
+    "long_documents": "overlapping token windows (return_overflowing_tokens, stride); overlap tokens take the window with more two-sided context",
+    "label_mapping": "KLUE PS -> KR_NAME (other labels non-person); KDPII PS_NAME -> KR_NAME, PS_NICKNAME only in the alternate policy; synthetic v11 KR_NAME",
+    "postprocessing": "KoreanPIIGuard.analyze over KoreanNER spans (src/ko_pii_guard frozen; hashes in frozen_sha256); scoring is exact (start,end) over original string coordinates, entity KR_NAME only, guard score_threshold 0.0",
+    "raw_vs_postprocessed": "Main metrics are guard-level (post-processed). Raw KoreanNER.analyze metrics are in raw_ner_secondary and are never mixed in.",
+    "k_pii_bench": "not used for name measurement (names outside its default profile); pinned revision 844f92f7beba98fa964f957ba324017e82451701 per docs/evaluation.md"
+  },
+  "raw_ner_secondary": {
+    "kdpii_fresh_1992": {
+      "dataset": "kdpii_fresh_1992",
+      "raw_entities_seen": [
+        "KR_ADDRESS",
+        "KR_NAME"
+      ],
+      "wall_seconds": 116.3,
+      "by_source": {
+        "PS_NAME": {
+          "kdpii_v1_test": {
+            "tp": 66,
+            "fp": 8,
+            "fn": 14,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 71,
+            "unnecessary_masked_characters": 14,
+            "precision": 0.8918918918918919,
+            "recall": 0.825,
+            "sentences": 1992,
+            "gold_names": 80
+          },
+          "__all__": {
+            "tp": 66,
+            "fp": 8,
+            "fn": 14,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 71,
+            "unnecessary_masked_characters": 14,
+            "precision": 0.8918918918918919,
+            "recall": 0.825,
+            "sentences": 1992,
+            "gold_names": 80
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "kdpii_v1_test": {
+            "tp": 67,
+            "fp": 7,
+            "fn": 47,
+            "f1": 0.7127659574468085,
+            "fully_covered_names": 72,
+            "unnecessary_masked_characters": 12,
+            "precision": 0.9054054054054054,
+            "recall": 0.5877192982456141,
+            "sentences": 1992,
+            "gold_names": 114
+          },
+          "__all__": {
+            "tp": 67,
+            "fp": 7,
+            "fn": 47,
+            "f1": 0.7127659574468085,
+            "fully_covered_names": 72,
+            "unnecessary_masked_characters": 12,
+            "precision": 0.9054054054054054,
+            "recall": 0.5877192982456141,
+            "sentences": 1992,
+            "gold_names": 114
+          }
+        }
+      }
+    },
+    "kdpii_test_500": {
+      "dataset": "kdpii_test_500",
+      "raw_entities_seen": [
+        "KR_ADDRESS",
+        "KR_NAME"
+      ],
+      "wall_seconds": 31.0,
+      "by_source": {
+        "PS_NAME": {
+          "kdpii_v1_test": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "__all__": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "sentences": 500,
+            "gold_names": 18
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "kdpii_v1_test": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "__all__": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "sentences": 500,
+            "gold_names": 32
+          }
+        }
+      }
+    },
+    "klue_dev_1000": {
+      "dataset": "klue_dev_1000",
+      "raw_entities_seen": [
+        "KR_NAME"
+      ],
+      "wall_seconds": 77.2,
+      "by_source": {
+        "primary": {
+          "nsmc": {
+            "tp": 385,
+            "fp": 64,
+            "fn": 90,
+            "f1": 0.8333333333333334,
+            "fully_covered_names": 417,
+            "unnecessary_masked_characters": 111,
+            "precision": 0.8574610244988864,
+            "recall": 0.8105263157894737,
+            "sentences": 494,
+            "gold_names": 475
+          },
+          "wikitree": {
+            "tp": 384,
+            "fp": 64,
+            "fn": 49,
+            "f1": 0.8717366628830874,
+            "fully_covered_names": 399,
+            "unnecessary_masked_characters": 113,
+            "precision": 0.8571428571428571,
+            "recall": 0.8868360277136259,
+            "sentences": 506,
+            "gold_names": 433
+          },
+          "__all__": {
+            "tp": 769,
+            "fp": 128,
+            "fn": 139,
+            "f1": 0.8520775623268698,
+            "fully_covered_names": 816,
+            "unnecessary_masked_characters": 224,
+            "precision": 0.8573021181716833,
+            "recall": 0.8469162995594713,
+            "sentences": 1000,
+            "gold_names": 908
+          }
+        }
+      }
+    },
+    "klue_dev_999": {
+      "dataset": "klue_dev_999",
+      "raw_entities_seen": [
+        "KR_ADDRESS",
+        "KR_NAME"
+      ],
+      "wall_seconds": 78.1,
+      "by_source": {
+        "primary": {
+          "nsmc": {
+            "tp": 380,
+            "fp": 67,
+            "fn": 76,
+            "f1": 0.8416389811738649,
+            "fully_covered_names": 409,
+            "unnecessary_masked_characters": 130,
+            "precision": 0.8501118568232662,
+            "recall": 0.8333333333333334,
+            "sentences": 490,
+            "gold_names": 456
+          },
+          "wikitree": {
+            "tp": 365,
+            "fp": 73,
+            "fn": 55,
+            "f1": 0.8508158508158508,
+            "fully_covered_names": 389,
+            "unnecessary_masked_characters": 176,
+            "precision": 0.8333333333333334,
+            "recall": 0.8690476190476191,
+            "sentences": 509,
+            "gold_names": 420
+          },
+          "__all__": {
+            "tp": 745,
+            "fp": 140,
+            "fn": 131,
+            "f1": 0.8461101646791596,
+            "fully_covered_names": 798,
+            "unnecessary_masked_characters": 306,
+            "precision": 0.8418079096045198,
+            "recall": 0.8504566210045662,
+            "sentences": 999,
+            "gold_names": 876
+          }
+        }
+      }
+    },
+    "klue_fresh_1000": {
+      "dataset": "klue_fresh_1000",
+      "raw_entities_seen": [
+        "KR_ADDRESS",
+        "KR_NAME"
+      ],
+      "wall_seconds": 76.1,
+      "by_source": {
+        "primary": {
+          "nsmc": {
+            "tp": 360,
+            "fp": 84,
+            "fn": 89,
+            "f1": 0.8062709966405375,
+            "fully_covered_names": 393,
+            "unnecessary_masked_characters": 169,
+            "precision": 0.8108108108108109,
+            "recall": 0.8017817371937639,
+            "sentences": 486,
+            "gold_names": 449
+          },
+          "wikitree": {
+            "tp": 376,
+            "fp": 55,
+            "fn": 42,
+            "f1": 0.8857479387514723,
+            "fully_covered_names": 397,
+            "unnecessary_masked_characters": 119,
+            "precision": 0.8723897911832946,
+            "recall": 0.8995215311004785,
+            "sentences": 514,
+            "gold_names": 418
+          },
+          "__all__": {
+            "tp": 736,
+            "fp": 139,
+            "fn": 131,
+            "f1": 0.8450057405281286,
+            "fully_covered_names": 790,
+            "unnecessary_masked_characters": 288,
+            "precision": 0.8411428571428572,
+            "recall": 0.8489042675893888,
+            "sentences": 1000,
+            "gold_names": 867
+          }
+        }
+      }
+    },
+    "synthetic_v11_192": {
+      "dataset": "synthetic_v11_192",
+      "raw_entities_seen": [
+        "KR_NAME"
+      ],
+      "wall_seconds": 11.4,
+      "by_source": {
+        "primary": {
+          "synthetic_v11_evaluation": {
+            "tp": 141,
+            "fp": 12,
+            "fn": 93,
+            "f1": 0.7286821705426356,
+            "fully_covered_names": 141,
+            "unnecessary_masked_characters": 9,
+            "precision": 0.9215686274509803,
+            "recall": 0.6025641025641025,
+            "sentences": 192,
+            "gold_names": 234
+          },
+          "__all__": {
+            "tp": 141,
+            "fp": 12,
+            "fn": 93,
+            "f1": 0.7286821705426356,
+            "fully_covered_names": 141,
+            "unnecessary_masked_characters": 9,
+            "precision": 0.9215686274509803,
+            "recall": 0.6025641025641025,
+            "sentences": 192,
+            "gold_names": 234
+          }
+        }
+      }
+    }
+  },
+  "datasets": {
+    "kdpii_fresh_1992": {
+      "dataset": "kdpii_fresh_1992",
+      "id_list_source": "name-multisource-v2-fresh-kdpii-lossless.manifest.json",
+      "sentences": 1992,
+      "ids_sha256": "7f270dc6c443bbd619f45bb303d24018828082464563e96bbca24f4b6dcd4267",
+      "texts_sha256": "0f829bb93b1b8f2461359eca8800856ad310b99b60dab2ba2271e0091fd047f8",
+      "id_text_pairs_sha256": "c7cdedb8a546edc8dfcbaf8cff63437d0e24d92bd6593e0c37930cf0f9fb236b",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 218.1,
+      "metrics": {
+        "PS_NAME": {
+          "overall": {
+            "tp": 66,
+            "fp": 8,
+            "fn": 14,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 71,
+            "unnecessary_masked_characters": 14,
+            "precision": 0.8918918918918919,
+            "recall": 0.825,
+            "full_name_coverage": 0.8875,
+            "negative_sentences": 1916,
+            "negative_false_positive_sentences": 3,
+            "sentences": 1992,
+            "gold_names": 80
+          },
+          "by_source": {
+            "kdpii_v1_test": {
+              "tp": 66,
+              "fp": 8,
+              "fn": 14,
+              "f1": 0.8571428571428571,
+              "fully_covered_names": 71,
+              "unnecessary_masked_characters": 14,
+              "precision": 0.8918918918918919,
+              "recall": 0.825,
+              "full_name_coverage": 0.8875,
+              "negative_sentences": 1916,
+              "negative_false_positive_sentences": 3,
+              "sentences": 1992,
+              "gold_names": 80
+            }
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "overall": {
+            "tp": 67,
+            "fp": 7,
+            "fn": 47,
+            "f1": 0.7127659574468085,
+            "fully_covered_names": 72,
+            "unnecessary_masked_characters": 12,
+            "precision": 0.9054054054054054,
+            "recall": 0.5877192982456141,
+            "full_name_coverage": 0.631578947368421,
+            "negative_sentences": 1883,
+            "negative_false_positive_sentences": 2,
+            "sentences": 1992,
+            "gold_names": 114
+          },
+          "by_source": {
+            "kdpii_v1_test": {
+              "tp": 67,
+              "fp": 7,
+              "fn": 47,
+              "f1": 0.7127659574468085,
+              "fully_covered_names": 72,
+              "unnecessary_masked_characters": 12,
+              "precision": 0.9054054054054054,
+              "recall": 0.5877192982456141,
+              "full_name_coverage": 0.631578947368421,
+              "negative_sentences": 1883,
+              "negative_false_positive_sentences": 2,
+              "sentences": 1992,
+              "gold_names": 114
+            }
+          }
+        }
+      }
+    },
+    "kdpii_test_500": {
+      "dataset": "kdpii_test_500",
+      "id_list_source": "name-generalization-final-v1-nonoverlap-kdpii.manifest.json",
+      "sentences": 500,
+      "ids_sha256": "f1732dea21abe81c8f1c59b20680f20a03547cf90c2b76400ca5b22aa9aeb2d6",
+      "texts_sha256": "5427e008d6126e1527a1ea337938eac13b0a4901db0f7d31d9243f172cd9b99a",
+      "id_text_pairs_sha256": "7fe93aebb52687aa80ee2205b1a1edf521377e7818556ded37c650c1c7d79f80",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 44.1,
+      "metrics": {
+        "PS_NAME": {
+          "overall": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "full_name_coverage": 0.8888888888888888,
+            "negative_sentences": 482,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 18
+          },
+          "by_source": {
+            "kdpii_v1_test": {
+              "tp": 15,
+              "fp": 2,
+              "fn": 3,
+              "f1": 0.8571428571428571,
+              "fully_covered_names": 16,
+              "unnecessary_masked_characters": 5,
+              "precision": 0.8823529411764706,
+              "recall": 0.8333333333333334,
+              "full_name_coverage": 0.8888888888888888,
+              "negative_sentences": 482,
+              "negative_false_positive_sentences": 1,
+              "sentences": 500,
+              "gold_names": 18
+            }
+          }
+        },
+        "PS_NAME+PS_NICKNAME": {
+          "overall": {
+            "tp": 15,
+            "fp": 2,
+            "fn": 17,
+            "f1": 0.6122448979591837,
+            "fully_covered_names": 16,
+            "unnecessary_masked_characters": 5,
+            "precision": 0.8823529411764706,
+            "recall": 0.46875,
+            "full_name_coverage": 0.5,
+            "negative_sentences": 468,
+            "negative_false_positive_sentences": 1,
+            "sentences": 500,
+            "gold_names": 32
+          },
+          "by_source": {
+            "kdpii_v1_test": {
+              "tp": 15,
+              "fp": 2,
+              "fn": 17,
+              "f1": 0.6122448979591837,
+              "fully_covered_names": 16,
+              "unnecessary_masked_characters": 5,
+              "precision": 0.8823529411764706,
+              "recall": 0.46875,
+              "full_name_coverage": 0.5,
+              "negative_sentences": 468,
+              "negative_false_positive_sentences": 1,
+              "sentences": 500,
+              "gold_names": 32
+            }
+          }
+        }
+      }
+    },
+    "klue_dev_1000": {
+      "dataset": "klue_dev_1000",
+      "id_list_source": "name-span-v1-external.json",
+      "sentences": 1000,
+      "ids_sha256": "a6a40928bab9e016a88a50fbd66e5826113fce948121433de6ee57ecd9e6af67",
+      "texts_sha256": "241d5ef0b7f5f5b87e04b68b5c7929d4315ab3d7f1e69c20996d38ae97962570",
+      "id_text_pairs_sha256": "1c4e1b08f24f831b8d1289ff5544cba1fca14692dedf09c43f071249c76af0ea",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 120.0,
+      "metrics": {
+        "primary": {
+          "overall": {
+            "tp": 765,
+            "fp": 126,
+            "fn": 143,
+            "f1": 0.8504724847137298,
+            "fully_covered_names": 812,
+            "unnecessary_masked_characters": 217,
+            "precision": 0.8585858585858586,
+            "recall": 0.8425110132158591,
+            "full_name_coverage": 0.8942731277533039,
+            "negative_sentences": 433,
+            "negative_false_positive_sentences": 43,
+            "sentences": 1000,
+            "gold_names": 908
+          },
+          "by_source": {
+            "nsmc": {
+              "tp": 384,
+              "fp": 62,
+              "fn": 91,
+              "f1": 0.8338762214983714,
+              "fully_covered_names": 416,
+              "unnecessary_masked_characters": 104,
+              "precision": 0.8609865470852018,
+              "recall": 0.8084210526315789,
+              "full_name_coverage": 0.8757894736842106,
+              "negative_sentences": 184,
+              "negative_false_positive_sentences": 13,
+              "sentences": 494,
+              "gold_names": 475
+            },
+            "wikitree": {
+              "tp": 381,
+              "fp": 64,
+              "fn": 52,
+              "f1": 0.8678815489749431,
+              "fully_covered_names": 396,
+              "unnecessary_masked_characters": 113,
+              "precision": 0.8561797752808988,
+              "recall": 0.8799076212471132,
+              "full_name_coverage": 0.9145496535796767,
+              "negative_sentences": 249,
+              "negative_false_positive_sentences": 30,
+              "sentences": 506,
+              "gold_names": 433
+            }
+          }
+        }
+      }
+    },
+    "klue_dev_999": {
+      "dataset": "klue_dev_999",
+      "id_list_source": "name-generalization-final-v1-nonoverlap-heldout.manifest.json",
+      "sentences": 999,
+      "ids_sha256": "589b959389ebda0f4efa0e94de87323e18c26ccfa33ad16b3b737401adf2c8f1",
+      "texts_sha256": "1ac733bd73c62cae2a60b5f93f5f38fe4c43df75ffb169002fc8724ef0fdeb88",
+      "id_text_pairs_sha256": "caa2f627f0a661b8183c4de32b08ff573549979a36abbd34c1231fca6046da39",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 113.4,
+      "metrics": {
+        "primary": {
+          "overall": {
+            "tp": 743,
+            "fp": 138,
+            "fn": 133,
+            "f1": 0.8457598178713717,
+            "fully_covered_names": 796,
+            "unnecessary_masked_characters": 301,
+            "precision": 0.8433598183881952,
+            "recall": 0.8481735159817352,
+            "full_name_coverage": 0.908675799086758,
+            "negative_sentences": 442,
+            "negative_false_positive_sentences": 54,
+            "sentences": 999,
+            "gold_names": 876
+          },
+          "by_source": {
+            "nsmc": {
+              "tp": 380,
+              "fp": 67,
+              "fn": 76,
+              "f1": 0.8416389811738649,
+              "fully_covered_names": 409,
+              "unnecessary_masked_characters": 130,
+              "precision": 0.8501118568232662,
+              "recall": 0.8333333333333334,
+              "full_name_coverage": 0.8969298245614035,
+              "negative_sentences": 182,
+              "negative_false_positive_sentences": 21,
+              "sentences": 490,
+              "gold_names": 456
+            },
+            "wikitree": {
+              "tp": 363,
+              "fp": 71,
+              "fn": 57,
+              "f1": 0.8501170960187353,
+              "fully_covered_names": 387,
+              "unnecessary_masked_characters": 171,
+              "precision": 0.836405529953917,
+              "recall": 0.8642857142857143,
+              "full_name_coverage": 0.9214285714285714,
+              "negative_sentences": 260,
+              "negative_false_positive_sentences": 33,
+              "sentences": 509,
+              "gold_names": 420
+            }
+          }
+        }
+      }
+    },
+    "klue_fresh_1000": {
+      "dataset": "klue_fresh_1000",
+      "id_list_source": "name-multisource-v2-fresh-klue.manifest.json",
+      "sentences": 1000,
+      "ids_sha256": "500ded64c3c346e2195c82e5107c2b75371d9fe9c2b2685d5e75d6c822291afc",
+      "texts_sha256": "847b12f82390a227d5ee5af5caa24819ad50597d505f3115fdc01c0f04a73867",
+      "id_text_pairs_sha256": "4fe5268d28cc3b5791e31b8ca685064a770511e24148493557327e8bf1415cf3",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 121.7,
+      "metrics": {
+        "primary": {
+          "overall": {
+            "tp": 734,
+            "fp": 138,
+            "fn": 133,
+            "f1": 0.8441633122484187,
+            "fully_covered_names": 788,
+            "unnecessary_masked_characters": 286,
+            "precision": 0.841743119266055,
+            "recall": 0.8465974625144176,
+            "full_name_coverage": 0.908881199538639,
+            "negative_sentences": 432,
+            "negative_false_positive_sentences": 54,
+            "sentences": 1000,
+            "gold_names": 867
+          },
+          "by_source": {
+            "nsmc": {
+              "tp": 359,
+              "fp": 83,
+              "fn": 90,
+              "f1": 0.8058361391694725,
+              "fully_covered_names": 392,
+              "unnecessary_masked_characters": 167,
+              "precision": 0.8122171945701357,
+              "recall": 0.799554565701559,
+              "full_name_coverage": 0.8730512249443207,
+              "negative_sentences": 182,
+              "negative_false_positive_sentences": 32,
+              "sentences": 486,
+              "gold_names": 449
+            },
+            "wikitree": {
+              "tp": 375,
+              "fp": 55,
+              "fn": 43,
+              "f1": 0.8844339622641509,
+              "fully_covered_names": 396,
+              "unnecessary_masked_characters": 119,
+              "precision": 0.872093023255814,
+              "recall": 0.8971291866028708,
+              "full_name_coverage": 0.9473684210526315,
+              "negative_sentences": 250,
+              "negative_false_positive_sentences": 22,
+              "sentences": 514,
+              "gold_names": 418
+            }
+          }
+        }
+      }
+    },
+    "synthetic_v11_192": {
+      "dataset": "synthetic_v11_192",
+      "id_list_source": "benchmarks/data/name_context_v11.jsonl",
+      "sentences": 192,
+      "ids_sha256": "c81f1fc7317d7a111ce65064978b434d97069ae0ff94cbc3c26f13306cc33752",
+      "texts_sha256": "effcdc13c7a7231ea504b870f12f825569063df5bf660ad87850c67db543ea6e",
+      "id_text_pairs_sha256": "3469c28d1be98828469f986641fa92796367574b14c367f253234951483103fa",
+      "model": {
+        "model_id": "FrameByFrame/korean-pii-e5-base",
+        "revision": "a308c54b4407819624a5661e31e162a269f39818",
+        "name_threshold": 0.9,
+        "guard_score_threshold": 0.0
+      },
+      "pipeline": "Public KoreanPIIGuard(entities=['KR_NAME'], score_threshold=0.0).analyze and separate mask(style='stars'); exact (start,end) span match",
+      "runtime": {
+        "python": "3.12.13",
+        "torch": "2.14.1+cpu",
+        "transformers": "4.57.6",
+        "device": "cpu",
+        "cuda_available": false,
+        "torch_threads": 2,
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+      },
+      "wall_seconds": 20.4,
+      "metrics": {
+        "primary": {
+          "overall": {
+            "tp": 141,
+            "fp": 12,
+            "fn": 93,
+            "f1": 0.7286821705426356,
+            "fully_covered_names": 141,
+            "unnecessary_masked_characters": 9,
+            "precision": 0.9215686274509803,
+            "recall": 0.6025641025641025,
+            "full_name_coverage": 0.6025641025641025,
+            "negative_sentences": 48,
+            "negative_false_positive_sentences": 0,
+            "sentences": 192,
+            "gold_names": 234
+          },
+          "by_source": {
+            "synthetic_v11_evaluation": {
+              "tp": 141,
+              "fp": 12,
+              "fn": 93,
+              "f1": 0.7286821705426356,
+              "fully_covered_names": 141,
+              "unnecessary_masked_characters": 9,
+              "precision": 0.9215686274509803,
+              "recall": 0.6025641025641025,
+              "full_name_coverage": 0.6025641025641025,
+              "negative_sentences": 48,
+              "negative_false_positive_sentences": 0,
+              "sentences": 192,
+              "gold_names": 234
+            }
+          }
+        }
+      }
+    }
+  },
+  "pooled_klue_by_source": {
+    "nsmc": {
+      "tp": 1123,
+      "fp": 212,
+      "fn": 257,
+      "fully_covered_names": 1217,
+      "unnecessary_masked_characters": 401,
+      "negative_false_positive_sentences": 66,
+      "negative_sentences": 548,
+      "sentences": 1470,
+      "gold_names": 1380,
+      "f1": 0.827255985267035,
+      "pooled_from": [
+        "klue_dev_1000",
+        "klue_dev_999",
+        "klue_fresh_1000"
+      ]
+    },
+    "wikitree": {
+      "tp": 1119,
+      "fp": 190,
+      "fn": 152,
+      "fully_covered_names": 1179,
+      "unnecessary_masked_characters": 403,
+      "negative_false_positive_sentences": 85,
+      "negative_sentences": 759,
+      "sentences": 1529,
+      "gold_names": 1271,
+      "f1": 0.8674418604651163,
+      "pooled_from": [
+        "klue_dev_1000",
+        "klue_dev_999",
+        "klue_fresh_1000"
+      ]
+    }
+  },
+  "predictions_sidecar": {
+    "path": "benchmarks/results/name-p0-baseline-e5.predictions.jsonl",
+    "sha256": "1047cdfc54db5112f98d25abbb559d0e9c372734125af1076dc60bb756e9a35e",
+    "rows": 5683,
+    "note": "per-sentence predicted spans, gold spans and fully-masked spans (no text) for later per-span regression checks"
+  },
+  "script_sha256": "b27091468034056dd2ba575239ce8456c7ab409f744a5787ab7b88858abe0e92",
+  "frozen_sha256": {
+    "/tmp/ko-pii-klue-ner/klue-ner-v1.1_dev.tsv": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+    "/tmp/ko-pii-kdpii-v1/test.json": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+    "/home/woodcross/projects/ko-pii-guard/scripts/evaluate_name_generalization.py": "9af3cd76fe9c4d6bc75fa58de6671ae95795a059a3fc47dc85bbe578bd6483e6",
+    "/home/woodcross/projects/ko-pii-guard/scripts/train_name_span_experiment.py": "6f5cabfb46379aa29098516965311f7e7b3b4fe63e67227b46dd2a8abe4e37ba",
+    "/home/woodcross/projects/ko-pii-guard/scripts/kdpii_lossless_annotations.py": "0c981716aaa777c4095d46f833ea14d2cb9ffcd4a9f17b19912cefac92f030fe",
+    "/home/woodcross/projects/ko-pii-guard/scripts/fetch_kdpii_evaluation.py": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+    "/home/woodcross/projects/ko-pii-guard/benchmarks/data/name_context_v11.jsonl": "86b9eff44f9ffa3fa75a9f7d67ae00ef58edbc0fa55e6b9314463cb0c77115ba",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/__init__.py": "06e5fa5ed0eb80d3103e9388181c65d84717bc7a2849556f22be68d0c6c5761e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/account_formats.py": "c07f32aa846bb5b82dbb9c8971e2b21c30ef1de08a742fbbd3a65e0df0c1c4b8",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/addresses.py": "c442dbd65cab3b62bf254a114e4026c4e96815b5948de295dda87d2954a35b1f",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/analyzer.py": "b31da2000c93f85ba1593379362e54213f3706f4222ba655eafa9786ce2f724e",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/context.py": "c6a1e3cbc2527a71628f260beea3d4955f71f107ff188903a7edbf2962c9619d",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/guardrails_validator.py": "ac091f544a58d9c7708a4e092e404e8e0560281f8b45c017b30521bbda69c806",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/name_context.py": "808ca4a8eab0e718ca58dcf13f6b7b3fedd40ca9d6d043f5b5e9f158264694b3",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/names.py": "185ed5802232292c01e4f5b2eb926c4625fb789cab4fff2327bd36bde2638da2",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/ner.py": "f80c14a7d48186563d170582392b75afe1be1defedd6d3ff1d622df949b7cfea",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/normalization.py": "9708ceaebc1e8705c657b81f62801d0cde39f6c9ba7271c0f70fe2d22d569e24",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/recognition.py": "1604b0a44dced21b9142253c51a0b919ee346c65730df2824f98bc9e3e897802",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/spans.py": "de476537298033b174cbb89fe092dd829ada9b971ab4bf89b9e488415c4ba4c0",
+    "/home/woodcross/projects/ko-pii-guard/src/ko_pii_guard/validation.py": "9fa88d76c7df1e322bb8cc9a9d33040a5346f4bd430114271973758cdb7eb91f"
+  }
+}

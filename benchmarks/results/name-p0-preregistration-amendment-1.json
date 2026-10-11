@@ -1,0 +1,16 @@
+{
+  "scope": "name_p0_preregistration_amendment_1",
+  "created_utc": "2026-10-11",
+  "precedes_any_candidate_result": true,
+  "status": "PROPOSED - requires explicit user approval before it becomes binding",
+  "purpose": "Make the decision rules of name-p0-preregistration.json decidable before any candidate is run. No numeric improvement targets.",
+  "primary_metric": "Per source and per gold policy exact-span F1 at guard level (public analyze), reported with TP/FP/FN. Candidates are judged by the per-source constraints, not by a pooled score.",
+  "seed_aggregation": "A candidate passes only if every seed passes every constraint; no best-seed selection. The reported value is the median seed, with min/max alongside.",
+  "constraint_tolerance": "Zero tolerance for the three per-span regressions (lost exact spans, new false-positive spans, newly exposed names). For aggregate counts (F1, full-mask names, non-person FP sentences, unnecessary characters) the candidate must be equal or better than baseline, with no tolerance.",
+  "improvement_criterion": "At least one source improves the hypothesis metric (miss, false positive or boundary error) with the paired-bootstrap 95% interval for the difference excluding 0; point improvements inside the interval are reported as 'no demonstrated gain'.",
+  "ties_and_uncertain": "Ties, intervals containing 0, or seed disagreement are treated as not adopted. They are not resolved by opening more data.",
+  "candidate_freeze": "finalized=true with sha256 of weights, config, selection manifest and the code commit is recorded before the reserve or any new heldout is opened.",
+  "checkpoint_selection": "Unresolved: weights/tie-break of scripts/name_multisource_selection.py must be pinned from source in a further amendment before M1.",
+  "nickname_policy": "KDPII PS_NAME and PS_NAME+PS_NICKNAME are both mandatory columns. Because personal_handle is ignored by the shipped mapping, a nickname-aware run is a separate hypothesis that needs its own entry and user decision on scope.",
+  "device_policy": "The CPU baseline (torch 2.14.1+cpu, 2 threads) is preserved unchanged. Before any candidate comparison the same checkpoint and frozen sets are re-measured on the GPU environment as a separate baseline; candidates are compared only against the baseline from the same device, dtype and library versions. CPU and GPU baselines are never merged."
+}

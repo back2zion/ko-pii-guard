@@ -1,0 +1,24 @@
+{
+  "purpose": "GPU environment for P0 candidate runs; smoke test with synthetic tensors only, no datasets",
+  "venv": "/home/woodcross/.venvs/ko-pii-gpu (separate from the CPU baseline .venv)",
+  "python": "3.12.13",
+  "torch": "2.14.1+cu130",
+  "cuda_runtime": "13.0",
+  "cudnn": 92400,
+  "device": "NVIDIA GeForce RTX 3090",
+  "driver": "591.86 (nvidia-smi CUDA 13.1)",
+  "smoke": {
+    "matmul_2048": true,
+    "train_20_steps_loss_start": 2.1643,
+    "loss_end": 1.2472
+  },
+  "pinned": [
+    "huggingface-hub==0.36.2",
+    "numpy==2.4.6",
+    "safetensors==0.8.0",
+    "tokenizers==0.22.2",
+    "torch==2.14.1+cu130",
+    "transformers==4.57.6"
+  ],
+  "note": "Baseline CPU numbers are not replaced. Re-measure the frozen checkpoint on this environment as a separate GPU baseline before comparing any candidate. Dtype and mixed-precision settings must be fixed then."
+}

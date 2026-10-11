@@ -1,0 +1,317 @@
+{
+  "scope": "name_p0_consumption_ledger",
+  "milestone": "M0",
+  "created_date": "2026-10-11",
+  "policy": "Each entry separates source-text viewing, gold-label viewing and aggregate-score viewing. 'Consumed' = labels opened for model decisions; such sets are development data permanently. Reserve entries stay preserved and unscored.",
+  "source_pins": {
+    "klue": {
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "file": "klue-ner-v1.1_dev.tsv",
+      "sha256": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+      "license": "CC-BY-SA-4.0"
+    },
+    "kdpii": {
+      "zenodo_record": 10968609,
+      "file": "test.json",
+      "sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+      "license": "CC-BY-4.0"
+    }
+  },
+  "k_pii_bench": {
+    "used_for_names": false,
+    "revision": "844f92f7beba98fa964f957ba324017e82451701",
+    "note": "Entity types other than names only; first 500 rows are development, rows 10,000-10,499 were evaluated for other entity types (docs/evaluation.md). Keep this revision for any numeric cross-check."
+  },
+  "independent_heldout_available": false,
+  "datasets": [
+    {
+      "id": "klue_train",
+      "status": "train",
+      "dataset": "KLUE NER v1.1 train (Wikitree, NSMC)",
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "split": "train; 8,613 NSMC + 10,288 Wikitree after cleaning (18,901) in generalization-v1 train",
+      "count": 18901,
+      "purpose": "training of generalization-v1 and multisource-v2 heads; E5 itself also trained on KLUE train per its model card",
+      "access": {
+        "source_text": "viewed (training)",
+        "gold_labels": "viewed (training)",
+        "aggregate_scores": "viewed"
+      },
+      "manifest": "artifacts/name-generalization-v1/data-manifest.json",
+      "training_text_hashes": "artifacts/name-generalization-v1/training-text-hashes.json",
+      "note": "Plan table 3.1 cites 28,909 rows for the generalization-v1 train file, which also includes 10,008 synthetic rows; real rows = 18,901.",
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "klue_validation_2100",
+      "status": "validation",
+      "count": 2100,
+      "dataset": "KLUE-derived held-out-from-train validation (Wikitree 1,143 + NSMC 957)",
+      "purpose": "checkpoint/threshold selection",
+      "manifest": "artifacts/name-multisource-v2-verified/data-manifest.json (klue-validation.jsonl sha256 4a266c00...)",
+      "training_text_hashes": "artifacts/name-multisource-v2-verified/training-text-hashes.json",
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "kdpii_train",
+      "status": "train",
+      "count": 9850,
+      "dataset": "KDPII v1 train (Zenodo record 10968609), after removing 125 evaluation-overlap rows and 61 duplicates",
+      "revision": "zenodo record 10968609 v1",
+      "source_sha256": "3c65f8c7e48196110d14fa58f591f4a0cb54682a5ab26616292ea54ec4bd46fb",
+      "purpose": "multisource-v2 training; E5 also trained on KDPII per model card",
+      "manifest": "artifacts/name-multisource-v2-verified/data-manifest.json",
+      "training_text_hashes": "artifacts/name-multisource-v2-verified/training-text-hashes.json",
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "kdpii_valid",
+      "status": "validation",
+      "count": 4975,
+      "dataset": "KDPII v1 valid",
+      "source_sha256": "3ffa97a75c584161f1096af6d2bbd252aa5e5ed556bdbe8bcb1467a57bc397c1",
+      "purpose": "checkpoint selection",
+      "manifest": "artifacts/name-multisource-v2-verified/data-manifest.json (kdpii-validation.jsonl sha256 9d22b1eb...)",
+      "training_text_hashes": "artifacts/name-multisource-v2-verified/training-text-hashes.json",
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "synthetic_v11_train",
+      "status": "train",
+      "count": 10056,
+      "dataset": "benchmarks/data/name_context_v11.jsonl split=train",
+      "file_sha256": "86b9eff44f9ffa3fa75a9f7d67ae00ef58edbc0fa55e6b9314463cb0c77115ba",
+      "purpose": "synthetic training; 10,008 rows used in generalization-v1 train after dedup/conflict removal, 2,000 in multisource-v2 train",
+      "note": "Raw train rows 10,056 (file) vs plan 10,008 (post-cleaning count in generalization-v1 manifest); not a conflict, different stage.",
+      "manifest": "artifacts/name-generalization-v1/data-manifest.json",
+      "id_pointer": "benchmarks/data/name_context_v11.jsonl (split field)",
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "synthetic_v11_validation_96",
+      "status": "validation (reporting only)",
+      "count": 96,
+      "dataset": "name_context_v11.jsonl split=validation",
+      "id_pointer": "benchmarks/data/name_context_v11.jsonl (split=validation)",
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "synthetic_v11_192",
+      "status": "development",
+      "count": 192,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/synthetic_v11_192.json",
+        "sha256": "3c712e93de8dcb1e2513906a7272ebc084059d0e4b166d424aa878df0b06ba17",
+        "ids": 192
+      },
+      "dataset": "name_context_v11.jsonl split=evaluation",
+      "purpose": "diagnostic development (not independent)",
+      "id_pointer": "benchmarks/data/name_context_v11.jsonl (split=evaluation)",
+      "evidence": [
+        "docs/name-span-experiment-v1.md"
+      ],
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "klue_dev_1000",
+      "status": "development",
+      "count": 1000,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/klue_dev_1000.json",
+        "sha256": "3bc6f614ee2f124eb739be910bd1af3ab6dbddfe136d410cd033f816482dbfec",
+        "ids": 1000
+      },
+      "dataset": "KLUE NER v1.1 dev, first 1000 by SHA256('ko-pii-external-v1:'+ID)",
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "source_sha256": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+      "id_list": "benchmarks/results/name-span-v1-external.json (selected_ids)",
+      "purpose": "joint-span v1 external test; error-cause analysis -> development",
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "klue_dev_999",
+      "status": "development",
+      "count": 999,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/klue_dev_999.json",
+        "sha256": "52c5174eb368cd5da256b0149a196d723c248f68b93008238be9c41faeee2d64",
+        "ids": 999
+      },
+      "dataset": "KLUE NER v1.1 dev, generalization-v1 'heldout' 1000 minus 1 exact-text-overlap ID (klue-ner-v1_dev_04155-wikitree)",
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "source_sha256": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+      "id_list": "benchmarks/results/name-generalization-final-v1-nonoverlap-heldout.manifest.json (selected_ids; originally_selected_ids has 1000)",
+      "purpose": "generalization-v1 heldout; labels opened, candidate rejected -> development",
+      "excluded_unopened": {
+        "ids": [
+          "klue-ner-v1_dev_04155-wikitree"
+        ],
+        "state": "text hashed for the overlap audit; labels not parsed; excluded, not replaced"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "klue_fresh_1000",
+      "status": "development",
+      "count": 1000,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/klue_fresh_1000.json",
+        "sha256": "840034ca46649954982e5c478b26e7d0e1936c27e6dc1ba495fe7f784aa6565c",
+        "ids": 1000
+      },
+      "dataset": "KLUE NER v1.1 dev, multisource-v2 fresh 1000 (ID-hash order from the reserve)",
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "source_sha256": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+      "id_list": "benchmarks/results/name-multisource-v2-fresh-klue.manifest.json (selected_ids)",
+      "purpose": "multisource-v2 fresh test; candidate rejected for regression -> development",
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "kdpii_test_500",
+      "status": "development",
+      "count": 500,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/kdpii_test_500.json",
+        "sha256": "5d737396fbf7695231fa96a7e209e998596c112c3f32f10694584b72add9936b",
+        "ids": 500
+      },
+      "dataset": "KDPII v1 official test, first 500 by SHA256('ko-pii-kdpii-v1:'+sent_idx)",
+      "revision": "zenodo record 10968609 test.json",
+      "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+      "id_list": "selection.json produced by scripts/fetch_kdpii_evaluation.py == selected_ids of benchmarks/results/name-generalization-final-v1-nonoverlap-kdpii.manifest.json (verified equal)",
+      "purpose": "generalization-v1 second source; development",
+      "policies": [
+        "PS_NAME",
+        "PS_NAME+PS_NICKNAME"
+      ],
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "kdpii_fresh_1992",
+      "status": "development",
+      "count": 1992,
+      "access": {
+        "source_text": "viewed",
+        "gold_labels": "viewed",
+        "aggregate_scores": "viewed"
+      },
+      "id_text_hash_file": {
+        "path": "benchmarks/results/name-p0-ledger-hashes/kdpii_fresh_1992.json",
+        "sha256": "4fb9179e5fd1dd78c34abb3555c12244b691ee01e79d7348c09da6a80b0a032e",
+        "ids": 1992
+      },
+      "dataset": "KDPII v1 official test, multisource-v2 fresh 2000 minus 8 exact/normalized text-overlap IDs",
+      "revision": "zenodo record 10968609 test.json",
+      "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+      "id_list": "benchmarks/results/name-multisource-v2-fresh-kdpii-lossless.manifest.json (selected_ids; original_selected_ids has 2000)",
+      "amendment": "benchmarks/results/name-multisource-v2-text-amendment.json (created 2026-10-10T10:56:32Z)",
+      "purpose": "multisource-v2 fresh test; labels converted and inference done -> development",
+      "policies": [
+        "PS_NAME",
+        "PS_NAME+PS_NICKNAME"
+      ],
+      "excluded_unopened": {
+        "count": 8,
+        "state": "text hashed for overlap audit; labels not parsed; excluded, not replaced"
+      },
+      "date_consumed": "2026-10-10"
+    },
+    {
+      "id": "klue_dev_reserve_2000",
+      "status": "reserve-preserved (file accessed, content not viewed or used)",
+      "count": 2000,
+      "dataset": "KLUE NER v1.1 dev remainder",
+      "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+      "source_sha256": "0f4d5e818f7b82d299c3a87856fc40a706f5943207580ddb252397e387050a54",
+      "id_derivation": "all 5,000 dev header IDs minus the 3,000 consumed (1000 + 1000 + 1000 original selections)",
+      "id_list_sha256_sorted_newline": "c0b4f70c7633609e304932ba408f4d0bb98bf2223b68c464bd5dc9dfb4fb979e",
+      "reserve_record": "benchmarks/results/name-multisource-v2-reserve.json",
+      "access": {
+        "file_downloaded_and_hash_verified": true,
+        "file_parsed": "only lines starting with '## klue-ner-' were read to enumerate dev IDs; sentence/label lines were not read by this code",
+        "source_text_viewed_or_used": "no evidence (tool outputs of the M0 run reviewed: only counts and hashes were printed)",
+        "gold_labels_viewed_or_used": "no evidence (same review)",
+        "scored_or_used_for_selection": false,
+        "aggregate_scores": "not computed or viewed"
+      },
+      "note": "At M0 only header IDs were enumerated to compute the ID hash (a procedure the repository already uses). The pinned source file is one file and sits locally, hash-verified, but no reserve row was parsed or scored. Not independent (plan 3.1): auxiliary confirmation only, one opening.",
+      "date_consumed": null
+    },
+    {
+      "id": "kdpii_test_reserve_2391",
+      "status": "reserve-preserved (file accessed, content not viewed or used)",
+      "count": 2391,
+      "dataset": "KDPII v1 test remainder",
+      "revision": "zenodo record 10968609 test.json",
+      "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+      "id_derivation": "all 4,891 test sent_idx minus 500 (kdpii_test_500) minus 2,000 (original multisource-v2 fresh selection)",
+      "id_list_sha256_sorted_newline": "fecfb46ee0125097aa2d000ecd8a2b1bae7f100c078a2565f16b6eac9322bc9a",
+      "reserve_record": "benchmarks/results/name-multisource-v2-reserve.json",
+      "access": {
+        "file_downloaded_and_hash_verified": true,
+        "file_parsed": "whole test.json deserialised into Python objects (json.load) in the M0 ID-hash step and by the shared fetch script in earlier runs; sent_idx of every row was read, other fields were not referenced and the object was deleted",
+        "source_text_viewed_or_used": "no evidence (tool outputs of the M0 run reviewed: only counts and hashes were printed)",
+        "gold_labels_viewed_or_used": "no evidence (same review)",
+        "scored_or_used_for_selection": false,
+        "aggregate_scores": "not computed or viewed"
+      },
+      "note": "The unmodified fetch script (shared with earlier runs) loads the whole test.json with a JSON parser to pick selected records, and this milestone read sent_idx of every row to hash the reserve ID list. No reserve label/sentence field was read, selected, converted or scored.",
+      "date_consumed": null
+    }
+  ],
+  "date_note": "Repository history records one squashed commit date (2026-10-10 +09:00) for all of these artifacts; finer consumption timestamps exist only where noted (amendment 2026-10-10T10:56:32Z). Dates here are therefore 2026-10-10 as the recorded date, not an exact time.",
+  "document_discrepancies": [
+    "Plan 3.1 says synthetic train 10,008; the v11 file has 10,056 train rows, 10,008 are used after cleaning in generalization-v1.",
+    "Plan 3.1 'KLUE train 28,909 series' is the generalization-v1 train file including 10,008 synthetic rows."
+  ]
+}

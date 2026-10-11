@@ -1,0 +1,74 @@
+{
+  "scope": "name_p0_m0_review",
+  "reviewed_utc": "2026-10-11",
+  "reviewer_note": "Independent review of the M0 artifacts written by a delegated agent; counts recomputed from the prediction sidecar, not by re-running inference.",
+  "execution_provenance": {
+    "recorded_code_commit": "36c2c4f9645cc9f7989b684e86c9c28f00a1102e",
+    "recorded_commit_status": "Rewritten later the same day (soft reset and recommit); the equivalent commit is 93b1d8e. The rewritten commit is still in the object store.",
+    "src_and_benchmark_py_changed_between_recorded_and_current_head": false,
+    "evidence": "git diff --stat 36c2c4f HEAD -- src scripts benchmarks/*.py shows only scripts/measure_name_p0_baseline.py (an earlier draft was swept into 36c2c4f, then removed from history)",
+    "executed_script_sha256": "b27091468034056dd2ba575239ce8456c7ab409f744a5787ab7b88858abe0e92",
+    "executed_script_matches_current_working_file": true,
+    "script_version_inside_36c2c4f_sha256": "f1cec3ec2700c8d98fadf9532701adba872cae2ab19f3b67fdfa47eff4d2f235",
+    "note": "The run used the final working-tree script, not the draft inside 36c2c4f. The commit that archives these artifacts is a later commit and is not the commit the measurement ran on; the run-time working-tree state is recorded in the baseline JSON (execution_conditions.working_tree_status) and src/ file hashes in frozen_sha256.",
+    "raw_script_sha256": "79a6eb5e35cb7b1dce52f9c9156cc5a263f7957a66c1f8bc9e745f2ffa8acfdd"
+  },
+  "sidecar_recomputation": {
+    "command": "uv run --frozen python scripts/render_name_p0_baseline_table.py",
+    "result": "all TP/FP/FN, full-mask, negative-sentence and lineage counts for 8 dataset/policy rows match the stored JSON",
+    "sidecar_sha256": "1047cdfc54db5112f98d25abbb559d0e9c372734125af1076dc60bb756e9a35e"
+  },
+  "lineage": {
+    "klue_dev_1000": "1000 -> 0 excluded -> 1000",
+    "klue_dev_999": "1000 -> 1 excluded (klue-ner-v1_dev_04155-wikitree, exact text overlap) -> 999",
+    "klue_fresh_1000": "1000 -> 0 -> 1000",
+    "kdpii_test_500": "500 -> 0 -> 500",
+    "kdpii_fresh_1992": "2000 -> 8 excluded (exact text overlap) -> 1992",
+    "synthetic_v11_192": "192 -> 0 -> 192",
+    "failed_documents": 0,
+    "rule": "Excluded documents were fixed before inference and never replaced from reserve. Candidates must be compared on exactly these document-ID sets (the 999/1992 sets, not the nominal 1000/2000)."
+  },
+  "reserve_access_review": {
+    "method": "Reviewed every Bash/Write tool call of the M0 run that referenced the reserve files and their printed output.",
+    "findings": [
+      "KLUE dev.tsv: only lines starting with '## klue-ner-' were read (ID header lines); output printed counts and hashes only.",
+      "KDPII test.json: json.load of the whole file, then only sent_idx was kept and the object deleted; output printed counts and hashes only.",
+      "No reserve sentence, label, prediction or score appears in any printed output, debug output or tool result."
+    ],
+    "conclusion": "File accessed and structurally parsed; content not viewed, scored, selected or used. Independence of the reserve is still not claimed.",
+    "files_on_disk": [
+      "/tmp/ko-pii-klue-ner",
+      "/tmp/ko-pii-kdpii-v1"
+    ],
+    "access_control_note": "Presence under /tmp is not an access control. Experiment processes must be given development inputs only (the per-dataset ID lists), never the raw source files."
+  },
+  "wording_corrections_applied": {
+    "note": "Original strings preserved here; replaced in the files because they overstated non-access.",
+    "originals": {
+      "klue_dev_reserve_2000": {
+        "access": {
+          "source_text": "not viewed",
+          "gold_labels": "not parsed or viewed",
+          "aggregate_scores": "not computed or viewed"
+        },
+        "note": "At M0 only header IDs were enumerated to compute the ID hash (a procedure the repository already uses). The pinned source file is one file and sits locally, hash-verified, but no reserve row was parsed or scored. Not independent (plan 3.1): auxiliary confirmation only, one opening.",
+        "status": "reserve-unopened (preserved)"
+      },
+      "kdpii_test_reserve_2391": {
+        "access": {
+          "source_text": "not viewed",
+          "gold_labels": "not read or viewed",
+          "aggregate_scores": "not computed or viewed"
+        },
+        "note": "The unmodified fetch script (shared with earlier runs) loads the whole test.json with a JSON parser to pick selected records, and this milestone read sent_idx of every row to hash the reserve ID list. No reserve label/sentence field was read, selected, converted or scored.",
+        "status": "reserve-unopened (preserved)"
+      },
+      "baseline.reserve_unopened_confirmation": "KLUE 2,000 and KDPII 2,391 reserve rows were not selected, parsed or scored.",
+      "prereg.reserve_opening_policy.state_at_M0": "preserved unopened: no text, label or score viewed, none scored, none selected"
+    }
+  },
+  "mapping_finding": {
+    "statement": "The shipped name path maps only the E5 label private_person to KR_NAME (src/ko_pii_guard/ner.py). personal_handle is a separate E5 output class and is ignored by design.",
+    "consequence": "KDPII PS_NAME+PS_NICKNAME recall is low (kdpii_fresh_1992: 58.77% vs 82.50% for PS_NAME; the 34 nickname gold names add 1 TP) because nicknames are outside the mapped label set, not because they were tried and missed. Both policies stay in every report. Whether nicknames are required protection scope is a product decision and is not changed here."
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "scope": "name_p0_preregistration",
+  "milestone": "M0",
+  "source_document": "docs/name-p0-research-plan.md",
+  "source_document_sha256": "a28b000b80e139d0bc6e4d7b256ca4c300d00e28a45688daaf76594149f8c9e9",
+  "frozen_before_any_experiment": true,
+  "created_date": "2026-10-11",
+  "rules": [
+    "This file is written before any P0-1..P0-4 training or evaluation; the grid below may not be extended after results are seen.",
+    "Rule-based detectors are frozen; only the name model path is varied.",
+    "No numeric improvement targets are set. Per-source targets are decided only after the frozen baseline (benchmarks/results/name-p0-baseline-e5.json) exists and are not part of this file.",
+    "Items marked assumption=true are not resolved by the plan; each must be resolved and appended as a dated amendment file BEFORE the first run that depends on it, never after seeing that run's results.",
+    "Results are reported as 'development-data candidate' only. No candidate is reported as having passed an independent evaluation while no independent heldout exists."
+  ],
+  "ledger": "benchmarks/results/name-p0-ledger.json",
+  "baseline": "benchmarks/results/name-p0-baseline-e5.json",
+  "common": {
+    "baseline_model": {
+      "model": "default pinned E5 (FrameByFrame/korean-pii-e5-base)",
+      "name_threshold": 0.9,
+      "guard_score_threshold": 0.0,
+      "pipeline": "public analyze + separate mask(style='stars')",
+      "same_device_and_library_versions_as_candidates": true
+    },
+    "seeds": [
+      20261010,
+      20261011,
+      20261012
+    ],
+    "seed_note": "or stage-specific document seeds (plan wording)",
+    "training_data": {
+      "KLUE_NER_v1.1_train": "Wikitree and NSMC via prepare_name_generalization_data.py",
+      "KDPII_v1_train": "via prepare_name_multisource_data.py",
+      "synthetic": "name_context_v11.jsonl train split",
+      "input_hashes_recorded_before_selection": true,
+      "required_exact_and_normalized_text_overlap_with_evaluation_and_development": 0
+    },
+    "validation_for_checkpoint_selection": {
+      "sets": [
+        "KLUE validation 2,100",
+        "KDPII valid",
+        "synthetic validation 96 (reporting only)"
+      ],
+      "selection_rule": "equal-weight per-source exact F1, reusing the multisource-v2 selection method (scripts/name_multisource_selection.py)",
+      "assumption": true,
+      "unresolved": "exact weighting/tie-break must be copied from multisource-v2 source and pinned in an amendment"
+    },
+    "development_comparison_sets": [
+      "KLUE dev 1,000",
+      "KLUE dev 999",
+      "KDPII test 500",
+      "multisource-v2 KLUE fresh 1,000",
+      "multisource-v2 KDPII fresh 1,992",
+      "synthetic v11 evaluation 192 (diagnostic)"
+    ],
+    "development_sets_note": "All already opened (labels consumed); repeated use allowed for policy/cutoff/seed comparison. Exact IDs/hashes are in the ledger.",
+    "independent_final_judgement": "None available. Reserve KLUE 2,000 / KDPII 2,391 are auxiliary confirmation only, opened at most once, only for a finished candidate, after a fresh exact/normalized text-overlap audit, and are never reported as independent generalization (assumption: this usage is itself an assumption in the plan).",
+    "metrics": [
+      "per source and per gold policy: exact TP/FP/FN/F1",
+      "full-name coverage count under actual mask(style='stars')",
+      "unnecessary masked characters",
+      "non-person false-positive sentences",
+      "three per-span regressions: lost previously exact spans, new false-positive spans, newly exposed previously fully masked names",
+      "paired sentence bootstrap, 500 repetitions, 95% interval (sentence unit, not document unit: uncertainty may be understated)",
+      "worst case by name type and by document length",
+      "CPU latency and memory (benchmarks/performance_benchmark.py reuse; suitability for name candidates is an assumption to verify)"
+    ],
+    "kdpii_policies": "PS_NAME and PS_NAME+PS_NICKNAME reported separately from the same predictions; never merged.",
+    "sources": [
+      "NSMC",
+      "Wikitree",
+      "KDPII PS_NAME",
+      "KDPII PS_NAME+PS_NICKNAME",
+      "synthetic regression data if present"
+    ],
+    "per_source_regression_constraints": {
+      "applies_to": "every experiment, development stage and final stage alike",
+      "each_source_must_satisfy_all": [
+        "baseline-exact spans lost = 0 and new false-positive spans = 0 (span-level comparison)",
+        "no baseline fully-masked name becomes newly exposed under stars masking",
+        "full-name mask count >= baseline",
+        "exact F1 >= baseline",
+        "non-person false-positive sentences <= baseline",
+        "unnecessary masked characters <= baseline"
+      ],
+      "all_changes_disabled_equivalence_control": "never counts as an improvement candidate",
+      "no_improvement_metric_in_any_source": "blocked as 'no gain' (multisource-v2 final-check rule)",
+      "no_offsetting": "average improvement never offsets an individual regression",
+      "retained_tests": [
+        "tests/test_name_context_nonregression_gate.py",
+        "tests/test_name_context_no_recall_regression.py",
+        "tests/test_name_context_role_regression.py"
+      ]
+    },
+    "adoption_gate": {
+      "a": "all development sources pass the per-source constraints",
+      "b": "all three seeds pass (assumption: because a joint-span v1 seed failed with a single new false positive, the best seed is never cherry-picked)",
+      "c": "at least one source shows genuine improvement in the metric named by the hypothesis (miss, false positive or boundary error) versus the baseline",
+      "d": "after selection is finalized, a NEW independent heldout is opened once and passes the same constraints",
+      "e": "CPU latency and memory reported",
+      "status_rule": "(a)-(c) alone = 'development candidate', not adoption"
+    },
+    "stop_rules": [
+      "If zero policies pass on development data: record no_candidate; do not open any heldout/reserve.",
+      "The comparison grid of policies, cutoffs and training settings is fixed in this file before running; nothing is added after seeing results.",
+      "No word/particle exceptions, name dictionaries, or per-sentence exceptions are added from development results.",
+      "Inference runs sequentially at low priority and limited CPU (nice -n 15 taskset -c ...), never in parallel; single RTX 3090 / 4 cores / 11GB RAM WSL."
+    ],
+    "heldout_opening_rule": "candidate, checkpoint, cutoff and decoder finalized with finalized=true and file hashes recorded; opened exactly once; any change of code/weights/source during the run voids the result; a failed result used for fixes converts that whole set to development."
+  },
+  "experiments": {
+    "P0-1": {
+      "title": "joint character-span scoring + global span selection (A2)",
+      "hypothesis": "Per-character argmax produces no candidate for many misses; scoring start/end/inside/context jointly and choosing a maximum non-overlapping total via dynamic programming reduces candidate misses and boundary errors. Key question: does the structure that failed when trained on synthetic-only data still fail on multi-source real-sentence/dialogue training.",
+      "changed_factor": "span head and selection method only; encoder frozen (name_span_experiment.py structure kept)",
+      "controls": [
+        "(i) character BIOES head trained on the same multi-source data (multisource-v2 head, weight 1)",
+        "(ii) same span head with the existing merge instead of global selection"
+      ],
+      "training_data": "common training/validation",
+      "span_cutoffs": [
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        0.99
+      ],
+      "person_vs_O_loss_weight": 1,
+      "max_span_length_L": {
+        "value": null,
+        "assumption": true,
+        "rule": "set from the training data; over-length gold spans are not dropped but counted as failures; the previous implementation used 32 characters"
+      },
+      "reused_tools": [
+        "scripts/name_span_experiment.py",
+        "train_name_span_experiment.py",
+        "name_span_adapter.py",
+        "evaluate_name_span_public.py",
+        "evaluate_name_span_external.py",
+        "prepare_name_multisource_data.py",
+        "train_name_multisource.py",
+        "collect_name_multisource_development.py",
+        "evaluate_name_multisource_live.py",
+        "name_multisource_selection.py",
+        "check_name_multisource_release.py",
+        "evaluate_name_kdpii.py"
+      ],
+      "measurements": [
+        "common metrics",
+        "candidate upper-bound decomposition: exact candidate exists / after threshold / after merge, extended to real-sentence development sets (benchmarks/name_context_stage_diagnostic.py is synthetic single-window only and must be extended)",
+        "long-document window merge truncation/duplicate/omission reproduction tests (tests/test_name_span_adapter.py extension)",
+        "span computation time/memory vs sentence length (quadratic)"
+      ],
+      "extra_adoption_condition": "baseline misses or full-name mask failures must decrease; reducing only false positives with unchanged misses (selection-filter case) = no gain",
+      "stop_rule": "If on all 3 seeds at least one development source violates a constraint or no improvement metric exists: record no_candidate, end this structure, no further span-scorer tuning. If multi-source training also shows no external gain over synthetic-only, hand the 'representation (encoder), not structure' hypothesis to P0-4."
+    },
+    "P0-2": {
+      "title": "legal BIOES transition constraint (A1) - controlled ablation",
+      "hypothesis": "Illegal I/E-start paths cause part of boundary errors; legal-path constraint or forward-backward span probability reduces them. Recorded prior observation (not an assumption): evidence is weak and constraints are unlikely to fix candidate omission.",
+      "changed_factor": "decoder only, same head, same cache, same cutoffs; no retraining",
+      "arms": {
+        "D0": "unconstrained argmax",
+        "D1": "legal BIOES Viterbi",
+        "D2": "legal-path forward-backward span-existence probability (name_coverage_decoding.py)",
+        "D3": "D1 + global non-overlapping selection (requires P0-1 head output; run after P0-1)"
+      },
+      "data": "validation cache first (not the 96 synthetic sentences alone), then cache replay on all development sets",
+      "measurements": [
+        "boundary error types: end-character truncation, particle-included over-long span, adjacent-word merge",
+        "common metrics"
+      ],
+      "reused_tools": [
+        "scripts/name_bioes_ablation.py",
+        "evaluate_name_bioes_ablation.py",
+        "name_coverage_decoding.py",
+        "select_name_coverage.py",
+        "tests/test_name_bioes_ablation.py",
+        "tests/test_name_coverage_decoding.py"
+      ],
+      "extra_adoption_condition": "D0 and D1 identical on every source = no gain",
+      "stop_rule": "End if D1-D3 do not reduce boundary errors on development data, or any source shows a newly exposed name or new false positive. A null single-factor effect is documented as an attribution result."
+    },
+    "P0-3": {
+      "title": "contextual contrastive training (A5)",
+      "hypothesis": "Name-spelling regularity bias and missing boundary negatives cause errors on unfamiliar names/contexts; hard boundary negatives, same-spelling person/non-person pairs and name-substitution invariance reduce boundary errors and spelling-dependent false positives. Effect in Korean is unverified in the literature.",
+      "status": "no implementation exists; contrast loss must be newly written",
+      "changed_factor": "include vs exclude contrast data and loss on top of the structure chosen in P0-1 (or the multisource-v2 character head if P0-1 = no_candidate); same seeds and budget",
+      "data": {
+        "boundary_negatives": "mechanically generated from gold spans of real train sentences (KLUE train, KDPII train) with a variation-rule set (particle-included, first/last character truncation, neighbor-word merge) written in code and fixed before results; no rules added afterwards",
+        "name_substitution": "only inside the training split's name-spelling set; name-spelling separation kept; no evaluation-set name used",
+        "homograph_person_nonperson_pairs": {
+          "sources": "synthetic v4 contrast data (benchmarks/name_context_v4_cases.py, tests/test_name_context_v4_contrasts.py) inside the training split only, plus KLUE train surfaces appearing as both PS and non-PS",
+          "assumption": true,
+          "unresolved": "whether enough such KLUE train sentences exist is unknown until checked; ambiguous sentences never get invented gold"
+        },
+        "ratio_of_real_derived_vs_synthetic_contrast": {
+          "value": null,
+          "assumption": true,
+          "rule": "to be fixed before training"
+        },
+        "split_rule": "variants of the same template/document never cross splits"
+      },
+      "measurements": [
+        "common metrics",
+        "name-substitution invariance (same relative span kept when only the name changes) - auxiliary diagnostic, not an adoption metric",
+        "homograph person/non-person discrimination"
+      ],
+      "reused_tools": [
+        "benchmarks/name_context_v4_cases.py",
+        "name_context_v4_benchmark.py",
+        "scripts/train_name_context_v11.py",
+        "all P0-1 tools"
+      ],
+      "extra_adoption_condition": "versus the contrast-excluded control, the hypothesis metric (boundary error or spelling-dependent false positive) must improve; if inclusion loses any existing name in any source the arm is rejected (v4 precedent: 12 non-person fixed, 8 existing names lost)",
+      "stop_rule": "End if include-vs-exclude shows no development improvement or causes a regression. Do not turn into iterative retraining on failed sentences."
+    },
+    "P0-4": {
+      "title": "encoder adaptation ablation (A4)",
+      "hypothesis": "Frozen E5 representation is insufficient for Korean name boundaries/unfamiliar context. Prior LoRA (generalization v1) was trained on KLUE+synthetic only, so LoRA effect and training-data composition were confounded. LoRA trained on multi-source data has no recorded attempt (assumption: absent from docs).",
+      "arms": {
+        "E0": "frozen encoder (multisource-v2 head structure)",
+        "E1": "LoRA on query/value of the last 4 layers, rank 8 (recorded earlier setting)",
+        "E2": {
+          "definition": "one-step wider adaptation (e.g. more layers or higher rank)",
+          "assumption": true,
+          "optional": true,
+          "unresolved": "exact definition"
+        }
+      },
+      "held_equal": "data, budget, seeds, decoder; the best decoder from P0-1/P0-2 is fixed first; adapted path used only for the name decision, original E5 probabilities and addresses keep the original model",
+      "data": "common training/validation, with sufficient name-free dialogue sentences (KDPII train: 378 name-positive sentences vs mostly no-name sentences must be kept)",
+      "measurements": [
+        "common metrics",
+        "CPU/CUDA precision differences via scripts/check_name_adaptation_device_parity.py (adapted path CUDA BF16 vs original prior FP32; precedent 11/100 sentences score differences)",
+        "training time and latency reported separately"
+      ],
+      "reused_tools": [
+        "scripts/name_encoder_adaptation.py",
+        "train_name_encoder_adaptation.py",
+        "name_adapted_adapter.py",
+        "collect_adapted_name_development.py",
+        "evaluate_name_generalization.py family",
+        "tests/test_name_encoder_adaptation.py",
+        "tests/test_name_adapted_adapter.py",
+        "tests/test_name_adaptation_device_parity.py"
+      ],
+      "extra_adoption_condition": "E1/E2 must beat E0 on development data and KDPII non-person false-positive sentences must be <= baseline",
+      "stop_rule": "Stop adaptation if no gain over E0 or KDPII-type false positives increase; then proceed to A6 (external Korean/multilingual PII model comparison, after checking Korean training, license and offline cost)."
+    }
+  },
+  "milestone_order": [
+    {
+      "id": "M0",
+      "content": "consumption ledger, E5 baseline re-measurement, this preregistration; start new heldout/calibration source selection in parallel"
+    },
+    {
+      "id": "M1",
+      "content": "freeze common multi-source training data and feature-cache hashes, duplicate audit",
+      "requires": [
+        "M0"
+      ]
+    },
+    {
+      "id": "M2",
+      "content": "P0-2 D0-D2 (no retraining)",
+      "requires": [
+        "M1"
+      ]
+    },
+    {
+      "id": "M3",
+      "content": "P0-1 span scoring + global selection, 3 seeds",
+      "requires": [
+        "M1"
+      ]
+    },
+    {
+      "id": "M4",
+      "content": "P0-2 D3",
+      "requires": [
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "id": "M5",
+      "content": "P0-3 contrastive include/exclude",
+      "requires": [
+        "M3 (or M1)"
+      ]
+    },
+    {
+      "id": "M6",
+      "content": "P0-4 E0/E1/(E2)",
+      "requires": [
+        "M4"
+      ]
+    },
+    {
+      "id": "M7",
+      "content": "best combination 3-seed recheck, calibration cutoff fixed, selection manifest finalized",
+      "requires": [
+        "M3-M6",
+        "calibration data"
+      ]
+    },
+    {
+      "id": "M8",
+      "content": "open the new independent heldout once + regression gate, CPU latency/memory",
+      "requires": [
+        "M7",
+        "new heldout"
+      ]
+    },
+    {
+      "id": "M9",
+      "content": "if all P0 are no_candidate, A6 external model comparison",
+      "requires": [
+        "M2-M6"
+      ]
+    }
+  ],
+  "post_p0": "Best surviving combination re-trained with 3 seeds; cutoff/calibration only on a separate calibration split; until one exists only the pre-fixed grid is compared on development data and this is stated in the report. Abstention is never counted as correct or as masking success.",
+  "unresolved_assumptions": [
+    "numeric improvement targets per source (to be decided only after baseline; none set here)",
+    "size and source of new independent heldout and calibration sets",
+    "contrastive-data ratio (P0-3)",
+    "E2 adaptation scope (P0-4)",
+    "3-seed-all-pass rule (plan marks it as an assumption)",
+    "pre-registration file format (this file's shape is itself the proposal)",
+    "suitability of benchmarks/performance_benchmark.py for name-candidate latency",
+    "max span length L (P0-1)",
+    "checkpoint-selection weighting details (reuse of multisource-v2 rule)",
+    "usage of the unopened reserve as auxiliary confirmation only",
+    "identity of the 'synthetic regression data' source for per-source constraints: this file proposes synthetic v11 evaluation 192 (diagnostic) plus the retained regression tests; the plan does not pin it"
+  ],
+  "data_status_labels_in_results": "Every result JSON must record the status (train/validation/development/final) of each dataset it uses (plan 3.4, itself an assumption).",
+  "allowed_change_scope": {
+    "global": "Only the name model path (head, decoder/selection, training data composition, encoder adaptation) as defined per experiment. Rule-based detectors, address path, guard thresholds, masking and normalization code under src/ are frozen.",
+    "P0-1": "span head + selection method; encoder frozen",
+    "P0-2": "decoder only; no retraining, same head/cache/cutoffs",
+    "P0-3": "contrast data and contrast loss only, on the P0-1-selected structure (or multisource-v2 character head)",
+    "P0-4": "encoder adaptation scope E0/E1/(E2) only, decoder fixed to the best of P0-1/P0-2"
+  },
+  "development_data_used": "Exactly the six development sets in common.development_comparison_sets; IDs and text hashes in the ledger. K-PII-Bench is NOT a name development set (names are outside its default profile); if ever used for numeric cross-checks it must be tied to revision 844f92f7beba98fa964f957ba324017e82451701 and file hashes, never to newer data.",
+  "adopt_reject_criteria_summary": {
+    "development_candidate": "adoption_gate a-c",
+    "adopted": "adoption_gate a-e",
+    "rejected": "any per-source constraint violated on any seed, or no improvement metric, or equivalence-only change",
+    "no_numeric_targets": true
+  },
+  "reserve_opening_policy": {
+    "reserve_sets": [
+      "KLUE dev reserve 2,000 IDs",
+      "KDPII test reserve 2,391 IDs"
+    ],
+    "state_at_M0": "preserved: source files were accessed to enumerate IDs (KDPII test.json fully parsed in memory); no reserve text, label or score was displayed, scored, selected or used for any decision",
+    "earliest_opening": "only after M7 (candidate/checkpoint/cutoff/decoder finalized with finalized=true and hashes) and only if every development gate (a)-(c) passed on all three seeds; a fresh exact+normalized text-overlap audit against all train/validation/development text must precede it; opened at most once; reported as auxiliary confirmation, not independent generalization; the new independent heldout (M8) is the only basis for an adoption claim",
+    "never_opened_if": "stop rule no_candidate is reached or origin of any baseline discrepancy is unexplained"
+  },
+  "discrepancy_policy": "If a re-measured baseline differs from a documented number: do not change settings to match. Same conditions -> record as reproduction problem; different conditions -> explain the condition difference. If the cause stays unclear, do not open reserve data; audit the procedure on currently available data."
+}
