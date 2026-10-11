@@ -1,0 +1,35 @@
+{
+  "kdpii_test_500": {
+    "gold": 32,
+    "exact_in_A": 15,
+    "exact_in_B_only": 12,
+    "boundary_mismatch_B": 2,
+    "no_output_B": 3,
+    "B_false_spans": 12,
+    "B_false_overlapping_gold": 2,
+    "B_false_no_gold_overlap": 10,
+    "B_false_inside_real_name_gold": 1,
+    "nickname_only_gold": 14,
+    "nickname_only_exact_in_B": 12,
+    "nickname_only_overlap_in_B": 13,
+    "candidate_set_exact_coverage_B": 0.8438,
+    "candidate_set_overlap_coverage_B": 0.9062
+  },
+  "kdpii_fresh_1992": {
+    "gold": 114,
+    "exact_in_A": 67,
+    "exact_in_B_only": 30,
+    "boundary_mismatch_B": 7,
+    "no_output_B": 10,
+    "B_false_spans": 47,
+    "B_false_overlapping_gold": 7,
+    "B_false_no_gold_overlap": 40,
+    "B_false_inside_real_name_gold": 5,
+    "nickname_only_gold": 34,
+    "nickname_only_exact_in_B": 31,
+    "nickname_only_overlap_in_B": 33,
+    "candidate_set_exact_coverage_B": 0.8509,
+    "candidate_set_overlap_coverage_B": 0.9123
+  },
+  "limit": "Saved spans are thresholded at 0.9; below-threshold candidates were not stored, so 'no_output_B' mixes below-threshold candidates and absent ones."
+}

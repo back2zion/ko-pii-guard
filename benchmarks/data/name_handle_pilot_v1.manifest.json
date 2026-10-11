@@ -1,0 +1,33 @@
+{
+  "scope": "name_handle_review_pilot_v1",
+  "status": "development pilot; unreviewed",
+  "source": "KDPII v1 official train.json (Zenodo 10968609, CC-BY-4.0), md5 fa633403055e4e5918b92b2d11726434",
+  "selection": "SHA-256 rank of 'ko-pii-name-handle-pilot-v1:'+sent_idx within stratum; one record per ID prefix; evaluation-identical texts excluded; sentences with one target span only",
+  "plan": {
+    "nickname": 140,
+    "account_id": 60,
+    "club_group_name": 120,
+    "workplace_name": 40,
+    "school_name": 40
+  },
+  "shortfall": {
+    "nickname": 0,
+    "account_id": 0,
+    "club_group_name": 0,
+    "workplace_name": 0,
+    "school_name": 0
+  },
+  "rows": 400,
+  "per_stratum": {
+    "nickname": 140,
+    "account_id": 60,
+    "club_group_name": 120,
+    "workplace_name": 40,
+    "school_name": 40
+  },
+  "distinct_conversation_prefixes": 400,
+  "distinct_target_strings": 391,
+  "sha256_jsonl": "75c6bd1c14d4db3a850d38d126b106c56d63e335ca2e5b990b51679d649698ec",
+  "excluded_evaluation_identical": 245,
+  "note": "source role is derived from KDPII labels only; policy_label needs independent review"
+}

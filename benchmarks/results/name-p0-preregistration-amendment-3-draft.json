@@ -1,0 +1,40 @@
+{
+  "scope": "name_p0_preregistration_amendment_3_draft",
+  "created_utc": "2026-10-11",
+  "status": "DRAFT - not binding; no training until the review pilot is adjudicated and the user approves",
+  "hypothesis": "Keep the existing real-name output unchanged; add only those personal_handle candidates that a personal-reference context classifier accepts. This cannot exceed the fixed candidate set's coverage of nickname gold.",
+  "fixed_candidate_set_coverage_dev": {
+    "kdpii_test_500": "12/14 exact, 13/14 overlap",
+    "kdpii_fresh_1992": "31/34 exact, 33/34 overlap",
+    "note": "small counts, already-opened slices; thresholded at 0.9"
+  },
+  "declared_targets": [
+    "KDPII test 500 and fresh 1992, policy PS_NAME+PS_NICKNAME: F1 (A vs candidate, same gold)",
+    "paired contexts (192): non_personal flagged by candidate must be 0 beyond A's 11"
+  ],
+  "required_not_to_regress": [
+    "lost exact real-name spans = 0",
+    "A's real-name outputs unchanged (byte-identical spans)",
+    "per-source constraints of the main preregistration"
+  ],
+  "data": {
+    "train_pool": "official KDPII v1 train, minus 245 evaluation-identical texts, nickname/handle rows from the survey; official valid minus 20 identical texts for checkpoint selection",
+    "review_pilot": "name_handle_pilot_v1 (400) is a development/review set, not training data until adjudicated; never mixed with the 192 paired contexts or the opened evaluation slices",
+    "split_rule": "group-aware by VERIFIED original conversation ID (prefix assumption still unverified); templates and near variants stay in one split; held-out subset of unseen nickname strings flagged",
+    "unresolved": [
+      "verification of conversation ID meaning",
+      "handling of 'insufficient' labels",
+      "policy for generic terms of endearment",
+      "whether PS_ID (account handles) is trained together with PS_NICKNAME"
+    ]
+  },
+  "training": "Three pre-registered seeds each must pass; zero tolerance on the three per-span regressions; Delta F1 lower bound > 0 with the paired 10,000-resample bootstrap of amendment 2.",
+  "checkpoint_selection": "NOT approved for this task. source_macro_rank (real-name F1 macro) is not suitable by itself; a selection formula covering nickname F1 and non-personal context false flags must be proposed and approved before training.",
+  "scale": "Training/evaluation scale is decided after the pilot reports yield, independent conversations, annotation difficulty and expected precision; data is not added until a candidate passes.",
+  "not_started": [
+    "training",
+    "reserve opening",
+    "product change",
+    "push"
+  ]
+}

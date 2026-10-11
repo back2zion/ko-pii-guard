@@ -1,0 +1,67 @@
+{
+  "scope": "kdpii_nickname_pool_survey",
+  "splits": {
+    "train.json": {
+      "md5": "fa633403055e4e5918b92b2d11726434",
+      "sha256": "3c65f8c7e48196110d14fa58f591f4a0cb54682a5ab26616292ea54ec4bd46fb",
+      "stats": {
+        "records": 40109,
+        "records_with_PS_NAME": 1507,
+        "entities_PS_NAME": 1555,
+        "records_with_PS_ID": 471,
+        "entities_PS_ID": 483,
+        "text_identical_to_evaluation_text": 245,
+        "records_with_PS_NICKNAME": 1031,
+        "entities_PS_NICKNAME": 1057,
+        "records_with_nickname_without_name": 1008,
+        "records_with_nickname_and_name": 23
+      },
+      "groups_by_id_prefix": {
+        "PS_NICKNAME": 706,
+        "PS_ID": 334,
+        "PS_NAME": 978
+      },
+      "total_prefix_groups": 3664,
+      "unique_strings": {
+        "PS_NICKNAME": 773,
+        "PS_ID": 379,
+        "PS_NAME": 1041
+      },
+      "top_nickname_strings_count": 9,
+      "entity_labels_total": 33
+    },
+    "valid.json": {
+      "md5": "6f89923f873c840ca773d255d058150c",
+      "sha256": "3ffa97a75c584161f1096af6d2bbd252aa5e5ed556bdbe8bcb1467a57bc397c1",
+      "stats": {
+        "records": 5011,
+        "records_with_PS_NAME": 175,
+        "entities_PS_NAME": 179,
+        "records_with_PS_NICKNAME": 150,
+        "entities_PS_NICKNAME": 152,
+        "records_with_nickname_without_name": 146,
+        "text_identical_to_evaluation_text": 20,
+        "records_with_PS_ID": 59,
+        "entities_PS_ID": 60,
+        "records_with_nickname_and_name": 4
+      },
+      "groups_by_id_prefix": {
+        "PS_NICKNAME": 105,
+        "PS_ID": 45,
+        "PS_NAME": 116
+      },
+      "total_prefix_groups": 459,
+      "unique_strings": {
+        "PS_NICKNAME": 131,
+        "PS_ID": 53,
+        "PS_NAME": 148
+      },
+      "top_nickname_strings_count": 2,
+      "entity_labels_total": 33
+    }
+  },
+  "nickname_string_overlap_train_valid": {
+    "valid_unique": 131,
+    "shared_with_train": 26
+  }
+}
