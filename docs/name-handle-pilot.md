@@ -77,7 +77,11 @@
 `personal_handle` 후보 중 개인 지칭 문맥 판정을 통과한 구간만 더한다. 가설일 뿐이며 효과 보장이나 학습 착수 승인이 아니다.
 검수 결과 확정과 선택식 승인 전에는 학습을 시작하지 않는다.
 
-## 5. 에이전트 1차 판정 결과 (조정 전)
+## 5. 에이전트 1차 판정 결과 (조정 전, **잠정**)
+> **정정(후속 커밋):** 에이전트 A의 판정 중 197행은 스크립트 기본값으로 채워진 행(`default_filled`, `review_unverified`)이다.
+> 일치 335건 중 190건(모두 non_personal)은 검증된 합의가 아니며, 검증된 합의 후보는 A가 명시 판정한 145건이다. 아래 큐 65건·감사
+> 34건은 잠정 작업량이고 A 미검증 행 분리 후 재생성해야 한다. 89.5%·κ 0.819는 원시 출력 사이의 일치 지표일 뿐 정답 정확도가 아니다.
+> 정책 4건은 `docs/name-handle-policy-proposal.md`에 제안으로만 저장했다. 재개 지점: `docs/name-handle-resume.md`.
 산출물: `benchmarks/data/name_handle_pilot_v1.{reviews,adjudication_queue,audit_sample}.jsonl`, `.review-summary.json`,
 `.review-provenance.json`. 두 에이전트의 최초 판정은 `reviews.jsonl`에 그대로 보존한다(`reviewer_A`, `reviewer_B`).
 

@@ -4,7 +4,7 @@
   "prompt_template_sha256": "2c9bab513635c93713266c1980670eb16d71b12f5f397d220c94c11535693de4",
   "guideline_sha256": "83a22ae394d1d78be663708f75b65dc57663f5c393c50e60b2b295ea0cf93dbf",
   "items_sha256": "6fcdfc4a5ad63315bdf0b158d22c28caf94381234762622885c822ab3fbb32cd",
-  "reviewer_models": "recorded outside the repository (repository files carry no vendor attribution); reviewer A is a smaller-tier model and reviewer B a larger-tier model of the same vendor",
+  "reviewer_models": "Reviewers A and B; exact identifiers are in a private run specification (not in this repository), linked only by hash below.",
   "shuffle_seed": 20261030,
   "audit_seed": 20261031,
   "hidden_from_reviewers": [
@@ -23,8 +23,7 @@
         "items.jsonl x3"
       ],
       "writes": "reviewerA/part1-4 via one local script",
-      "other_files_opened": false,
-      "run_seconds": 74
+      "other_files_opened": false
     },
     "reviewer_B": {
       "reads": [
@@ -32,14 +31,28 @@
         "items.jsonl x3"
       ],
       "writes": "reviewerB/part1-4 (Write x4, Edit x1) and one read-only validation script",
-      "other_files_opened": false,
-      "run_seconds": 375
+      "other_files_opened": false
     }
   },
   "reviewer_process_limits": [
-    "Reviewer A recorded decisions as index sets in one script and wrote default non_personal/P4 for every item not listed; its evidence field is a mechanical window around the span, not a written rationale.",
+    "Reviewer A recorded decisions as index sets in one script and the script filled non_personal/P4 for every item not listed (197 items, default_filled, review_unverified). Its evidence field is a mechanical excerpt around the span, not a rationale.",
     "Reviewer B wrote per-item evidence; evidence strings are verbatim sentence substrings for both (validated).",
     "Agreement between the two reviewers is not evidence of correctness."
   ],
-  "status_counts_note": "see name_handle_pilot_v1.review-summary.json"
+  "status_counts_note": "see name_handle_pilot_v1.review-summary.json",
+  "private_run_spec_sha256": "620b82f856ca50a48eeaf619a1f37953a0e37ba8b233a83b192d002689f5f5f2",
+  "private_run_spec_contents": "requested model identifiers, response-reported model identifiers, run start/end times, transcript hashes",
+  "reviewer_runs": {
+    "A": {
+      "run_label": "review-run-A",
+      "output_files": "reviewerA/part1-4",
+      "input_sha256": "6fcdfc4a5ad63315bdf0b158d22c28caf94381234762622885c822ab3fbb32cd"
+    },
+    "B": {
+      "run_label": "review-run-B",
+      "output_files": "reviewerB/part1-4",
+      "input_sha256": "6fcdfc4a5ad63315bdf0b158d22c28caf94381234762622885c822ab3fbb32cd"
+    }
+  },
+  "reviewer_A_origin": "benchmarks/data/name_handle_pilot_v1.reviewer_A_origin.json"
 }
