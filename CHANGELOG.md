@@ -2,46 +2,49 @@
 
 ## Unreleased
 
-- Complete the interrupted KDPII heldout evaluation for the multisource-v2 `selective:addition=1.0:removal=0.9999` checkpoint, then retract an earlier, incorrect operational decision to ship it anyway. That policy only strips existing baseline spans above a 0.9999 confidence of being a non-name (it never adds a span the baseline missed); on this heldout it is identical to the original E5 baseline on KDPII (F1 85.71%/71.28%, unchanged) and KLUE WikiTree (418/418, unchanged), and introduces one KLUE NSMC regression ("가르시아", incorrectly stripped). Net effect is zero gain plus one regression, so the automatic gate's `quality_gate_passed: false` was correct and the checkpoint is not promoted; the original "0.13→0.86" improvement claim compared this policy against a different, already-rejected candidate's numbers rather than its actual baseline. See the retraction in [name-multisource-v2.md](docs/name-multisource-v2.md#운영-배포-결정--철회-원래-승인은-틀린-비교에-근거함).
-- Fix five v9 missed names and two false spans with exact masking regressions. Reject v10 after a fresh evaluation loses a correct name; adopt opt-in v11 with preserved decoders, an expanded filter and hard-example replay. All 1,391 tests pass; 3,222 historical correct spans are preserved with no new false span. New synthetic evaluation retains all 211 correct spans and reduces FP19→17; FN23/FP17 remain. Add CI per-span gates and document the rejected runs.
+## 0.3.0 — 2026-10-11
 
-- Fix the six known v7 missed names and four false spans as ten named Red/Green contracts; original evaluation now TP234/FP0/FN0 and all 1,381 integration tests pass.
-- Reject v8 for losing one previously correct name; preserve the original v7 rescue and add the refined decoder in opt-in v9. Freeze a new evaluation and CI per-span gates: all 228 correct spans preserved, no new false span, TP/FP/FN 228/3/6 to 229/2/5. Document the five different remaining misses and two false spans.
+Highlights: opt-in `KR_NAME` and `KR_ADDRESS`, an optional local NER (`[ner]` extra), the `should_mask` callback, Unicode normalization with original offsets, and account-format and span fixes. The default nine identifier entities are unchanged. Learned name-context heads and model artifacts live in the repository only; they are not shipped in the PyPI package.
 
-- Close all nine known v6 misses with named Red/Green exact-span and masking tests. Add an opt-in v7 rescue head while preserving v6 decoder/filter weights and accepted spans; all 1,366 tests pass.
-- Freeze a separate v7 evaluation and enforce per-span nonregression in CI: preserve 224 correct spans with no new false span; TP/FP/FN improves 224/4/10 to 228/4/6. Retain the remaining six new misses and four existing false spans in the report.
+Name and address detection is **opt-in**. `KR_NAME` and `KR_ADDRESS` are not enabled by default; the default set of nine identifier entities is unchanged. The experimental name-context heads (v2 through v11) are likewise opt-in and never the default; the default decoder remains E5. Per-version detail: [docs/name-context-history.md](docs/name-context-history.md). Requirements and quality contracts: [docs/PRD.md](docs/PRD.md).
 
-- Add an opt-in learned non-person candidate filter with byte-identical v3 name decoder weights; preserve all 225 baseline-correct spans on a new 192-sentence evaluation while reducing false-positive spans from 8 to 0 (9 existing misses remain).
-- Reject v4/v5 recall regressions; add exact-span/masking contracts, strict per-span CI gates and frozen evaluation provenance. Full optional-model integration: 1,354 tests passed.
+### Added
 
-- Fix the remaining v2 error sentences as 26 named Red/Green regression tests; train an opt-in v3 head with all inspected v2 data explicitly retired into development, and evaluate a separately frozen 280-sentence synthetic split after checkpoint selection. Preserve remaining false positives and misses in the evaluation report.
-- Train and validate opt-in name context head v2 with single-character, filename, multiple-person and common-word contrast examples; close the 21 known v1 misses and seven regressions without changing their gold annotations.
-- Preserve v1 and inspected data as development history; add new split-separated v2 evaluation, explicit checkpoint selection provenance and CI acceptance gates.
-- Add an experimental opt-in character name decoder, reproducible local training, a split-separated synthetic evaluation and a recent Korean de-identification research review; retain the default E5 decoder because regressions remain.
-- Apply the explicit non-person owner field veto consistently to contextual model predictions.
-- Correct the name-field corpus's prose-name annotation, preserving v1 and historical reports.
-- Preserve complete middle-dot names in explicit person fields and separate tab/multiple-space honorifics; add before/after boundary regression reports.
-- Reject malformed custom NER result objects and nonnumeric/boolean confidence values explicitly.
-- Add a product requirements document with quality contracts and development priorities.
-- Document the KR_NAME span contract and keep small name/address diagnostics out of README accuracy claims.
-- Add a frozen synthetic name-context contrast evaluation and benchmark-only lexicon score ablation before considering retraining.
-- Add opt-in KR_NAME and KR_ADDRESS; keep the default nine identifier entities unchanged.
-- Add explicit name fields, bounded road/lot address grammar, reference parentheses and wrapped address lines.
-- Separate detection from replacement with the optional should_mask callback; preserve name detection in filenames.
-- Add a business Korean boilerplate corpus and a separate optional-NER CI job.
-- Add optional local contextual name/address NER with pinned safetensors, offline loading by default and overlapping windows for long documents.
-- Preserve one name character and mask all address letters/digits in partial masking.
-- Add independent name/address fixture annotations, per-track exact-span and actual full-masking evaluation, including common-word/name contrasts.
-- Add documented four-group account candidates with mandatory local context; correct the NH synthetic layout.
-- Fix Korean labels touching account numbers and Korean particles following emails/cards.
-- Reject short numeric codes, ASCII token fragments, misleading bank words and cross-sentence context.
-- Normalize identifier typography and interior invisible characters while preserving original offsets.
-- Check RRN/FRN calendar dates without losing explicitly labeled mistyped identifiers.
-- Use Presidio validators with O(n log n) deduplication/overlap handling; render masks directly.
-- Fully mask spans longer than 1,000 characters and preserve separators between adjacent findings.
-- Disable public-suffix network fetching; propagate regex timeouts instead of silently skipping rules.
-- Add source-backed format documentation, curated regression cases, external evaluation and reproducible performance reports.
-- Add benchmark failure gates to CI and derive the package version from installed metadata.
+- Opt-in `KR_NAME` and `KR_ADDRESS` entities; the default nine identifier entities are unchanged. Includes explicit name fields, bounded road/lot address grammar, reference parentheses and wrapped address lines.
+- Optional local contextual name/address NER with pinned safetensors, offline loading by default and overlapping windows for long documents. A separate optional-NER CI job and a business Korean boilerplate corpus were added.
+- Opt-in learned name-context heads, from an experimental character name decoder through v2, v3, a non-person candidate filter (byte-identical v3 name decoder weights), and rescue heads v7, v9 and v11. Each version preserves earlier decoder/filter weights and accepted spans. The latest, v11, adds preserved decoders, an expanded filter and hard-example replay; on its synthetic evaluation it retains all 211 correct spans and reduces FP 19 to 17 (FN 23 / FP 17 remain). Earlier versions preserved all baseline-correct spans (for example 225 for the filter, 228 for v9) with no new false span. See [docs/name-context-history.md](docs/name-context-history.md).
+- Evaluation and CI infrastructure for name work: frozen, split-separated synthetic evaluations with checkpoint-selection provenance, named Red/Green exact-span and masking regression contracts, strict per-span non-regression CI gates, and a benchmark-only lexicon score ablation. Reports keep remaining misses and false positives. Full optional-model integration: 1,391 tests pass.
+- Documented four-group account candidates with mandatory local context.
+- Optional `should_mask` callback separating detection from replacement.
+- Independent name/address fixture annotations, per-track exact-span and actual full-masking evaluation, including common-word/name contrasts.
+- Source-backed format documentation, curated regression cases, external evaluation and reproducible performance reports; benchmark failure gates in CI.
+- Product requirements document ([docs/PRD.md](docs/PRD.md)) with quality contracts and development priorities; documented the `KR_NAME` span contract and a recent Korean de-identification research review. Small name/address diagnostics are kept out of README accuracy claims.
+
+### Changed
+
+- Presidio validators are used with O(n log n) deduplication/overlap handling; masks are rendered directly.
+- Spans longer than 1,000 characters are fully masked, and separators between adjacent findings are preserved.
+- Partial masking preserves one name character and masks all address letters/digits.
+- Identifier typography and interior invisible characters are normalized while preserving original offsets.
+- RRN/FRN calendar dates are checked without losing explicitly labeled mistyped identifiers.
+- The package version is derived from installed metadata.
+- Public-suffix network fetching is disabled; regex timeouts propagate instead of silently skipping rules.
+- Malformed custom NER result objects and nonnumeric/boolean confidence values are rejected explicitly.
+- The explicit non-person owner field veto is applied consistently to contextual model predictions.
+- The NH synthetic account layout and the name-field corpus's prose-name annotation were corrected; v1 and historical reports are preserved as development history.
+
+### Fixed
+
+- Name-context regressions closed as named Red/Green tests: 21 known v1 misses and seven regressions (v2), 26 v2 error sentences (v3), all nine known v6 misses (v7), six v7 misses and four false spans (v9; original evaluation TP234/FP0/FN0), and five v9 missed names and two false spans (v11).
+- Complete middle-dot names are preserved in explicit person fields, and tab/multiple-space honorifics are separated; before/after boundary regression reports added.
+- Names are still detected in filenames.
+- Korean labels touching account numbers and Korean particles following emails/cards.
+- Short numeric codes, ASCII token fragments, misleading bank words and cross-sentence context are no longer accepted as account candidates.
+
+### Rejected / not adopted
+
+- multisource-v2 `selective:addition=1.0:removal=0.9999` checkpoint: an earlier operational release decision was incorrect and has been retracted. The policy only strips baseline spans and never adds one; on the KDPII heldout it is identical to the original E5 baseline (F1 85.71%/71.28%) and KLUE WikiTree (418/418), and introduces one KLUE NSMC regression ("가르시아" incorrectly stripped). Net effect is no gain and one regression, so the automatic gate's `quality_gate_passed: false` was correct and the checkpoint is not promoted. The earlier "0.13 to 0.86" claim compared it against a different, already-rejected candidate rather than its own baseline. See [docs/name-multisource-v2.md](docs/name-multisource-v2.md#운영-배포-결정--철회-원래-승인은-틀린-비교에-근거함).
+- v4 and v5 (recall regressions), v8 (lost one previously correct name) and v10 (a fresh evaluation lost a correct name) were rejected; rejected runs are documented in [docs/name-context-history.md](docs/name-context-history.md). The default E5 decoder was retained because regressions remained in the experimental character decoder.
 
 ## 0.2.0 — 2026-10-09
 

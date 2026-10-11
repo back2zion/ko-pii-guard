@@ -349,8 +349,8 @@ Thunder-DeID, 아래 세 개 모두 유지)은 링크만 걸었고 원문을 보
   비식별화를 다룬다. 특정 도메인의 결과만으로 일반 문장 성능을 판단할 수 없으므로
   여기서는 기사·리뷰·대화의 출처별 검증을 유지한다.
 - [REDACT, 2026-06-18](https://arxiv.org/abs/2606.19881) ([원문 보관](papers/redact-2606.19881.pdf))는
-  25개 언어(한국어 포함) 걸쳐 Presidio·GLiNER·OpenAI Privacy Filter·GPT-4.1·
-  Claude로 PII 탐지기 5종을 통제 생성 데이터로 비교한다. **Presidio는 25개
+  25개 언어(한국어 포함) 걸쳐 Presidio·GLiNER·OpenAI Privacy Filter·GPT-4.1·다른 LLM
+  1종으로 PII 탐지기 5종을 통제 생성 데이터로 비교한다. **Presidio는 25개
   언어 전부에서 최하위**이고, 이름 구성요소(성/이름) 유형은 **탐지기 5종
   전부에서 약하다**고 보고한다. 이 결과는 Presidio를 그대로 쓰면 안 되고
   한국어 이름에 별도 NER이 필요하다는 이 저장소의 전제와 방향이 같지만,

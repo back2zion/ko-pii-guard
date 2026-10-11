@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ko-pii-guard"
-version = "0.2.0"
+version = "0.3.0"
 description = "Detect and mask Korean personal information (RRN, phone, business number, and more) with Microsoft Presidio, in one line."
 readme = "README.md"
 license = "Apache-2.0"
@@ -52,9 +52,12 @@ Issues = "https://github.com/back2zion/ko-pii-guard/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ko_pii_guard"]
 
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/README.md", "/LICENSE", "/CHANGELOG.md", "/pyproject.toml"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 
 [tool.ruff]
 line-length = 100
