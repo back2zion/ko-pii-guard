@@ -1,0 +1,31 @@
+{
+  "scope": "full_public_kdpii_v1_test_rules_only_final_source_regression_not_business_accuracy",
+  "source_commit_at_run": "17878c7b9ec258f985adcc01037a2124232788d1",
+  "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+  "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
+  "baseline_source_sha256": "40c88a7611f7808c91d1b5e14612ce83f535607c2b6d3cea4f0ef3971d608873",
+  "corpus_sha256": "a3f870c18e4e8f5b13251b0040f9fd788744141381fa0c9cc002a89defcc0a4e",
+  "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+  "accuracy_only": true,
+  "baseline": {
+    "documents": 4890,
+    "gold_spans": 176,
+    "tp": 0,
+    "fp": 1,
+    "fn": 176,
+    "f1": 0.0,
+    "fully_masked_gold_spans": 1,
+    "positive_documents_with_unmasked_gold": 167
+  },
+  "final_source": {
+    "documents": 4890,
+    "gold_spans": 176,
+    "tp": 0,
+    "fp": 1,
+    "fn": 176,
+    "f1": 0.0,
+    "fully_masked_gold_spans": 1,
+    "positive_documents_with_unmasked_gold": 167
+  },
+  "limitations": "The rules-only KR_NAME profile misses every exactly annotated name on this public conversational set. The E5 profile is separately reported and unchanged since its full-test diagnostic; this is not a business-data evaluation."
+}
