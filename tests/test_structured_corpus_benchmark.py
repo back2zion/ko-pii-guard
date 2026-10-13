@@ -7,7 +7,11 @@ from pathlib import Path
 
 import pytest
 
-from benchmarks.structured_corpus_benchmark import paired_leaves, read_cases
+from benchmarks.structured_corpus_benchmark import (
+    check_split_overlap,
+    paired_leaves,
+    read_cases,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "benchmarks" / "structured_corpus_benchmark.py"
@@ -39,6 +43,22 @@ def test_invalid_annotations_do_not_echo_values(tmp_path, invalid):
         read_cases(path, {"PHONE_NUMBER"})
     assert "secret-id" not in str(error.value)
     assert "010-1234-5678" not in str(error.value)
+
+
+def test_split_overlap_rejects_reordered_identical_records_without_echoing_values(tmp_path):
+    holdout, development = tmp_path / "holdout.jsonl", tmp_path / "development.jsonl"
+    holdout.write_text(json.dumps({
+        "id": "holdout-id", "record": {"name": "홍길동", "status": "접수"},
+        "targets": [{"path": ["name"], "type": "KR_NAME"}],
+    }, ensure_ascii=False) + "\n", encoding="utf-8")
+    development.write_text(json.dumps({
+        "id": "development-id", "record": {"status": "접수", "name": "홍길동"},
+        "targets": [{"path": ["name"], "type": "KR_NAME"}],
+    }, ensure_ascii=False) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="share a JSON record") as error:
+        check_split_overlap(read_cases(holdout, {"KR_NAME"}),
+                            read_cases(development, {"KR_NAME"}))
+    assert "홍길동" not in str(error.value)
 
 
 def test_validation_and_comparison_report_aggregate_only(tmp_path):

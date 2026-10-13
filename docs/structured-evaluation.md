@@ -10,6 +10,9 @@
 값까지의 객체 키·배열 인덱스 목록이다. 문자열 또는 정수 값만 정답으로 지정할 수
 있다. `surface`는 선택 항목으로, 쓰면 원본 값과 완전히 일치해야 한다. 같은
 문서 안의 개인정보가 있는 필드는 빠짐없이 주석해야 한다.
+개발용 파일을 `--development-input`으로 지정하면 최종 평가용과 같은 ID 또는
+키 순서만 다른 동일 JSON 레코드가 있는지 검사하고 중단한다. 값만 다른 같은
+고객·템플릿은 자동으로 찾지 못하므로 분할 단계에서 별도로 확인해야 한다.
 
 ```jsonl
 {"id":"sample-001","record":{"name":"홍길동","phoneNumber":"010-1234-5678","order":"AB-123"},"targets":[{"path":["name"],"type":"KR_NAME"},{"path":["phoneNumber"],"type":"PHONE_NUMBER"}],"negative_paths":[["order"]]}
@@ -27,13 +30,17 @@
 ```bash
 .venv/bin/python benchmarks/structured_corpus_benchmark.py \
   --input private-eval/structured-holdout.jsonl --validate-only \
+  --development-input private-eval/structured-development.jsonl \
   --entities KR_NAME PHONE_NUMBER EMAIL_ADDRESS \
   --output private-eval/structured-validation.json
 .venv/bin/python benchmarks/structured_corpus_benchmark.py \
   --input private-eval/structured-holdout.jsonl \
+  --development-input private-eval/structured-development.jsonl \
   --entities KR_NAME PHONE_NUMBER EMAIL_ADDRESS \
   --baseline-ref 30bf0b0 --output private-eval/structured-report.json
 ```
+
+개발용 파일이 없으면 두 명령에서 `--development-input` 줄을 빼면 된다.
 
 기본 기준 `30bf0b0`은 구조화 `mask_json()`이 처음 포함된 커밋이다. 그 전
 버전에는 같은 API가 없어 비교할 수 없다. 이름·주소 NER이 필요한 경우에는

@@ -135,11 +135,28 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
             except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
                 raise ValueError(f"Invalid input at line {line_number}: {error}") from None
             seen_ids.add(identifier)
-            cases.append({"record": record, "gold": gold, "ignore": ignored,
+            cases.append({"id": identifier, "record": record, "gold": gold, "ignore": ignored,
                           "negative": negatives})
     if not cases:
         raise ValueError("Input contains no records")
     return cases
+
+
+def check_split_overlap(holdout: list[dict], development: list[dict]) -> None:
+    """Reject shared IDs or identical records regardless of JSON key order."""
+    if {case["id"] for case in holdout} & {case["id"] for case in development}:
+        raise ValueError("Development and holdout inputs share a record ID")
+
+    def fingerprints(cases: list[dict]) -> set[str]:
+        return {
+            hashlib.sha256(json.dumps(
+                case["record"], ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+            ).encode("utf-8")).hexdigest()
+            for case in cases
+        }
+
+    if fingerprints(holdout) & fingerprints(development):
+        raise ValueError("Development and holdout inputs share a JSON record")
 
 
 def paired_leaves(original: object, tagged: object, starred: object,
@@ -279,6 +296,7 @@ def measure(snapshot: Path, input_path: Path, entities: list[str], threshold: fl
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
+    parser.add_argument("--development-input", type=Path)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--baseline-ref", default="30bf0b0")
     parser.add_argument("--entities", nargs="+", default=None)
@@ -301,11 +319,19 @@ def main() -> None:
     if not args.ner and args.ner_model != "e5":
         parser.error("--ner-model kcelectra requires --ner")
     input_path = args.input.resolve(strict=True)
+    development_path = (args.development_input.resolve(strict=True)
+                        if args.development_input else None)
+    if development_path == input_path:
+        parser.error("--development-input must differ from --input")
     output_path = args.output.absolute() if args.output else None
     if (output_path and (output_path.is_symlink() or output_path.is_dir()
                          or output_path == input_path
-                         or (output_path.exists() and os.path.samefile(output_path, input_path)))):
-        parser.error("--output must differ from --input and cannot be a symlink or directory")
+                         or output_path == development_path
+                         or (output_path.exists() and any(
+                             os.path.samefile(output_path, source)
+                             for source in (input_path, development_path) if source
+                         )))):
+        parser.error("--output must differ from inputs and cannot be a symlink or directory")
     if args.worker:
         print(json.dumps(worker(input_path, entities, args.threshold, args.ner,
                                 args.ner_model, args.ner_threshold)))
@@ -315,10 +341,20 @@ def main() -> None:
         frozen = base / "records.jsonl"
         input_hash = freeze_input(input_path, frozen)
         cases = read_cases(frozen, set(entities))
+        development_hash = None
+        development_records = None
+        if development_path:
+            frozen_development = base / "development.jsonl"
+            development_hash = freeze_input(development_path, frozen_development)
+            development = read_cases(frozen_development, set(entities))
+            check_split_overlap(cases, development)
+            development_records = len(development)
         if args.validate_only:
             counts = Counter(kind for case in cases for kind in case["gold"].values())
             report = {"validation_only": True, "corpus_sha256": input_hash,
+                      "development_corpus_sha256": development_hash,
                       "records": len(cases), "target_fields": sum(counts.values()),
+                      "development_records": development_records,
                       "targets_by_entity": {kind: counts[kind] for kind in entities},
                       "negative_records": sum(not case["gold"] for case in cases),
                       "hard_negative_fields": sum(len(case["negative"]) for case in cases),
@@ -367,6 +403,7 @@ def main() -> None:
                 "current_source_sha256": current_hash,
                 "current_source_has_uncommitted_changes": current_hash != head_hash,
                 "scorer_sha256": score_hash, "corpus_sha256": input_hash,
+                "development_corpus_sha256": development_hash,
                 "entities": entities, "threshold": args.threshold,
                 "ner_enabled": args.ner,
                 "ner_model_key": args.ner_model if args.ner else None,
