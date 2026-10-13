@@ -41,6 +41,7 @@ def convert(row: dict, include_hard_negatives: bool = True,
     fields = []
     targets = []
     negative_paths = []
+    skipped_pre_masked = 0
     text = row["text"]
     mapped = dict(STRUCTURED_TYPES)
     if include_name_address:
@@ -54,6 +55,9 @@ def convert(row: dict, include_hard_negatives: bool = True,
                 or not 0 <= start < end <= len(text)
                 or text[start:end] != surface):
             raise ValueError("Pinned source contains an invalid supported span")
+        if surface.strip("*") == "" or surface == f"<{mapped[category]}>":
+            skipped_pre_masked += 1
+            continue
         fields.append({category: surface})
         targets.append({"path": ["fields", len(fields) - 1, category],
                         "type": mapped[category]})
@@ -67,7 +71,8 @@ def convert(row: dict, include_hard_negatives: bool = True,
             fields.append({"reference": surface})
             negative_paths.append(["fields", len(fields) - 1, "reference"])
     return {"id": row["doc_id"], "record": {"fields": fields},
-            "targets": targets, "negative_paths": negative_paths}
+            "targets": targets, "negative_paths": negative_paths,
+            "skipped_pre_masked_targets": skipped_pre_masked}
 
 
 def main() -> None:
@@ -108,7 +113,11 @@ def main() -> None:
                                include_name_address=args.include_name_address)
                 counts.update(target["type"] for target in case["targets"])
                 counts["hard_negative_fields"] += len(case["negative_paths"])
-                temporary.write(json.dumps(case, ensure_ascii=False) + "\n")
+                counts["skipped_pre_masked_targets"] += case["skipped_pre_masked_targets"]
+                public_case = {key: case[key] for key in (
+                    "id", "record", "targets", "negative_paths"
+                )}
+                temporary.write(json.dumps(public_case, ensure_ascii=False) + "\n")
             temporary.flush()
             os.fsync(temporary.fileno())
         os.replace(temporary_name, output)
@@ -122,6 +131,7 @@ def main() -> None:
                           kind: counts[kind] for kind in mapped.values()
                       },
                       "hard_negative_fields": counts["hard_negative_fields"],
+                      "skipped_pre_masked_targets": counts["skipped_pre_masked_targets"],
                       "output_sha256": digest_file(output)}, ensure_ascii=False))
 
 

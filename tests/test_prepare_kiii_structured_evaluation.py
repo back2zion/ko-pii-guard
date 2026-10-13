@@ -18,6 +18,7 @@ def test_conversion_uses_explicit_schema_and_keeps_hard_negatives_separate():
                               {"reference": "ABC-123"}]},
         "targets": [{"path": ["fields", 0, "phone_no"], "type": "PHONE_NUMBER"}],
         "negative_paths": [["fields", 1, "reference"]],
+        "skipped_pre_masked_targets": 0,
     }
     assert convert(row, include_hard_negatives=False)["negative_paths"] == []
 
@@ -43,3 +44,12 @@ def test_name_address_fields_are_explicitly_opted_in():
         {"path": ["fields", 0, "person_name"], "type": "KR_NAME"},
         {"path": ["fields", 1, "address"], "type": "KR_ADDRESS"},
     ]
+
+
+def test_fully_pre_masked_source_span_is_not_scored_as_a_raw_value():
+    row = {"doc_id": "pre-masked", "text": "***",
+           "spans": [{"category": "phone_no", "start": 0, "end": 3,
+                      "surface": "***"}], "hard_negatives": []}
+    case = convert(row)
+    assert case["targets"] == []
+    assert case["skipped_pre_masked_targets"] == 1

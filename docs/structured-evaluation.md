@@ -84,6 +84,9 @@
 Kiii² 문서에서 추출했으므로 독립적인 실무 정확도가 아니며, 별도로 예약한
 60문서는 이 변경의 조정에 사용하지 않았다. [집계 보고서](../benchmarks/results/kiii-typed-fields-development-2026-10-14.json)는
 속도 측정 없이 유형 태그·별표 가림을 비교한다.
+준비 도구는 정답 표면이 이미 별표나 유형 태그로 **전부** 가려진 경우 이를
+채점 대상에서 제외하고 제외 건수를 출력한다. 이 60문서에서는 제외 0건이며,
+준비 코드를 다시 실행한 입력 해시가 위 보고서의 해시와 일치했다.
 
 ```bash
 uv run --frozen python scripts/prepare_kiii_structured_evaluation.py \
