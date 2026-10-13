@@ -1,7 +1,7 @@
 {
   "scope": "same_source_structured_default_vs_strict_accuracy_only",
-  "source_commit": "e7e53e9491e67cd6e7a472dc9d68ad0bb208b0b6",
-  "source_sha256": "31968df11679b5ee450d0be29dc94ccd42fec9bb4f459621c6c8e0f1360c145c",
+  "source_commit": "d698ea714d44ddaa1f9a29b5ef40ab70ed72f4c2",
+  "source_sha256": "b675479cd309dd28721cabb22bb364a8b494c7141e5213d85e1aacd53a2ef591",
   "scorer_sha256": "f55ca0a60a14eaec70a2646bac9b15a6be7c4f6a793b7cf78ad8bd115168c1bc",
   "corpus_sha256": "10dce8a983bbd56030f6f2733b758af9c08d019fc939d94ca558fcc3e5bcd7ea",
   "development_corpus_sha256": null,
