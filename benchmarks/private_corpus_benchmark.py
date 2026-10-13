@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import io
 import json
+import math
 import os
 import platform
 import shutil
@@ -39,6 +40,13 @@ def reject_nonfinite_number(value: str) -> None:
     raise ValueError("non-finite JSON number")
 
 
+def finite_float(value: str) -> float:
+    parsed = float(value)
+    if not math.isfinite(parsed):
+        raise ValueError("non-finite JSON number")
+    return parsed
+
+
 def read_cases(path: Path, allowed: set[str]) -> list[dict]:
     cases = []
     seen = set()
@@ -48,7 +56,8 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                 continue
             try:
                 case = json.loads(line, object_pairs_hook=reject_duplicate_keys,
-                                  parse_constant=reject_nonfinite_number)
+                                  parse_constant=reject_nonfinite_number,
+                                  parse_float=finite_float)
                 identifier, value, entities = case["id"], case["text"], case["entities"]
                 if not isinstance(identifier, str) or not identifier or identifier in seen:
                     raise ValueError("id must be a unique nonempty string")

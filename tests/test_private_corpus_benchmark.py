@@ -44,6 +44,7 @@ def test_rejects_invalid_gold_without_echoing_text(tmp_path):
     '{"id":"one","text":"secret","entities":[{"type":"PHONE_NUMBER",'
     '"start":0,"start":1,"end":6}]}',
     '{"id":"one","text":"secret","entities":[],"score":NaN}',
+    '{"id":"one","text":"secret","entities":[],"score":1e999}',
 ])
 def test_rejects_ambiguous_json_annotations_without_echoing_text(tmp_path, malformed):
     path = tmp_path / "input.jsonl"

@@ -24,6 +24,7 @@ from pathlib import Path
 if __package__:
     from .private_corpus_benchmark import (
         archive_revision,
+        finite_float,
         freeze_input,
         reject_duplicate_keys,
         reject_nonfinite_number,
@@ -33,6 +34,7 @@ if __package__:
 else:
     from private_corpus_benchmark import (
         archive_revision,
+        finite_float,
         freeze_input,
         reject_duplicate_keys,
         reject_nonfinite_number,
@@ -94,7 +96,8 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                 continue
             try:
                 raw = json.loads(line, object_pairs_hook=reject_duplicate_keys,
-                                 parse_constant=reject_nonfinite_number)
+                                 parse_constant=reject_nonfinite_number,
+                                 parse_float=finite_float)
                 identifier = raw["id"]
                 record = raw["record"]
                 targets = raw["targets"]
