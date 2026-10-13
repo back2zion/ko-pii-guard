@@ -56,6 +56,27 @@ def test_json_name_parts_mask_single_character_surname_when_selected():
     assert KoreanPIIGuard().mask_json({"name": "김"}) == {"name": "김"}
 
 
+def test_json_explicit_korean_business_fields_supply_context():
+    guard = KoreanPIIGuard(entities=["KR_NAME", "KR_ADDRESS", "PHONE_NUMBER",
+                                      "EMAIL_ADDRESS", "KR_ACCOUNT", "CREDIT_CARD"])
+    source = {
+        "고객명": "홍길동", "수취인명": "김영희", "담당자명": "박준호",
+        "예금주명": "이민지", "휴대폰번호": "821012345678",
+        "이메일주소": "hello@internal.local", "은행계좌번호": "1234567890123",
+        "신용카드번호": "4111111111111112",
+        "배송주소": "서울특별시 강남구 테헤란로 123",
+        "주문번호": "821012345678",
+    }
+    assert guard.mask_json(source) == {
+        "고객명": "<KR_NAME>", "수취인명": "<KR_NAME>",
+        "담당자명": "<KR_NAME>", "예금주명": "<KR_NAME>",
+        "휴대폰번호": "<PHONE_NUMBER>", "이메일주소": "<EMAIL_ADDRESS>",
+        "은행계좌번호": "<KR_ACCOUNT>", "신용카드번호": "<CREDIT_CARD>",
+        "배송주소": "<KR_ADDRESS>", "주문번호": "821012345678",
+    }
+    assert source["고객명"] == "홍길동"
+
+
 @pytest.mark.parametrize("bank,value", [
     ("카카오뱅크", "3333120145448"),
     ("농협", "3025382178204"),
@@ -312,6 +333,18 @@ def test_cli_csv_utf8_bom_does_not_hide_first_column_context():
                      input_text='\ufeffname,notes\n이상,접수\n')
     assert result.returncode == 0, result.stderr
     assert result.stdout == 'name,notes\n<KR_NAME>,접수\n'
+
+
+def test_cli_csv_korean_headers_mask_typed_values_only():
+    result = run_cli("mask", "--format", "csv", "--entity", "KR_NAME",
+                     "--entity", "PHONE_NUMBER", "--entity", "EMAIL_ADDRESS",
+                     input_text=("고객명,휴대폰번호,이메일주소,주문번호\n"
+                                 "홍길동,821012345678,hello@internal.local,821012345678\n"))
+    assert result.returncode == 0, result.stderr
+    assert result.stdout == (
+        "고객명,휴대폰번호,이메일주소,주문번호\n"
+        "<KR_NAME>,<PHONE_NUMBER>,<EMAIL_ADDRESS>,821012345678\n"
+    )
 
 
 def test_cli_uses_explicit_offline_ner_configuration(monkeypatch):

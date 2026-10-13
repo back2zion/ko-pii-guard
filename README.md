@@ -96,9 +96,11 @@ ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: erro
 Input/output default to stdin/stdout (`-`). Text mode scans the complete input,
 including line boundaries. JSON and JSONL modes scan string keys, string values and integer
 identifiers; common fields such as `name`, `address`, `rrn` and `account_number`
-supply Korean label context. Names and addresses still require explicit `--entity`
-selection. Masked integers become strings. Invalid JSON, duplicate keys, masked
-key collisions, floating-point values in explicit PII fields and screening failures
+supply Korean label context. Explicit Korean fields including `고객명`, `휴대폰번호`,
+`이메일주소` and `은행계좌번호` also supply that context. Names and addresses still
+require explicit `--entity` selection. Masked integers become strings. Invalid
+JSON, duplicate keys, masked key collisions, floating-point values in explicit
+PII fields and screening failures
 produce exit code 2. Store identifiers as strings or integers; floating-point JSON
 numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
