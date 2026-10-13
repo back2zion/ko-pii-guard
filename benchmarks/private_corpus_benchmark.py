@@ -59,6 +59,9 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                 ignored = case.get("ignore", [])
                 if not isinstance(ignored, list):
                     raise ValueError("ignore must be a list")
+                negatives = case.get("negative_spans", [])
+                if not isinstance(negatives, list):
+                    raise ValueError("negative_spans must be a list")
                 spans = set()
                 for item in entities:
                     if not isinstance(item, dict):
@@ -102,11 +105,36 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                     if "surface" in item and value[start:end] != item["surface"]:
                         raise ValueError("ignored surface does not match offsets")
                     ignored_spans.add((start, end))
+                negative_spans = set()
+                for item in negatives:
+                    if not isinstance(item, dict):
+                        raise ValueError("negative annotation must be an object")
+                    start, end = item["start"], item["end"]
+                    if (type(start) is not int or type(end) is not int
+                            or not 0 <= start < end <= len(value)):
+                        raise ValueError("invalid negative character offsets")
+                    if "surface" in item and value[start:end] != item["surface"]:
+                        raise ValueError("negative surface does not match offsets")
+                    negative_spans.add((start, end))
+                if len(negative_spans) != len(negatives):
+                    raise ValueError("duplicate negative span")
+                negative_ordered = sorted(negative_spans)
+                if any(left[1] > right[0] for left, right in zip(
+                    negative_ordered, negative_ordered[1:], strict=False
+                )):
+                    raise ValueError("overlapping negative spans")
+                protected_spans = [*ignored_spans, *((g[1], g[2]) for g in spans)]
+                if any(
+                    start < right and left < end
+                    for start, end in negative_spans
+                    for left, right in protected_spans
+                ):
+                    raise ValueError("negative span overlaps gold or ignore")
             except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
                 raise ValueError(f"Invalid input at line {line_number}: {error}") from None
             seen.add(identifier)
             cases.append({"id": identifier, "text": value, "gold": spans,
-                          "ignore": ignored_spans})
+                          "ignore": ignored_spans, "negative_spans": negative_spans})
     if not cases:
         raise ValueError("Input contains no documents")
     return cases
@@ -190,6 +218,8 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     positive_docs = 0
     positive_docs_with_unmasked_gold = 0
     ignored_predictions = 0
+    negative_spans_total = 0
+    negative_spans_with_prediction = 0
     for case in cases:
         value, gold = case["text"], case["gold"]
         findings = guard.analyze(value)
@@ -199,6 +229,11 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
             if not is_ignored_prediction(item, gold, case["ignore"])
         }
         ignored_predictions += len(all_predicted) - len(predicted)
+        negative_spans_total += len(case["negative_spans"])
+        negative_spans_with_prediction += sum(
+            any(start < right and left < end for _, left, right in predicted)
+            for start, end in case["negative_spans"]
+        )
         masked = guard.mask(value, style="stars")
         if len(masked) != len(value):
             raise RuntimeError("Stars masking changed document length")
@@ -271,6 +306,12 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         ),
         "ignored_predictions": ignored_predictions,
         "ignored_spans": sum(len(c["ignore"]) for c in cases),
+        "negative_spans": negative_spans_total,
+        "negative_spans_with_prediction": negative_spans_with_prediction,
+        "negative_span_hit_rate": (
+            negative_spans_with_prediction / negative_spans_total
+            if negative_spans_total else None
+        ),
         "negative_document_false_positive_rate": (
             negative_docs_with_fp / negative_docs if negative_docs else None
         ),

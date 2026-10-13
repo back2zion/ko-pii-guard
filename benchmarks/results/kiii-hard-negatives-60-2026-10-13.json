@@ -1,0 +1,376 @@
+{
+  "baseline_commit": "0e2c7ee238be33af2c4449b57920918d8875ede1",
+  "current_commit": "0e2c7ee238be33af2c4449b57920918d8875ede1",
+  "current_source_has_uncommitted_changes": false,
+  "baseline_source_sha256": "1834a788a013c8804fa38215a804955a7d5b3203aef02a7b7ffcfaf45c2d68ce",
+  "current_source_sha256": "1834a788a013c8804fa38215a804955a7d5b3203aef02a7b7ffcfaf45c2d68ce",
+  "corpus_sha256": "cfb8655bbc7ab94d0be9992e53922ea62b28737cdb98d93c9e1fad027ee6e12d",
+  "development_corpus_sha256": null,
+  "entities": [
+    "KR_RRN",
+    "KR_FRN",
+    "KR_BRN",
+    "KR_DRIVER_LICENSE",
+    "KR_PASSPORT",
+    "PHONE_NUMBER",
+    "EMAIL_ADDRESS",
+    "CREDIT_CARD",
+    "KR_ACCOUNT"
+  ],
+  "repeats": 0,
+  "accuracy_only": true,
+  "score_threshold": 0.4,
+  "normalize_unicode": true,
+  "ner_enabled": false,
+  "ner_score_threshold": null,
+  "ner_threads": null,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "dependencies": {
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0"
+  },
+  "baseline": {
+    "loaded_source": "/tmp/ko-pii-private-eval-kt5xcsqf/baseline/src/ko_pii_guard/__init__.py",
+    "ner_model": null,
+    "documents": 60,
+    "characters": 644492,
+    "gold_spans": 1456,
+    "total": {
+      "tp": 938,
+      "fp": 111,
+      "fn": 518,
+      "precision": 0.894184938036225,
+      "recall": 0.6442307692307693,
+      "f1": 0.7489021956087825
+    },
+    "per_entity": {
+      "KR_RRN": {
+        "tp": 147,
+        "fp": 6,
+        "fn": 53,
+        "precision": 0.9607843137254902,
+        "recall": 0.735,
+        "f1": 0.8328611898016998
+      },
+      "KR_FRN": {
+        "tp": 23,
+        "fp": 1,
+        "fn": 6,
+        "precision": 0.9583333333333334,
+        "recall": 0.7931034482758621,
+        "f1": 0.8679245283018868
+      },
+      "KR_BRN": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.6363636363636364,
+        "f1": 0.7777777777777778
+      },
+      "KR_DRIVER_LICENSE": {
+        "tp": 16,
+        "fp": 1,
+        "fn": 4,
+        "precision": 0.9411764705882353,
+        "recall": 0.8,
+        "f1": 0.8648648648648649
+      },
+      "KR_PASSPORT": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 17,
+        "precision": 0.8823529411764706,
+        "recall": 0.46875,
+        "f1": 0.6122448979591837
+      },
+      "PHONE_NUMBER": {
+        "tp": 237,
+        "fp": 29,
+        "fn": 56,
+        "precision": 0.8909774436090225,
+        "recall": 0.8088737201365188,
+        "f1": 0.8479427549194991
+      },
+      "EMAIL_ADDRESS": {
+        "tp": 55,
+        "fp": 22,
+        "fn": 24,
+        "precision": 0.7142857142857143,
+        "recall": 0.6962025316455697,
+        "f1": 0.7051282051282052
+      },
+      "CREDIT_CARD": {
+        "tp": 69,
+        "fp": 11,
+        "fn": 51,
+        "precision": 0.8625,
+        "recall": 0.575,
+        "f1": 0.69
+      },
+      "KR_ACCOUNT": {
+        "tp": 369,
+        "fp": 39,
+        "fn": 303,
+        "precision": 0.9044117647058824,
+        "recall": 0.5491071428571429,
+        "f1": 0.6833333333333333
+      }
+    },
+    "fully_masked_gold_spans": 951,
+    "full_mask_coverage": 0.6531593406593407,
+    "wrong_type_same_span": [
+      {
+        "gold": "KR_ACCOUNT",
+        "predicted": "CREDIT_CARD",
+        "count": 10
+      },
+      {
+        "gold": "KR_ACCOUNT",
+        "predicted": "KR_DRIVER_LICENSE",
+        "count": 1
+      },
+      {
+        "gold": "KR_RRN",
+        "predicted": "KR_ACCOUNT",
+        "count": 1
+      }
+    ],
+    "mask_coverage_by_entity": {
+      "KR_RRN": {
+        "gold": 200,
+        "fully_masked": 148,
+        "rate": 0.74
+      },
+      "KR_FRN": {
+        "gold": 29,
+        "fully_masked": 23,
+        "rate": 0.7931034482758621
+      },
+      "KR_BRN": {
+        "gold": 11,
+        "fully_masked": 7,
+        "rate": 0.6363636363636364
+      },
+      "KR_DRIVER_LICENSE": {
+        "gold": 20,
+        "fully_masked": 16,
+        "rate": 0.8
+      },
+      "KR_PASSPORT": {
+        "gold": 32,
+        "fully_masked": 15,
+        "rate": 0.46875
+      },
+      "PHONE_NUMBER": {
+        "gold": 293,
+        "fully_masked": 238,
+        "rate": 0.8122866894197952
+      },
+      "EMAIL_ADDRESS": {
+        "gold": 79,
+        "fully_masked": 55,
+        "rate": 0.6962025316455697
+      },
+      "CREDIT_CARD": {
+        "gold": 120,
+        "fully_masked": 69,
+        "rate": 0.575
+      },
+      "KR_ACCOUNT": {
+        "gold": 672,
+        "fully_masked": 380,
+        "rate": 0.5654761904761905
+      }
+    },
+    "negative_documents": 0,
+    "negative_documents_with_false_positive": 0,
+    "positive_documents": 60,
+    "positive_documents_with_unmasked_gold": 45,
+    "positive_document_leak_rate": 0.75,
+    "ignored_predictions": 41,
+    "ignored_spans": 2166,
+    "negative_spans": 225,
+    "negative_spans_with_prediction": 42,
+    "negative_span_hit_rate": 0.18666666666666668,
+    "negative_document_false_positive_rate": null,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "current": {
+    "loaded_source": "/tmp/ko-pii-private-eval-kt5xcsqf/current/src/ko_pii_guard/__init__.py",
+    "ner_model": null,
+    "documents": 60,
+    "characters": 644492,
+    "gold_spans": 1456,
+    "total": {
+      "tp": 938,
+      "fp": 111,
+      "fn": 518,
+      "precision": 0.894184938036225,
+      "recall": 0.6442307692307693,
+      "f1": 0.7489021956087825
+    },
+    "per_entity": {
+      "KR_RRN": {
+        "tp": 147,
+        "fp": 6,
+        "fn": 53,
+        "precision": 0.9607843137254902,
+        "recall": 0.735,
+        "f1": 0.8328611898016998
+      },
+      "KR_FRN": {
+        "tp": 23,
+        "fp": 1,
+        "fn": 6,
+        "precision": 0.9583333333333334,
+        "recall": 0.7931034482758621,
+        "f1": 0.8679245283018868
+      },
+      "KR_BRN": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.6363636363636364,
+        "f1": 0.7777777777777778
+      },
+      "KR_DRIVER_LICENSE": {
+        "tp": 16,
+        "fp": 1,
+        "fn": 4,
+        "precision": 0.9411764705882353,
+        "recall": 0.8,
+        "f1": 0.8648648648648649
+      },
+      "KR_PASSPORT": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 17,
+        "precision": 0.8823529411764706,
+        "recall": 0.46875,
+        "f1": 0.6122448979591837
+      },
+      "PHONE_NUMBER": {
+        "tp": 237,
+        "fp": 29,
+        "fn": 56,
+        "precision": 0.8909774436090225,
+        "recall": 0.8088737201365188,
+        "f1": 0.8479427549194991
+      },
+      "EMAIL_ADDRESS": {
+        "tp": 55,
+        "fp": 22,
+        "fn": 24,
+        "precision": 0.7142857142857143,
+        "recall": 0.6962025316455697,
+        "f1": 0.7051282051282052
+      },
+      "CREDIT_CARD": {
+        "tp": 69,
+        "fp": 11,
+        "fn": 51,
+        "precision": 0.8625,
+        "recall": 0.575,
+        "f1": 0.69
+      },
+      "KR_ACCOUNT": {
+        "tp": 369,
+        "fp": 39,
+        "fn": 303,
+        "precision": 0.9044117647058824,
+        "recall": 0.5491071428571429,
+        "f1": 0.6833333333333333
+      }
+    },
+    "fully_masked_gold_spans": 951,
+    "full_mask_coverage": 0.6531593406593407,
+    "wrong_type_same_span": [
+      {
+        "gold": "KR_ACCOUNT",
+        "predicted": "CREDIT_CARD",
+        "count": 10
+      },
+      {
+        "gold": "KR_ACCOUNT",
+        "predicted": "KR_DRIVER_LICENSE",
+        "count": 1
+      },
+      {
+        "gold": "KR_RRN",
+        "predicted": "KR_ACCOUNT",
+        "count": 1
+      }
+    ],
+    "mask_coverage_by_entity": {
+      "KR_RRN": {
+        "gold": 200,
+        "fully_masked": 148,
+        "rate": 0.74
+      },
+      "KR_FRN": {
+        "gold": 29,
+        "fully_masked": 23,
+        "rate": 0.7931034482758621
+      },
+      "KR_BRN": {
+        "gold": 11,
+        "fully_masked": 7,
+        "rate": 0.6363636363636364
+      },
+      "KR_DRIVER_LICENSE": {
+        "gold": 20,
+        "fully_masked": 16,
+        "rate": 0.8
+      },
+      "KR_PASSPORT": {
+        "gold": 32,
+        "fully_masked": 15,
+        "rate": 0.46875
+      },
+      "PHONE_NUMBER": {
+        "gold": 293,
+        "fully_masked": 238,
+        "rate": 0.8122866894197952
+      },
+      "EMAIL_ADDRESS": {
+        "gold": 79,
+        "fully_masked": 55,
+        "rate": 0.6962025316455697
+      },
+      "CREDIT_CARD": {
+        "gold": 120,
+        "fully_masked": 69,
+        "rate": 0.575
+      },
+      "KR_ACCOUNT": {
+        "gold": 672,
+        "fully_masked": 380,
+        "rate": 0.5654761904761905
+      }
+    },
+    "negative_documents": 0,
+    "negative_documents_with_false_positive": 0,
+    "positive_documents": 60,
+    "positive_documents_with_unmasked_gold": 45,
+    "positive_document_leak_rate": 0.75,
+    "ignored_predictions": 41,
+    "ignored_spans": 2166,
+    "negative_spans": 225,
+    "negative_spans_with_prediction": 42,
+    "negative_span_hit_rate": 0.18666666666666668,
+    "negative_document_false_positive_rate": null,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "scope": "exact type+character span; stars full-span coverage; warm analyze/mask time"
+}

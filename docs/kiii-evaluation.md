@@ -23,6 +23,18 @@
 자료의 주석 누락이 남을 수 있으므로 precision은 주석 정책의 영향을 받는다.
 이름·주소만 따로 검사할 때는 `--only-name-address`를 사용한다. `--length 1k`는
 각 문서 종류·변형 수준 조합에서 짧은 문서만 골라 20문서 진단 표본을 만든다.
+`--include-hard-negatives`를 붙이면 제작자가 주석한 어려운 음성 구간을
+`negative_spans`로 추가한다. 이전 집계와 입력 해시를 그대로 재현하기 위해 기본값은
+이 구간을 추가하지 않는다.
+
+```bash
+uv run --frozen python scripts/prepare_kiii_evaluation.py \
+  --include-hard-negatives --output /tmp/ko-pii-kiii-structured-60-hard-negatives.jsonl
+uv run --frozen python benchmarks/private_corpus_benchmark.py \
+  --input /tmp/ko-pii-kiii-structured-60-hard-negatives.jsonl \
+  --baseline-ref 0e2c7ee --accuracy-only \
+  --output /tmp/ko-pii-kiii-structured-60-hard-negative-report.json
+```
 
 ```bash
 uv sync --frozen --extra dev --extra ner
@@ -75,6 +87,20 @@ uv run --frozen python benchmarks/private_corpus_benchmark.py \
 기준 `d36f5bb`와 정확도·문서 누락 수가 같고, 10회 중앙값의 전체 탐지 시간이
 855.9ms에서 723.9ms로 줄었다. 비교는 고정 입력·동일 의존성·별도 프로세스에서
 수행했지만 순차 실행 순서까지 교차 통제한 속도 실험은 아니다.
+
+어려운 음성 주석을 추가한 동일 60문서(입력 SHA-256
+`cfb8655bbc7ab94d0be9992e53922ea62b28737cdb98d93c9e1fad027ee6e12d`)에서는
+기준·현재 버전 모두 **225구간 중 42구간(18.67%)**에 예측이 겹쳤다. 나머지
+정확한 유형·구간 TP/FP/FN은 938/111/518로 변하지 않았다.
+종류별로는 예시 자리표시자 27/34, 공개 연락처 등 `public_entity` 15/46에
+집중됐고, 체크섬 오류 0/49, 주민번호 앞자리처럼 보이는 날짜 0/28,
+유사 숫자 0/28, 일반 금액 0/40이었다. 별도 유형별 수치는 고정 원본의
+`hard_negatives.type`과 탐지 겹침을 집계한 진단이다.
+이 도구의 기본 전화번호 정책은 공개 연락처도 가릴 수 있으므로 15건 전체를
+사람의 개인정보 오탐으로 단정하지 않는다. 반대로 예시 자리표시자를 가리는
+19건의 계좌 예측과 8건의 전화 예측은 업무상 불필요한 가림이 될 수 있다.
+[음성 구간 집계 원본](../benchmarks/results/kiii-hard-negatives-60-2026-10-13.json)은
+원문·문서 ID·음성값을 포함하지 않는다.
 
 ## 이름·주소 짧은 20문서 진단
 

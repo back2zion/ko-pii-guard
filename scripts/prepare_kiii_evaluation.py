@@ -71,7 +71,8 @@ def selected_rows(source: Path, lengths: tuple[str, ...] = LENGTHS) -> list[dict
 
 
 def convert(row: dict, include_name_address: bool,
-            only_name_address: bool = False) -> dict:
+            only_name_address: bool = False,
+            include_hard_negatives: bool = False) -> dict:
     mapped = (dict(OPTIONAL_TYPES) if only_name_address else dict(STRUCTURED_TYPES))
     if include_name_address and not only_name_address:
         mapped.update(OPTIONAL_TYPES)
@@ -95,7 +96,18 @@ def convert(row: dict, include_name_address: bool,
     ordered = sorted(entities, key=lambda item: (item["start"], item["end"]))
     if any(a["end"] > b["start"] for a, b in zip(ordered, ordered[1:], strict=False)):
         raise ValueError("Selected source has overlapping supported spans")
-    return {"id": row["doc_id"], "text": text, "entities": entities, "ignore": ignored}
+    case = {"id": row["doc_id"], "text": text, "entities": entities, "ignore": ignored}
+    if include_hard_negatives:
+        negatives = []
+        for span in row["hard_negatives"]:
+            start, end = span["start"], span["end"]
+            if (type(start) is not int or type(end) is not int
+                    or not 0 <= start < end <= len(text)
+                    or text[start:end] != span["surface"]):
+                raise ValueError("Pinned source contains an invalid hard negative")
+            negatives.append({"start": start, "end": end})
+        case["negative_spans"] = negatives
+    return case
 
 
 def main() -> None:
@@ -104,6 +116,7 @@ def main() -> None:
     profile = parser.add_mutually_exclusive_group()
     profile.add_argument("--include-name-address", action="store_true")
     profile.add_argument("--only-name-address", action="store_true")
+    parser.add_argument("--include-hard-negatives", action="store_true")
     parser.add_argument("--length", choices=LENGTHS, action="append",
                         help="select only these length buckets; default: all three")
     args = parser.parse_args()
@@ -136,7 +149,8 @@ def main() -> None:
                 chosen_types = STRUCTURED_TYPES
             counts = dict.fromkeys(chosen_types.values(), 0)
             for row in rows:
-                case = convert(row, args.include_name_address, args.only_name_address)
+                case = convert(row, args.include_name_address, args.only_name_address,
+                               args.include_hard_negatives)
                 for span in case["entities"]:
                     counts[span["type"]] += 1
                 temporary.write(json.dumps(case, ensure_ascii=False) + "\n")

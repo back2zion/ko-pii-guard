@@ -32,10 +32,13 @@ def test_only_supported_gold_and_specific_unsupported_identifiers_are_scored():
                {"category": "customer_id", "start": 10, "end": 15, "surface": "abcde"},
                {"category": "consultation_content", "start": 15, "end": 20,
                 "surface": "fghij"},
-           ]}
+           ],
+           "hard_negatives": [{"start": 15, "end": 20, "surface": "fghij"}]}
     case = convert(row, include_name_address=False)
     assert case["entities"] == [{"type": "KR_RRN", "start": 0, "end": 10}]
     assert case["ignore"] == [{"start": 10, "end": 15}]
     name_only = convert(row, include_name_address=False, only_name_address=True)
     assert name_only["entities"] == []
     assert {tuple(item.values()) for item in name_only["ignore"]} == {(0, 10), (10, 15)}
+    with_negatives = convert(row, include_name_address=False, include_hard_negatives=True)
+    assert with_negatives["negative_spans"] == [{"start": 15, "end": 20}]

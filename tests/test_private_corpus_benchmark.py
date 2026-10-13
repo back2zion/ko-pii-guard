@@ -94,6 +94,21 @@ def test_rejects_invalid_ignored_offsets(tmp_path):
     assert "secret" not in str(error.value)
 
 
+def test_rejects_negative_span_overlapping_gold_or_ignore(tmp_path):
+    path = tmp_path / "input.jsonl"
+    base = {"id": "one", "text": "전화 010-1234-5678",
+            "entities": [{"type": "PHONE_NUMBER", "start": 3, "end": 16}],
+            "negative_spans": [{"start": 3, "end": 16}]}
+    path.write_text(json.dumps(base, ensure_ascii=False) + "\n")
+    with pytest.raises(ValueError, match="negative span overlaps gold or ignore"):
+        read_cases(path, {"PHONE_NUMBER"})
+    base["entities"] = []
+    base["ignore"] = [{"start": 3, "end": 16}]
+    path.write_text(json.dumps(base, ensure_ascii=False) + "\n")
+    with pytest.raises(ValueError, match="negative span overlaps gold or ignore"):
+        read_cases(path, {"PHONE_NUMBER"})
+
+
 def test_rejects_normalized_document_reuse_between_splits():
     holdout = [{"id": "h", "text": "전화 ０１０-1234-5678"}]
     development = [{"id": "d", "text": "전화 010-1234-5678"}]
@@ -140,7 +155,12 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
         "id": "out-of-scope-id", "text": "전화 " + secret, "entities": [],
         "ignore": [{"start": 3, "end": 16}],
     }, ensure_ascii=False)
-    corpus.write_text(positive + "\n" + negative + "\n" + ignored + "\n")
+    hard_negative = json.dumps({
+        "id": "hard-negative-id", "text": "전화 " + secret, "entities": [],
+        "negative_spans": [{"start": 3, "end": 16}],
+    }, ensure_ascii=False)
+    corpus.write_text(positive + "\n" + negative + "\n" + ignored + "\n"
+                      + hard_negative + "\n")
     subprocess.run([
         sys.executable, str(ROOT / "benchmarks" / "private_corpus_benchmark.py"),
         "--input", str(corpus), "--output", str(output), "--repeats", "1",
@@ -148,8 +168,11 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     report = json.loads(output.read_text())
     assert report["baseline"]["total"]["tp"] == 1
     assert report["current"]["full_mask_coverage"] == 1.0
-    assert report["current"]["negative_document_false_positive_rate"] == 0.0
-    assert report["current"]["negative_documents"] == 2
+    assert report["current"]["negative_document_false_positive_rate"] == 1 / 3
+    assert report["current"]["negative_documents"] == 3
+    assert report["current"]["negative_spans"] == 1
+    assert report["current"]["negative_spans_with_prediction"] == 1
+    assert report["current"]["negative_span_hit_rate"] == 1.0
     assert report["current"]["positive_documents"] == 1
     assert report["current"]["positive_documents_with_unmasked_gold"] == 0
     assert report["current"]["positive_document_leak_rate"] == 0.0
