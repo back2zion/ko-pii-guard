@@ -370,6 +370,9 @@ A separate **external synthetic slice** from K-PII-Bench contains 500 documents 
 A separate [finance-style synthetic sample](docs/kiii-evaluation.md) of 60 documents and 1,456 supported structured-identifier spans scored **74.89% exact-span F1** for both the pre-work baseline and this checkout. Fully masked gold spans were **951/1,456**; **45/60 documents** had at least one incompletely masked gold span. Predictions overlapped **42/225** annotated hard-negative spans, mainly example placeholders and public contacts. Its different document shapes and transformations expose material gaps; neither synthetic score establishes accuracy on private business records.
 On a nested 20-document short-text slice, opt-in name/address NER scored **72.81% exact-span F1** and fully masked **161/233** annotated spans; **16/20 documents** still had an incompletely masked gold span. Rules alone scored **20.15% F1**. Both source versions produced the same results; see the [scope and per-type counts](docs/kiii-evaluation.md).
 
+On the [full public KDPII v1 conversational test diagnostic](docs/evaluation.md), one of 4,891 source sentences was excluded because its PII annotations overlap. With opt-in E5 NER, both the original baseline and this checkout scored **86.88% exact-name F1** on the remaining 4,890 sentences and 176 name spans. Actual stars fully masked **159/176** spans; **17/168** name-positive sentences retained an incompletely masked name. This public conversation set includes the earlier 500-sentence sample and is not an independent business-data evaluation.
+With NER off, the same full set scored **0% exact-name F1** and fully masked only **1/176** name spans. The E5 result does not describe the default rules-only profile.
+
 ## Experimental name/address evaluation
 
 Name and address detection remains under development. Small synthetic regression

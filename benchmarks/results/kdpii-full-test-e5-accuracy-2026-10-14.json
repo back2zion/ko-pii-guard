@@ -1,11 +1,11 @@
 {
-  "scope": "KDPII_v1_full_test_name_only_accuracy_not_business_holdout_or_speed",
+  "scope": "KDPII_v1_full_test_name_only_e5_accuracy_not_business_holdout_or_speed",
   "source_url": "https://zenodo.org/records/10968609",
   "source_license": "CC-BY-4.0",
   "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
   "preparation_script_sha256": "ec3c70bc602f50a8f2b3b8e1dbfb3863a321694e3c9847c526835b9680eeedd0",
   "converter_sha256": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
-  "aggregation_script_sha256": "12c86c1800aaf8df010c4d5245c996585586404278714a5a8f8d1fa1c57a70b0",
+  "aggregation_script_sha256": "1394ea3f8cf1dbc074daa03e2a75957f6ab55c695d7e467f82a6f6738039d2bb",
   "full_input_sha256": "a3f870c18e4e8f5b13251b0040f9fd788744141381fa0c9cc002a89defcc0a4e",
   "population": 4891,
   "excluded_documents": 1,

@@ -48,6 +48,7 @@ def main() -> None:
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--shard-dir", type=Path, required=True)
     parser.add_argument("--reports", nargs=4, type=Path, required=True)
+    parser.add_argument("--profile", choices=("e5", "rules"), default="e5")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     script_sha = digest(Path(__file__).read_bytes())
@@ -76,9 +77,10 @@ def main() -> None:
                   "accuracy_only", "score_threshold", "normalize_unicode", "ner_enabled",
                   "ner_model_key", "ner_score_threshold", "ner_threads", "dependencies")
     fixed = {key: reports[0][key] for key in fixed_keys}
+    use_ner = args.profile == "e5"
     if (fixed["entities"] != ["KR_NAME"] or fixed["repeats"] != 0
-            or not fixed["accuracy_only"] or not fixed["ner_enabled"]
-            or fixed["ner_model_key"] != "e5"
+            or not fixed["accuracy_only"] or fixed["ner_enabled"] != use_ner
+            or fixed["ner_model_key"] != ("e5" if use_ner else None)
             or reports[0]["baseline"]["ner_model"] != reports[0]["current"]["ner_model"]
             or any(report["current_source_has_uncommitted_changes"] for report in reports)):
         raise ValueError("KDPII shard evaluation settings changed")
@@ -107,7 +109,8 @@ def main() -> None:
                    for path, content in zip(args.reports, report_bytes, strict=True))):
         raise ValueError("KDPII aggregation inputs changed during run")
     output = {
-        "scope": "KDPII_v1_full_test_name_only_accuracy_not_business_holdout_or_speed",
+        "scope": (f"KDPII_v1_full_test_name_only_{args.profile}_accuracy_"
+                  "not_business_holdout_or_speed"),
         "source_url": manifest["source_url"],
         "source_license": manifest["source_license"],
         "source_sha256": manifest["source_sha256"],
@@ -128,8 +131,7 @@ def main() -> None:
         "limitations": [
             "Includes the earlier 500-sentence sample and is not a new independent holdout.",
             "Public conversational data are not raw business documents.",
-            "Possible upstream E5 training exposure is unknown.",
-        ],
+        ] + (["Possible upstream E5 training exposure is unknown."] if use_ner else []),
     }
     write_report(args.output, json.dumps(output, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"baseline": baseline, "current": current}, ensure_ascii=False))
