@@ -109,12 +109,14 @@ screening completes. Keep an original backup if you subsequently move or replace
 Common schema keys such as `person_name`, `phone_no`, `bank_account_no`,
 `card_no`, `passport_no` and `foreigner_reg_no` are also recognized as
 explicit fields.
-`--strict-fields` on JSON, JSONL or CSV masks every nonblank value of a selected
-explicit PII field even if its format is malformed or unusual. This can also
+`--strict-fields` on JSON, JSONL or CSV masks every nonblank string or integer
+in a selected explicit PII field even if its format is malformed or unusual. This can also
 mask status values such as `"없음"` in those fields, so use it when the schema
 itself is authoritative. Nested objects and lists under that field inherit its
 type unless a child field has its own explicit PII type. Other fields still
-use normal detection.
+use normal detection. Nulls and booleans stay unchanged; floating-point values
+in explicit PII fields raise an error. The chosen `--style` still controls how
+the selected value is masked, including partial masking if requested.
 JSON mode accepts one complete document, including pretty-printed multiline input;
 JSONL mode accepts one document per line for large collections. Both accept a UTF-8
 BOM at the start of the file.

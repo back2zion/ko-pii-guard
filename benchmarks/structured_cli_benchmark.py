@@ -84,8 +84,9 @@ def main() -> None:
                     raise RuntimeError("CLI benchmark masking failed")
                 samples.append({"mode": mode, "milliseconds": round(elapsed, 3),
                                 "output_sha256": validate_output(output_path, args.records)})
-    if commit_id() != source_commit or source_hash(ROOT) != package_sha:
-        raise RuntimeError("Source changed during CLI timing")
+    if (commit_id() != source_commit or source_hash(ROOT) != package_sha
+            or hashlib.sha256(Path(__file__).read_bytes()).hexdigest() != scorer_sha):
+        raise RuntimeError("Source or timing scorer changed during CLI timing")
     report = {
         "scope": "synthetic_json_cli_end_to_end_speed_not_detection_accuracy",
         "source_commit": source_commit, "source_sha256": package_sha,

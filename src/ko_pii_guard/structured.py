@@ -162,7 +162,9 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag", *,
 
     Common explicit fields (``name``, ``rrn``, ``account_number``, etc.) supply
     Korean label context. With ``strict_fields=True``, every nonblank value in
-    a selected explicit PII field is fully replaced regardless of detection.
+    a selected explicit PII string/integer field is masked regardless of detection.
+    Nulls and booleans stay unchanged; floating-point values in explicit PII
+    fields are rejected to avoid silently losing identifier digits.
     Names/addresses still require opt-in entities. Numbers become strings when
     masked. Key collisions raise rather than losing a value.
     """

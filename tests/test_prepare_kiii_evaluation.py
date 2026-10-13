@@ -2,6 +2,8 @@
 
 import json
 
+import pytest
+
 from scripts.prepare_kiii_evaluation import convert, selected_rows
 
 
@@ -46,3 +48,14 @@ def test_only_supported_gold_and_specific_unsupported_identifiers_are_scored():
     assert {tuple(item.values()) for item in name_only["ignore"]} == {(0, 10), (10, 15)}
     with_negatives = convert(row, include_name_address=False, include_hard_negatives=True)
     assert with_negatives["negative_spans"] == [{"start": 15, "end": 20}]
+
+
+@pytest.mark.parametrize("surface", ["***", "<KR_NAME>", "<PHONE_NUMBER>"])
+def test_pre_masked_supported_span_is_ignored_instead_of_scored(surface):
+    row = {"doc_id": "masked", "text": surface,
+           "spans": [{"category": "phone_no", "start": 0, "end": len(surface),
+                      "surface": surface}], "hard_negatives": []}
+    case = convert(row, include_name_address=False)
+    assert case["entities"] == []
+    assert case["ignore"] == [{"start": 0, "end": len(surface)}]
+    assert case["skipped_pre_masked_targets"] == 1

@@ -7,12 +7,16 @@ are synthetic; no source text or identifier value is emitted in reports.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
+import subprocess
 import sys
 from pathlib import Path
 
 from ko_pii_guard import KoreanPIIGuard
+
+ROOT = Path(__file__).resolve().parents[1]
 
 TOKENS = (
     "연락처 ", "계좌번호: ", "카카오뱅크 입금 계좌 ", "농협 입금 계좌 ",
@@ -22,6 +26,19 @@ TOKENS = (
     "１２３４５６７８９０１２３", "010\u200b-1234-5678", "📎", "일반문장", "값 없음",
 )
 SEPARATORS = ("-", " ", "\u2010", "\u2011", "\u200b", "\u2060")
+
+
+def package_hash() -> str:
+    digest = hashlib.sha256()
+    for path in sorted((ROOT / "src" / "ko_pii_guard").glob("*.py")):
+        digest.update(path.name.encode())
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
+def commit_id() -> str:
+    return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                          check=True, capture_output=True, text=True).stdout.strip()
 
 
 def random_token(rng: random.Random) -> str:
@@ -82,6 +99,8 @@ def main() -> None:
     args = parser.parse_args()
     if args.iterations < 1 or args.progress_every < 1:
         parser.error("--iterations and --progress-every must be positive")
+    source_commit, source_sha = commit_id(), package_hash()
+    scorer_sha = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     rng = random.Random(args.seed)
     guard = KoreanPIIGuard()
     findings = 0
@@ -96,9 +115,14 @@ def main() -> None:
             ) from None
         if (index + 1) % args.progress_every == 0:
             print(f"checked={index + 1}", file=sys.stderr, flush=True)
+    if (commit_id() != source_commit or package_hash() != source_sha
+            or hashlib.sha256(Path(__file__).read_bytes()).hexdigest() != scorer_sha):
+        raise RuntimeError("Source or invariant scorer changed during the sweep")
     report = {"seed": args.seed, "iterations": args.iterations,
               "findings_checked": findings,
-              "scope": "synthetic_analyze_stars_and_tag_detail_invariants"}
+              "scope": "synthetic_analyze_stars_and_tag_detail_invariants",
+              "source_commit": source_commit, "source_sha256": source_sha,
+              "scorer_sha256": scorer_sha}
     rendered = json.dumps(report, indent=2) + "\n"
     if args.output:
         args.output.write_text(rendered, encoding="utf-8")

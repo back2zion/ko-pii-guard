@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import tempfile
 from pathlib import Path
 
@@ -43,6 +44,11 @@ def digest_file(path: Path) -> str:
         while chunk := source.read(1024 * 1024):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def fully_pre_masked(surface: str) -> bool:
+    """A placeholder cannot establish a new detection or redaction hit."""
+    return not surface.strip("*") or bool(re.fullmatch(r"<[A-Z][A-Z0-9_]*>", surface))
 
 
 def selected_rows(source: Path, lengths: tuple[str, ...] = LENGTHS,
@@ -89,6 +95,7 @@ def convert(row: dict, include_name_address: bool,
         ignored_categories.update(OPTIONAL_TYPES)
     text = row["text"]
     entities, ignored = [], []
+    skipped_pre_masked = 0
     for span in row["spans"]:
         start, end, category = span["start"], span["end"], span["category"]
         if (type(start) is not int or type(end) is not int
@@ -96,13 +103,18 @@ def convert(row: dict, include_name_address: bool,
                 or text[start:end] != span["surface"]):
             raise ValueError("Pinned source contains an invalid span")
         if category in mapped:
-            entities.append({"type": mapped[category], "start": start, "end": end})
+            if fully_pre_masked(span["surface"]):
+                ignored.append({"start": start, "end": end})
+                skipped_pre_masked += 1
+            else:
+                entities.append({"type": mapped[category], "start": start, "end": end})
         elif category in ignored_categories:
             ignored.append({"start": start, "end": end})
     ordered = sorted(entities, key=lambda item: (item["start"], item["end"]))
     if any(a["end"] > b["start"] for a, b in zip(ordered, ordered[1:], strict=False)):
         raise ValueError("Selected source has overlapping supported spans")
-    case = {"id": row["doc_id"], "text": text, "entities": entities, "ignore": ignored}
+    case = {"id": row["doc_id"], "text": text, "entities": entities, "ignore": ignored,
+            "skipped_pre_masked_targets": skipped_pre_masked}
     if include_hard_negatives:
         negatives = []
         for span in row["hard_negatives"]:
@@ -158,12 +170,19 @@ def main() -> None:
             else:
                 chosen_types = STRUCTURED_TYPES
             counts = dict.fromkeys(chosen_types.values(), 0)
+            skipped_pre_masked_targets = 0
             for row in rows:
                 case = convert(row, args.include_name_address, args.only_name_address,
                                args.include_hard_negatives)
+                skipped_pre_masked_targets += case["skipped_pre_masked_targets"]
                 for span in case["entities"]:
                     counts[span["type"]] += 1
-                temporary.write(json.dumps(case, ensure_ascii=False) + "\n")
+                public_case = {key: case[key] for key in (
+                    "id", "text", "entities", "ignore"
+                )}
+                if args.include_hard_negatives:
+                    public_case["negative_spans"] = case["negative_spans"]
+                temporary.write(json.dumps(public_case, ensure_ascii=False) + "\n")
             temporary.flush()
             os.fsync(temporary.fileno())
         os.replace(temporary_name, output)
@@ -174,6 +193,7 @@ def main() -> None:
                       "documents": len(rows), "lengths": lengths,
                       "selection_rank": args.selection_rank,
                       "gold_spans_by_type": counts,
+                      "skipped_pre_masked_targets": skipped_pre_masked_targets,
                       "output_sha256": digest_file(output)}, ensure_ascii=False))
 
 

@@ -10,7 +10,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import tempfile
 from collections import Counter
 from pathlib import Path
@@ -23,6 +22,7 @@ if __package__:
         REVISION,
         STRUCTURED_TYPES,
         digest_file,
+        fully_pre_masked,
         selected_rows,
     )
 else:
@@ -33,6 +33,7 @@ else:
         REVISION,
         STRUCTURED_TYPES,
         digest_file,
+        fully_pre_masked,
         selected_rows,
     )
 
@@ -56,8 +57,7 @@ def convert(row: dict, include_hard_negatives: bool = True,
                 or not 0 <= start < end <= len(text)
                 or text[start:end] != surface):
             raise ValueError("Pinned source contains an invalid supported span")
-        if (surface.strip("*") == ""
-                or re.fullmatch(r"<[A-Z][A-Z0-9_]*>", surface)):
+        if fully_pre_masked(surface):
             skipped_pre_masked += 1
             continue
         fields.append({category: surface})

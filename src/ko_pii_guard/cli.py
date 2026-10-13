@@ -148,7 +148,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--format", choices=("text", "json", "jsonl", "csv"), default="text")
     parser.add_argument("--style", choices=("tag", "stars", "partial"), default="tag")
     parser.add_argument("--strict-fields", action="store_true",
-                        help="mask every nonblank value of selected explicit PII fields")
+                        help="mask nonblank string/integer values in selected explicit PII fields")
     parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
                         help="detect only these entities; repeat for multiple types")
     parser.add_argument("--threshold", type=float, default=0.4)

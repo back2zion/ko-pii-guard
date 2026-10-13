@@ -9,7 +9,8 @@
 
 - Python 3.10~3.13에서 테스트를 실행했고, 실제 E5 모델을 사용하는 NER
   테스트도 실행했다. 이는 기능·회귀 검증이다.
-- 공개 K-PII Bench, KDPII와 Kiii² 자료는 [문장형 평가](kiii-evaluation.md)와
+- 공개 K-PII Bench, KDPII와 Kiii² 자료는 [공개 평가](evaluation.md),
+  [문장형 평가](kiii-evaluation.md)와
   [구조화 필드 평가](structured-evaluation.md)로 분리했다. Kiii²의 개발용
   문서와 별도 예약 문서는 해시로 분리했으며, 개발용 결과로 예약 문서를
   조정하지 않는다.
