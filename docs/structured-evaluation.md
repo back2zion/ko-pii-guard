@@ -55,6 +55,7 @@
 `exact_type_fields`는 태그 출력이 정확히 `<TYPE>`인 정답 필드 수이고,
 `fully_masked_fields`는 별표 출력이 원래 값 전체를 가린 필드 수다. 다른 유형으로
 완전히 가린 값은 전자에서는 실패하지만 후자에서는 성공이다.
+`wrong_type_same_field`는 이 경우의 정답 유형·예측 유형별 건수다.
 `changed_nontarget_fields`는 정답·제외 범위 밖의 값이 바뀐 필드 수이며,
 `negative_records_with_changed_field`는 정답이 없는 레코드에서 하나라도 값이
 바뀐 레코드 수다. 실제 원문이나 문서 ID, 필드 경로는 보고서에 저장하지 않는다.

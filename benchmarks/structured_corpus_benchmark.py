@@ -12,6 +12,7 @@ import json
 import math
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -200,6 +201,7 @@ def evaluate(cases: list[dict], guard) -> dict:
         kind: Counter({"gold": 0, "exact_type": 0, "fully_masked": 0})
         for kind in guard.entities
     }
+    wrong_type = Counter()
     for case in cases:
         record, gold = case["record"], case["gold"]
         tagged = guard.mask_json(record, style="tag")
@@ -221,6 +223,10 @@ def evaluate(cases: list[dict], guard) -> dict:
                 exact = tag_value == f"<{kind}>" and tag_value != original
                 full = (star_value == "*" * len(str(original))
                         and star_value != original)
+                if isinstance(tag_value, str):
+                    other = re.fullmatch(r"<([A-Z_]+)>", tag_value)
+                    if other and other.group(1) != kind:
+                        wrong_type[(kind, other.group(1))] += 1
                 counts["target_fields"] += 1
                 counts["exact_type_fields"] += exact
                 counts["fully_masked_fields"] += full
@@ -244,6 +250,10 @@ def evaluate(cases: list[dict], guard) -> dict:
     return {
         **counts,
         "per_entity": {kind: dict(by_entity[kind]) for kind in guard.entities},
+        "wrong_type_same_field": [
+            {"gold": gold_kind, "predicted": predicted_kind, "count": count}
+            for (gold_kind, predicted_kind), count in sorted(wrong_type.items())
+        ],
         "full_mask_coverage": (
             counts["fully_masked_fields"] / counts["target_fields"]
             if counts["target_fields"] else None

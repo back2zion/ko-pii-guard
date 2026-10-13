@@ -9,6 +9,7 @@ import pytest
 
 from benchmarks.structured_corpus_benchmark import (
     check_split_overlap,
+    evaluate,
     paired_leaves,
     read_cases,
 )
@@ -24,6 +25,24 @@ def test_paired_leaves_distinguishes_null_from_masked_key():
     assert list(paired_leaves(original, tagged, starred)) == [
         (("010-1234-5678",), None, None, None, False),
         (("010-1234-5678",), None, None, None, True),
+    ]
+
+
+def test_wrong_type_is_reported_separately_from_full_masking():
+    class WrongTypeGuard:
+        entities = ("KR_ACCOUNT",)
+
+        def mask_json(self, record, style):
+            return {"account": "<CREDIT_CARD>" if style == "tag" else "*" * 13}
+
+    cases = [{"record": {"account": "3333120145448"},
+              "gold": {("account",): "KR_ACCOUNT"},
+              "ignore": set(), "negative": set()}]
+    report = evaluate(cases, WrongTypeGuard())
+    assert report["exact_type_fields"] == 0
+    assert report["fully_masked_fields"] == 1
+    assert report["wrong_type_same_field"] == [
+        {"gold": "KR_ACCOUNT", "predicted": "CREDIT_CARD", "count": 1}
     ]
 
 
