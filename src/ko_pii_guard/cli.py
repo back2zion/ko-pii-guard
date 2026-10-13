@@ -1,4 +1,4 @@
-"""Offline command-line masking for UTF-8 text and JSON Lines files."""
+"""Offline command-line masking for UTF-8 text, JSON and CSV files."""
 
 from __future__ import annotations
 
@@ -49,6 +49,17 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
             raise ValueError(f"invalid or unmaskable JSON Lines record at line {number}") from exc
 
 
+def _process_json(input_stream: TextIO, output_stream: TextIO,
+                  guard: KoreanPIIGuard, style: str) -> None:
+    try:
+        value = json.load(input_stream, parse_constant=_reject_constant,
+                          object_pairs_hook=_unique_object)
+        masked = guard.mask_json(value, style=style)
+        output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
+    except (ValueError, TypeError, RecursionError, json.JSONDecodeError) as exc:
+        raise ValueError("invalid or unmaskable JSON document") from exc
+
+
 def _process_csv(input_stream: TextIO, output_stream: TextIO,
                  guard: KoreanPIIGuard, style: str) -> None:
     reader = csv.reader(input_stream, strict=True)
@@ -94,7 +105,8 @@ def _output_path(input_path: str, output_path: str) -> Path:
 
 def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
                   style: str, format_name: str) -> None:
-    process = {"text": _process_text, "jsonl": _process_jsonl, "csv": _process_csv}[format_name]
+    process = {"text": _process_text, "json": _process_json,
+               "jsonl": _process_jsonl, "csv": _process_csv}[format_name]
     if output_path == "-":
         # Do not send partially screened data to a downstream pipe when a
         # later record fails. TemporaryFile is unlinked and mode 0600.
@@ -129,7 +141,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("command", choices=("mask", "analyze", "check"))
     parser.add_argument("input", nargs="?", default="-", help="input path (default: stdin)")
     parser.add_argument("-o", "--output", default="-", help="output path (default: stdout)")
-    parser.add_argument("--format", choices=("text", "jsonl", "csv"), default="text")
+    parser.add_argument("--format", choices=("text", "json", "jsonl", "csv"), default="text")
     parser.add_argument("--style", choices=("tag", "stars", "partial"), default="tag")
     parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
                         help="detect only these entities; repeat for multiple types")

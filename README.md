@@ -88,12 +88,13 @@ ko-pii-guard mask input.txt -o masked.txt
 ko-pii-guard mask customers.jsonl --format jsonl --entity KR_NAME --entity PHONE_NUMBER -o masked.jsonl
 ko-pii-guard mask customers.csv --format csv --entity KR_NAME --entity PHONE_NUMBER -o masked.csv
 ko-pii-guard mask customers.csv --format csv --entity KR_NAME --ner -o masked.csv
+ko-pii-guard mask customers.json --format json --entity KR_NAME -o masked.json
 ko-pii-guard analyze input.txt       # JSON: type, score, offsets; no raw values
 ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: error
 ```
 
 Input/output default to stdin/stdout (`-`). Text mode scans the complete input,
-including line boundaries. JSONL mode scans string keys, string values and integer
+including line boundaries. JSON and JSONL modes scan string keys, string values and integer
 identifiers; common fields such as `name`, `address`, `rrn` and `account_number`
 supply Korean label context. Names and addresses still require explicit `--entity`
 selection. Masked integers become strings. Invalid JSON, duplicate keys, masked
@@ -102,6 +103,8 @@ produce exit code 2. Store identifiers as strings or integers; floating-point JS
 numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
+JSON mode accepts one complete document, including pretty-printed multiline input;
+JSONL mode accepts one document per line for large collections.
 Explicit `email`/`emailAddress` fields mask their whole value when it contains
 an address on an internal or unlisted domain, including display names or lists;
 this does not broaden email matching in general prose.

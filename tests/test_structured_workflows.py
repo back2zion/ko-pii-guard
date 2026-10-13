@@ -256,6 +256,43 @@ def test_cli_masks_jsonl_to_file_and_keeps_original(tmp_path):
     assert target.stat().st_mode & 0o777 == 0o600
 
 
+def test_cli_masks_multiline_json_with_field_context(tmp_path):
+    source = tmp_path / "input.json"
+    target = tmp_path / "masked.json"
+    source.write_text('''{
+  "customer": {"name": "이상", "phoneNumber": "821012345678"},
+  "orderNumber": "821012345678"
+}
+''', encoding="utf-8")
+    result = run_cli("mask", source, "--format", "json", "--entity", "KR_NAME",
+                     "--entity", "PHONE_NUMBER", "-o", target)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(target.read_text(encoding="utf-8")) == {
+        "customer": {"name": "<KR_NAME>", "phoneNumber": "<PHONE_NUMBER>"},
+        "orderNumber": "821012345678",
+    }
+    assert target.stat().st_mode & 0o777 == 0o600
+
+
+@pytest.mark.parametrize("contents", [
+    '{"phone":"010-1234-5678","phone":"010-5678-1234"}',
+    '{"phone":"010-1234-5678","accountNumber":1e999}',
+    '{"phone":"010-1234-5678","accountNumber":1234567890123.0}',
+    '{"phone":"010-1234-5678"} {"phone":"010-5678-1234"}',
+])
+def test_cli_invalid_json_preserves_output(contents, tmp_path):
+    source = tmp_path / "input.json"
+    target = tmp_path / "masked.json"
+    source.write_text(contents, encoding="utf-8")
+    target.write_text("previous safe output\n", encoding="utf-8")
+    result = run_cli("mask", source, "--format", "json", "-o", target)
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert "010-" not in result.stderr
+    assert target.read_text(encoding="utf-8") == "previous safe output\n"
+    assert list(tmp_path.glob(".*.tmp")) == []
+
+
 def test_cli_masks_csv_using_column_context_and_preserves_multiline_fields(tmp_path):
     source = tmp_path / "input.csv"
     target = tmp_path / "masked.csv"

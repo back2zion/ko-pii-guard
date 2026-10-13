@@ -52,6 +52,7 @@ JSON 호환 자료의 문자열 키·값과 숫자형 식별번호를 처리합�
 ```bash
 uv run --frozen ko-pii-guard mask input.txt -o masked.txt
 uv run --frozen ko-pii-guard mask input.jsonl --format jsonl --entity KR_NAME -o masked.jsonl
+uv run --frozen ko-pii-guard mask input.json --format json --entity KR_NAME -o masked.json
 uv run --frozen ko-pii-guard analyze input.txt
 uv run --frozen ko-pii-guard check input.txt
 ```
@@ -59,7 +60,8 @@ uv run --frozen ko-pii-guard check input.txt
 CLI는 표준 입력/출력도 지원합니다. `analyze`는 개인정보 원문 없이 유형·점수·문자 좌표를
 JSON으로 출력합니다. `check`의 종료 코드는 미탐지 0, 탐지 1, 오류 2입니다.
 파일 출력은 모든 레코드가 성공한 뒤에만 교체하고 권한은 `0600`으로 지정합니다.
-표준 출력은 검사를 마칠 때까지 버퍼링합니다. JSONL의 비정상 레코드·중복 키·
+표준 출력은 검사를 마칠 때까지 버퍼링합니다. JSON은 여러 줄로 된 단일 문서를,
+JSONL은 한 줄당 한 문서를 처리합니다. 비정상 JSON·중복 키·
 마스킹 후 키 충돌은 오류로 처리합니다. `analyze`와 `check`는 현재 일반 텍스트만 받습니다.
 `mask --format csv`는 첫 행의 중복 없는 열 이름을 JSON 필드와 같은 문맥으로 사용하며,
 행마다 열 개수가 다르거나 마스킹 후 열 이름이 충돌하면 전체 출력을 중단합니다.
