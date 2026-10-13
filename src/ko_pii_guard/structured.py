@@ -67,6 +67,17 @@ def _explicit_card_candidate(text: str) -> bool:
     return 13 <= sum(char.isdigit() for char in folded) <= 19
 
 
+def _explicit_email_candidate(text: str) -> bool:
+    """Accept a whole address in a typed field without depending on a TLD list."""
+    local, separator, domain = text.partition("@")
+    return bool(
+        separator and "@" not in domain
+        and any(char.isalnum() for char in local)
+        and any(char.isalnum() for char in domain)
+        and not any(char.isspace() or ord(char) < 32 for char in text)
+    )
+
+
 def transform_json(value: object, transform: Callable[[str, str], str]) -> object:
     """Visit all string keys/values and integers with bounded recursion.
 
@@ -142,6 +153,13 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag") ->
             if style == "stars":
                 return "*" * len(text)
             return guard._partial_value(text, "CREDIT_CARD")
+        if (label == "이메일" and "EMAIL_ADDRESS" in guard.entities
+                and not result.redactions and _explicit_email_candidate(text)):
+            if style == "tag":
+                return "<EMAIL_ADDRESS>"
+            if style == "stars":
+                return "*" * len(text)
+            return guard._partial_value(text, "EMAIL_ADDRESS")
         return result.text[len(prefix):]
 
     return transform_json(value, mask_value)

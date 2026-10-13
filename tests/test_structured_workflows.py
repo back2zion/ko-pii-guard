@@ -141,6 +141,29 @@ def test_json_camel_case_card_field_masks_checksum_typo():
     }
 
 
+@pytest.mark.parametrize("style,expected", [
+    ("tag", "<EMAIL_ADDRESS>"),
+    ("stars", "********************"),
+    ("partial", "he***@********.*****"),
+])
+def test_json_email_field_masks_internal_or_unknown_domains(style, expected):
+    value = "hello@internal.local"
+    guard = KoreanPIIGuard(entities=["EMAIL_ADDRESS"])
+    assert guard.mask_json({"emailAddress": value}, style=style) == {
+        "emailAddress": expected
+    }
+    assert guard.mask_json({"note": value}) == {"note": value}
+
+
+def test_json_email_fallback_requires_explicit_field_and_selected_entity():
+    assert KoreanPIIGuard(entities=["PHONE_NUMBER"]).mask_json({
+        "email": "hello@internal.local"
+    }) == {"email": "hello@internal.local"}
+    assert KoreanPIIGuard(entities=["EMAIL_ADDRESS"]).mask_json({
+        "email": "@"
+    }) == {"email": "@"}
+
+
 def test_json_key_collision_fails_without_mutating_input():
     source = {"010-1234-5678": 1, "010-5678-1234": 2}
     with pytest.raises(ValueError, match="duplicate JSON object keys"):
