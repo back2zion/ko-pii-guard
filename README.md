@@ -43,6 +43,9 @@ pip install "ko-pii-guard[guardrails]"   # optional Guardrails AI validator
 ```
 
 Requires Python 3.10+.
+The locked `guardrails-ai` 0.11.0 dependency declares Python `<3.14`, so use
+Python 3.10–3.13 for the optional Guardrails integration. The core package and
+local NER extra were also verified on Python 3.14.
 
 ## Usage
 
