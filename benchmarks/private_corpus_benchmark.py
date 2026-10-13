@@ -123,7 +123,8 @@ def covered_by_predictions(start: int, end: int, predicted: set[tuple[str, int, 
 
 
 def worker(path: Path, entities: list[str], repeats: int, threshold: float,
-           normalize_unicode: bool, use_ner: bool, ner_threshold: float) -> dict:
+           normalize_unicode: bool, use_ner: bool, ner_threshold: float,
+           ner_threads: int) -> dict:
     import ko_pii_guard
     from ko_pii_guard import KoreanPIIGuard
 
@@ -131,8 +132,11 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     ner = None
     model = None
     if use_ner:
+        import torch
+
         from ko_pii_guard.ner import MODEL_ID, MODEL_REVISION, KoreanNER
 
+        torch.set_num_threads(ner_threads)
         ner = KoreanNER.from_pretrained(score_threshold=ner_threshold)
         model = {"id": MODEL_ID, "revision": MODEL_REVISION}
     guard = KoreanPIIGuard(entities=entities, score_threshold=threshold,
@@ -277,11 +281,11 @@ def write_report(path: Path, rendered: str) -> None:
 
 def measure(snapshot: Path, input_path: Path, entities: list[str], repeats: int,
             threshold: float, normalize_unicode: bool, use_ner: bool,
-            ner_threshold: float) -> dict:
+            ner_threshold: float, ner_threads: int) -> dict:
     environment = dict(os.environ, PYTHONPATH=str(snapshot / "src"))
     command = [sys.executable, str(Path(__file__).resolve()), "--worker", "--input",
                str(input_path), "--repeats", str(repeats), "--threshold", str(threshold),
-               "--ner-threshold", str(ner_threshold),
+               "--ner-threshold", str(ner_threshold), "--ner-threads", str(ner_threads),
                "--entities", *entities]
     if not normalize_unicode:
         command.append("--no-normalize-unicode")
@@ -309,12 +313,15 @@ def main() -> None:
     parser.add_argument("--ner", action="store_true",
                         help="load the pinned local name/address model")
     parser.add_argument("--ner-threshold", type=float, default=0.9)
+    parser.add_argument("--ner-threads", type=int, default=2)
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.repeats < 1:
         parser.error("--repeats must be positive")
     if not 0.0 <= args.threshold <= 1.0 or not 0.0 <= args.ner_threshold <= 1.0:
         parser.error("thresholds must be between 0 and 1")
+    if args.ner_threads < 1:
+        parser.error("--ner-threads must be positive")
     from ko_pii_guard.analyzer import DEFAULT_ENTITIES, SUPPORTED_ENTITIES
 
     entities = args.entities or list(DEFAULT_ENTITIES)
@@ -337,7 +344,7 @@ def main() -> None:
         read_cases(input_path, set(entities))
         print(json.dumps(worker(input_path, entities, args.repeats, args.threshold,
                                 not args.no_normalize_unicode, args.ner,
-                                args.ner_threshold)))
+                                args.ner_threshold, args.ner_threads)))
         return
     if development_path == input_path:
         parser.error("--development-input must differ from --input")
@@ -363,10 +370,10 @@ def main() -> None:
         baseline_hash, current_hash = source_hash(baseline_root), source_hash(current_root)
         baseline = measure(baseline_root, frozen_input, entities, args.repeats,
                            args.threshold, not args.no_normalize_unicode, args.ner,
-                           args.ner_threshold)
+                           args.ner_threshold, args.ner_threads)
         current = measure(current_root, frozen_input, entities, args.repeats,
                           args.threshold, not args.no_normalize_unicode, args.ner,
-                          args.ner_threshold)
+                          args.ner_threshold, args.ner_threads)
     if baseline["gold_spans"] != current["gold_spans"]:
         raise RuntimeError("Workers evaluated different inputs")
     if baseline["ner_model"] != current["ner_model"]:
@@ -390,6 +397,7 @@ def main() -> None:
         "normalize_unicode": not args.no_normalize_unicode,
         "ner_enabled": args.ner,
         "ner_score_threshold": args.ner_threshold if args.ner else None,
+        "ner_threads": args.ner_threads if args.ner else None,
         "python": platform.python_version(), "platform": platform.platform(),
         "dependencies": {
             package: version(package)

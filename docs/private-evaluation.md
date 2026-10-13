@@ -32,6 +32,7 @@ UTF-8 JSONL 한 줄이 한 문서다. `start`와 `end`는 Python 문자열의 0-
 `--ner`를 추가한다. 모델은 먼저 `python -m ko_pii_guard.ner --download`로 고정 버전을
 로컬에 준비해야 한다. 모델 ID와 revision은 보고서에 남기며 두 버전이 같아야 한다.
 NER의 기본 점수 기준은 0.9이며 `--ner-threshold`로 동일하게 조정할 수 있다.
+로컬 CPU 스레드는 기본 2개이고 `--ner-threads`로 조정한다.
 이름·주소 결과는 기본 구조화 식별번호 결과와 분리해서 해석한다.
 운영 설정이 기본 점수 기준 0.4 또는 Unicode 정규화와 다르면 `--threshold` 및
 `--no-normalize-unicode` 옵션으로 양쪽 버전에 같은 설정을 적용한다.
