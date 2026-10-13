@@ -30,6 +30,20 @@ def test_rejects_invalid_gold_without_echoing_text(tmp_path):
     assert secret not in str(error.value)
 
 
+@pytest.mark.parametrize("malformed", [
+    '{"id":"one","text":"secret","text":"other","entities":[]}',
+    '{"id":"one","text":"secret","entities":[{"type":"PHONE_NUMBER",'
+    '"start":0,"start":1,"end":6}]}',
+    '{"id":"one","text":"secret","entities":[],"score":NaN}',
+])
+def test_rejects_ambiguous_json_annotations_without_echoing_text(tmp_path, malformed):
+    path = tmp_path / "input.jsonl"
+    path.write_text(malformed + "\n")
+    with pytest.raises(ValueError, match="line 1") as error:
+        read_cases(path, {"PHONE_NUMBER"})
+    assert "secret" not in str(error.value)
+
+
 def test_unique_surface_derives_offsets_but_repeated_surface_needs_offsets(tmp_path):
     path = tmp_path / "input.jsonl"
     path.write_text(json.dumps({

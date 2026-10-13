@@ -26,6 +26,19 @@ from time import perf_counter
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def reject_duplicate_keys(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
+def reject_nonfinite_number(value: str) -> None:
+    raise ValueError("non-finite JSON number")
+
+
 def read_cases(path: Path, allowed: set[str]) -> list[dict]:
     cases = []
     seen = set()
@@ -34,7 +47,8 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
             if not line.strip():
                 continue
             try:
-                case = json.loads(line)
+                case = json.loads(line, object_pairs_hook=reject_duplicate_keys,
+                                  parse_constant=reject_nonfinite_number)
                 identifier, value, entities = case["id"], case["text"], case["entities"]
                 if not isinstance(identifier, str) or not identifier or identifier in seen:
                     raise ValueError("id must be a unique nonempty string")
