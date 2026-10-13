@@ -125,3 +125,32 @@ TP 13/FP 4/FN 4(F1 76.47%)였다. 규칙만 사용할 때 이름은
 [문서 누락 집계](../benchmarks/results/kiii-name-address-ner-20-accuracy-only-2026-10-13.json)는
 반복 시간 측정을 생략했다.
 NER과 규칙 실행의 처리 시간은 별도 부하와 반복 수가 달라 여기서 비교하지 않는다.
+
+## 고정 NER 모델 비교 (2026-10-13)
+
+위 20문서와 별도의 공개 대화형 KDPII 500문장을 같은 현재 소스, 동일 입력,
+점수 기준 0.9, CPU 스레드 2개, 반복 시간 측정 없이 다시 평가했다. KDPII에는
+이름 정답이 18구간뿐이며, Kiii² 20문서는 위 60문서에 포함된다. 둘 다 실제
+업무 자료는 아니다. 비교 보고서의 `corpus_sha256`과
+`current_source_sha256`은 각 자료에서 두 모델 간 일치한다.
+
+| 자료·정답 | 모델 | TP/FP/FN | 정확한 유형·구간 F1 | 완전 가림 | 누락 문서 |
+|---|---|---:|---:|---:|---:|
+| KDPII 500문장·이름 18 | E5 | 15/2/3 | 85.71% | 16/18 | 2/18 |
+| KDPII 500문장·이름 18 | KcELECTRA | 0/14/18 | 0% | 8/18 | 10/18 |
+| Kiii² 20문서·이름·주소 233 | E5 | 154/36/79 | 72.81% | 161/233 | 16/20 |
+| Kiii² 20문서·이름·주소 233 | KcELECTRA | 80/56/153 | 43.36% | 114/233 | 18/20 |
+
+KcELECTRA가 KDPII 이름 8구간을 완전히 가렸는데도 정확한 구간 TP가 0인
+것은 경계나 유형을 다르게 예측했기 때문이다. 따라서 정확한 구간 F1만으로
+마스킹 효용을 판단하지 않는다. Kiii² 주소 17건에서는 KcELECTRA가
+14/3/3(F1 82.35%), E5가 13/4/4(F1 76.47%)였지만, 이름 216건은
+KcELECTRA 66/53/150(F1 39.40%)와 E5 141/32/75(F1 72.49%)로
+차이가 컸다. 이 표본에서 기본 E5를 교체할 근거는 없다. 두 자료 모두 이미
+모델 선택에 사용했으므로 이후 튜닝한 모델의 독립 검증 자료로 재사용하지 않는다.
+
+[KDPII E5](../benchmarks/results/kdpii-names-e5-same-source-2026-10-13.json),
+[KDPII KcELECTRA](../benchmarks/results/kdpii-names-kcelectra-2026-10-13.json),
+[Kiii² E5](../benchmarks/results/kiii-name-address-e5-same-source-2026-10-13.json),
+[Kiii² KcELECTRA](../benchmarks/results/kiii-name-address-kcelectra-2026-10-13.json)에
+원문 없는 집계와 고정 모델 revision을 기록했다.

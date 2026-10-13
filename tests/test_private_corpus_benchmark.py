@@ -208,6 +208,9 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["current"]["mask_coverage_by_entity"]["PHONE_NUMBER"]["fully_masked"] == 1
     assert report["current"]["wrong_type_same_span"] == []
     assert report["dependencies"]["presidio-analyzer"]
+    assert report["scorer_sha256"] == hashlib.sha256(
+        (ROOT / "benchmarks" / "private_corpus_benchmark.py").read_bytes()
+    ).hexdigest()
     assert report["score_threshold"] == 0.4
     assert report["normalize_unicode"] is True
     assert report["ner_enabled"] is False

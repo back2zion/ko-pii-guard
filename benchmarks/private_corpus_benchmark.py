@@ -496,6 +496,8 @@ def main() -> None:
         ["git", "rev-parse", f"{args.baseline_ref}^{{commit}}"], cwd=ROOT,
         check=True, capture_output=True, text=True,
     ).stdout.strip()
+    scorer_path = Path(__file__).resolve()
+    scorer_hash = hashlib.sha256(scorer_path.read_bytes()).hexdigest()
     with tempfile.TemporaryDirectory(prefix="ko-pii-private-eval-") as directory:
         base = Path(directory)
         frozen_input = base / "holdout.jsonl"
@@ -518,6 +520,8 @@ def main() -> None:
         current = measure(current_root, frozen_input, entities, repeats,
                           args.threshold, not args.no_normalize_unicode, args.ner,
                           args.ner_threshold, args.ner_threads, args.ner_model)
+    if hashlib.sha256(scorer_path.read_bytes()).hexdigest() != scorer_hash:
+        raise RuntimeError("Scoring script changed during evaluation")
     if baseline["gold_spans"] != current["gold_spans"]:
         raise RuntimeError("Workers evaluated different inputs")
     if baseline["ner_model"] != current["ner_model"]:
@@ -534,6 +538,7 @@ def main() -> None:
         ).stdout.strip()),
         "baseline_source_sha256": baseline_hash,
         "current_source_sha256": current_hash,
+        "scorer_sha256": scorer_hash,
         "corpus_sha256": corpus_digest,
         "development_corpus_sha256": development_digest,
         "entities": entities, "repeats": repeats,
@@ -548,7 +553,8 @@ def main() -> None:
         "dependencies": {
             package: version(package)
             for package in (
-                "presidio-analyzer", "presidio-anonymizer", "phonenumbers", "tldextract"
+                "presidio-analyzer", "presidio-anonymizer", "phonenumbers", "tldextract",
+                *(("torch", "transformers", "tokenizers", "safetensors") if args.ner else ()),
             )
         },
         "baseline": baseline, "current": current,
