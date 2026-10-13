@@ -187,6 +187,8 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     wrong_type = Counter()
     negative_docs = 0
     negative_docs_with_fp = 0
+    positive_docs = 0
+    positive_docs_with_unmasked_gold = 0
     ignored_predictions = 0
     for case in cases:
         value, gold = case["text"], case["gold"]
@@ -210,13 +212,18 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
             if other:
                 wrong_type[(kind, other)] += 1
         gold_total += len(gold)
+        document_fully_masked = True
         for kind, start, end in gold:
             complete = (covered_by_predictions(start, end, predicted)
                         and masked[start:end] == "*" * (end - start))
             covered += complete
+            document_fully_masked &= complete
             coverage[kind]["gold"] += 1
             coverage[kind]["fully_masked"] += complete
-        if not gold:
+        if gold:
+            positive_docs += 1
+            positive_docs_with_unmasked_gold += not document_fully_masked
+        else:
             negative_docs += 1
             negative_docs_with_fp += bool(predicted)
     analyze_times = []
@@ -257,6 +264,11 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         },
         "negative_documents": negative_docs,
         "negative_documents_with_false_positive": negative_docs_with_fp,
+        "positive_documents": positive_docs,
+        "positive_documents_with_unmasked_gold": positive_docs_with_unmasked_gold,
+        "positive_document_leak_rate": (
+            positive_docs_with_unmasked_gold / positive_docs if positive_docs else None
+        ),
         "ignored_predictions": ignored_predictions,
         "ignored_spans": sum(len(c["ignore"]) for c in cases),
         "negative_document_false_positive_rate": (

@@ -150,6 +150,9 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["current"]["full_mask_coverage"] == 1.0
     assert report["current"]["negative_document_false_positive_rate"] == 0.0
     assert report["current"]["negative_documents"] == 2
+    assert report["current"]["positive_documents"] == 1
+    assert report["current"]["positive_documents_with_unmasked_gold"] == 0
+    assert report["current"]["positive_document_leak_rate"] == 0.0
     assert report["current"]["ignored_spans"] == 1
     assert report["current"]["ignored_predictions"] == 1
     assert report["current"]["mask_coverage_by_entity"]["PHONE_NUMBER"]["fully_masked"] == 1
