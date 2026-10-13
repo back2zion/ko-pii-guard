@@ -1,0 +1,42 @@
+{
+  "scope": "final_source_synthetic_functional_invariants_not_detection_accuracy",
+  "source_commit": "55cf9d4b07fe8cd16d15da131b118459b472684f",
+  "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+  "runs": {
+    "text-500k": {
+      "seed": 20261016,
+      "iterations": 500000,
+      "findings_checked": 345171,
+      "scope": "synthetic_analyze_stars_and_tag_detail_invariants",
+      "source_commit": "55cf9d4b07fe8cd16d15da131b118459b472684f",
+      "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+      "scorer_sha256": "08300953548ea1b71cf96d4956506d83ec0bacff5f7f128faf687db1fee916fe"
+    },
+    "default-json-100k": {
+      "scope": "synthetic_nested_json_masking_invariants_not_accuracy",
+      "seed": 20261017,
+      "iterations": 100000,
+      "strict_fields": false,
+      "source_commit": "55cf9d4b07fe8cd16d15da131b118459b472684f",
+      "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+      "scorer_sha256": "0d0cb88aea20e0b61846fe6e8b3d901c2868afab3e84941449141a471bd40e89",
+      "expected_rejections": 8010,
+      "successful_records": 91990,
+      "changed_leaves": 420803,
+      "changed_keys": 5566
+    },
+    "strict-json-100k": {
+      "scope": "synthetic_nested_json_masking_invariants_not_accuracy",
+      "seed": 20261018,
+      "iterations": 100000,
+      "strict_fields": true,
+      "source_commit": "55cf9d4b07fe8cd16d15da131b118459b472684f",
+      "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+      "scorer_sha256": "0d0cb88aea20e0b61846fe6e8b3d901c2868afab3e84941449141a471bd40e89",
+      "successful_records": 92002,
+      "changed_leaves": 708658,
+      "changed_keys": 5599,
+      "expected_rejections": 7998
+    }
+  }
+}
