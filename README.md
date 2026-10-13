@@ -422,6 +422,7 @@ Further reading: [CAPID (2026)](https://arxiv.org/abs/2602.10074) and [SPY (NAAC
 For Korean usage and contribution guidance, see [개발·평가 안내](docs/development.md).
 To compare a baseline with this checkout on locally annotated business documents, see
 [비공개 실무 문서 평가](docs/private-evaluation.md). The evaluator keeps source text out of reports.
+For a release decision, use the separate [business-data readiness checklist](docs/release-readiness.md).
 
 For JSON objects, a sibling `bank`, `bank_name`, or `bankName` field containing an explicit 농협 or
 카카오뱅크 name supplies account context to `account_number` or `accountNumber`. This resolves the documented
