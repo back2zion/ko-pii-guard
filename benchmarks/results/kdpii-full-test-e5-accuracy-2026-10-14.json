@@ -1,0 +1,115 @@
+{
+  "scope": "KDPII_v1_full_test_name_only_accuracy_not_business_holdout_or_speed",
+  "source_url": "https://zenodo.org/records/10968609",
+  "source_license": "CC-BY-4.0",
+  "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+  "preparation_script_sha256": "ec3c70bc602f50a8f2b3b8e1dbfb3863a321694e3c9847c526835b9680eeedd0",
+  "converter_sha256": "a927c8bd1f0a94a68685f6a6caa26ce8d8f15000ee90b5f91af824554701a376",
+  "aggregation_script_sha256": "12c86c1800aaf8df010c4d5245c996585586404278714a5a8f8d1fa1c57a70b0",
+  "full_input_sha256": "a3f870c18e4e8f5b13251b0040f9fd788744141381fa0c9cc002a89defcc0a4e",
+  "population": 4891,
+  "excluded_documents": 1,
+  "excluded_gold_name_spans": 1,
+  "excluded_reason": "Overlapping source PII annotations",
+  "shards": [
+    {
+      "index": 0,
+      "documents": 1222,
+      "sha256": "b4dfdd970754a618a2bcdcc59b954fb2646800b47475de0b571e23f5260f7608"
+    },
+    {
+      "index": 1,
+      "documents": 1223,
+      "sha256": "fe048b5864db41e4c6b674ac36a373a20e1ea92ee8f2391dfc12a0d0a1b90725"
+    },
+    {
+      "index": 2,
+      "documents": 1222,
+      "sha256": "233a3b2f1203934ea1347b88539bf106d2b2d19093c13feeccb39caffb6a26a9"
+    },
+    {
+      "index": 3,
+      "documents": 1223,
+      "sha256": "b64a032a92c398abccc461edd68565698ec39cbc5927dec06480c183b5731e6d"
+    }
+  ],
+  "evaluation": {
+    "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
+    "current_commit": "ad13418db51105a85d8985342dc5f0b97c93749c",
+    "baseline_source_sha256": "40c88a7611f7808c91d1b5e14612ce83f535607c2b6d3cea4f0ef3971d608873",
+    "current_source_sha256": "a8c2b59b704eda869f641ba7f37153ca21331d5d069799b45d2b2dab9d3ea9fe",
+    "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+    "entities": [
+      "KR_NAME"
+    ],
+    "repeats": 0,
+    "accuracy_only": true,
+    "score_threshold": 0.4,
+    "normalize_unicode": true,
+    "ner_enabled": true,
+    "ner_model_key": "e5",
+    "ner_score_threshold": 0.9,
+    "ner_threads": 2,
+    "dependencies": {
+      "presidio-analyzer": "2.2.364",
+      "presidio-anonymizer": "2.2.364",
+      "phonenumbers": "9.0.41",
+      "tldextract": "5.4.0",
+      "torch": "2.14.1+cpu",
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "safetensors": "0.8.0"
+    }
+  },
+  "ner_model": {
+    "id": "FrameByFrame/korean-pii-e5-base",
+    "revision": "a308c54b4407819624a5661e31e162a269f39818"
+  },
+  "baseline": {
+    "documents": 4890,
+    "characters": 124998,
+    "gold_spans": 176,
+    "fully_masked_gold_spans": 159,
+    "negative_documents": 4722,
+    "negative_documents_with_false_positive": 8,
+    "positive_documents": 168,
+    "positive_documents_with_unmasked_gold": 17,
+    "total": {
+      "tp": 149,
+      "fp": 18,
+      "fn": 27,
+      "precision": 0.8922155688622755,
+      "recall": 0.8465909090909091,
+      "f1": 0.8688046647230321
+    },
+    "full_mask_coverage": 0.9034090909090909,
+    "positive_document_leak_rate": 0.10119047619047619,
+    "negative_document_false_positive_rate": 0.0016941973739940702
+  },
+  "current": {
+    "documents": 4890,
+    "characters": 124998,
+    "gold_spans": 176,
+    "fully_masked_gold_spans": 159,
+    "negative_documents": 4722,
+    "negative_documents_with_false_positive": 8,
+    "positive_documents": 168,
+    "positive_documents_with_unmasked_gold": 17,
+    "total": {
+      "tp": 149,
+      "fp": 18,
+      "fn": 27,
+      "precision": 0.8922155688622755,
+      "recall": 0.8465909090909091,
+      "f1": 0.8688046647230321
+    },
+    "full_mask_coverage": 0.9034090909090909,
+    "positive_document_leak_rate": 0.10119047619047619,
+    "negative_document_false_positive_rate": 0.0016941973739940702
+  },
+  "limitations": [
+    "Includes the earlier 500-sentence sample and is not a new independent holdout.",
+    "Public conversational data are not raw business documents.",
+    "Possible upstream E5 training exposure is unknown."
+  ]
+}
