@@ -111,6 +111,9 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                         raise ValueError("target type must be selected and supported")
                     path_key = tuple(target["path"])
                     value = _leaf_at(record, target["path"])
+                    if (str(value).strip("*") == ""
+                            or str(value) == f"<{target['type']}>"):
+                        raise ValueError("target field is already fully masked")
                     if path_key in gold:
                         raise ValueError("duplicate target path")
                     if "surface" in target and target["surface"] != str(value):
@@ -215,8 +218,9 @@ def evaluate(cases: list[dict], guard) -> dict:
             changed = (tag_value != original or star_value != original)
             if path in gold:
                 kind = gold[path]
-                exact = tag_value == f"<{kind}>"
-                full = star_value == "*" * len(str(original))
+                exact = tag_value == f"<{kind}>" and tag_value != original
+                full = (star_value == "*" * len(str(original))
+                        and star_value != original)
                 counts["target_fields"] += 1
                 counts["exact_type_fields"] += exact
                 counts["fully_masked_fields"] += full

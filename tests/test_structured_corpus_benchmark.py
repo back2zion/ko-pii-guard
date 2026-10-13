@@ -61,6 +61,17 @@ def test_split_overlap_rejects_reordered_identical_records_without_echoing_value
     assert "홍길동" not in str(error.value)
 
 
+@pytest.mark.parametrize("premasked", ["****", "<KR_NAME>"])
+def test_preexisting_masks_cannot_be_scored_as_new_redactions(tmp_path, premasked):
+    path = tmp_path / "private.jsonl"
+    path.write_text(json.dumps({
+        "id": "one", "record": {"name": premasked},
+        "targets": [{"path": ["name"], "type": "KR_NAME"}],
+    }) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="already fully masked"):
+        read_cases(path, {"KR_NAME"})
+
+
 def test_validation_and_comparison_report_aggregate_only(tmp_path):
     secret = "010-1234-5678"
     path, output = tmp_path / "private.jsonl", tmp_path / "report.json"
