@@ -87,6 +87,7 @@ run the same commands with `uv run --frozen ko-pii-guard` after `uv sync --froze
 ko-pii-guard mask input.txt -o masked.txt
 ko-pii-guard mask customers.jsonl --format jsonl --entity KR_NAME --entity PHONE_NUMBER -o masked.jsonl
 ko-pii-guard mask customers.csv --format csv --entity KR_NAME --entity PHONE_NUMBER -o masked.csv
+ko-pii-guard mask customers.csv --format csv --entity KR_NAME --ner -o masked.csv
 ko-pii-guard analyze input.txt       # JSON: type, score, offsets; no raw values
 ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: error
 ```
@@ -106,6 +107,11 @@ in each row. Column names provide the same context as JSON field names; quoted
 multiline fields are supported. A UTF-8 BOM before the first header is accepted.
 `analyze` and `check` currently accept text mode only. The analyzer scores are
 heuristics, not calibrated probabilities.
+The optional `--ner` flag loads the pinned E5 name/address model from the local
+cache and requires `--entity KR_NAME` or `--entity KR_ADDRESS`. Download it once
+with `python -m ko_pii_guard.ner --download` after installing the `ner` extra.
+`--ner-model kcelectra` is available for local comparisons; E5 remains the default.
+`--ner-threshold` defaults to 0.9. No model files are fetched during CLI masking.
 ```
 
 ### Guardrails AI

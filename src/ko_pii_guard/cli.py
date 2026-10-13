@@ -134,6 +134,10 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
                         help="detect only these entities; repeat for multiple types")
     parser.add_argument("--threshold", type=float, default=0.4)
+    parser.add_argument("--ner", action="store_true",
+                        help="use a previously downloaded local name/address model")
+    parser.add_argument("--ner-model", choices=("e5", "kcelectra"), default="e5")
+    parser.add_argument("--ner-threshold", type=float, default=0.9)
     return parser
 
 
@@ -144,8 +148,21 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("analyze/check currently require --format text")
     if args.command != "mask" and args.output != "-":
         parser.error("analyze/check write to stdout only")
+    if args.ner and not {"KR_NAME", "KR_ADDRESS"}.intersection(args.entity or ()):
+        parser.error("--ner requires --entity KR_NAME or --entity KR_ADDRESS")
+    if not args.ner and (args.ner_model != "e5" or args.ner_threshold != 0.9):
+        parser.error("--ner-model and --ner-threshold require --ner")
+    if not 0.0 <= args.ner_threshold <= 1.0:
+        parser.error("--ner-threshold must be between 0 and 1")
     try:
-        guard = KoreanPIIGuard(entities=args.entity, score_threshold=args.threshold)
+        ner = None
+        if args.ner:
+            from ko_pii_guard.ner import KoreanNER
+
+            ner = KoreanNER.from_pretrained(model=args.ner_model,
+                                           score_threshold=args.ner_threshold)
+        guard = KoreanPIIGuard(entities=args.entity, score_threshold=args.threshold,
+                               ner=ner)
         if args.command == "mask":
             _write_masked(args.input, args.output, guard, args.style, args.format)
             return 0
@@ -160,7 +177,8 @@ def main(argv: list[str] | None = None) -> int:
         ], sys.stdout, ensure_ascii=False)
         sys.stdout.write("\n")
         return 0
-    except (OSError, UnicodeError, ValueError, TypeError, TimeoutError, csv.Error):
+    except (OSError, UnicodeError, ValueError, TypeError, TimeoutError,
+            ImportError, RuntimeError, csv.Error):
         # Do not echo arbitrary error strings or paths: a failure may include
         # sensitive source data. Exit 2 distinguishes error from PII found.
         print("ko-pii-guard: screening failed; no complete result was produced", file=sys.stderr)

@@ -1,12 +1,14 @@
 """Structured data and CLI contracts for real file-processing use."""
 
+import io
 import json
 import subprocess
 import sys
 
 import pytest
+from presidio_analyzer import RecognizerResult
 
-from ko_pii_guard import KoreanPIIGuard
+from ko_pii_guard import KoreanPIIGuard, cli
 
 
 def run_cli(*args, input_text=""):
@@ -221,6 +223,40 @@ def test_cli_csv_utf8_bom_does_not_hide_first_column_context():
                      input_text='\ufeffname,notes\n이상,접수\n')
     assert result.returncode == 0, result.stderr
     assert result.stdout == 'name,notes\n<KR_NAME>,접수\n'
+
+
+def test_cli_uses_explicit_offline_ner_configuration(monkeypatch):
+    from ko_pii_guard.ner import KoreanNER
+
+    seen = {}
+
+    class FakeNER:
+        def analyze(self, text):
+            assert text == "홍길동"
+            return [RecognizerResult("KR_NAME", 0, 3, 0.95)]
+
+    def load_model(**kwargs):
+        seen.update(kwargs)
+        return FakeNER()
+
+    output = io.StringIO()
+    monkeypatch.setattr(KoreanNER, "from_pretrained", load_model)
+    monkeypatch.setattr(sys, "stdin", io.StringIO("홍길동"))
+    monkeypatch.setattr(sys, "stdout", output)
+    assert cli.main(["mask", "--entity", "KR_NAME", "--ner",
+                     "--ner-threshold", "0.8"]) == 0
+    assert seen == {"model": "e5", "score_threshold": 0.8}
+    assert output.getvalue() == "<KR_NAME>"
+
+
+@pytest.mark.parametrize("args", [
+    ("--ner",),
+    ("--ner-model", "kcelectra"),
+    ("--ner-threshold", "0.8"),
+    ("--entity", "KR_NAME", "--ner", "--ner-threshold", "2"),
+])
+def test_cli_rejects_inconsistent_ner_options(args):
+    assert run_cli("mask", *args, input_text="홍길동").returncode == 2
 
 
 @pytest.mark.parametrize("contents", [
