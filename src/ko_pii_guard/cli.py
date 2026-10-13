@@ -30,12 +30,12 @@ def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
 
 
 def _process_text(input_stream: TextIO, output_stream: TextIO,
-                  guard: KoreanPIIGuard, style: str) -> None:
+                  guard: KoreanPIIGuard, style: str, strict_fields: bool) -> None:
     output_stream.write(guard.mask(input_stream.read(), style=style))
 
 
 def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
-                   guard: KoreanPIIGuard, style: str) -> None:
+                   guard: KoreanPIIGuard, style: str, strict_fields: bool) -> None:
     for number, line in enumerate(input_stream, 1):
         if number == 1:
             line = line.removeprefix("\ufeff")
@@ -44,7 +44,7 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
         try:
             value = json.loads(line, parse_constant=_reject_constant,
                                object_pairs_hook=_unique_object)
-            masked = guard.mask_json(value, style=style)
+            masked = guard.mask_json(value, style=style, strict_fields=strict_fields)
             output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
         except (ValueError, TypeError, json.JSONDecodeError) as exc:
             # Do not include exception strings: upstream errors can contain PII.
@@ -52,19 +52,19 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
 
 
 def _process_json(input_stream: TextIO, output_stream: TextIO,
-                  guard: KoreanPIIGuard, style: str) -> None:
+                  guard: KoreanPIIGuard, style: str, strict_fields: bool) -> None:
     try:
         contents = input_stream.read().removeprefix("\ufeff")
         value = json.loads(contents, parse_constant=_reject_constant,
                            object_pairs_hook=_unique_object)
-        masked = guard.mask_json(value, style=style)
+        masked = guard.mask_json(value, style=style, strict_fields=strict_fields)
         output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
     except (ValueError, TypeError, RecursionError, json.JSONDecodeError) as exc:
         raise ValueError("invalid or unmaskable JSON document") from exc
 
 
 def _process_csv(input_stream: TextIO, output_stream: TextIO,
-                 guard: KoreanPIIGuard, style: str) -> None:
+                 guard: KoreanPIIGuard, style: str, strict_fields: bool) -> None:
     reader = csv.reader(input_stream, strict=True)
     writer = csv.writer(output_stream)
     try:
@@ -82,7 +82,8 @@ def _process_csv(input_stream: TextIO, output_stream: TextIO,
     for row in reader:
         if len(row) != len(headers):
             raise ValueError("CSV record has a different number of fields")
-        masked = guard.mask_json(dict(zip(headers, row, strict=True)), style=style)
+        masked = guard.mask_json(dict(zip(headers, row, strict=True)), style=style,
+                                 strict_fields=strict_fields)
         writer.writerow([masked[header] for header in masked_headers])
 
 
@@ -107,7 +108,7 @@ def _output_path(input_path: str, output_path: str) -> Path:
 
 
 def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
-                  style: str, format_name: str) -> None:
+                  style: str, format_name: str, strict_fields: bool) -> None:
     process = {"text": _process_text, "json": _process_json,
                "jsonl": _process_jsonl, "csv": _process_csv}[format_name]
     if output_path == "-":
@@ -115,7 +116,7 @@ def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
         # later record fails. TemporaryFile is unlinked and mode 0600.
         with tempfile.TemporaryFile(mode="w+t", encoding="utf-8", newline="") as staged:
             with _input(input_path) as source:
-                process(source, staged, guard, style)
+                process(source, staged, guard, style, strict_fields)
             staged.seek(0)
             shutil.copyfileobj(staged, sys.stdout)
         return
@@ -128,7 +129,7 @@ def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
         ) as staged:
             temporary_name = staged.name
             with _input(input_path) as source:
-                process(source, staged, guard, style)
+                process(source, staged, guard, style, strict_fields)
             staged.flush()
             os.fsync(staged.fileno())
         os.replace(temporary_name, path)
@@ -146,6 +147,8 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("-o", "--output", default="-", help="output path (default: stdout)")
     parser.add_argument("--format", choices=("text", "json", "jsonl", "csv"), default="text")
     parser.add_argument("--style", choices=("tag", "stars", "partial"), default="tag")
+    parser.add_argument("--strict-fields", action="store_true",
+                        help="mask every nonblank value of selected explicit PII fields")
     parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
                         help="detect only these entities; repeat for multiple types")
     parser.add_argument("--threshold", type=float, default=0.4)
@@ -163,6 +166,8 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("analyze/check currently require --format text")
     if args.command != "mask" and args.output != "-":
         parser.error("analyze/check write to stdout only")
+    if args.strict_fields and (args.command != "mask" or args.format == "text"):
+        parser.error("--strict-fields requires mask --format json, jsonl or csv")
     if args.ner and not {"KR_NAME", "KR_ADDRESS"}.intersection(args.entity or ()):
         parser.error("--ner requires --entity KR_NAME or --entity KR_ADDRESS")
     if not args.ner and (args.ner_model != "e5" or args.ner_threshold != 0.9):
@@ -179,7 +184,8 @@ def main(argv: list[str] | None = None) -> int:
         guard = KoreanPIIGuard(entities=args.entity, score_threshold=args.threshold,
                                ner=ner)
         if args.command == "mask":
-            _write_masked(args.input, args.output, guard, args.style, args.format)
+            _write_masked(args.input, args.output, guard, args.style, args.format,
+                          args.strict_fields)
             return 0
         with _input(args.input) as source:
             findings = guard.analyze(source.read())

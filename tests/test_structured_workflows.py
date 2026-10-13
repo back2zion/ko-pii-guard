@@ -11,6 +11,7 @@ import synthetic as s
 from presidio_analyzer import RecognizerResult
 
 from ko_pii_guard import KoreanPIIGuard, cli
+from ko_pii_guard.structured import _FIELD_ENTITIES, _FIELD_LABELS
 
 
 def run_cli(*args, input_text=""):
@@ -103,6 +104,34 @@ def test_json_common_snake_case_pii_schema_supplies_context():
         "driver_license_no": "<KR_DRIVER_LICENSE>",
         "order_no": "821012345678",
     }
+
+
+def test_strict_fields_masks_nonstandard_typed_values_and_respects_entity_selection():
+    source = {"person_name": "Alice", "phone_no": ["내선 42", ""],
+              "email": "미입력", "order_no": "내선 42", "name": " ",
+              "account_number": 12345}
+    guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER", "EMAIL_ADDRESS",
+                                      "KR_ACCOUNT"])
+    assert guard.mask_json(source, strict_fields=True) == {
+        "person_name": "<KR_NAME>", "phone_no": ["<PHONE_NUMBER>", ""],
+        "email": "<EMAIL_ADDRESS>", "order_no": "내선 42", "name": " ",
+        "account_number": "<KR_ACCOUNT>",
+    }
+    assert guard.mask_json({"phone_no": "???"}, style="partial",
+                           strict_fields=True) == {"phone_no": "***"}
+    assert KoreanPIIGuard(entities=["PHONE_NUMBER"]).mask_json(
+        {"person_name": "Alice", "phone_no": "내선 42"}, strict_fields=True
+    ) == {"person_name": "Alice", "phone_no": "<PHONE_NUMBER>"}
+    assert source["person_name"] == "Alice"
+
+
+def test_every_explicit_field_label_has_a_strict_entity_mapping():
+    assert set(_FIELD_LABELS.values()) <= set(_FIELD_ENTITIES)
+
+
+def test_strict_fields_requires_boolean():
+    with pytest.raises(TypeError, match="strict_fields must be a bool"):
+        KoreanPIIGuard().mask_json({"phone": "010-1234-5678"}, strict_fields="yes")
 
 
 @pytest.mark.parametrize("bank,value", [
@@ -391,6 +420,29 @@ def test_cli_csv_korean_headers_mask_typed_values_only():
         "고객명,휴대폰번호,이메일주소,주문번호\n"
         "<KR_NAME>,<PHONE_NUMBER>,<EMAIL_ADDRESS>,821012345678\n"
     )
+
+
+@pytest.mark.parametrize("format_name,input_text", [
+    ("json", '{"person_name":"Alice","order_no":"Alice"}'),
+    ("jsonl", '{"person_name":"Alice","order_no":"Alice"}\n'),
+    ("csv", 'person_name,order_no\nAlice,Alice\n'),
+])
+def test_cli_strict_fields_masks_explicit_values_only(format_name, input_text):
+    result = run_cli("mask", "--format", format_name, "--entity", "KR_NAME",
+                     "--strict-fields", input_text=input_text)
+    assert result.returncode == 0, result.stderr
+    if format_name == "csv":
+        assert result.stdout == 'person_name,order_no\n<KR_NAME>,Alice\n'
+    else:
+        assert json.loads(result.stdout) == {
+            "person_name": "<KR_NAME>", "order_no": "Alice"
+        }
+
+
+def test_cli_rejects_strict_fields_for_text_mode():
+    result = run_cli("mask", "--strict-fields", input_text="Alice")
+    assert result.returncode == 2
+    assert result.stdout == ""
 
 
 def test_cli_uses_explicit_offline_ner_configuration(monkeypatch):

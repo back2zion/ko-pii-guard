@@ -58,6 +58,15 @@ _DOCUMENTED_BANK_VALUES = {
     "카카오뱅크": "카카오뱅크",
 }
 _EMAIL_TOKEN = re.compile(r"[^\s<>,;]+@[^\s<>,;]+")
+_FIELD_ENTITIES = {
+    "성명": "KR_NAME", "이름": "KR_NAME", "예금주": "KR_NAME",
+    "주소": "KR_ADDRESS", "주민번호": "KR_RRN", "주민등록번호": "KR_RRN",
+    "외국인등록번호": "KR_FRN", "여권번호": "KR_PASSPORT",
+    "계좌번호": "KR_ACCOUNT", "운전면허번호": "KR_DRIVER_LICENSE",
+    "전화번호": "PHONE_NUMBER", "휴대전화": "PHONE_NUMBER",
+    "이메일": "EMAIL_ADDRESS", "카드번호": "CREDIT_CARD",
+    "사업자번호": "KR_BRN", "사업자등록번호": "KR_BRN",
+}
 
 
 def _documented_bank_field(item: dict) -> str:
@@ -142,18 +151,30 @@ def transform_json(value: object, transform: Callable[[str, str], str]) -> objec
     return visit(value)
 
 
-def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag") -> object:
+def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag", *,
+              strict_fields: bool = False) -> object:
     """Return a masked copy of JSON data, including keys and numeric IDs.
 
     Common explicit fields (``name``, ``rrn``, ``account_number``, etc.) supply
-    Korean label context. Names/addresses still require opt-in entities. Numbers
-    become strings when masked. If two keys mask to the same key, raise rather
-    than losing a value. There are no caller callbacks or implicit model loads.
+    Korean label context. With ``strict_fields=True``, every nonblank value in
+    a selected explicit PII field is fully replaced regardless of detection.
+    Names/addresses still require opt-in entities. Numbers become strings when
+    masked. Key collisions raise rather than losing a value.
     """
     if style not in ("tag", "stars", "partial"):
         raise ValueError(f"Unknown mask style: {style}")
+    if type(strict_fields) is not bool:
+        raise TypeError("strict_fields must be a bool")
 
     def mask_value(text: str, label: str) -> str:
+        entity = _FIELD_ENTITIES.get(label.rsplit(" ", 1)[-1]) if label else None
+        if strict_fields and entity in guard.entities and text.strip():
+            if style == "tag":
+                return f"<{entity}>"
+            if style == "stars":
+                return "*" * len(text)
+            partial = guard._partial_value(text, entity)
+            return partial if partial != text else "*" * len(text)
         prefix = f"{label}: " if label else ""
         result = guard.mask_with_details(prefix + text, style=style)
         if any(redaction.start < len(prefix) for redaction in result.redactions):

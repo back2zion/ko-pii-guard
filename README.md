@@ -89,6 +89,7 @@ ko-pii-guard mask customers.jsonl --format jsonl --entity KR_NAME --entity PHONE
 ko-pii-guard mask customers.csv --format csv --entity KR_NAME --entity PHONE_NUMBER -o masked.csv
 ko-pii-guard mask customers.csv --format csv --entity KR_NAME --ner -o masked.csv
 ko-pii-guard mask customers.json --format json --entity KR_NAME -o masked.json
+ko-pii-guard mask customers.csv --format csv --entity KR_NAME --strict-fields -o masked.csv
 ko-pii-guard analyze input.txt       # JSON: type, score, offsets; no raw values
 ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: error
 ```
@@ -108,6 +109,10 @@ screening completes. Keep an original backup if you subsequently move or replace
 Common schema keys such as `person_name`, `phone_no`, `bank_account_no`,
 `card_no`, `passport_no` and `foreigner_reg_no` are also recognized as
 explicit fields.
+`--strict-fields` on JSON, JSONL or CSV masks every nonblank value of a selected
+explicit PII field even if its format is malformed or unusual. This can also
+mask status values such as `"없음"` in those fields, so use it when the schema
+itself is authoritative. Other fields still use normal detection.
 JSON mode accepts one complete document, including pretty-printed multiline input;
 JSONL mode accepts one document per line for large collections. Both accept a UTF-8
 BOM at the start of the file.

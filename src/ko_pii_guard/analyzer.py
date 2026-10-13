@@ -448,17 +448,20 @@ class KoreanPIIGuard:
         for text in texts:
             yield self.mask(text, style=style, should_mask=should_mask)
 
-    def mask_json(self, value: object, style: MaskStyle = "tag") -> object:
+    def mask_json(self, value: object, style: MaskStyle = "tag", *,
+                  strict_fields: bool = False) -> object:
         """Mask JSON keys, string values and integer identifiers in a copy.
 
         Explicit schema fields supply Korean label context; names/addresses
         still require opt-in. Masked numbers become strings. Key collisions,
         cycles and non-JSON values raise without returning partial data.
-        See :mod:`ko_pii_guard.structured` for supported field aliases.
+        ``strict_fields`` masks every nonblank value of a selected explicit
+        PII field, even when its contents do not match a detector. See
+        :mod:`ko_pii_guard.structured` for supported field aliases.
         """
         from ko_pii_guard.structured import mask_json
 
-        return mask_json(self, value, style)
+        return mask_json(self, value, style, strict_fields=strict_fields)
 
     @staticmethod
     def _partial_value(span: str, entity: str) -> str:
