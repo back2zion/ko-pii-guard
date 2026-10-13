@@ -1,0 +1,33 @@
+{
+  "scope": "already_included_kdpii_v1_500_sample_e5_final_source_regression_not_independent_accuracy",
+  "source_commit_at_run": "66d5fcaa62aed5e32839f423ef82f775c4fe22f9",
+  "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+  "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
+  "baseline_source_sha256": "40c88a7611f7808c91d1b5e14612ce83f535607c2b6d3cea4f0ef3971d608873",
+  "corpus_sha256": "6b7c50f72e45c5ee804469065edd8fd4a85f23140f4cc1a6162dafa592404290",
+  "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+  "ner_model": "e5",
+  "ner_threshold": 0.9,
+  "accuracy_only": true,
+  "baseline": {
+    "documents": 500,
+    "gold_spans": 18,
+    "tp": 15,
+    "fp": 2,
+    "fn": 3,
+    "f1": 0.8571428571428571,
+    "fully_masked_gold_spans": 16,
+    "positive_documents_with_unmasked_gold": 2
+  },
+  "final_source": {
+    "documents": 500,
+    "gold_spans": 18,
+    "tp": 15,
+    "fp": 2,
+    "fn": 3,
+    "f1": 0.8571428571428571,
+    "fully_masked_gold_spans": 16,
+    "positive_documents_with_unmasked_gold": 2
+  },
+  "limitations": "This 500-sentence KDPII sample is included in the separately reported full 4,890-sentence official test; it is a regression check after later runtime changes, not a new holdout or business-data result."
+}
