@@ -24,7 +24,9 @@ def check_sdist(path: Path) -> tuple[int, int]:
         members = archive.getmembers()
     if not members:
         raise ValueError("Source distribution is empty")
-    root = members[0].name.split("/", 1)[0]
+    if len({member.name for member in members}) != len(members):
+        raise ValueError("Source distribution contains duplicate archive entries")
+    root = path.name.removesuffix(".tar.gz")
     modules = set()
     for member in members:
         parts = member.name.split("/")
