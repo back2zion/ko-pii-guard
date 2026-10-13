@@ -2,6 +2,32 @@
 
 ## Unreleased
 
+- Reuse explicit JSON field context for domestic `82` phone numbers and
+  source-backed account/card collisions; mask a complete 13–19-digit value in
+  an explicit card field even when its check digit is mistyped.
+- Replace repeated account-context regex scans with equivalent string searches.
+  Preserve the independent exact-span scores while improving synthetic
+  repeated-number throughput; record mixed-document timing separately.
+- Add a privacy-preserving local corpus comparator with split-overlap checks,
+  frozen mode-0600 inputs, per-type accuracy and masking coverage, timing, and
+  an optional pinned local name/address NER profile.
+- Limit source distributions to runtime code and Markdown documentation,
+  excluding research datasets and model artifacts.
+- Resolve incidental Luhn/card collisions for two documented 13-digit account
+  layouts when the matching bank and an explicit account label precede the value.
+  On a fixed 600-case synthetic development set, exact account classification
+  improves from 528/600 to 600/600; full masking remains 600/600. Add a
+  reproducible card-label and 16-digit-card negative regression to CI.
+- Add an offline CLI for UTF-8 text and JSONL masking, privacy-safe text reports,
+  and check exit codes. Complete screening before replacing an output file or
+  writing to stdout; reject malformed JSONL and duplicate/colliding keys.
+- Add `mask_json`, lazy `mask_many`, and `mask_with_details` with output offsets
+  and metadata that omits raw values. JSON schema labels provide bounded context.
+- Fix custom NER generators being consumed during validation and silently
+  dropping findings. Validate public API input types and avoid a second NER
+  pass in the Guardrails validator.
+- Skip torch-dependent research tests when the optional `ner` extra is absent.
+
 - Complete the interrupted KDPII heldout evaluation for the multisource-v2 `selective:addition=1.0:removal=0.9999` checkpoint, then retract an earlier, incorrect operational decision to ship it anyway. That policy only strips existing baseline spans above a 0.9999 confidence of being a non-name (it never adds a span the baseline missed); on this heldout it is identical to the original E5 baseline on KDPII (F1 85.71%/71.28%, unchanged) and KLUE WikiTree (418/418, unchanged), and introduces one KLUE NSMC regression ("가르시아", incorrectly stripped). Net effect is zero gain plus one regression, so the automatic gate's `quality_gate_passed: false` was correct and the checkpoint is not promoted; the original "0.13→0.86" improvement claim compared this policy against a different, already-rejected candidate's numbers rather than its actual baseline. See the retraction in [name-multisource-v2.md](docs/name-multisource-v2.md#운영-배포-결정--철회-원래-승인은-틀린-비교에-근거함).
 - Fix five v9 missed names and two false spans with exact masking regressions. Reject v10 after a fresh evaluation loses a correct name; adopt opt-in v11 with preserved decoders, an expanded filter and hard-example replay. All 1,391 tests pass; 3,222 historical correct spans are preserved with no new false span. New synthetic evaluation retains all 211 correct spans and reduces FP19→17; FN23/FP17 remain. Add CI per-span gates and document the rejected runs.
 

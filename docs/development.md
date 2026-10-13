@@ -29,6 +29,32 @@ UTF-8 바이트나 JavaScript UTF-16 인덱스가 아닙니다. 전각 숫자·�
 제로폭 문자도 처리하며, 결과와 마스킹은 원문 위치를 유지합니다.
 `normalize_unicode=False`로 정규화를 끌 수 있습니다.
 
+`mask_with_details()`는 마스킹 결과와 각 치환의 원문/결과 문자열 좌표를 한 번의 분석으로
+반환합니다. `Redaction`에는 원래 개인정보 값이 들어 있지 않습니다. `mask_many()`는
+한 번 만든 탐지기를 재사용하며 문서를 순서대로 지연 처리합니다. `mask_json()`은 중첩된
+JSON 호환 자료의 문자열 키·값과 숫자형 식별번호를 처리합니다. `name`, `address`,
+`rrn`, `account_number`, `phone_number` 등 명시적인 필드 이름은 한국어 라벨 문맥으로 활용합니다.
+같은 객체의 명시적인 농협·카카오뱅크 은행 필드도 해당 계좌 필드의 유형 판정에 사용합니다.
+`card_number`처럼 명시적인 카드 필드 전체가 13~19자리 숫자와 단일 공백/하이픈
+구분자로만 이루어졌다면 체크섬 오타가 있어도 가림 대상으로 처리합니다. 일반 문장이나
+`order_number`에는 이 예외를 적용하지 않습니다. 카드 발급·유효성 검증이 아닙니다.
+이름·주소는 여전히 `entities`에 명시해야 합니다. 값이 가려진 숫자는 문자열로 변환됩니다.
+
+```bash
+uv run --frozen ko-pii-guard mask input.txt -o masked.txt
+uv run --frozen ko-pii-guard mask input.jsonl --format jsonl --entity KR_NAME -o masked.jsonl
+uv run --frozen ko-pii-guard analyze input.txt
+uv run --frozen ko-pii-guard check input.txt
+```
+
+CLI는 표준 입력/출력도 지원합니다. `analyze`는 개인정보 원문 없이 유형·점수·문자 좌표를
+JSON으로 출력합니다. `check`의 종료 코드는 미탐지 0, 탐지 1, 오류 2입니다.
+파일 출력은 모든 레코드가 성공한 뒤에만 교체하고 권한은 `0600`으로 지정합니다.
+표준 출력은 검사를 마칠 때까지 버퍼링합니다. JSONL의 비정상 레코드·중복 키·
+마스킹 후 키 충돌은 오류로 처리합니다. `analyze`와 `check`는 현재 일반 텍스트만 받습니다.
+일반 텍스트 모드는 입력 전체를 메모리에 올립니다. 큰 자료는 문서별 JSONL로 나누어
+처리하되, 한 식별번호가 레코드 경계를 넘어 분리되지 않게 하세요.
+
 `tag`는 엔티티 태그, `stars`는 탐지 구간 전체 별표, `partial`은 정해진 앞부분을
 남깁니다. 부분 마스킹은 주민번호 생년월일 등 일부 내용을 공개하므로 용도에 맞게 고르세요.
 인접한 두 값은 각각 치환하고 그 사이 공백·구두점은 보존합니다.
@@ -60,13 +86,16 @@ UTF-8 바이트나 JavaScript UTF-16 인덱스가 아닙니다. 전각 숫자·�
 OTEL_SDK_DISABLED=true uv run pytest -q
 uv run ruff check .
 uv run python benchmarks/synthetic_benchmark.py --check
+uv run python benchmarks/account_collision_benchmark.py --check
 uv run python benchmarks/robustness_benchmark.py --check
+uv run python benchmarks/fuzz_masking_invariants.py --iterations 10000
 uv run python benchmarks/name_address_benchmark.py --check
 uv run python benchmarks/name_address_benchmark.py --data benchmarks/data/name_field_boundaries.jsonl --check --check-negatives
 ```
 
-CI는 위 검사를 Python 3.10~3.13에서 실행합니다. 평가 결과와 명령은
-[평가 문서](evaluation.md)에 있습니다. 합성 회귀, 외부 합성 평가, 속도 측정을 구분합니다.
+CI는 위 검사 중 무작위 불변식 진단을 제외한 검사를 Python 3.10~3.13에서 실행합니다.
+평가 결과와 명령은 [평가 문서](evaluation.md)에 있습니다. 합성 회귀, 외부 합성 평가,
+속도 측정을 구분합니다. 무작위 마스킹 불변식 검사는 별도 진단입니다.
 
 이름 필드의 가운데점·호칭 공백 회귀는 필드 양성 16건·음성 7건과 별도 자유 문장
 양성 1건을 포함합니다. 원본 v1은 자유 문장 양성을 음성으로 잘못 주석했으므로
@@ -88,6 +117,12 @@ CI는 위 검사를 Python 3.10~3.13에서 실행합니다. 평가 결과와 명
 
 버그 제보에는 실제 개인정보 대신 형태와 문맥을 보존한 합성 재현 사례를 사용해 주세요.
 이름·주소의 [출처](name-address-sources.md)와 [평가 범위](name-address-evaluation.md)를 확인해 주세요.
+
+배포 전 `uv build --offline`로 소스 배포 파일과 wheel을 확인하세요. 소스 배포에는
+실행 패키지·Markdown 문서·메타데이터만 포함하며 연구용 데이터, 평가 보고서,
+모델 아티팩트는 넣지 않습니다. 2026-10-13 현재 빌드에서 소스 배포 파일은 약 138KB입니다.
+`python scripts/check_distribution.py`가 파일 구성과 wheel CLI 진입점을 검사하며,
+Python 3.12 CI에서도 같은 검사를 실행합니다.
 
 ## 문맥 모델 설치와 재현
 

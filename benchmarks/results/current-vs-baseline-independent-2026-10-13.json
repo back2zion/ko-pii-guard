@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-13",
+  "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
+  "current": "uncommitted working tree",
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.12.14",
+    "presidio_analyzer": "2.2.364"
+  },
+  "speed": {
+    "scope": "whole API calls; synthetic separated mobile numbers; warm guard",
+    "repeats": 5,
+    "comparison": [
+      {
+        "operation": "analyze",
+        "findings": 100,
+        "characters": 2100,
+        "baseline_median_ms": 13.1625,
+        "current_median_ms": 13.1742,
+        "speedup": 1.0
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 100,
+        "characters": 2100,
+        "baseline_median_ms": 13.1735,
+        "current_median_ms": 13.4116,
+        "speedup": 0.98
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 100,
+        "characters": 2100,
+        "baseline_median_ms": 13.0155,
+        "current_median_ms": 13.622,
+        "speedup": 0.96
+      },
+      {
+        "operation": "analyze",
+        "findings": 500,
+        "characters": 10500,
+        "baseline_median_ms": 65.5528,
+        "current_median_ms": 65.5017,
+        "speedup": 1.0
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 500,
+        "characters": 10500,
+        "baseline_median_ms": 64.59,
+        "current_median_ms": 66.23,
+        "speedup": 0.98
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 500,
+        "characters": 10500,
+        "baseline_median_ms": 65.6495,
+        "current_median_ms": 67.2995,
+        "speedup": 0.98
+      },
+      {
+        "operation": "analyze",
+        "findings": 1000,
+        "characters": 21000,
+        "baseline_median_ms": 131.8073,
+        "current_median_ms": 136.6998,
+        "speedup": 0.96
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 1000,
+        "characters": 21000,
+        "baseline_median_ms": 131.8602,
+        "current_median_ms": 137.7266,
+        "speedup": 0.96
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 1000,
+        "characters": 21000,
+        "baseline_median_ms": 134.45,
+        "current_median_ms": 138.5453,
+        "speedup": 0.97
+      }
+    ]
+  },
+  "accuracy": {
+    "k_pii_bench": {
+      "source_url": "https://huggingface.co/datasets/woohyun212/k-pii-bench/resolve/844f92f7beba98fa964f957ba324017e82451701/data/test_track_a.jsonl",
+      "revision": "844f92f7beba98fa964f957ba324017e82451701",
+      "synthetic": true,
+      "offset": 20000,
+      "records": 500,
+      "slice_sha256": "025d57d81c987619e9975c275c82992cfe6d7a7c49015505e1043983c3eae69c",
+      "baseline": {
+        "total": {
+          "tp": 725,
+          "fp": 8,
+          "fn": 121
+        },
+        "precision": 0.9890859481582538,
+        "recall": 0.8569739952718676,
+        "f1": 0.9183027232425586,
+        "full_span_coverage": 0.8640661938534279,
+        "per_entity": {
+          "KR_RRN": {
+            "tp": 202,
+            "fp": 0,
+            "fn": 0
+          },
+          "PHONE_NUMBER": {
+            "tp": 185,
+            "fp": 3,
+            "fn": 5
+          },
+          "KR_ACCOUNT": {
+            "tp": 71,
+            "fp": 5,
+            "fn": 1
+          },
+          "KR_DRIVER_LICENSE": {
+            "tp": 34,
+            "fn": 3,
+            "fp": 0
+          },
+          "KR_PASSPORT": {
+            "fn": 73,
+            "tp": 10,
+            "fp": 0
+          },
+          "EMAIL_ADDRESS": {
+            "tp": 222,
+            "fp": 0,
+            "fn": 0
+          },
+          "CREDIT_CARD": {
+            "fn": 39,
+            "tp": 1,
+            "fp": 0
+          }
+        }
+      },
+      "current": {
+        "total": {
+          "tp": 725,
+          "fp": 8,
+          "fn": 121
+        },
+        "precision": 0.9890859481582538,
+        "recall": 0.8569739952718676,
+        "f1": 0.9183027232425586,
+        "full_span_coverage": 0.8640661938534279,
+        "per_entity": {
+          "KR_RRN": {
+            "tp": 202,
+            "fp": 0,
+            "fn": 0
+          },
+          "PHONE_NUMBER": {
+            "tp": 185,
+            "fp": 3,
+            "fn": 5
+          },
+          "KR_ACCOUNT": {
+            "tp": 71,
+            "fp": 5,
+            "fn": 1
+          },
+          "KR_DRIVER_LICENSE": {
+            "tp": 34,
+            "fn": 3,
+            "fp": 0
+          },
+          "KR_PASSPORT": {
+            "fn": 73,
+            "tp": 10,
+            "fp": 0
+          },
+          "EMAIL_ADDRESS": {
+            "tp": 222,
+            "fp": 0,
+            "fn": 0
+          },
+          "CREDIT_CARD": {
+            "fn": 39,
+            "tp": 1,
+            "fp": 0
+          }
+        }
+      }
+    },
+    "kdpii": {
+      "source_url": "https://zenodo.org/records/10968609",
+      "source_sha256": "d2a4141c567528c7a1255d6325c42e0988ff223e71f296d9ac4fac20b01ed7fe",
+      "selection": "first 500 IDs by pinned SHA256 selection in scripts/fetch_kdpii_evaluation.py",
+      "records": 500,
+      "type_mapping": {
+        "QT_RESIDENT_NUMBER": "KR_RRN",
+        "QT_ALIEN_NUMBER": "KR_FRN",
+        "QT_DRIVER_NUMBER": "KR_DRIVER_LICENSE",
+        "QT_PASSPORT_NUMBER": "KR_PASSPORT",
+        "QT_MOBILE": "PHONE_NUMBER",
+        "QT_PHONE": "PHONE_NUMBER",
+        "TMI_EMAIL": "EMAIL_ADDRESS",
+        "QT_CARD_NUMBER": "CREDIT_CARD",
+        "QT_ACCOUNT_NUMBER": "KR_ACCOUNT"
+      },
+      "baseline": {
+        "total": {
+          "fn": 19,
+          "fp": 6,
+          "tp": 20
+        },
+        "precision": 0.7692307692307693,
+        "recall": 0.5128205128205128,
+        "f1": 0.6153846153846154,
+        "counts": {
+          "CREDIT_CARD": {
+            "fn": 6,
+            "fp": 1
+          },
+          "EMAIL_ADDRESS": {
+            "tp": 8
+          },
+          "KR_ACCOUNT": {
+            "fp": 5,
+            "fn": 9
+          },
+          "KR_DRIVER_LICENSE": {
+            "fn": 1
+          },
+          "KR_FRN": {
+            "tp": 2
+          },
+          "KR_PASSPORT": {
+            "fn": 3
+          },
+          "KR_RRN": {
+            "tp": 1
+          },
+          "PHONE_NUMBER": {
+            "tp": 9
+          }
+        }
+      },
+      "current": {
+        "total": {
+          "fn": 19,
+          "fp": 6,
+          "tp": 20
+        },
+        "precision": 0.7692307692307693,
+        "recall": 0.5128205128205128,
+        "f1": 0.6153846153846154,
+        "counts": {
+          "CREDIT_CARD": {
+            "fn": 6,
+            "fp": 1
+          },
+          "EMAIL_ADDRESS": {
+            "tp": 8
+          },
+          "KR_ACCOUNT": {
+            "fp": 5,
+            "fn": 9
+          },
+          "KR_DRIVER_LICENSE": {
+            "fn": 1
+          },
+          "KR_FRN": {
+            "tp": 2
+          },
+          "KR_PASSPORT": {
+            "fn": 3
+          },
+          "KR_RRN": {
+            "tp": 1
+          },
+          "PHONE_NUMBER": {
+            "tp": 9
+          }
+        }
+      },
+      "limitation": "Conversational public corpus; not actual business documents. Exact span/type score restricted to supported structured types. Sparse gold (39 spans), no KR_NAME/KR_ADDRESS."
+    }
+  },
+  "conclusion": "No measured independent accuracy gain; 1000-finding synthetic API calls ~3-4% slower. No actual private business corpus evaluated."
+}

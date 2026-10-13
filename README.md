@@ -62,7 +62,44 @@ guard.mask("주민번호 900101-1234567", style="partial")  # '주민번호 9001
 guard.mask("연락처 010-0000-0000", style="partial")  # '연락처 010-****-****'
 guard.mask("연락처 010-0000-0000", style="stars")  # '연락처 *************'
 
+    # Screen structured JSON-compatible records without losing field context.
+    record = {"name": "이상", "phone": "010-1234-5678", "count": 2}
+    name_guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER"])
+    name_guard.mask_json(record)
+    # {'name': '<KR_NAME>', 'phone': '<PHONE_NUMBER>', 'count': 2}
+
+    # Obtain original and masked-output offsets from a single scan.
+    result = guard.mask_with_details("연락처 010-1234-5678")
+    # result.text == '연락처 <PHONE_NUMBER>'
+    # result.redactions[0].output_start / output_end locate the tag.
+
+    # Reuse one guard for a lazy stream of independent documents.
+    list(guard.mask_many(["연락처 010-1234-5678", "개인정보 없음"]))
+
 KoreanPIIGuard(entities=["PHONE_NUMBER", "EMAIL_ADDRESS"])  # detect only some types
+
+### Local files and JSON Lines
+
+The checkout adds an offline command-line tool. For a development checkout,
+run the same commands with `uv run --frozen ko-pii-guard` after `uv sync --frozen --extra dev`.
+
+```bash
+ko-pii-guard mask input.txt -o masked.txt
+ko-pii-guard mask customers.jsonl --format jsonl --entity KR_NAME --entity PHONE_NUMBER -o masked.jsonl
+ko-pii-guard analyze input.txt       # JSON: type, score, offsets; no raw values
+ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: error
+```
+
+Input/output default to stdin/stdout (`-`). Text mode scans the complete input,
+including line boundaries. JSONL mode scans string keys, string values and integer
+identifiers; common fields such as `name`, `address`, `rrn` and `account_number`
+supply Korean label context. Names and addresses still require explicit `--entity`
+selection. Masked integers become strings. Invalid JSON, duplicate keys, masked
+key collisions and screening failures produce exit code 2. File output is replaced
+only after a full successful run, with permissions `0600`; stdout is buffered until
+screening completes. Keep an original backup if you subsequently move or replace it.
+`analyze` and `check` currently accept text mode only. The analyzer scores are
+heuristics, not calibrated probabilities.
 ```
 
 ### Guardrails AI
@@ -251,7 +288,7 @@ the filename as non-PII. With no callback, all detected spans are masked.
 
 ## Accuracy — default identifier profile
 
-Results measured on 2026-10-10 for the **unreleased checkout** on synthetic sentences from `benchmarks/synthetic_benchmark.py`, seed 2026, 200 samples per case, with the default threshold 0.4. A hit requires both the entity and the exact span to match. Checksums are generated where applicable. Account values use representative bank layouts, are unverified random test data, and are not guaranteed to be unassigned. The NH generator now uses the documented 4-group format; this changes the generated corpus from v0.2.0.
+Results measured on 2026-10-13 for the **unreleased checkout** on synthetic sentences from `benchmarks/synthetic_benchmark.py`, seed 2026, 200 samples per case, with the default threshold 0.4. A hit requires both the entity and the exact span to match. Checksums are generated where applicable. Account values use representative bank layouts, are unverified random test data, and are not guaranteed to be unassigned. The NH generator now uses the documented 4-group format; this changes the generated corpus from v0.2.0.
 
 | Entity | Case | Recall |
 |---|---|---|
@@ -274,12 +311,14 @@ Account recall below is measured on synthetic data, 200 samples per bank and for
 | 국민 | 199/200 (99.5%) | 192/200 (96.0%) |
 | 우리 | 184/200 (92.0%) | 154/200 (77.0%) |
 | 하나 | 200/200 (100.0%) | 198/200 (99.0%) |
-| 농협 | 200/200 (100.0%) | 177/200 (88.5%) |
+| 농협 | 200/200 (100.0%) | 200/200 (100.0%) |
 | 기업 | 193/200 (96.5%) | 197/200 (98.5%) |
-| 카카오뱅크 | 200/200 (100.0%) | 185/200 (92.5%) |
+| 카카오뱅크 | 200/200 (100.0%) | 200/200 (100.0%) |
 | 토스뱅크 | 200/200 (100.0%) | 200/200 (100.0%) |
 
-The no-context account case (`코드 …`, undelimited) detects 0/200 as KR_ACCOUNT, by design. Some account candidates match existing identifier recognizers; these are deliberately classified as those identifiers rather than KR_ACCOUNT, reducing account recall. Representative layouts are not an exhaustive catalog of each bank's formats.
+The no-context account case (`코드 …`, undelimited) detects 0/200 as KR_ACCOUNT, by design. Some account candidates match existing identifier recognizers; except for the narrow documented-layout rule below, they are classified as those identifiers rather than KR_ACCOUNT, reducing account recall. Representative layouts are not an exhaustive catalog of each bank's formats.
+
+For two source-backed 13-digit layouts, a matching nearby bank name and an explicit account label now resolve incidental card-checksum matches as `KR_ACCOUNT`. On a fixed additional synthetic development set (seed 20261014, 300 unseparated values each), exact account classification changed from 264/300 to 300/300 for both 농협 and 카카오뱅크. All 600 values were fully masked before and after; this improves entity classification, not masking coverage on those cases. All 72 incidental card matches remained `CREDIT_CARD` under a `카드번호` label, and a separate 300-case 16-digit card collision probe had 0 account mislabels before and after. Reproduce with `python benchmarks/account_collision_benchmark.py --check`; see [evaluation details](docs/evaluation.md). These are generated development cases, not real-world accuracy estimates.
 
 False positives: 0 flagged sentences and 0 findings out of 2,200 PII-free sentences (amounts, dates, order numbers, version strings, tracking numbers, account-like references, and product codes).
 
@@ -309,7 +348,7 @@ distinction between reading a paper and implementing its method.
 - **Default rules and optional NER.** Numeric context matching looks at the 20 characters before each match. Names and addresses require explicit opt-in. Without a model, name detection requires explicit fields; optional NER uses sentence context. Neither a common surname nor two/three Korean syllables alone establishes a name.
 - **Korean boundaries.** Labels can touch numbers (`계좌번호3333…`); trailing Korean particles stay outside email/card spans. ASCII identifier fragments remain excluded.
 - **Unicode and offsets.** Fullwidth ASCII, Unicode decimal digits, common dashes and non-breaking spaces are folded for analysis. Selected invisible characters inside identifiers are removed. Findings and masks refer to the original Python string offsets. Set `normalize_unicode=False` for literal input analysis; this is not a general OCR correction system.
-- **Account false positives.** Undelimited accounts require a preceding account keyword in the same clause. A nearer explicit label such as `주문번호` or `카드번호` rejects an account candidate. Date-shaped strings and fragments of longer identifiers are excluded. Existing identifier detections at score 0.4 or higher veto overlapping accounts, including when only KR_ACCOUNT is requested. Ambiguous values favor existing identifiers; account-like hyphenated codes without explicit labels can still be false positives.
+- **Account false positives.** Undelimited accounts require a preceding account keyword in the same clause. A nearer explicit label such as `주문번호` or `카드번호` rejects an account candidate. Date-shaped strings and fragments of longer identifiers are excluded. Existing identifier detections at score 0.4 or higher veto overlapping accounts, including when only KR_ACCOUNT is requested. Documented 농협·카카오뱅크 13-digit layouts are a narrow exception for incidental card checksum matches when the bank and account field agree. Other ambiguous values favor existing identifiers; account-like hyphenated codes without explicit labels can still be false positives.
 - **Partial masking.** `style="partial"` keeps the birth-date part of RRN and FRN numbers (6 digits), the first 3 digits of phone and account numbers, the first character of names, no letters/digits of addresses, and the first 2 characters of other types.
 - **Masking output.** Each finding gets its own replacement; separators between adjacent findings are preserved. Stars cover the complete span, including spans longer than 1,000 characters. This intentionally changes the upstream anonymizer's merging of adjacent same-type findings.
 - **Safety first for RRNs.** RRNs issued after October 2020 have no checksum, so any `YYMMDD-[1-4]XXXXXX` string is flagged at score 0.5. Set `score_threshold=0.6` to require a valid checksum or Korean context.
@@ -331,6 +370,7 @@ uv sync --frozen --extra dev --extra guardrails
 uv run pytest -q
 uv run ruff check .
 uv run python benchmarks/synthetic_benchmark.py --check
+uv run python benchmarks/account_collision_benchmark.py --check
 uv run python benchmarks/robustness_benchmark.py --check
 uv run python benchmarks/name_address_benchmark.py --check
 ```
@@ -340,6 +380,16 @@ Keep `uv.lock` under version control. CI uses the same locked dependencies. For 
 Further reading: [CAPID (2026)](https://arxiv.org/abs/2602.10074) and [SPY (NAACL 2025)](https://aclanthology.org/2025.naacl-srw.23/). Their methods are not implemented in this package, and their results do not establish Korean bank-account accuracy.
 
 For Korean usage and contribution guidance, see [개발·평가 안내](docs/development.md).
+To compare a baseline with this checkout on locally annotated business documents, see
+[비공개 실무 문서 평가](docs/private-evaluation.md). The evaluator keeps source text out of reports.
+
+For JSON objects, a sibling `bank` or `bank_name` field containing an explicit 농협 or
+카카오뱅크 name supplies account context to `account_number`. This resolves the documented
+13-digit account/card checksum collision for those banks; it does not validate account ownership.
+Common schema keys such as `phone_number`, `mobile`, `email`, and `card_number` also supply
+their explicit type context to ambiguous values.
+An explicit `card_number` field containing a complete 13–19 digit card-shaped value is
+masked even if its check digit is mistyped; this fallback does not apply to ordinary text.
 
 ## License
 

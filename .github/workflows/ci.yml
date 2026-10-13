@@ -25,8 +25,15 @@ jobs:
         run: uv run --frozen ruff check .
       - name: Test
         run: uv run --frozen pytest -q
+      - name: Build and inspect distribution
+        if: ${{ matrix['python-version'] == '3.12' }}
+        run: |
+          uv build
+          uv run --frozen python scripts/check_distribution.py
       - name: Benchmark
         run: uv run --frozen python benchmarks/synthetic_benchmark.py --check
+      - name: Documented account and card collision regression
+        run: uv run --frozen python benchmarks/account_collision_benchmark.py --check
       - name: Robustness regression
         run: uv run --frozen python benchmarks/robustness_benchmark.py --check
       - name: Name and address regression

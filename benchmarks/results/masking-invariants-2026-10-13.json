@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-13",
+  "kind": "synthetic_generated_robustness_not_accuracy",
+  "script_sha256": "203c0837dbb78edfbd69e8bd1ef50591bf50cf038e9c0dc0d5852527c0c4e60e",
+  "runs": [
+    {
+      "seed": 20261015,
+      "iterations": 50000,
+      "findings_checked": 34651,
+      "scope": "synthetic_analyze_stars_and_tag_detail_invariants"
+    }
+  ],
+  "result": "no offset, overlap, unchanged-text, stars, or tag-detail invariant failures in the 50,000-case final script run"
+}
