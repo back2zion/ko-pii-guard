@@ -1,0 +1,79 @@
+{
+  "scope": "synthetic_finance_diagnostic_after_test_inspection",
+  "dataset_revision": "1aa953c730cd04dac83b496a62b52e700920273b",
+  "dataset_sha256": "d57b1cb0b8b67fe48a9b45ee985fb01e63b919147a8527f8231459a68b57456d",
+  "source_commit": "e8aa8ad332bce22bb874f4f21c4da202f92a675e",
+  "scorer_sha256": "a0cca75453fc2a759b68d6c2ed7d9cc67855fee21c7bd4b9fe0ae91156fa5e18",
+  "current_source_sha256": "43d1f33f495b06f6d8c133e527c06c44a6b979d1cfdad7575e25ab06e539408d",
+  "entities": [
+    "KR_RRN",
+    "KR_FRN",
+    "KR_BRN",
+    "KR_DRIVER_LICENSE",
+    "KR_PASSPORT",
+    "PHONE_NUMBER",
+    "EMAIL_ADDRESS",
+    "CREDIT_CARD",
+    "KR_ACCOUNT"
+  ],
+  "totals": {
+    "documents": 60,
+    "gold": 1456,
+    "tp": 938,
+    "fp": 111,
+    "fn": 518,
+    "fully_masked": 951
+  },
+  "groups": {
+    "length:16k": {
+      "documents": 20,
+      "gold": 796,
+      "tp": 475,
+      "fp": 62,
+      "fn": 321,
+      "fully_masked": 486,
+      "exact_f1": 0.7126781695423856,
+      "full_mask_coverage": 0.6105527638190955
+    },
+    "length:1k": {
+      "documents": 20,
+      "gold": 190,
+      "tp": 125,
+      "fp": 20,
+      "fn": 65,
+      "fully_masked": 126,
+      "exact_f1": 0.746268656716418,
+      "full_mask_coverage": 0.6631578947368421
+    },
+    "length:4k": {
+      "documents": 20,
+      "gold": 470,
+      "tp": 338,
+      "fp": 29,
+      "fn": 132,
+      "fully_masked": 339,
+      "exact_f1": 0.8076463560334528,
+      "full_mask_coverage": 0.7212765957446808
+    },
+    "variation:T0": {
+      "documents": 30,
+      "gold": 892,
+      "tp": 787,
+      "fp": 42,
+      "fn": 105,
+      "fully_masked": 798,
+      "exact_f1": 0.9145845438698431,
+      "full_mask_coverage": 0.8946188340807175
+    },
+    "variation:T3": {
+      "documents": 30,
+      "gold": 564,
+      "tp": 151,
+      "fp": 69,
+      "fn": 413,
+      "fully_masked": 153,
+      "exact_f1": 0.3852040816326531,
+      "full_mask_coverage": 0.2712765957446808
+    }
+  }
+}
