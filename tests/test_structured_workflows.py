@@ -11,7 +11,7 @@ import synthetic as s
 from presidio_analyzer import RecognizerResult
 
 from ko_pii_guard import KoreanPIIGuard, cli
-from ko_pii_guard.structured import _FIELD_ENTITIES, _FIELD_LABELS
+from ko_pii_guard.structured import _FIELD_ENTITIES, _FIELD_LABELS, transform_json
 
 
 def run_cli(*args, input_text=""):
@@ -29,6 +29,32 @@ def test_json_masks_nested_values_keys_and_numeric_identifiers_without_mutation(
     assert result == {"name": "<KR_NAME>", "contacts": ["<PHONE_NUMBER>"],
                       "<PHONE_NUMBER>": "ok", "count": 2}
     assert source["name"] == "이상"
+
+
+def test_generic_json_transform_keeps_stateful_key_callbacks_by_default():
+    calls = 0
+
+    def transform(text, label):
+        nonlocal calls
+        if text == "key" and not label:
+            calls += 1
+            return f"key-{calls}"
+        return text
+
+    source = [{"key": "first"}, {"key": "second"}]
+    assert transform_json(source, transform) == [
+        {"key-1": "first"}, {"key-2": "second"}
+    ]
+    assert source == [{"key": "first"}, {"key": "second"}]
+
+
+def test_repeated_pii_object_keys_are_masked_in_each_record():
+    source = {"rows": [{"010-1234-5678": "one"},
+                       {"010-1234-5678": "two"}]}
+    masked = KoreanPIIGuard(entities=["PHONE_NUMBER"]).mask_json(source)
+    assert masked == {"rows": [{"<PHONE_NUMBER>": "one"},
+                              {"<PHONE_NUMBER>": "two"}]}
+    assert source["rows"][0]["010-1234-5678"] == "one"
 
 
 def test_json_masks_numeric_ids_only_when_detected():

@@ -100,7 +100,7 @@ def _explicit_email_candidate(text: str) -> bool:
 
 
 def transform_json(value: object, transform: Callable[[str, str], str], *,
-                   inherit_labels: bool = False) -> object:
+                   inherit_labels: bool = False, cache_keys: bool = False) -> object:
     """Visit all string keys/values and integers with bounded recursion.
 
     ``transform`` receives text and an optional canonical Korean field label.
@@ -108,9 +108,11 @@ def transform_json(value: object, transform: Callable[[str, str], str], *,
     key collisions are errors; silently overwriting a record is never allowed.
     ``inherit_labels`` passes a parent's explicit PII label into nested objects
     unless a child key supplies a more specific label.
+    ``cache_keys`` is opt-in because an arbitrary transform may be stateful.
     The input is not mutated, even when traversal fails.
     """
     active: set[int] = set()
+    key_cache: dict[str, str] = {}
 
     def visit(item: object, label: str = "", depth: int = 0) -> object:
         if depth > 100:
@@ -140,7 +142,12 @@ def transform_json(value: object, transform: Callable[[str, str], str], *,
             for key, child in item.items():
                 if not isinstance(key, str):
                     raise TypeError("JSON object keys must be strings")
-                masked_key = transform(key, "")
+                if cache_keys and key in key_cache:
+                    masked_key = key_cache[key]
+                else:
+                    masked_key = transform(key, "")
+                    if cache_keys and len(key_cache) < 256:
+                        key_cache[key] = masked_key
                 if masked_key in result:
                     raise ValueError("Masking would create duplicate JSON object keys")
                 child_label = _FIELD_LABELS.get(
@@ -205,4 +212,5 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag", *,
             return "<KR_NAME>" if style == "tag" else "*"
         return result.text[len(prefix):]
 
-    return transform_json(value, mask_value, inherit_labels=strict_fields)
+    return transform_json(value, mask_value, inherit_labels=strict_fields,
+                          cache_keys=guard.ner is None)
