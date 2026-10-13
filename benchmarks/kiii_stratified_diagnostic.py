@@ -40,14 +40,17 @@ from scripts.prepare_kiii_evaluation import (  # noqa: E402
     DATA_SHA256,
     DATASET_ID,
     REVISION,
+    STRUCTURED_TYPES,
     convert,
     digest_file,
     selected_rows,
 )
 
 
-def summarize(rows: list[dict], guard: KoreanPIIGuard) -> dict:
+def summarize(rows: list[dict], guard: KoreanPIIGuard) -> tuple[dict, dict, dict]:
     groups: dict[tuple[str, str], Counter] = defaultdict(Counter)
+    operations: dict[str, Counter] = defaultdict(Counter)
+    catchability: dict[str, Counter] = defaultdict(Counter)
     for row in rows:
         case = convert(row, include_name_address=False)
         value = case["text"]
@@ -59,6 +62,23 @@ def summarize(rows: list[dict], guard: KoreanPIIGuard) -> dict:
             if not is_ignored_prediction(item, gold, ignored)
         }
         masked = guard.mask(value, style="stars")
+        for span in row["spans"]:
+            entity = STRUCTURED_TYPES.get(span["category"])
+            if entity is None:
+                continue
+            item = (entity, span["start"], span["end"])
+            exact = item in predicted
+            full = (covered_by_predictions(span["start"], span["end"], predicted)
+                    and masked[span["start"]:span["end"]]
+                    == "*" * (span["end"] - span["start"]))
+            for operation in span["applied_ops"] or ("none",):
+                operations[operation]["gold"] += 1
+                operations[operation]["exact_tp"] += exact
+                operations[operation]["fully_masked"] += full
+            key = str(span["regex_catchable"]).lower()
+            catchability[key]["gold"] += 1
+            catchability[key]["exact_tp"] += exact
+            catchability[key]["fully_masked"] += full
         fully_masked = sum(
             covered_by_predictions(start, end, predicted)
             and masked[start:end] == "*" * (end - start)
@@ -73,7 +93,7 @@ def summarize(rows: list[dict], guard: KoreanPIIGuard) -> dict:
             counts["fp"] += len(predicted - gold)
             counts["fn"] += len(gold - predicted)
             counts["fully_masked"] += fully_masked
-    return {
+    grouped = {
         f"{kind}:{value}": {
             **counts,
             "exact_f1": (2 * counts["tp"] / (2 * counts["tp"] + counts["fp"] + counts["fn"])
@@ -83,6 +103,8 @@ def summarize(rows: list[dict], guard: KoreanPIIGuard) -> dict:
         }
         for (kind, value), counts in sorted(groups.items())
     }
+    return (grouped, {key: value for key, value in sorted(operations.items())},
+            {key: value for key, value in sorted(catchability.items())})
 
 
 def main() -> None:
@@ -96,7 +118,7 @@ def main() -> None:
     if digest_file(source) != DATA_SHA256:
         raise ValueError("Pinned Kiii² source hash changed")
     rows = selected_rows(source)
-    groups = summarize(rows, KoreanPIIGuard())
+    groups, operations, catchability = summarize(rows, KoreanPIIGuard())
     totals = {key: sum(group[key] for name, group in groups.items()
                        if name.startswith("variation:"))
               for key in ("documents", "gold", "tp", "fp", "fn", "fully_masked")}
@@ -123,6 +145,9 @@ def main() -> None:
         "entities": list(DEFAULT_ENTITIES),
         "totals": totals,
         "groups": groups,
+        "regex_catchability": catchability,
+        "applied_operations": operations,
+        "operation_counts_overlap": True,
     }
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.output:
