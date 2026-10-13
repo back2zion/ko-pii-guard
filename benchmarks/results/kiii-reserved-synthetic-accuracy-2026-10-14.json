@@ -1,0 +1,153 @@
+{
+  "scope": "reserved Kiii synthetic accuracy-only; not independent real business data",
+  "prose": {
+    "provenance": {
+      "baseline_commit": "0e2c7ee238be33af2c4449b57920918d8875ede1",
+      "current_commit": "993bfa466050fcf618c9eb55cfd522bee628609b",
+      "baseline_source_sha256": "1834a788a013c8804fa38215a804955a7d5b3203aef02a7b7ffcfaf45c2d68ce",
+      "current_source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+      "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+      "corpus_sha256": "834986b13fe599b4ad62cf046bd294527daaf44eaa77cbb354a020d995d97a38",
+      "development_corpus_sha256": "126696072d7409502cae5434fe2cc4784952ecc88d789308de56290c18a78aca",
+      "entities": [
+        "KR_RRN",
+        "KR_FRN",
+        "KR_BRN",
+        "KR_DRIVER_LICENSE",
+        "KR_PASSPORT",
+        "PHONE_NUMBER",
+        "EMAIL_ADDRESS",
+        "CREDIT_CARD",
+        "KR_ACCOUNT"
+      ]
+    },
+    "baseline": {
+      "documents": 60,
+      "gold_spans": 1396,
+      "total": {
+        "tp": 930,
+        "fp": 88,
+        "fn": 466,
+        "precision": 0.9135559921414538,
+        "recall": 0.666189111747851,
+        "f1": 0.7705053852526926
+      },
+      "fully_masked_gold_spans": 940,
+      "full_mask_coverage": 0.673352435530086,
+      "negative_documents": 0,
+      "negative_documents_with_false_positive": 0,
+      "positive_documents": 60
+    },
+    "current": {
+      "documents": 60,
+      "gold_spans": 1396,
+      "total": {
+        "tp": 930,
+        "fp": 88,
+        "fn": 466,
+        "precision": 0.9135559921414538,
+        "recall": 0.666189111747851,
+        "f1": 0.7705053852526926
+      },
+      "fully_masked_gold_spans": 940,
+      "full_mask_coverage": 0.673352435530086,
+      "negative_documents": 0,
+      "negative_documents_with_false_positive": 0,
+      "positive_documents": 60
+    }
+  },
+  "typed": {
+    "provenance": {
+      "baseline_commit": "30bf0b096883bd7c2735167c2a02c1888b5a02bb",
+      "current_commit": "993bfa466050fcf618c9eb55cfd522bee628609b",
+      "baseline_source_sha256": "9d504f11047373ddc7d150a8b0d03d4b16948122bc0616a4c118ff11d31bb410",
+      "current_source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+      "scorer_sha256": "77698efcb99b67164833dc7c96e5dfa095f382878ec549a55fe19582f3de1680",
+      "corpus_sha256": "826b71cc6ace9cc45f9a89afb76f46dca2f9d59d8fdd94929be0cdb3c44800ed",
+      "development_corpus_sha256": "10dce8a983bbd56030f6f2733b758af9c08d019fc939d94ca558fcc3e5bcd7ea",
+      "entities": [
+        "KR_RRN",
+        "KR_FRN",
+        "KR_BRN",
+        "KR_DRIVER_LICENSE",
+        "KR_PASSPORT",
+        "PHONE_NUMBER",
+        "EMAIL_ADDRESS",
+        "CREDIT_CARD",
+        "KR_ACCOUNT",
+        "KR_NAME",
+        "KR_ADDRESS"
+      ]
+    },
+    "baseline": {
+      "records": 60,
+      "target_fields": 3020,
+      "exact_type_fields": 1006,
+      "fully_masked_fields": 1025,
+      "positive_records": 60,
+      "positive_records_with_unmasked_target": 60,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "changed_keys_out_of_scope": 0
+    },
+    "current": {
+      "records": 60,
+      "target_fields": 3020,
+      "exact_type_fields": 2423,
+      "fully_masked_fields": 2439,
+      "positive_records": 60,
+      "positive_records_with_unmasked_target": 40,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "changed_keys_out_of_scope": 0
+    }
+  },
+  "strict": {
+    "provenance": {
+      "source_commit": "993bfa466050fcf618c9eb55cfd522bee628609b",
+      "source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+      "scorer_sha256": "f9d9f05fcef52838624bbb0ec069b6d636777c481bc7c1a34d3550f98409dbb7",
+      "corpus_sha256": "826b71cc6ace9cc45f9a89afb76f46dca2f9d59d8fdd94929be0cdb3c44800ed",
+      "development_corpus_sha256": "10dce8a983bbd56030f6f2733b758af9c08d019fc939d94ca558fcc3e5bcd7ea",
+      "entities": [
+        "KR_RRN",
+        "KR_FRN",
+        "KR_BRN",
+        "KR_DRIVER_LICENSE",
+        "KR_PASSPORT",
+        "PHONE_NUMBER",
+        "EMAIL_ADDRESS",
+        "CREDIT_CARD",
+        "KR_ACCOUNT",
+        "KR_NAME",
+        "KR_ADDRESS"
+      ]
+    },
+    "default": {
+      "target_fields": 3020,
+      "exact_type_fields": 2423,
+      "fully_masked_fields": 2439,
+      "positive_records": 60,
+      "positive_records_with_unmasked_target": 40,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "changed_keys_out_of_scope": 0
+    },
+    "strict_fields": {
+      "target_fields": 3020,
+      "exact_type_fields": 3020,
+      "fully_masked_fields": 3020,
+      "positive_records": 60,
+      "positive_records_with_unmasked_target": 0,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "changed_keys_out_of_scope": 0
+    }
+  },
+  "limitations": [
+    "Source and selection fixed before reserved rank-one evaluation.",
+    "Prose uses supported identifier spans; typed rows move synthetic labels into explicit PII keys.",
+    "Hard negatives have untyped reference keys, so strict overmask on typed status values is unmeasured.",
+    "No real business holdout was available."
+  ]
+}
