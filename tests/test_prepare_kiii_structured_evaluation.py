@@ -46,10 +46,11 @@ def test_name_address_fields_are_explicitly_opted_in():
     ]
 
 
-def test_fully_pre_masked_source_span_is_not_scored_as_a_raw_value():
-    row = {"doc_id": "pre-masked", "text": "***",
-           "spans": [{"category": "phone_no", "start": 0, "end": 3,
-                      "surface": "***"}], "hard_negatives": []}
+@pytest.mark.parametrize("surface", ["***", "<PHONE_NUMBER>", "<KR_NAME>"])
+def test_fully_pre_masked_source_span_is_not_scored_as_a_raw_value(surface):
+    row = {"doc_id": "pre-masked", "text": surface,
+           "spans": [{"category": "phone_no", "start": 0, "end": len(surface),
+                      "surface": surface}], "hard_negatives": []}
     case = convert(row)
     assert case["targets"] == []
     assert case["skipped_pre_masked_targets"] == 1

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import tempfile
 from collections import Counter
 from pathlib import Path
@@ -55,7 +56,8 @@ def convert(row: dict, include_hard_negatives: bool = True,
                 or not 0 <= start < end <= len(text)
                 or text[start:end] != surface):
             raise ValueError("Pinned source contains an invalid supported span")
-        if surface.strip("*") == "" or surface == f"<{mapped[category]}>":
+        if (surface.strip("*") == ""
+                or re.fullmatch(r"<[A-Z][A-Z0-9_]*>", surface)):
             skipped_pre_masked += 1
             continue
         fields.append({category: surface})

@@ -100,7 +100,7 @@ def _output_path(input_path: str, output_path: str) -> Path:
     path = Path(output_path)
     if path.is_dir():
         raise ValueError("output path is a directory")
-    if path.exists() and path.is_symlink():
+    if path.is_symlink():
         raise ValueError("output path must not be a symlink")
     if input_path != "-" and path.exists() and os.path.samefile(input_path, path):
         raise ValueError("input and output must be different files")

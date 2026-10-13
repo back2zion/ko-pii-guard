@@ -543,6 +543,17 @@ def test_cli_failure_preserves_existing_output_and_emits_no_pii(tmp_path):
     assert list(tmp_path.glob(".*.tmp")) == []
 
 
+def test_cli_rejects_broken_output_symlink(tmp_path):
+    target = tmp_path / "masked.jsonl"
+    target.symlink_to(tmp_path / "missing.jsonl")
+    result = run_cli("mask", "--format", "jsonl", "-o", target,
+                     input_text='{"phone":"010-1234-5678"}\n')
+    assert result.returncode == 2
+    assert target.is_symlink()
+    assert not (tmp_path / "missing.jsonl").exists()
+    assert list(tmp_path.glob(".*.tmp")) == []
+
+
 def test_cli_floating_point_pii_failure_preserves_existing_output(tmp_path):
     source = tmp_path / "input.jsonl"
     target = tmp_path / "masked.jsonl"
