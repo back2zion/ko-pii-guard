@@ -175,6 +175,9 @@ def test_json_email_fallback_requires_explicit_field_and_selected_entity():
     assert KoreanPIIGuard(entities=["EMAIL_ADDRESS"]).mask_json({
         "email": "@"
     }) == {"email": "@"}
+    assert KoreanPIIGuard(entities=["EMAIL_ADDRESS"]).mask_json({
+        "email": "a@b"
+    }, style="partial") == {"email": "a@*"}
 
 
 def test_json_key_collision_fails_without_mutating_input():
