@@ -1,0 +1,30 @@
+"""Typed-field extraction must preserve the pinned source's exact surfaces."""
+
+import pytest
+
+from scripts.prepare_kiii_structured_evaluation import convert
+
+
+def test_conversion_uses_explicit_schema_and_keeps_hard_negatives_separate():
+    row = {"doc_id": "synthetic-one", "text": "010-1234-5678 ABC-123",
+           "spans": [{"category": "phone_no", "start": 0, "end": 13,
+                      "surface": "010-1234-5678"},
+                     {"category": "customer_id", "start": 14, "end": 21,
+                      "surface": "ABC-123"}],
+           "hard_negatives": [{"start": 14, "end": 21, "surface": "ABC-123"}]}
+    assert convert(row) == {
+        "id": "synthetic-one",
+        "record": {"fields": [{"phone_no": "010-1234-5678"},
+                              {"reference": "ABC-123"}]},
+        "targets": [{"path": ["fields", 0, "phone_no"], "type": "PHONE_NUMBER"}],
+        "negative_paths": [["fields", 1, "reference"]],
+    }
+    assert convert(row, include_hard_negatives=False)["negative_paths"] == []
+
+
+def test_conversion_rejects_misaligned_source_surface():
+    row = {"doc_id": "bad", "text": "010-1234-5678",
+           "spans": [{"category": "phone_no", "start": 1, "end": 13,
+                      "surface": "010-1234-5678"}], "hard_negatives": []}
+    with pytest.raises(ValueError, match="invalid supported span"):
+        convert(row)

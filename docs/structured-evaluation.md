@@ -61,3 +61,36 @@
 바뀐 레코드 수다. 실제 원문이나 문서 ID, 필드 경로는 보고서에 저장하지 않는다.
 이 수치가 실무 성능을 뜻하려면 업무 원본에서 수집한 레코드의 완전한 주석과
 개발·최종 평가 분리가 필요하다. Git 저장소에 원문을 넣지 않는다.
+
+## 공개 합성 금융 필드 진단
+
+[Kiii²](https://huggingface.co/datasets/nmixx-fin/kiii-kiii)의 고정 60문서에서
+지원 9유형 정답의 표면 문자열을 각각 `rrn`, `phone_no`, `bank_account_no` 같은
+**명시적 유형 필드**로 옮겼다. 원래 문서 주변 문맥은 제거되므로 문장형 탐지와
+다른 과제다. 제작자가 붙인 어려운 음성 구간 225개는 유형 없는 `reference`
+필드로 옮겼다. 원문·문서 ID는 로컬 파일에만 있고 저장소에는 집계만 남겼다.
+입력 SHA-256은
+`60a6cda8fa5f28a6f9c151556e4c8ac7c8896ce53675109f8a083b94abff71f1`이다.
+
+| 같은 60레코드·정답 1,456필드 | 기준 `30bf0b0` | 현재 `1200fab` |
+|---|---:|---:|
+| 정확한 유형 태그 | 931 | 997 |
+| 필드 전체 별표 가림 | 947 | 1,013 |
+| 한 필드 이상 미가림 레코드 | 42/60 | 36/60 |
+| 바뀐 음성 필드 | 42/225 | 42/225 |
+
+이 차이는 필드 이름 문맥을 보강한 **개발 표본**의 결과다. 음성 필드 42건의
+과잉 가림은 그대로 남았으므로 전체 품질이 충분하다는 뜻이 아니다. 같은
+Kiii² 문서에서 추출했으므로 독립적인 실무 정확도가 아니며, 별도로 예약한
+60문서는 이 변경의 조정에 사용하지 않았다. [집계 보고서](../benchmarks/results/kiii-typed-fields-development-2026-10-14.json)는
+속도 측정 없이 유형 태그·별표 가림을 비교한다.
+
+```bash
+uv run --frozen python scripts/prepare_kiii_structured_evaluation.py \
+  --output /tmp/ko-pii-kiii-typed-dev.jsonl
+uv run --frozen python benchmarks/structured_corpus_benchmark.py \
+  --input /tmp/ko-pii-kiii-typed-dev.jsonl \
+  --entities KR_RRN KR_FRN KR_BRN KR_DRIVER_LICENSE KR_PASSPORT \
+             PHONE_NUMBER EMAIL_ADDRESS CREDIT_CARD KR_ACCOUNT \
+  --baseline-ref 30bf0b0 --output /tmp/ko-pii-kiii-typed-dev-report.json
+```
