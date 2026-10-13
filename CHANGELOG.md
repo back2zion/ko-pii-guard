@@ -36,7 +36,8 @@
   an optional pinned local name/address NER profile.
 - Limit source distributions to runtime code and Markdown documentation,
   excluding research datasets and model artifacts. Reject unexpected or
-  duplicate wheel entries and links in source archives during release checks.
+  duplicate wheel entries and links in source archives during release checks;
+  compare wheel runtime modules byte-for-byte with the checkout.
 - Resolve incidental Luhn/card collisions for two documented 13-digit account
   layouts when the matching bank and an explicit account label precede the value.
   On a fixed 600-case synthetic development set, exact account classification

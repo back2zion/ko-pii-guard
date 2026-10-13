@@ -49,6 +49,8 @@ def check_sdist(path: Path) -> tuple[int, int]:
 
 
 def check_wheel(path: Path) -> tuple[int, int]:
+    source_dir = Path(__file__).resolve().parents[1] / "src" / "ko_pii_guard"
+    source_modules = {module.name: module.read_bytes() for module in source_dir.glob("*.py")}
     with zipfile.ZipFile(path) as archive:
         names = archive.namelist()
         if len(names) != len(set(names)):
@@ -77,8 +79,11 @@ def check_wheel(path: Path) -> tuple[int, int]:
             raise ValueError("Wheel CLI entry point is missing")
         if dist_info is None or any(f"{dist_info}/{name}" not in names for name in WHEEL_METADATA):
             raise ValueError("Wheel metadata is incomplete")
-    if not REQUIRED_MODULES <= modules:
-        raise ValueError("Wheel is missing required runtime modules")
+        if modules != source_modules.keys() or not REQUIRED_MODULES <= modules:
+            raise ValueError("Wheel modules differ from the runtime source")
+        for name, contents in source_modules.items():
+            if archive.read(f"ko_pii_guard/{name}") != contents:
+                raise ValueError("Wheel runtime module content differs from source")
     return path.stat().st_size, len(names)
 
 
