@@ -171,6 +171,13 @@ def main() -> None:
             raise AssertionError(f"Input changed at seed={args.seed}, index={index}")
         if (index + 1) % args.progress_every == 0:
             print(f"checked={index + 1}", file=sys.stderr, flush=True)
+    finished_commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
+    if (package_hash() != source_sha or finished_commit != source_commit
+            or hashlib.sha256(Path(__file__).read_bytes()).hexdigest() != scorer_sha):
+        raise RuntimeError("Source or invariant scorer changed during the sweep")
     report = {
         "scope": "synthetic_nested_json_masking_invariants_not_accuracy",
         "seed": args.seed, "iterations": args.iterations,
