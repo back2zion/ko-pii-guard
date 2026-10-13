@@ -125,6 +125,21 @@ def test_strict_fields_masks_nonstandard_typed_values_and_respects_entity_select
     assert source["person_name"] == "Alice"
 
 
+def test_strict_fields_inherits_explicit_type_into_nested_objects():
+    source = {"person_name": {"given": "H0NG", "family": "K1M",
+                              "contacts": [{"alias": "김**"}],
+                              "phone_no": "내선 42"},
+              "order": {"given": "H0NG"}}
+    guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER"])
+    assert guard.mask_json(source, strict_fields=True) == {
+        "person_name": {"given": "<KR_NAME>", "family": "<KR_NAME>",
+                        "contacts": [{"alias": "<KR_NAME>"}],
+                        "phone_no": "<PHONE_NUMBER>"},
+        "order": {"given": "H0NG"},
+    }
+    assert source["person_name"]["given"] == "H0NG"
+
+
 def test_every_explicit_field_label_has_a_strict_entity_mapping():
     assert set(_FIELD_LABELS.values()) <= set(_FIELD_ENTITIES)
 

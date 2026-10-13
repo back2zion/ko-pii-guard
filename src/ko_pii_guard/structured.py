@@ -99,12 +99,15 @@ def _explicit_email_candidate(text: str) -> bool:
     return False
 
 
-def transform_json(value: object, transform: Callable[[str, str], str]) -> object:
+def transform_json(value: object, transform: Callable[[str, str], str], *,
+                   inherit_labels: bool = False) -> object:
     """Visit all string keys/values and integers with bounded recursion.
 
     ``transform`` receives text and an optional canonical Korean field label.
     Numeric values become strings only when a replacement changes them. Dict
     key collisions are errors; silently overwriting a record is never allowed.
+    ``inherit_labels`` passes a parent's explicit PII label into nested objects
+    unless a child key supplies a more specific label.
     The input is not mutated, even when traversal fails.
     """
     active: set[int] = set()
@@ -140,7 +143,9 @@ def transform_json(value: object, transform: Callable[[str, str], str]) -> objec
                 masked_key = transform(key, "")
                 if masked_key in result:
                     raise ValueError("Masking would create duplicate JSON object keys")
-                child_label = _FIELD_LABELS.get(key.strip().casefold(), "")
+                child_label = _FIELD_LABELS.get(
+                    key.strip().casefold(), label if inherit_labels else ""
+                )
                 if child_label == "계좌번호" and bank:
                     child_label = f"{bank} {child_label}"
                 result[masked_key] = visit(child, child_label, depth + 1)
@@ -198,4 +203,4 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag", *,
             return "<KR_NAME>" if style == "tag" else "*"
         return result.text[len(prefix):]
 
-    return transform_json(value, mask_value)
+    return transform_json(value, mask_value, inherit_labels=strict_fields)

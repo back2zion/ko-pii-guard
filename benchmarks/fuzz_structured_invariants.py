@@ -64,6 +64,10 @@ def random_record(rng: random.Random) -> object:
             row["accountNumber"] = 1234567890123.0
         if rng.randrange(5) == 0:
             row["children"] = [{"note": rng.choice(VALUES)} for _ in range(rng.randrange(1, 4))]
+        if rng.randrange(8) == 0:
+            row["name"] = {"given": rng.choice(VALUES),
+                           "parts": [{"alias": rng.choice(VALUES)}],
+                           "phone_no": rng.choice(VALUES)}
         rows.append(row)
     return rows[0] if len(rows) == 1 else {"records": rows}
 
