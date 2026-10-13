@@ -1,0 +1,127 @@
+{
+  "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
+  "current_commit": "906905b17a84d6ada3a78cec2a064c0349feb47d",
+  "current_source_has_uncommitted_changes": false,
+  "baseline_source_sha256": "40c88a7611f7808c91d1b5e14612ce83f535607c2b6d3cea4f0ef3971d608873",
+  "current_source_sha256": "9d504f11047373ddc7d150a8b0d03d4b16948122bc0616a4c118ff11d31bb410",
+  "corpus_sha256": "6b7c50f72e45c5ee804469065edd8fd4a85f23140f4cc1a6162dafa592404290",
+  "development_corpus_sha256": null,
+  "entities": [
+    "KR_NAME"
+  ],
+  "repeats": 3,
+  "score_threshold": 0.4,
+  "normalize_unicode": true,
+  "ner_enabled": false,
+  "ner_score_threshold": null,
+  "ner_threads": null,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "dependencies": {
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0"
+  },
+  "baseline": {
+    "loaded_source": "/tmp/ko-pii-private-eval-8u901680/baseline/src/ko_pii_guard/__init__.py",
+    "ner_model": null,
+    "documents": 500,
+    "characters": 12684,
+    "gold_spans": 18,
+    "total": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 18,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 18,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "fully_masked_gold_spans": 0,
+    "full_mask_coverage": 0.0,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 18,
+        "fully_masked": 0,
+        "rate": 0.0
+      }
+    },
+    "negative_documents": 482,
+    "negative_documents_with_false_positive": 0,
+    "negative_document_false_positive_rate": 0.0,
+    "analyze_corpus_median_ms": 5.666337994625792,
+    "analyze_corpus_samples_ms": [
+      5.666337994625792,
+      5.635357985738665,
+      5.931552994297817
+    ],
+    "mask_stars_corpus_median_ms": 5.6384729978162795,
+    "mask_stars_corpus_samples_ms": [
+      5.917668022448197,
+      5.6384729978162795,
+      5.559530021855608
+    ]
+  },
+  "current": {
+    "loaded_source": "/tmp/ko-pii-private-eval-8u901680/current/src/ko_pii_guard/__init__.py",
+    "ner_model": null,
+    "documents": 500,
+    "characters": 12684,
+    "gold_spans": 18,
+    "total": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 18,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 18,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "fully_masked_gold_spans": 0,
+    "full_mask_coverage": 0.0,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 18,
+        "fully_masked": 0,
+        "rate": 0.0
+      }
+    },
+    "negative_documents": 482,
+    "negative_documents_with_false_positive": 0,
+    "negative_document_false_positive_rate": 0.0,
+    "analyze_corpus_median_ms": 5.775500991148874,
+    "analyze_corpus_samples_ms": [
+      5.7898780214600265,
+      5.760561994975433,
+      5.775500991148874
+    ],
+    "mask_stars_corpus_median_ms": 6.080115010263398,
+    "mask_stars_corpus_samples_ms": [
+      5.925372999627143,
+      6.080115010263398,
+      6.082699983380735
+    ]
+  },
+  "scope": "exact type+character span; stars full-span coverage; warm analyze/mask time"
+}
