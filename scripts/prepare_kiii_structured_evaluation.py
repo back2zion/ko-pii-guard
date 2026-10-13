@@ -14,8 +14,6 @@ import tempfile
 from collections import Counter
 from pathlib import Path
 
-from huggingface_hub import hf_hub_download
-
 if __package__:
     from .prepare_kiii_evaluation import (
         DATA_SHA256,
@@ -74,6 +72,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.selection_rank < 0:
         parser.error("--selection-rank must be nonnegative")
+    try:
+        from huggingface_hub import hf_hub_download
+    except ImportError as error:
+        raise SystemExit("Install the optional ner extra for huggingface_hub") from error
     source = Path(hf_hub_download(DATASET_ID, "data/test.jsonl", repo_type="dataset",
                                   revision=REVISION, local_files_only=True))
     if digest_file(source) != DATA_SHA256:
