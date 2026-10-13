@@ -328,6 +328,8 @@ A separate collision probe (seed 20261009) prepends `은행 계좌 확인:` to s
 
 A separate **external synthetic slice** from K-PII-Bench contains 500 documents and 831 annotated spans across seven supported types (published test rows 10,000–10,499, zero-based; fixed revision and hashes in the [reports](benchmarks/results)). These documents were reserved until the detection changes were complete. Exact-span precision / recall / F1 changed from **97.67% / 65.70% / 78.56%** in v0.2.0 to **99.58% / 84.96% / 91.69%**. This is not a real-world false-positive rate, nor a comparison against other libraries. The authors' data includes format/checksum mismatches; all original labels remain in the denominator. See [methodology and limitations](docs/evaluation.md).
 
+A separate [finance-style synthetic sample](docs/kiii-evaluation.md) of 60 documents and 1,456 supported structured-identifier spans scored **74.89% exact-span F1** for both the pre-work baseline and this checkout. Fully masked gold spans were **951/1,456**. Its different document shapes and transformations expose material gaps; neither synthetic score establishes accuracy on private business records.
+
 ## Experimental name/address evaluation
 
 Name and address detection remains under development. Small synthetic regression

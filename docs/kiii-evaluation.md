@@ -1,0 +1,70 @@
+# 금융 문서형 합성 자료 평가
+
+[Kiii² 프리뷰](https://huggingface.co/datasets/nmixx-fin/kiii-kiii)는 한국어 금융 문서
+형식을 본뜬 공개 합성 자료다. 실제 고객 기록은 포함하지 않는다고 제작자가 밝힌다.
+라이선스는 CC BY-NC 4.0이며 원문은 이 저장소에 재배포하지 않는다. 이 자료의 점수는
+업무 문서 형태에 대한 독립적인 참고 수치일 뿐 실제 사내 문서의 정확도가 아니다.
+
+`scripts/prepare_kiii_evaluation.py`는 전체 1,440문서 파일의 고정 revision
+`1aa953c730cd04dac83b496a62b52e700920273b`과 SHA-256
+`d57b1cb0b8b67fe48a9b45ee985fb01e63b919147a8527f8231459a68b57456d`을
+확인한다. 문서 종류 10개, 변형 수준 `T0`·`T3`, 길이 `1k`·`4k`·`16k`의
+각 조합에서 정답을 보지 않고 문서 ID의 SHA-256 순위가 가장 낮은 한 문서를 고른다.
+따라서 총 60문서다. 선택이 불가능한 조합이 있으면 실패한다.
+
+기본 구조화 프로필에서는 `rrn`, `foreigner_reg_no`, `business_reg_no`,
+`driver_license_no`, `passport_no`, `phone_no`, `email`, `card_no`,
+`bank_account_no`만 각각 대응하는 `ko-pii-guard` 9유형의 정답으로 쓴다.
+이름·주소를 포함하려면 준비 명령에 `--include-name-address`를 붙이고 평가 명령에도
+`KR_NAME KR_ADDRESS`를 포함한다. 같은 문서 안에 있는 지원 범위 밖의 짧은
+식별자(고객 ID, 증권 계좌, 법인 번호 등)는 `ignore` 구간으로 표시한다. 이 구간에
+완전히 포함되고 채점 정답과 겹치지 않는 예측만 오탐에서 제외한다. 문단 전체를
+덮는 상담 내용·거래 정보 주석은 `ignore`에 넣지 않는다. 채점 범위 밖의 개인정보나
+자료의 주석 누락이 남을 수 있으므로 precision은 주석 정책의 영향을 받는다.
+이름·주소만 따로 검사할 때는 `--only-name-address`를 사용한다. `--length 1k`는
+각 문서 종류·변형 수준 조합에서 짧은 문서만 골라 20문서 진단 표본을 만든다.
+
+```bash
+uv sync --frozen --extra dev --extra ner
+uv run --frozen python scripts/prepare_kiii_evaluation.py \
+  --output /tmp/ko-pii-kiii-structured-60.jsonl
+uv run --frozen python benchmarks/private_corpus_benchmark.py \
+  --input /tmp/ko-pii-kiii-structured-60.jsonl \
+  --entities KR_RRN KR_FRN KR_BRN KR_DRIVER_LICENSE KR_PASSPORT \
+             PHONE_NUMBER EMAIL_ADDRESS CREDIT_CARD KR_ACCOUNT \
+  --baseline-ref 0a85e45136c03772259042df4b2c7a80f3a7e015 \
+  --repeats 3 --output /tmp/ko-pii-kiii-structured-60-report.json
+```
+
+선택된 문서와 모델 입력은 로컬에만 두고, 저장소에는 원문·문서 ID 없는 집계 보고서만
+포함한다. 이 평가셋은 test 분할만 제공하므로 해당 결과를 보고 규칙이나 임계값을
+조정하면 이후 동일 자료를 독립 평가로 부를 수 없다.
+
+## 고정 60문서 결과 (2026-10-13)
+
+선택 입력 SHA-256은
+`126696072d7409502cae5434fe2cc4784952ecc88d789308de56290c18a78aca`다.
+총 644,492자·지원 9유형 정답 1,456구간이다. 기준 `0a85e451`과 현재 소스가
+모두 TP 938, FP 111, FN 518로 정확한 유형·구간 F1은 **74.89%**였다.
+실제 별표 마스킹으로 전체 가려진 정답은 양쪽 모두 **951/1,456(65.32%)**였다.
+범위 밖 식별자 주석 2,166구간 안의 예측 41건을 오탐에서 제외했다.
+모든 선택 문서에 채점 대상 정답이 있어 음성 문서 오탐률은 산출할 수 없다.
+
+| 유형 | 정답 | TP | FP | FN | F1 |
+|---|---:|---:|---:|---:|---:|
+| KR_RRN | 200 | 147 | 6 | 53 | 83.29% |
+| KR_FRN | 29 | 23 | 1 | 6 | 86.79% |
+| KR_BRN | 11 | 7 | 0 | 4 | 77.78% |
+| KR_DRIVER_LICENSE | 20 | 16 | 1 | 4 | 86.49% |
+| KR_PASSPORT | 32 | 15 | 2 | 17 | 61.22% |
+| PHONE_NUMBER | 293 | 237 | 29 | 56 | 84.79% |
+| EMAIL_ADDRESS | 79 | 55 | 22 | 24 | 70.51% |
+| CREDIT_CARD | 120 | 69 | 11 | 51 | 69.00% |
+| KR_ACCOUNT | 672 | 369 | 39 | 303 | 68.33% |
+
+계좌·카드·여권의 누락이 두드러진다. 합성값에는 파편화·변형·사전 마스킹 형태가
+포함되므로 이 결과를 유효한 완전 식별번호만의 재현율이나 실제 고객 자료의 재현율로
+해석하지 않는다. 속도는 세 번의 순차 실행 중앙값으로 기준 `analyze()` 912ms,
+현재 845ms였으나 순서·캐시·CPU 상태를 교차 통제하지 않았으므로 속도 개선의
+확정 근거로 삼지 않는다. [집계 원본](../benchmarks/results/kiii-structured-60-2026-10-13.json)을
+참고한다.

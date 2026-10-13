@@ -56,6 +56,9 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                     raise ValueError("text must be a nonempty string")
                 if not isinstance(entities, list):
                     raise ValueError("entities must be a list")
+                ignored = case.get("ignore", [])
+                if not isinstance(ignored, list):
+                    raise ValueError("ignore must be a list")
                 spans = set()
                 for item in entities:
                     if not isinstance(item, dict):
@@ -88,10 +91,22 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                 if any(left[2] > right[1] for left, right in zip(ordered, ordered[1:],
                                                                  strict=False)):
                     raise ValueError("overlapping gold spans")
+                ignored_spans = set()
+                for item in ignored:
+                    if not isinstance(item, dict):
+                        raise ValueError("ignored annotation must be an object")
+                    start, end = item["start"], item["end"]
+                    if (type(start) is not int or type(end) is not int
+                            or not 0 <= start < end <= len(value)):
+                        raise ValueError("invalid ignored character offsets")
+                    if "surface" in item and value[start:end] != item["surface"]:
+                        raise ValueError("ignored surface does not match offsets")
+                    ignored_spans.add((start, end))
             except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
                 raise ValueError(f"Invalid input at line {line_number}: {error}") from None
             seen.add(identifier)
-            cases.append({"id": identifier, "text": value, "gold": spans})
+            cases.append({"id": identifier, "text": value, "gold": spans,
+                          "ignore": ignored_spans})
     if not cases:
         raise ValueError("Input contains no documents")
     return cases
@@ -136,6 +151,16 @@ def covered_by_predictions(start: int, end: int, predicted: set[tuple[str, int, 
     return False
 
 
+def is_ignored_prediction(prediction: tuple[str, int, int],
+                          gold: set[tuple[str, int, int]],
+                          ignored: set[tuple[int, int]]) -> bool:
+    """Ignore only out-of-scope detections wholly inside an annotated region."""
+    _, start, end = prediction
+    return (prediction not in gold
+            and not any(start < right and left < end for _, left, right in gold)
+            and any(left <= start and end <= right for left, right in ignored))
+
+
 def worker(path: Path, entities: list[str], repeats: int, threshold: float,
            normalize_unicode: bool, use_ner: bool, ner_threshold: float,
            ner_threads: int) -> dict:
@@ -162,10 +187,16 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     wrong_type = Counter()
     negative_docs = 0
     negative_docs_with_fp = 0
+    ignored_predictions = 0
     for case in cases:
         value, gold = case["text"], case["gold"]
         findings = guard.analyze(value)
-        predicted = {(item.entity, item.start, item.end) for item in findings}
+        all_predicted = {(item.entity, item.start, item.end) for item in findings}
+        predicted = {
+            item for item in all_predicted
+            if not is_ignored_prediction(item, gold, case["ignore"])
+        }
+        ignored_predictions += len(all_predicted) - len(predicted)
         masked = guard.mask(value, style="stars")
         if len(masked) != len(value):
             raise RuntimeError("Stars masking changed document length")
@@ -225,6 +256,8 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         },
         "negative_documents": negative_docs,
         "negative_documents_with_false_positive": negative_docs_with_fp,
+        "ignored_predictions": ignored_predictions,
+        "ignored_spans": sum(len(c["ignore"]) for c in cases),
         "negative_document_false_positive_rate": (
             negative_docs_with_fp / negative_docs if negative_docs else None
         ),

@@ -12,6 +12,7 @@ from benchmarks.private_corpus_benchmark import (
     check_split_overlap,
     covered_by_predictions,
     freeze_input,
+    is_ignored_prediction,
     read_cases,
 )
 
@@ -67,6 +68,32 @@ def test_mask_coverage_needs_a_detection_even_for_existing_stars():
     assert covered_by_predictions(0, 4, {("PHONE_NUMBER", 0, 4)})
 
 
+def test_ignore_only_covers_out_of_scope_non_gold_predictions(tmp_path):
+    path = tmp_path / "input.jsonl"
+    path.write_text(json.dumps({
+        "id": "one", "text": "전화 010-1234-5678 / 9999",
+        "entities": [{"type": "PHONE_NUMBER", "start": 3, "end": 16}],
+        "ignore": [{"start": 19, "end": 23}],
+    }, ensure_ascii=False) + "\n")
+    case = read_cases(path, {"PHONE_NUMBER"})[0]
+    assert case["ignore"] == {(19, 23)}
+    assert is_ignored_prediction(("KR_ACCOUNT", 19, 23), case["gold"], case["ignore"])
+    assert not is_ignored_prediction(("KR_ACCOUNT", 18, 23), case["gold"], case["ignore"])
+    assert not is_ignored_prediction(("KR_ACCOUNT", 3, 16), case["gold"], {(0, 23)})
+    assert not is_ignored_prediction(("PHONE_NUMBER", 3, 16), case["gold"], {(0, 23)})
+
+
+def test_rejects_invalid_ignored_offsets(tmp_path):
+    path = tmp_path / "input.jsonl"
+    path.write_text(json.dumps({
+        "id": "one", "text": "secret", "entities": [],
+        "ignore": [{"start": 0, "end": 7}],
+    }) + "\n")
+    with pytest.raises(ValueError, match="invalid ignored character offsets") as error:
+        read_cases(path, {"PHONE_NUMBER"})
+    assert "secret" not in str(error.value)
+
+
 def test_rejects_normalized_document_reuse_between_splits():
     holdout = [{"id": "h", "text": "전화 ０１０-1234-5678"}]
     development = [{"id": "d", "text": "전화 010-1234-5678"}]
@@ -109,7 +136,11 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     }, ensure_ascii=False)
     negative = json.dumps({"id": "clean-id", "text": "요청 접수", "entities": []},
                           ensure_ascii=False)
-    corpus.write_text(positive + "\n" + negative + "\n")
+    ignored = json.dumps({
+        "id": "out-of-scope-id", "text": "전화 " + secret, "entities": [],
+        "ignore": [{"start": 3, "end": 16}],
+    }, ensure_ascii=False)
+    corpus.write_text(positive + "\n" + negative + "\n" + ignored + "\n")
     subprocess.run([
         sys.executable, str(ROOT / "benchmarks" / "private_corpus_benchmark.py"),
         "--input", str(corpus), "--output", str(output), "--repeats", "1",
@@ -118,6 +149,9 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["baseline"]["total"]["tp"] == 1
     assert report["current"]["full_mask_coverage"] == 1.0
     assert report["current"]["negative_document_false_positive_rate"] == 0.0
+    assert report["current"]["negative_documents"] == 2
+    assert report["current"]["ignored_spans"] == 1
+    assert report["current"]["ignored_predictions"] == 1
     assert report["current"]["mask_coverage_by_entity"]["PHONE_NUMBER"]["fully_masked"] == 1
     assert report["current"]["wrong_type_same_span"] == []
     assert report["dependencies"]["presidio-analyzer"]
