@@ -137,3 +137,12 @@ uv run --frozen python benchmarks/structured_corpus_benchmark.py \
   --entities KR_NAME PHONE_NUMBER EMAIL_ADDRESS \
   --output private-eval/strict-comparison.json
 ```
+
+처리 속도는 별도 [합성 JSON CLI 벤치마크](../benchmarks/structured_cli_benchmark.py)에서
+확인했다. 같은 1만 레코드의 이름·전화·이메일 필드 3만 개를 기본·엄격 모드로
+번갈아 3회씩 처리한 전체 프로세스 시간 중앙값은 각각 **9.114초**와
+**6.483초**였다. 여섯 출력은 모두 같았고 주문번호 1만 개도 보존됐다.
+이 예시는 두 모드에서 가림 결과가 같도록 만든 자료라 처리 속도만 비교하며,
+정확도나 실제 업무 자료의 속도를 추정하지 않는다. 머신 부하·캐시·입력 분포가
+바뀌면 수치도 달라진다. [집계 보고서](../benchmarks/results/structured-cli-10k-2026-10-14.json)에
+실행 순서, 개별 시간, 입력·소스·벤치마크 해시를 남겼다.

@@ -1,0 +1,48 @@
+{
+  "scope": "synthetic_json_cli_end_to_end_speed_not_detection_accuracy",
+  "source_commit": "69f4aaad7da4c3aae871a1bcf6213034c4d16c70",
+  "source_sha256": "b675479cd309dd28721cabb22bb364a8b494c7141e5213d85e1aacd53a2ef591",
+  "scorer_sha256": "14bdad75853254bac3b37e388ebcc4ebf9ecfeab52aa3fa7c01c565ae8dd438a",
+  "input_sha256": "6fea599c6bf22ab4e52c977640c221b25fab976238471fae9b5d890d5b8bbc16",
+  "records": 10000,
+  "pairs": 3,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "samples": [
+    {
+      "mode": "default",
+      "milliseconds": 8374.165,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 6483.269,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 6400.869,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    },
+    {
+      "mode": "default",
+      "milliseconds": 9230.458,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    },
+    {
+      "mode": "default",
+      "milliseconds": 9114.27,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 6749.98,
+      "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+    }
+  ],
+  "median_milliseconds": {
+    "default": 9114.27,
+    "strict": 6483.269
+  },
+  "outputs_identical": true
+}
