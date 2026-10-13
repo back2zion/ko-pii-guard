@@ -91,6 +91,16 @@ def test_preexisting_masks_cannot_be_scored_as_new_redactions(tmp_path, premaske
         read_cases(path, {"KR_NAME"})
 
 
+def test_excessive_record_nesting_is_rejected_before_masking(tmp_path):
+    path = tmp_path / "private.jsonl"
+    nested = '[' * 101 + '"secret"' + ']' * 101
+    path.write_text('{"id":"one","record":' + nested + ',"targets":[]}\n',
+                    encoding="utf-8")
+    with pytest.raises(ValueError, match="nesting exceeds 100 levels") as error:
+        read_cases(path, {"KR_NAME"})
+    assert "secret" not in str(error.value)
+
+
 def test_validation_and_comparison_report_aggregate_only(tmp_path):
     secret = "010-1234-5678"
     path, output = tmp_path / "private.jsonl", tmp_path / "report.json"

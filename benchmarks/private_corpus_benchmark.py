@@ -157,7 +157,8 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                     for left, right in protected_spans
                 ):
                     raise ValueError("negative span overlaps gold or ignore")
-            except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
+            except (KeyError, TypeError, ValueError, RecursionError,
+                    json.JSONDecodeError) as error:
                 raise ValueError(f"Invalid input at line {line_number}: {error}") from None
             seen.add(identifier)
             cases.append({"id": identifier, "text": value, "gold": spans,

@@ -54,15 +54,17 @@ def scorer_hash() -> str:
     return digest.hexdigest()
 
 
-def _validate_record(value: object) -> None:
+def _validate_record(value: object, depth: int = 0) -> None:
+    if depth > 100:
+        raise ValueError("record nesting exceeds 100 levels")
     if isinstance(value, dict):
         if any(not isinstance(key, str) for key in value):
             raise ValueError("record keys must be strings")
         for child in value.values():
-            _validate_record(child)
+            _validate_record(child, depth + 1)
     elif isinstance(value, list):
         for child in value:
-            _validate_record(child)
+            _validate_record(child, depth + 1)
     elif type(value) is float:
         if not math.isfinite(value):
             raise ValueError("record contains a non-finite number")
@@ -139,7 +141,8 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                 if (set(gold) & ignored or set(gold) & negatives
                         or ignored & negatives):
                     raise ValueError("target, ignore and negative paths must be disjoint")
-            except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
+            except (KeyError, TypeError, ValueError, RecursionError,
+                    json.JSONDecodeError) as error:
                 raise ValueError(f"Invalid input at line {line_number}: {error}") from None
             seen_ids.add(identifier)
             cases.append({"id": identifier, "record": record, "gold": gold, "ignore": ignored,
