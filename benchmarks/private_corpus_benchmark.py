@@ -179,6 +179,23 @@ def covered_by_predictions(start: int, end: int, predicted: set[tuple[str, int, 
     return False
 
 
+def overlapping_characters(gold: set[tuple[str, int, int]],
+                           predicted: set[tuple[str, int, int]]) -> int:
+    """Count original characters inside both nonoverlapping span sets."""
+    left = sorted((start, end) for _, start, end in gold)
+    right = sorted((start, end) for _, start, end in predicted)
+    i = j = total = 0
+    while i < len(left) and j < len(right):
+        a_start, a_end = left[i]
+        b_start, b_end = right[j]
+        total += max(0, min(a_end, b_end) - max(a_start, b_start))
+        if a_end <= b_end:
+            i += 1
+        else:
+            j += 1
+    return total
+
+
 def is_ignored_prediction(prediction: tuple[str, int, int],
                           gold: set[tuple[str, int, int]],
                           ignored: set[tuple[int, int]]) -> bool:
@@ -213,6 +230,9 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     coverage = {kind: Counter() for kind in entities}
     covered = 0
     gold_total = 0
+    gold_characters = 0
+    predicted_characters = 0
+    covered_gold_characters = 0
     wrong_type = Counter()
     negative_docs = 0
     negative_docs_with_fp = 0
@@ -230,6 +250,9 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
             if not is_ignored_prediction(item, gold, case["ignore"])
         }
         ignored_predictions += len(all_predicted) - len(predicted)
+        gold_characters += sum(end - start for _, start, end in gold)
+        predicted_characters += sum(end - start for _, start, end in predicted)
+        covered_gold_characters += overlapping_characters(gold, predicted)
         negative_spans_total += len(case["negative_spans"])
         negative_spans_with_prediction += sum(
             any(start < right and left < end for _, left, right in predicted)
@@ -282,6 +305,15 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         "ner_model": model,
         "documents": len(cases), "characters": sum(len(c["text"]) for c in cases),
         "gold_spans": gold_total, "total": metrics(total),
+        "gold_characters": gold_characters,
+        "predicted_characters": predicted_characters,
+        "covered_gold_characters": covered_gold_characters,
+        "uncovered_gold_characters": gold_characters - covered_gold_characters,
+        "overmasked_characters": predicted_characters - covered_gold_characters,
+        "character_precision": (covered_gold_characters / predicted_characters
+                                if predicted_characters else None),
+        "character_recall": (covered_gold_characters / gold_characters
+                             if gold_characters else None),
         "per_entity": {kind: metrics(counts[kind]) for kind in entities},
         "fully_masked_gold_spans": covered,
         "full_mask_coverage": covered / gold_total if gold_total else None,

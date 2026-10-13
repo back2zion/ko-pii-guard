@@ -13,10 +13,17 @@ from benchmarks.private_corpus_benchmark import (
     covered_by_predictions,
     freeze_input,
     is_ignored_prediction,
+    overlapping_characters,
     read_cases,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_character_overlap_counts_clipped_and_extended_predictions():
+    gold = {("KR_NAME", 2, 5), ("PHONE_NUMBER", 10, 14)}
+    predicted = {("KR_NAME", 1, 4), ("PHONE_NUMBER", 11, 16)}
+    assert overlapping_characters(gold, predicted) == 5
 
 
 def test_rejects_invalid_gold_without_echoing_text(tmp_path):
@@ -195,6 +202,9 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     report = json.loads(output.read_text())
     assert report["baseline"]["total"]["tp"] == 1
     assert report["current"]["full_mask_coverage"] == 1.0
+    assert report["current"]["gold_characters"] == 13
+    assert report["current"]["covered_gold_characters"] == 13
+    assert report["current"]["overmasked_characters"] == 13
     assert report["current"]["negative_document_false_positive_rate"] == 1 / 3
     assert report["current"]["negative_documents"] == 3
     assert report["current"]["negative_spans"] == 1
