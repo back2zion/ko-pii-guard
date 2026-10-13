@@ -65,6 +65,15 @@ def _process_json(input_stream: TextIO, output_stream: TextIO,
 
 def _process_csv(input_stream: TextIO, output_stream: TextIO,
                  guard: KoreanPIIGuard, style: str, strict_fields: bool) -> None:
+    # The csv module defaults to 128 KiB per field, smaller than many notes
+    # columns. Use the largest supported C long on this platform.
+    field_limit = sys.maxsize
+    while True:
+        try:
+            csv.field_size_limit(field_limit)
+            break
+        except OverflowError:
+            field_limit //= 10
     reader = csv.reader(input_stream, strict=True)
     writer = csv.writer(output_stream)
     try:
@@ -79,12 +88,29 @@ def _process_csv(input_stream: TextIO, output_stream: TextIO,
     if len(set(masked_headers)) != len(masked_headers):
         raise ValueError("Masking would create duplicate CSV headers")
     writer.writerow(masked_headers)
+    rows: list[dict[str, str]] = []
+    row_characters = 0
+
+    def flush_rows() -> None:
+        if not rows:
+            return
+        # A list of rows shares the bounded JSON key cache while bank context
+        # and explicit PII labels are still resolved for each individual row.
+        masked_rows = guard.mask_json(rows, style=style, strict_fields=strict_fields)
+        for masked in masked_rows:
+            writer.writerow([masked[header] for header in masked_headers])
+        rows.clear()
+
     for row in reader:
         if len(row) != len(headers):
             raise ValueError("CSV record has a different number of fields")
-        masked = guard.mask_json(dict(zip(headers, row, strict=True)), style=style,
-                                 strict_fields=strict_fields)
-        writer.writerow([masked[header] for header in masked_headers])
+        characters = sum(map(len, row))
+        if rows and (len(rows) >= 64 or row_characters + characters > 262_144):
+            flush_rows()
+            row_characters = 0
+        rows.append(dict(zip(headers, row, strict=True)))
+        row_characters += characters
+    flush_rows()
 
 
 @contextmanager

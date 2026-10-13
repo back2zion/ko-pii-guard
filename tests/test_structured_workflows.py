@@ -1,5 +1,6 @@
 """Structured data and CLI contracts for real file-processing use."""
 
+import csv
 import io
 import json
 import random
@@ -478,6 +479,64 @@ def test_cli_csv_korean_headers_mask_typed_values_only():
         "고객명,휴대폰번호,이메일주소,주문번호\n"
         "<KR_NAME>,<PHONE_NUMBER>,<EMAIL_ADDRESS>,821012345678\n"
     )
+
+
+def test_cli_csv_many_rows_keep_order_and_multiline_text(tmp_path):
+    source = tmp_path / "input.csv"
+    target = tmp_path / "masked.csv"
+    with source.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.writer(stream)
+        writer.writerow(["고객명", "휴대폰번호", "주문번호", "notes"])
+        for index in range(131):
+            writer.writerow(["홍길동", f"010-{index:04d}-1234", f"ORD-{index:04d}",
+                             "첫 줄\n둘째 줄" if index == 64 else "접수"])
+    result = run_cli("mask", source, "--format", "csv", "--entity", "KR_NAME",
+                     "--entity", "PHONE_NUMBER", "-o", target)
+    assert result.returncode == 0, result.stderr
+    with target.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.reader(stream, strict=True))
+    assert rows[0] == ["고객명", "휴대폰번호", "주문번호", "notes"]
+    assert len(rows) == 132
+    for index, row in enumerate(rows[1:]):
+        assert row == ["<KR_NAME>", "<PHONE_NUMBER>", f"ORD-{index:04d}",
+                       "첫 줄\n둘째 줄" if index == 64 else "접수"]
+
+
+def test_cli_csv_invalid_late_row_preserves_existing_output(tmp_path):
+    source = tmp_path / "input.csv"
+    target = tmp_path / "masked.csv"
+    source.write_text("phone,order\n" +
+                      "010-1234-5678,ok\n" * 130 +
+                      "010-1234-5678\n", encoding="utf-8")
+    target.write_text("previous safe output\n", encoding="utf-8")
+    result = run_cli("mask", source, "--format", "csv", "--entity", "PHONE_NUMBER",
+                     "-o", target)
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert "010-" not in result.stderr
+    assert target.read_text(encoding="utf-8") == "previous safe output\n"
+    assert list(tmp_path.glob(".*.tmp")) == []
+
+
+def test_cli_csv_accepts_long_text_cell(tmp_path):
+    source = tmp_path / "input.csv"
+    target = tmp_path / "masked.csv"
+    long_note = "x" * 132_000
+    with source.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.writer(stream)
+        writer.writerow(["phone", "notes"])
+        writer.writerow(["010-1234-5678", long_note])
+    result = run_cli("mask", source, "--format", "csv", "--entity", "PHONE_NUMBER",
+                     "-o", target)
+    assert result.returncode == 0, result.stderr
+    previous_limit = csv.field_size_limit()
+    try:
+        csv.field_size_limit(len(long_note) + 1)
+        with target.open(encoding="utf-8", newline="") as stream:
+            assert list(csv.reader(stream)) == [["phone", "notes"],
+                                                ["<PHONE_NUMBER>", long_note]]
+    finally:
+        csv.field_size_limit(previous_limit)
 
 
 @pytest.mark.parametrize("format_name,input_text", [
