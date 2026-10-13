@@ -1,0 +1,12 @@
+{
+  "scope": "synthetic_nested_json_masking_invariants_not_accuracy",
+  "seed": 20261015,
+  "iterations": 50000,
+  "source_commit": "14745b7821fc1833cc6e8374a5dfcb84531fbb83",
+  "source_sha256": "56f42bba21d51565791aea384b968b2df33f9f5ebc6d0b411172ddc1c70c63ec",
+  "scorer_sha256": "29d1835e4bbbeaf50138321785308057ae9895fe0deafb7e6ebd92db1f4f1553",
+  "successful_records": 46070,
+  "changed_leaves": 196579,
+  "changed_keys": 2961,
+  "expected_rejections": 3930
+}
