@@ -89,6 +89,8 @@ def transform_json(value: object, transform: Callable[[str, str], str]) -> objec
             result = transform(original, label)
             return item if result == original else result
         if type(item) is float and math.isfinite(item):
+            if label:
+                raise ValueError("PII field must not contain a floating-point value")
             return item
         if not isinstance(item, (dict, list)):
             raise TypeError("value must contain only finite JSON-compatible data")

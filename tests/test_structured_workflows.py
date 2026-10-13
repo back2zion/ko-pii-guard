@@ -32,6 +32,15 @@ def test_json_masks_numeric_ids_only_when_detected():
     assert result == {"account_number": "<KR_ACCOUNT>", "count": 42}
 
 
+def test_json_rejects_floating_point_pii_fields_instead_of_leaking_them():
+    guard = KoreanPIIGuard()
+    with pytest.raises(ValueError, match="floating-point"):
+        guard.mask_json({"account_number": 1234567890123.0})
+    with pytest.raises(ValueError, match="floating-point"):
+        guard.mask_json({"phoneNumber": [1012345678.0]})
+    assert guard.mask_json({"amount": 1234.5}) == {"amount": 1234.5}
+
+
 @pytest.mark.parametrize("bank,value", [
     ("카카오뱅크", "3333120145448"),
     ("농협", "3025382178204"),
@@ -204,6 +213,19 @@ def test_cli_failure_preserves_existing_output_and_emits_no_pii(tmp_path):
     assert target.read_text(encoding="utf-8") == "previous safe output\n"
     assert "010-" not in result.stderr
     assert list(tmp_path.glob(".*.tmp")) == []
+
+
+def test_cli_floating_point_pii_failure_preserves_existing_output(tmp_path):
+    source = tmp_path / "input.jsonl"
+    target = tmp_path / "masked.jsonl"
+    source.write_text('{"phone":"010-1234-5678"}\n'
+                      '{"accountNumber":1234567890123.0}\n', encoding="utf-8")
+    target.write_text("previous safe output\n", encoding="utf-8")
+    result = run_cli("mask", source, "--format", "jsonl", "-o", target)
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert "1234567890123" not in result.stderr
+    assert target.read_text(encoding="utf-8") == "previous safe output\n"
 
 
 def test_cli_stdout_is_empty_if_later_jsonl_record_fails():

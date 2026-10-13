@@ -95,7 +95,9 @@ including line boundaries. JSONL mode scans string keys, string values and integ
 identifiers; common fields such as `name`, `address`, `rrn` and `account_number`
 supply Korean label context. Names and addresses still require explicit `--entity`
 selection. Masked integers become strings. Invalid JSON, duplicate keys, masked
-key collisions and screening failures produce exit code 2. File output is replaced
+key collisions, floating-point values in explicit PII fields and screening failures
+produce exit code 2. Store identifiers as strings or integers; floating-point JSON
+numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
 `analyze` and `check` currently accept text mode only. The analyzer scores are
