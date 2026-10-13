@@ -7,12 +7,18 @@ This deliberately avoids whole-text NFKC, which also changes unrelated prose.
 
 from __future__ import annotations
 
+import re
 import unicodedata
 from dataclasses import dataclass
 
 _DASHES = frozenset("\u2010\u2011\u2012\u2013\u2014\u2212\ufe63")
 _SPACES = frozenset("\u00a0\u202f")
 _INVISIBLE = frozenset("\u200b\u200c\u200d\u2060\ufeff\u00ad")
+_INVISIBLE_RE = re.compile("[\u200b\u200c\u200d\u2060\ufeff\u00ad]")
+_FOLD_RE = re.compile(
+    "[\uFF01-\uFF5E\u2010\u2011\u2012\u2013\u2014\u2212\uFE63\u00A0\u202F]"
+    r"|(?![0-9])\d"
+)
 
 
 def _fold(char: str) -> str:
@@ -35,6 +41,8 @@ def _identifier_char(char: str) -> bool:
 
 @dataclass(frozen=True)
 class NormalizedText:
+    """Normalized content; ``positions=None`` means character offsets are unchanged."""
+
     text: str
     positions: tuple[int, ...] | None = None
 
@@ -47,6 +55,10 @@ class NormalizedText:
 def normalize_text(text: str) -> NormalizedText:
     if text.isascii():
         return NormalizedText(text)
+    if not _INVISIBLE_RE.search(text):
+        # Every fold is 1:1, so transformed character positions still match
+        # the original. Only conditionally removed invisibles need an index map.
+        return NormalizedText(_FOLD_RE.sub(lambda match: _fold(match.group()), text))
     chars: list[str] = []
     positions: list[int] = []
     i = 0

@@ -30,6 +30,14 @@ def test_normalization_does_not_change_unrelated_prose():
     assert KoreanPIIGuard().mask(text) == text
 
 
+def test_one_to_one_unicode_folds_keep_identity_offsets():
+    text = "계좌 １２３−٤٥６"
+    result = normalize_text(text)
+    assert result.text == "계좌 123-456"
+    assert result.positions is None
+    assert result.original_span(3, len(result.text)) == (3, len(text))
+
+
 def test_long_non_identifier_invisible_run_is_preserved():
     text = "한" + "\u200b" * 10000 + "글"
     result = normalize_text(text)

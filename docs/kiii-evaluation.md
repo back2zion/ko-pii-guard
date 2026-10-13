@@ -71,6 +71,10 @@ uv run --frozen python benchmarks/private_corpus_benchmark.py \
 확정 근거로 삼지 않는다. [집계 원본](../benchmarks/results/kiii-structured-60-2026-10-13.json)을
 참고한다. [정확도 전용·문서 누락 집계](../benchmarks/results/kiii-structured-60-accuracy-only-2026-10-13.json)는
 반복 시간 측정을 하지 않았다.
+추가 정규화 최적화는 별도 [직전 커밋 대비 집계](../benchmarks/results/kiii-normalization-incremental-2026-10-13.json)에서
+기준 `d36f5bb`와 정확도·문서 누락 수가 같고, 10회 중앙값의 전체 탐지 시간이
+855.9ms에서 723.9ms로 줄었다. 비교는 고정 입력·동일 의존성·별도 프로세스에서
+수행했지만 순차 실행 순서까지 교차 통제한 속도 실험은 아니다.
 
 ## 이름·주소 짧은 20문서 진단
 
@@ -88,6 +92,10 @@ NER 사용 시 이름은 TP 141/FP 32/FN 75(F1 72.49%)였고 주소는
 TP 13/FP 4/FN 4(F1 76.47%)였다. 규칙만 사용할 때 이름은
 14/6/202, 주소는 13/2/4였다. 즉 NER은 이 표본의 이름 탐지를 늘렸지만
 주소 정답 수는 늘리지 못하고 주소 오탐 2건을 더했다. 두 버전 간의 개선은 없었다.
+정확도 전용 재실행에서도 점수는 같았고, NER을 켜도 **20문서 중 16문서**에
+완전히 가리지 못한 정답 구간이 하나 이상 있었다.
 원문 없이 저장한 [규칙 집계](../benchmarks/results/kiii-name-address-rules-20-2026-10-13.json)와
 [NER 집계](../benchmarks/results/kiii-name-address-ner-20-2026-10-13.json)를 참고한다.
+[문서 누락 집계](../benchmarks/results/kiii-name-address-ner-20-accuracy-only-2026-10-13.json)는
+반복 시간 측정을 생략했다.
 NER과 규칙 실행의 처리 시간은 별도 부하와 반복 수가 달라 여기서 비교하지 않는다.
