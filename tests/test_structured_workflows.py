@@ -202,6 +202,46 @@ def test_cli_masks_jsonl_to_file_and_keeps_original(tmp_path):
     assert target.stat().st_mode & 0o777 == 0o600
 
 
+def test_cli_masks_csv_using_column_context_and_preserves_multiline_fields(tmp_path):
+    source = tmp_path / "input.csv"
+    target = tmp_path / "masked.csv"
+    source.write_text('name,phoneNumber,notes\n'
+                      '이상,821012345678,"첫 줄\n둘째 줄"\n', encoding="utf-8")
+    result = run_cli("mask", source, "--format", "csv", "--entity", "KR_NAME",
+                     "--entity", "PHONE_NUMBER", "-o", target)
+    assert result.returncode == 0, result.stderr
+    assert target.read_text(encoding="utf-8") == (
+        'name,phoneNumber,notes\n<KR_NAME>,<PHONE_NUMBER>,"첫 줄\n둘째 줄"\n'
+    )
+    assert target.stat().st_mode & 0o777 == 0o600
+
+
+def test_cli_csv_utf8_bom_does_not_hide_first_column_context():
+    result = run_cli("mask", "--format", "csv", "--entity", "KR_NAME",
+                     input_text='\ufeffname,notes\n이상,접수\n')
+    assert result.returncode == 0, result.stderr
+    assert result.stdout == 'name,notes\n<KR_NAME>,접수\n'
+
+
+@pytest.mark.parametrize("contents", [
+    'phone,phone\n010-1234-5678,ok\n',
+    'phone,notes\n010-1234-5678\n',
+    'phone,notes\n010-1234-5678,ok,extra\n',
+    'phone,notes\n"010-1234-5678,ok\n',
+])
+def test_cli_invalid_csv_preserves_output(contents, tmp_path):
+    source = tmp_path / "input.csv"
+    target = tmp_path / "masked.csv"
+    source.write_text(contents, encoding="utf-8")
+    target.write_text("previous safe output\n", encoding="utf-8")
+    result = run_cli("mask", source, "--format", "csv", "-o", target)
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert "010-" not in result.stderr
+    assert target.read_text(encoding="utf-8") == "previous safe output\n"
+    assert list(tmp_path.glob(".*.tmp")) == []
+
+
 def test_cli_failure_preserves_existing_output_and_emits_no_pii(tmp_path):
     source = tmp_path / "input.jsonl"
     target = tmp_path / "masked.jsonl"

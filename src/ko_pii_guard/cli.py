@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import shutil
@@ -48,6 +49,29 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
             raise ValueError(f"invalid or unmaskable JSON Lines record at line {number}") from exc
 
 
+def _process_csv(input_stream: TextIO, output_stream: TextIO,
+                 guard: KoreanPIIGuard, style: str) -> None:
+    reader = csv.reader(input_stream, strict=True)
+    writer = csv.writer(output_stream)
+    try:
+        headers = next(reader)
+    except StopIteration as exc:
+        raise ValueError("CSV needs a header row") from exc
+    if headers and headers[0].startswith("\ufeff"):
+        headers[0] = headers[0][1:]
+    if not headers or any(not header for header in headers) or len(set(headers)) != len(headers):
+        raise ValueError("CSV headers must be nonempty and unique")
+    masked_headers = [guard.mask(header, style=style) for header in headers]
+    if len(set(masked_headers)) != len(masked_headers):
+        raise ValueError("Masking would create duplicate CSV headers")
+    writer.writerow(masked_headers)
+    for row in reader:
+        if len(row) != len(headers):
+            raise ValueError("CSV record has a different number of fields")
+        masked = guard.mask_json(dict(zip(headers, row, strict=True)), style=style)
+        writer.writerow([masked[header] for header in masked_headers])
+
+
 @contextmanager
 def _input(path: str):
     if path == "-":
@@ -70,7 +94,7 @@ def _output_path(input_path: str, output_path: str) -> Path:
 
 def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
                   style: str, format_name: str) -> None:
-    process = _process_text if format_name == "text" else _process_jsonl
+    process = {"text": _process_text, "jsonl": _process_jsonl, "csv": _process_csv}[format_name]
     if output_path == "-":
         # Do not send partially screened data to a downstream pipe when a
         # later record fails. TemporaryFile is unlinked and mode 0600.
@@ -105,7 +129,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("command", choices=("mask", "analyze", "check"))
     parser.add_argument("input", nargs="?", default="-", help="input path (default: stdin)")
     parser.add_argument("-o", "--output", default="-", help="output path (default: stdout)")
-    parser.add_argument("--format", choices=("text", "jsonl"), default="text")
+    parser.add_argument("--format", choices=("text", "jsonl", "csv"), default="text")
     parser.add_argument("--style", choices=("tag", "stars", "partial"), default="tag")
     parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
                         help="detect only these entities; repeat for multiple types")
@@ -116,7 +140,7 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
-    if args.command != "mask" and args.format == "jsonl":
+    if args.command != "mask" and args.format != "text":
         parser.error("analyze/check currently require --format text")
     if args.command != "mask" and args.output != "-":
         parser.error("analyze/check write to stdout only")
@@ -136,7 +160,7 @@ def main(argv: list[str] | None = None) -> int:
         ], sys.stdout, ensure_ascii=False)
         sys.stdout.write("\n")
         return 0
-    except (OSError, UnicodeError, ValueError, TypeError, TimeoutError):
+    except (OSError, UnicodeError, ValueError, TypeError, TimeoutError, csv.Error):
         # Do not echo arbitrary error strings or paths: a failure may include
         # sensitive source data. Exit 2 distinguishes error from PII found.
         print("ko-pii-guard: screening failed; no complete result was produced", file=sys.stderr)

@@ -86,6 +86,7 @@ run the same commands with `uv run --frozen ko-pii-guard` after `uv sync --froze
 ```bash
 ko-pii-guard mask input.txt -o masked.txt
 ko-pii-guard mask customers.jsonl --format jsonl --entity KR_NAME --entity PHONE_NUMBER -o masked.jsonl
+ko-pii-guard mask customers.csv --format csv --entity KR_NAME --entity PHONE_NUMBER -o masked.csv
 ko-pii-guard analyze input.txt       # JSON: type, score, offsets; no raw values
 ko-pii-guard check input.txt         # exit 0: no finding; 1: PII found; 2: error
 ```
@@ -100,6 +101,9 @@ produce exit code 2. Store identifiers as strings or integers; floating-point JS
 numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
+CSV mode requires a unique, nonempty header for every column and the same field count
+in each row. Column names provide the same context as JSON field names; quoted
+multiline fields are supported. A UTF-8 BOM before the first header is accepted.
 `analyze` and `check` currently accept text mode only. The analyzer scores are
 heuristics, not calibrated probabilities.
 ```
