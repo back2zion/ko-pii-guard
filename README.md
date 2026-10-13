@@ -117,6 +117,9 @@ cache and requires `--entity KR_NAME` or `--entity KR_ADDRESS`. Download it once
 with `python -m ko_pii_guard.ner --download` after installing the `ner` extra.
 `--ner-model kcelectra` is available for local comparisons; E5 remains the default.
 `--ner-threshold` defaults to 0.9. No model files are fetched during CLI masking.
+For an annotated local comparison of complete JSON fields, see the
+[structured corpus evaluator](docs/structured-evaluation.md). It reports masking
+accuracy without timing or exporting record values.
 ```
 
 ### Guardrails AI
