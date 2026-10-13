@@ -105,6 +105,9 @@ produce exit code 2. Store identifiers as strings or integers; floating-point JS
 numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
+Common schema keys such as `person_name`, `phone_no`, `bank_account_no`,
+`card_no`, `passport_no` and `foreigner_reg_no` are also recognized as
+explicit fields.
 JSON mode accepts one complete document, including pretty-printed multiline input;
 JSONL mode accepts one document per line for large collections. Both accept a UTF-8
 BOM at the start of the file.

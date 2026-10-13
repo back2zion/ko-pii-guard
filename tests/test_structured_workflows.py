@@ -2,10 +2,12 @@
 
 import io
 import json
+import random
 import subprocess
 import sys
 
 import pytest
+import synthetic as s
 from presidio_analyzer import RecognizerResult
 
 from ko_pii_guard import KoreanPIIGuard, cli
@@ -75,6 +77,32 @@ def test_json_explicit_korean_business_fields_supply_context():
         "배송주소": "<KR_ADDRESS>", "주문번호": "821012345678",
     }
     assert source["고객명"] == "홍길동"
+
+
+def test_json_common_snake_case_pii_schema_supplies_context():
+    rng = random.Random(42)
+    source = {
+        "person_name": "홍길동",
+        "phone_no": "821012345678",
+        "bank_account_no": "1234567890123",
+        "card_no": "4111111111111112",
+        "passport_no": s.passport(rng),
+        "foreigner_reg_no": s.rrn(rng, gender_digit=5),
+        "business_reg_no": s.brn(rng),
+        "driver_license_no": s.driver_license(rng),
+        "order_no": "821012345678",
+    }
+    guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER", "KR_ACCOUNT",
+                                      "CREDIT_CARD", "KR_PASSPORT", "KR_FRN",
+                                      "KR_BRN", "KR_DRIVER_LICENSE"])
+    assert guard.mask_json(source) == {
+        "person_name": "<KR_NAME>", "phone_no": "<PHONE_NUMBER>",
+        "bank_account_no": "<KR_ACCOUNT>", "card_no": "<CREDIT_CARD>",
+        "passport_no": "<KR_PASSPORT>", "foreigner_reg_no": "<KR_FRN>",
+        "business_reg_no": "<KR_BRN>",
+        "driver_license_no": "<KR_DRIVER_LICENSE>",
+        "order_no": "821012345678",
+    }
 
 
 @pytest.mark.parametrize("bank,value", [
