@@ -1,0 +1,64 @@
+{
+  "scope": "already_opened_public_synthetic_reserve_regression_not_independent_accuracy",
+  "source_commit_at_run": "ba9fb80ce3c2c4534f442b1881527dfca2cb3fcd",
+  "source_sha256": "39eb4e116bf340305368667e6f9fb57e1b4cfbf59da09c7ba8a9610d645cf573",
+  "previous_detector_commit": "993bfa466050fcf618c9eb55cfd522bee628609b",
+  "previous_detector_source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+  "prose": {
+    "corpus_sha256": "834986b13fe599b4ad62cf046bd294527daaf44eaa77cbb354a020d995d97a38",
+    "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+    "previous": {
+      "documents": 60,
+      "gold_spans": 1396,
+      "tp": 930,
+      "fp": 88,
+      "fn": 466,
+      "f1": 0.7705053852526926,
+      "fully_masked_gold_spans": 940,
+      "positive_documents_with_unmasked_gold": 47
+    },
+    "final_source": {
+      "documents": 60,
+      "gold_spans": 1396,
+      "tp": 930,
+      "fp": 88,
+      "fn": 466,
+      "f1": 0.7705053852526926,
+      "fully_masked_gold_spans": 940,
+      "positive_documents_with_unmasked_gold": 47
+    }
+  },
+  "typed": {
+    "corpus_sha256": "826b71cc6ace9cc45f9a89afb76f46dca2f9d59d8fdd94929be0cdb3c44800ed",
+    "scorer_sha256": "77698efcb99b67164833dc7c96e5dfa095f382878ec549a55fe19582f3de1680",
+    "previous": {
+      "target_fields": 3020,
+      "exact_type_fields": 2423,
+      "fully_masked_fields": 2439,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "positive_records_with_unmasked_target": 40
+    },
+    "final_source": {
+      "target_fields": 3020,
+      "exact_type_fields": 2423,
+      "fully_masked_fields": 2439,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "positive_records_with_unmasked_target": 40
+    }
+  },
+  "strict_fields": {
+    "corpus_sha256": "826b71cc6ace9cc45f9a89afb76f46dca2f9d59d8fdd94929be0cdb3c44800ed",
+    "scorer_sha256": "f9d9f05fcef52838624bbb0ec069b6d636777c481bc7c1a34d3550f98409dbb7",
+    "final_source": {
+      "target_fields": 3020,
+      "exact_type_fields": 3020,
+      "fully_masked_fields": 3020,
+      "hard_negative_fields": 209,
+      "changed_hard_negative_fields": 37,
+      "positive_records_with_unmasked_target": 0
+    }
+  },
+  "limitation": "This reruns an already-opened Kiii² reserve solely to verify that later runtime changes preserved its earlier result. It does not add an independent holdout or estimate business-data accuracy."
+}
