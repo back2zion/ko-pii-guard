@@ -285,5 +285,6 @@
       "limitation": "Conversational public corpus; not actual business documents. Exact span/type score restricted to supported structured types. Sparse gold (39 spans), no KR_NAME/KR_ADDRESS."
     }
   },
-  "conclusion": "No measured independent accuracy gain; 1000-finding synthetic API calls ~3-4% slower. No actual private business corpus evaluated."
+  "conclusion": "Before the context-scan optimization: no independent accuracy gain and a small synthetic-phone slowdown. Later committed optimization results are in context-scan-optimization-2026-10-13.json; neither evaluates real business documents.",
+  "stage": "pre_context_scan_optimization_snapshot"
 }

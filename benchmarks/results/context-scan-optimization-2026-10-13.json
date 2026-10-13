@@ -1,7 +1,7 @@
 {
   "date": "2026-10-13",
   "baseline_commit": "0a85e45136c03772259042df4b2c7a80f3a7e015",
-  "current": "uncommitted worktree",
+  "current": "commit 22c9d3ebd8ed560ead7bf521001f421be736e423",
   "source": "benchmarks/end_to_end_benchmark.py and benchmarks/private_corpus_benchmark.py",
   "synthetic_phone_speed": {
     "scope": "whole API calls; synthetic separated mobile numbers; warm guard",
@@ -11,73 +11,73 @@
         "operation": "analyze",
         "findings": 100,
         "characters": 2100,
-        "baseline_median_ms": 14.1443,
-        "current_median_ms": 10.8154,
-        "speedup": 1.31
+        "baseline_median_ms": 13.6677,
+        "current_median_ms": 10.2613,
+        "speedup": 1.33
       },
       {
         "operation": "mask_tag",
         "findings": 100,
         "characters": 2100,
-        "baseline_median_ms": 14.0426,
-        "current_median_ms": 11.0988,
+        "baseline_median_ms": 13.5567,
+        "current_median_ms": 10.3282,
+        "speedup": 1.31
+      },
+      {
+        "operation": "mask_stars",
+        "findings": 100,
+        "characters": 2100,
+        "baseline_median_ms": 13.2666,
+        "current_median_ms": 10.2855,
+        "speedup": 1.29
+      },
+      {
+        "operation": "analyze",
+        "findings": 500,
+        "characters": 10500,
+        "baseline_median_ms": 65.4058,
+        "current_median_ms": 51.1923,
+        "speedup": 1.28
+      },
+      {
+        "operation": "mask_tag",
+        "findings": 500,
+        "characters": 10500,
+        "baseline_median_ms": 64.9317,
+        "current_median_ms": 51.3145,
         "speedup": 1.27
       },
       {
         "operation": "mask_stars",
-        "findings": 100,
-        "characters": 2100,
-        "baseline_median_ms": 13.5381,
-        "current_median_ms": 11.1278,
-        "speedup": 1.22
-      },
-      {
-        "operation": "analyze",
         "findings": 500,
         "characters": 10500,
-        "baseline_median_ms": 67.2189,
-        "current_median_ms": 51.0055,
-        "speedup": 1.32
-      },
-      {
-        "operation": "mask_tag",
-        "findings": 500,
-        "characters": 10500,
-        "baseline_median_ms": 69.4773,
-        "current_median_ms": 52.3806,
-        "speedup": 1.33
-      },
-      {
-        "operation": "mask_stars",
-        "findings": 500,
-        "characters": 10500,
-        "baseline_median_ms": 67.3155,
-        "current_median_ms": 51.1807,
-        "speedup": 1.32
+        "baseline_median_ms": 65.6787,
+        "current_median_ms": 51.5417,
+        "speedup": 1.27
       },
       {
         "operation": "analyze",
         "findings": 1000,
         "characters": 21000,
-        "baseline_median_ms": 136.6882,
-        "current_median_ms": 102.6222,
-        "speedup": 1.33
+        "baseline_median_ms": 134.9416,
+        "current_median_ms": 104.3559,
+        "speedup": 1.29
       },
       {
         "operation": "mask_tag",
         "findings": 1000,
         "characters": 21000,
-        "baseline_median_ms": 138.7538,
-        "current_median_ms": 103.6729,
-        "speedup": 1.34
+        "baseline_median_ms": 134.8394,
+        "current_median_ms": 103.7514,
+        "speedup": 1.3
       },
       {
         "operation": "mask_stars",
         "findings": 1000,
         "characters": 21000,
-        "baseline_median_ms": 132.6186,
-        "current_median_ms": 104.0103,
-        "speedup": 1.28
+        "baseline_median_ms": 136.7964,
+        "current_median_ms": 104.5259,
+        "speedup": 1.31
       }
     ]
   },
@@ -89,8 +89,6 @@
     "characters": 109394,
     "input_sha256": "025d57d81c987619e9975c275c82992cfe6d7a7c49015505e1043983c3eae69c",
     "repeats": 10,
-    "baseline_median_ms": 204.22278599289712,
-    "current_median_ms": 200.66392800072208,
     "baseline_total": {
       "tp": 725,
       "fp": 8,
@@ -107,8 +105,15 @@
       "recall": 0.8569739952718676,
       "f1": 0.9183027232425586
     },
-    "accuracy_unchanged": true
+    "accuracy_unchanged": true,
+    "baseline_analyze_median_ms": 196.79877450107597,
+    "current_analyze_median_ms": 185.7898245070828,
+    "baseline_mask_stars_median_ms": 195.54605650773738,
+    "current_mask_stars_median_ms": 186.6221269883681
   },
   "semantics_check": "20,000 fixed-seed contextual strings matched the previous account-context implementation",
-  "caveat": "Synthetic data only; no real business corpus measured."
+  "caveat": "Synthetic data only; no real business corpus measured.",
+  "current_commit": "22c9d3ebd8ed560ead7bf521001f421be736e423",
+  "current_source_sha256": "9d504f11047373ddc7d150a8b0d03d4b16948122bc0616a4c118ff11d31bb410",
+  "baseline_source_sha256": "40c88a7611f7808c91d1b5e14612ce83f535607c2b6d3cea4f0ef3971d608873"
 }
