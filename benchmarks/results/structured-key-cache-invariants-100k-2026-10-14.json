@@ -1,0 +1,28 @@
+{
+  "scope": "synthetic_nested_json_key_cache_invariants_not_accuracy",
+  "source_commit": "8997c0511021e52753deaf241c24347f6e3a63b5",
+  "source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+  "scorer_sha256": "0d0cb88aea20e0b61846fe6e8b3d901c2868afab3e84941449141a471bd40e89",
+  "modes": {
+    "default": {
+      "seed": 20261401,
+      "iterations": 50000,
+      "successful_records": 45989,
+      "changed_leaves": 211854,
+      "changed_keys": 2912,
+      "expected_rejections": 4011
+    },
+    "strict": {
+      "seed": 20261402,
+      "iterations": 50000,
+      "successful_records": 46006,
+      "changed_leaves": 354599,
+      "changed_keys": 2849,
+      "expected_rejections": 3994
+    }
+  },
+  "batch_report_sha256": {
+    "default": "30d5755015ee7835da84144e2524e17d66792abc5add2e4486f9105ef68fb1e3",
+    "strict": "799b1c6dbb6f6b17b9496967d05f3de20b244fb07970654c17420c88b085f126"
+  }
+}

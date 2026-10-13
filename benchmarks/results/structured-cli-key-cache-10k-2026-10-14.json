@@ -1,0 +1,113 @@
+{
+  "scope": "synthetic_json_cli_end_to_end_speed_not_accuracy",
+  "input_sha256": "6fea599c6bf22ab4e52c977640c221b25fab976238471fae9b5d890d5b8bbc16",
+  "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7",
+  "scorer_sha256": "a70394b42188ee48c3224e9edb4d21234e4cf44ac27cc5a41b68d5cdb2fc405a",
+  "records": 10000,
+  "pairs": 4,
+  "baseline": {
+    "source_commit": "1683a476cdf2a01534f564dab152cc08214a45d6",
+    "source_sha256": "c87d69e8a30364d1b9bd09310ca5729333f08516514b99582fab0119c2583e91",
+    "median_milliseconds": {
+      "default": 8542.0255,
+      "strict": 6720.1965
+    },
+    "samples": [
+      {
+        "mode": "default",
+        "milliseconds": 8459.534,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 6584.975,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 6855.418,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 8624.517,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 9229.222,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 6979.911,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 6544.929,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 8454.273,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      }
+    ]
+  },
+  "key_cache": {
+    "source_commit": "8997c0511021e52753deaf241c24347f6e3a63b5",
+    "source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+    "median_milliseconds": {
+      "default": 7779.742,
+      "strict": 5554.1404999999995
+    },
+    "samples": [
+      {
+        "mode": "default",
+        "milliseconds": 7711.272,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 5460.109,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 5485.08,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 7848.212,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 7644.736,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 5659.302,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "strict",
+        "milliseconds": 5623.201,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      },
+      {
+        "mode": "default",
+        "milliseconds": 7879.598,
+        "output_sha256": "8b2d736e9f82c063030e66633d1c9be2e5d4daea35a2b9711d59a6c3275d31c7"
+      }
+    ]
+  },
+  "median_time_reduction_percent": {
+    "default": 8.92,
+    "strict": 17.35
+  },
+  "outputs_identical_across_versions": true
+}
