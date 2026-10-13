@@ -159,3 +159,6 @@ uv run --frozen python benchmarks/structured_corpus_benchmark.py \
 비변형, 구조 보존, 별표 길이와 태그·부분 가림의 일관성을 검사했다.
 실행 전후 소스·검사 코드가 바뀌면 보고서를 내지 않는다. 이 검사는 무작위
 합성 입력의 기능 불변식이며 개인정보 탐지 정확도를 재는 자료는 아니다.
+같은 방식의 [기본 모드 25만 건 검사](../benchmarks/results/structured-default-nested-invariants-250k-2026-10-14.json)는
+다른 시드 5개에서 정상 처리 229,894레코드, 변경된 값 1,057,475개와 키
+14,447개를 검사했고 예상된 입력 거부 20,106건 외에 불변식 오류가 없었다.

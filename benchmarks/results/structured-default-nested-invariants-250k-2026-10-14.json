@@ -1,0 +1,25 @@
+{
+  "scope": "synthetic_nested_json_default_masking_invariants_not_accuracy",
+  "source_commit": "dd7f2a013203c82e77452700d550f230909d93cf",
+  "source_sha256": "c87d69e8a30364d1b9bd09310ca5729333f08516514b99582fab0119c2583e91",
+  "scorer_sha256": "0d0cb88aea20e0b61846fe6e8b3d901c2868afab3e84941449141a471bd40e89",
+  "seeds": [
+    20261301,
+    20261302,
+    20261303,
+    20261304,
+    20261305
+  ],
+  "iterations": 250000,
+  "successful_records": 229894,
+  "changed_leaves": 1057475,
+  "changed_keys": 14447,
+  "expected_rejections": 20106,
+  "batch_report_sha256": {
+    "20261301": "45ee535daf79087525d4a4908670943cad77029f2bff15d61f011f0249ca1d2d",
+    "20261302": "268190a1b835d1afc2e01fb72402772131c7b24a273a8dc98390f9fd6845b21f",
+    "20261303": "bf56fdef622d60f9a0dd54be31988a490a3027ee59137723e4e94c5d9b40929a",
+    "20261304": "46d21e70d68f26c7c19f10688d321a2786f533b364e5ede47e91eb96e90ea6b8",
+    "20261305": "17d3a2e7dfe12ce1f3107ee06e84fb378d5a7e9cb091e232ae4c0ef56485fe9c"
+  }
+}
