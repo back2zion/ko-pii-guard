@@ -157,7 +157,7 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag") ->
                 return "*" * len(text)
             return guard._partial_value(text, "CREDIT_CARD")
         if (label == "이메일" and "EMAIL_ADDRESS" in guard.entities
-                and not result.redactions and _explicit_email_candidate(text)):
+                and _explicit_email_candidate(text)):
             if style == "tag":
                 return "<EMAIL_ADDRESS>"
             if style == "stars":

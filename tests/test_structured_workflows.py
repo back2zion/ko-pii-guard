@@ -188,6 +188,9 @@ def test_json_email_field_masks_display_names_and_multiple_internal_addresses():
         "email": "*" * len(value)
     }
     assert guard.mask_json({"note": value}) == {"note": value}
+    assert guard.mask_json({"email": "홍길동 <hello@example.com>"}) == {
+        "email": "<EMAIL_ADDRESS>"
+    }
 
 
 def test_json_key_collision_fails_without_mutating_input():
