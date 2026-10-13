@@ -385,7 +385,7 @@ def test_cli_jsonl_rejects_bom_inside_later_record_without_stdout():
     assert result.stdout == ""
 
 
-def test_cli_jsonl_rejects_excessive_nesting_without_traceback_or_partial_output():
+def test_cli_jsonl_rejects_excessive_nesting_without_traceback_or_partial_output(tmp_path):
     source = ('{"phone":"010-1234-5678"}\n'
               + '[' * 1100 + '"secret"' + ']' * 1100 + '\n')
     result = run_cli("mask", "--format", "jsonl", input_text=source)
@@ -393,6 +393,13 @@ def test_cli_jsonl_rejects_excessive_nesting_without_traceback_or_partial_output
     assert result.stdout == ""
     assert "Traceback" not in result.stderr
     assert "secret" not in result.stderr
+    target = tmp_path / "masked.jsonl"
+    target.write_text("previous safe output\n", encoding="utf-8")
+    file_result = run_cli("mask", "--format", "jsonl", "-o", target,
+                          input_text=source)
+    assert file_result.returncode == 2
+    assert target.read_text(encoding="utf-8") == "previous safe output\n"
+    assert list(tmp_path.glob(".*.tmp")) == []
 
 
 @pytest.mark.parametrize("contents", [
