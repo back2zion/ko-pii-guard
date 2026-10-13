@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Batch CSV masking across bounded groups of rows, accept cells beyond Python's
+  default 128 KiB CSV limit, and clean mode-0600 staging files after catchable
+  POSIX interrupts. Preserve the previous per-row output across mixed-field
+  equivalence checks; record separate 10k/100k synthetic throughput results.
+- Cache deterministic JSON key masking within one input and retain the
+  uncached path for optional NER. Record same-input speed and nested JSON
+  invariant checks separately from detection accuracy.
+- Evaluate a preselected, disjoint Kiii² synthetic reserve once after fixing
+  the source, and the full official KDPII v1 test split with one malformed
+  annotation row excluded explicitly. Neither public dataset shows a prose
+  detection improvement over the pinned baseline; real business holdout
+  approval remains pending.
 - Mask complete JSON documents and CSV tables from the offline CLI, including
   leading UTF-8 BOMs and multiline CSV fields. Keep output atomic and mode 0600.
 - Recognize explicit Korean business and snake_case schema fields in JSON/CSV.
