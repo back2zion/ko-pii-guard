@@ -3,9 +3,12 @@
 import csv
 import io
 import json
+import os
 import random
+import signal
 import subprocess
 import sys
+import time
 
 import pytest
 import synthetic as s
@@ -537,6 +540,39 @@ def test_cli_csv_accepts_long_text_cell(tmp_path):
                                                 ["<PHONE_NUMBER>", long_note]]
     finally:
         csv.field_size_limit(previous_limit)
+
+
+@pytest.mark.skipif(os.name != "posix", reason="requires catchable POSIX signals")
+@pytest.mark.parametrize("signum", (signal.SIGINT, signal.SIGTERM))
+def test_cli_interrupt_removes_staged_output(tmp_path, signum):
+    target = tmp_path / "masked.jsonl"
+    target.write_text("previous safe output\n", encoding="utf-8")
+    process = subprocess.Popen(
+        [sys.executable, "-m", "ko_pii_guard", "mask", "-", "--format", "jsonl",
+         "--entity", "PHONE_NUMBER", "-o", str(target)],
+        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    )
+    try:
+        assert process.stdin is not None
+        process.stdin.write(b'{"phone":"010-1234-5678"}\n' * 500)
+        process.stdin.flush()
+        deadline = time.monotonic() + 15
+        while not list(tmp_path.glob(".masked.jsonl.*.tmp")):
+            assert process.poll() is None
+            assert time.monotonic() < deadline
+            time.sleep(0.05)
+        process.send_signal(signum)
+        stdout, stderr = process.communicate(timeout=15)
+        assert process.returncode == 2
+        assert stdout == b""
+        assert b"no complete result" in stderr
+        assert b"010-" not in stderr
+        assert target.read_text(encoding="utf-8") == "previous safe output\n"
+        assert list(tmp_path.glob(".masked.jsonl.*.tmp")) == []
+    finally:
+        if process.poll() is None:
+            process.kill()
+            process.communicate(timeout=15)
 
 
 @pytest.mark.parametrize("format_name,input_text", [

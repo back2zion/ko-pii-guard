@@ -7,8 +7,10 @@ import csv
 import json
 import os
 import shutil
+import signal
 import sys
 import tempfile
+import threading
 from contextlib import contextmanager
 from pathlib import Path
 from typing import TextIO
@@ -133,6 +135,27 @@ def _output_path(input_path: str, output_path: str) -> Path:
     return path
 
 
+@contextmanager
+def _cleanup_on_interrupt():
+    """Raise a normal exception for POSIX interrupts so temp files are removed."""
+    if os.name != "posix" or threading.current_thread() is not threading.main_thread():
+        yield
+        return
+    previous = {}
+
+    def interrupted(_signum, _frame):
+        raise InterruptedError("screening interrupted")
+
+    try:
+        for signum in (signal.SIGINT, signal.SIGTERM):
+            previous[signum] = signal.getsignal(signum)
+            signal.signal(signum, interrupted)
+        yield
+    finally:
+        for signum, handler in previous.items():
+            signal.signal(signum, handler)
+
+
 def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
                   style: str, format_name: str, strict_fields: bool) -> None:
     process = {"text": _process_text, "json": _process_json,
@@ -146,22 +169,23 @@ def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
             staged.seek(0)
             shutil.copyfileobj(staged, sys.stdout)
         return
-    path = _output_path(input_path, output_path)
-    temporary_name = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", newline="", dir=path.parent,
-            prefix=f".{path.name}.", suffix=".tmp", delete=False,
-        ) as staged:
-            temporary_name = staged.name
-            with _input(input_path) as source:
-                process(source, staged, guard, style, strict_fields)
-            staged.flush()
-            os.fsync(staged.fileno())
-        os.replace(temporary_name, path)
-    finally:
-        if temporary_name and os.path.exists(temporary_name):
-            os.unlink(temporary_name)
+    with _cleanup_on_interrupt():
+        path = _output_path(input_path, output_path)
+        temporary_name = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", newline="", dir=path.parent,
+                prefix=f".{path.name}.", suffix=".tmp", delete=False,
+            ) as staged:
+                temporary_name = staged.name
+                with _input(input_path) as source:
+                    process(source, staged, guard, style, strict_fields)
+                staged.flush()
+                os.fsync(staged.fileno())
+            os.replace(temporary_name, path)
+        finally:
+            if temporary_name and os.path.exists(temporary_name):
+                os.unlink(temporary_name)
 
 
 def _parser() -> argparse.ArgumentParser:
