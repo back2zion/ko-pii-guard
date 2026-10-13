@@ -221,8 +221,9 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
             negative_docs_with_fp += bool(predicted)
     analyze_times = []
     mask_times = []
-    guard.analyze(cases[0]["text"])
-    guard.mask(cases[0]["text"], style="stars")
+    if repeats:
+        guard.analyze(cases[0]["text"])
+        guard.mask(cases[0]["text"], style="stars")
     for _ in range(repeats):
         started = perf_counter()
         for case in cases:
@@ -261,9 +262,9 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         "negative_document_false_positive_rate": (
             negative_docs_with_fp / negative_docs if negative_docs else None
         ),
-        "analyze_corpus_median_ms": statistics.median(analyze_times),
+        "analyze_corpus_median_ms": statistics.median(analyze_times) if repeats else None,
         "analyze_corpus_samples_ms": analyze_times,
-        "mask_stars_corpus_median_ms": statistics.median(mask_times),
+        "mask_stars_corpus_median_ms": statistics.median(mask_times) if repeats else None,
         "mask_stars_corpus_samples_ms": mask_times,
     }
 
@@ -355,6 +356,8 @@ def main() -> None:
     parser.add_argument("--baseline-ref", default="HEAD")
     parser.add_argument("--entities", nargs="+", default=None)
     parser.add_argument("--repeats", type=int, default=5)
+    parser.add_argument("--accuracy-only", action="store_true",
+                        help="skip warm-up and repeated timing passes")
     parser.add_argument("--threshold", type=float, default=0.4)
     parser.add_argument("--no-normalize-unicode", action="store_true")
     parser.add_argument("--ner", action="store_true",
@@ -363,8 +366,9 @@ def main() -> None:
     parser.add_argument("--ner-threads", type=int, default=2)
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
-    if args.repeats < 1:
-        parser.error("--repeats must be positive")
+    if args.repeats < 0 or (args.repeats == 0 and not args.worker):
+        parser.error("--repeats must be positive (zero is reserved for internal accuracy runs)")
+    repeats = 0 if args.accuracy_only else args.repeats
     if not 0.0 <= args.threshold <= 1.0 or not 0.0 <= args.ner_threshold <= 1.0:
         parser.error("thresholds must be between 0 and 1")
     if args.ner_threads < 1:
@@ -389,7 +393,7 @@ def main() -> None:
         parser.error("--output must differ from the input files")
     if args.worker:
         read_cases(input_path, set(entities))
-        print(json.dumps(worker(input_path, entities, args.repeats, args.threshold,
+        print(json.dumps(worker(input_path, entities, repeats, args.threshold,
                                 not args.no_normalize_unicode, args.ner,
                                 args.ner_threshold, args.ner_threads)))
         return
@@ -415,10 +419,10 @@ def main() -> None:
         shutil.copytree(ROOT / "src" / "ko_pii_guard", current_root / "src" / "ko_pii_guard",
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         baseline_hash, current_hash = source_hash(baseline_root), source_hash(current_root)
-        baseline = measure(baseline_root, frozen_input, entities, args.repeats,
+        baseline = measure(baseline_root, frozen_input, entities, repeats,
                            args.threshold, not args.no_normalize_unicode, args.ner,
                            args.ner_threshold, args.ner_threads)
-        current = measure(current_root, frozen_input, entities, args.repeats,
+        current = measure(current_root, frozen_input, entities, repeats,
                           args.threshold, not args.no_normalize_unicode, args.ner,
                           args.ner_threshold, args.ner_threads)
     if baseline["gold_spans"] != current["gold_spans"]:
@@ -439,7 +443,8 @@ def main() -> None:
         "current_source_sha256": current_hash,
         "corpus_sha256": corpus_digest,
         "development_corpus_sha256": development_digest,
-        "entities": entities, "repeats": args.repeats,
+        "entities": entities, "repeats": repeats,
+        "accuracy_only": args.accuracy_only,
         "score_threshold": args.threshold,
         "normalize_unicode": not args.no_normalize_unicode,
         "ner_enabled": args.ner,

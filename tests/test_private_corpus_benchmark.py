@@ -164,3 +164,14 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert secret not in output.read_text()
     assert "private-id" not in output.read_text()
     assert output.stat().st_mode & 0o777 == 0o600
+
+    subprocess.run([
+        sys.executable, str(ROOT / "benchmarks" / "private_corpus_benchmark.py"),
+        "--input", str(corpus), "--output", str(output), "--accuracy-only",
+    ], cwd=ROOT, check=True, capture_output=True, text=True)
+    accuracy_only = json.loads(output.read_text())
+    assert accuracy_only["accuracy_only"] is True
+    assert accuracy_only["repeats"] == 0
+    assert accuracy_only["current"]["total"] == report["current"]["total"]
+    assert accuracy_only["current"]["analyze_corpus_median_ms"] is None
+    assert accuracy_only["current"]["mask_stars_corpus_median_ms"] is None
