@@ -73,6 +73,8 @@ def check_wheel(path: Path) -> tuple[int, int]:
             entry_points[0]
         ):
             raise ValueError("Wheel CLI entry point is missing")
+        if dist_info is None or any(f"{dist_info}/{name}" not in names for name in WHEEL_METADATA):
+            raise ValueError("Wheel metadata is incomplete")
     if not REQUIRED_MODULES <= modules:
         raise ValueError("Wheel is missing required runtime modules")
     return path.stat().st_size, len(names)
