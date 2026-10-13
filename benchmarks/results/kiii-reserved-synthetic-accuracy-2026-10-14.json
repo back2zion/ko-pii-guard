@@ -36,7 +36,11 @@
       "full_mask_coverage": 0.673352435530086,
       "negative_documents": 0,
       "negative_documents_with_false_positive": 0,
-      "positive_documents": 60
+      "positive_documents": 60,
+      "positive_documents_with_unmasked_gold": 47,
+      "positive_document_leak_rate": 0.7833333333333333,
+      "negative_spans": 0,
+      "negative_spans_with_prediction": 0
     },
     "current": {
       "documents": 60,
@@ -53,7 +57,11 @@
       "full_mask_coverage": 0.673352435530086,
       "negative_documents": 0,
       "negative_documents_with_false_positive": 0,
-      "positive_documents": 60
+      "positive_documents": 60,
+      "positive_documents_with_unmasked_gold": 47,
+      "positive_document_leak_rate": 0.7833333333333333,
+      "negative_spans": 0,
+      "negative_spans_with_prediction": 0
     }
   },
   "typed": {
@@ -149,5 +157,22 @@
     "Prose uses supported identifier spans; typed rows move synthetic labels into explicit PII keys.",
     "Hard negatives have untyped reference keys, so strict overmask on typed status values is unmeasured.",
     "No real business holdout was available."
-  ]
+  ],
+  "prose_hard_negatives": {
+    "provenance": {
+      "current_commit": "1fa70b604cb98cef641015fb79331ef29116586e",
+      "current_source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+      "scorer_sha256": "fa14739ef5187b7889038ba645b234058320022c4c41af5c78b357bc01779d92",
+      "corpus_sha256": "2158b775fc91354ebfcddccf6e06875c922a7b6c765d785dd7a5080ae9fa6ae1",
+      "development_corpus_sha256": "126696072d7409502cae5434fe2cc4784952ecc88d789308de56290c18a78aca"
+    },
+    "baseline": {
+      "negative_spans": 209,
+      "negative_spans_with_prediction": 37
+    },
+    "current": {
+      "negative_spans": 209,
+      "negative_spans_with_prediction": 37
+    }
+  }
 }

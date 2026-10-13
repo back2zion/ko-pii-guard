@@ -1,0 +1,118 @@
+{
+  "scope": "controlled alternating synthetic CSV CLI speed, not detection accuracy",
+  "order": [
+    "before",
+    "after",
+    "after",
+    "before",
+    "after",
+    "before",
+    "before",
+    "after"
+  ],
+  "input_sha256": "f595cfbb577c8b24a7a2ade542cebddc7d57ff3e6822b4d561c5133ffe79c08c",
+  "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531",
+  "scorer_sha256": "6e5be37a85f638a2e2d464ccc4937696b5598e699ee8958a5982ef6886cc5706",
+  "versions": {
+    "before": {
+      "source_commit": "1fa70b604cb98cef641015fb79331ef29116586e",
+      "source_sha256": "10c9558c5abb19139a681250f00a6ceb31a33c05902a1aa57d1bbd4b43ded8c8",
+      "samples": [
+        {
+          "mode": "default",
+          "milliseconds": 8693.599,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 6649.619,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 8734.277,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 6648.313,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 8560.825,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 6301.734,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 8556.301,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 7117.084,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        }
+      ],
+      "median_milliseconds": {
+        "default": 8627.212,
+        "strict": 6648.966
+      }
+    },
+    "after": {
+      "source_commit": "27c584ec54df4f7819169c6163fb477cf0877eb3",
+      "source_sha256": "a8c2b59b704eda869f641ba7f37153ca21331d5d069799b45d2b2dab9d3ea9fe",
+      "samples": [
+        {
+          "mode": "default",
+          "milliseconds": 7675.52,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 5508.31,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 7913.163,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 5635.353,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 7748.476,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 5429.564,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "default",
+          "milliseconds": 7627.207,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        },
+        {
+          "mode": "strict",
+          "milliseconds": 5552.552,
+          "output_sha256": "3eb5940b4b3814a3a4d1de2317134990cc1febe9fddbd2c9c927e3a6139e5531"
+        }
+      ],
+      "median_milliseconds": {
+        "default": 7711.998,
+        "strict": 5530.4310000000005
+      }
+    }
+  }
+}
