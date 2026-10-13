@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Mask complete JSON documents and CSV tables from the offline CLI, including
+  leading UTF-8 BOMs and multiline CSV fields. Keep output atomic and mode 0600.
+- Recognize explicit Korean business and snake_case schema fields in JSON/CSV.
+  Add opt-in `--strict-fields` for full-value masking when the schema is
+  authoritative, with nested-field inheritance and typed-negative diagnostics.
+- Separate plain-text exact-span evaluation from whole-field structured
+  masking and speed measurements. Record source/corpus/scorer hashes, private
+  holdout validation, synthetic finance transformations and hard negatives.
+- Fuzz default and strict nested JSON masking for shape, offsets, non-mutation
+  and key-collision behavior; compare optional NER models without promoting
+  a lower-accuracy default.
 - Reuse explicit JSON field context for domestic `82` phone numbers and
   source-backed account/card collisions; mask a complete 13–19-digit value in
   an explicit card field even when its check digit is mistyped.
