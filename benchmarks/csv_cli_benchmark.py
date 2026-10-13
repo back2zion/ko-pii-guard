@@ -36,7 +36,7 @@ def write_input(path: Path, records: int) -> str:
     with path.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.writer(stream)
         writer.writerow(HEADERS)
-        writer.writerows(("홍길동", f"010-{index:04d}-1234",
+        writer.writerows(("홍길동", f"010-{index % 10_000:04d}-1234",
                           "hello@internal.local", f"ORD-{index:05d}")
                          for index in range(records))
     return sha256(path)

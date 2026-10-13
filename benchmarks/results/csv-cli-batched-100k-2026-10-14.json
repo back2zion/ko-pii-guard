@@ -1,0 +1,48 @@
+{
+  "scope": "synthetic_csv_cli_end_to_end_speed_not_detection_accuracy",
+  "source_commit": "0d5d7ec9768c6318fc57a93f88d73ed929cadec5",
+  "source_sha256": "a8c2b59b704eda869f641ba7f37153ca21331d5d069799b45d2b2dab9d3ea9fe",
+  "scorer_sha256": "2db0efab87246e9d93d5a2855603aba0672143322d843a608d1b3566de91b17d",
+  "input_sha256": "f01a774120ed75e32eb2fb39871167acc49aea8ee4b33fb20bdb0a9806cb6217",
+  "records": 100000,
+  "pairs": 3,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "samples": [
+    {
+      "mode": "default",
+      "milliseconds": 34325.846,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 10999.196,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 11728.156,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    },
+    {
+      "mode": "default",
+      "milliseconds": 34780.659,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    },
+    {
+      "mode": "default",
+      "milliseconds": 33675.371,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    },
+    {
+      "mode": "strict",
+      "milliseconds": 11396.941,
+      "output_sha256": "1b6f6887f420fa036c19f53c45c786afe2652ab82e647928d4e5ede7f295ba67"
+    }
+  ],
+  "median_milliseconds": {
+    "default": 34325.846,
+    "strict": 11396.941
+  },
+  "outputs_identical": true
+}
