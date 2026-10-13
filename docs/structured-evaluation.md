@@ -107,3 +107,33 @@ uv run --frozen python benchmarks/structured_corpus_benchmark.py \
 `10dce8a983bbd56030f6f2733b758af9c08d019fc939d94ca558fcc3e5bcd7ea`이다.
 이 결과도 외부 합성값을 정답 유형의 키로 옮긴 개발 진단이지 실무 원문이나
 독립 최종 평가가 아니다.
+
+## 엄격 필드 모드의 재현율·과잉 가림 비교
+
+`mask_json(..., strict_fields=True)` 또는 CLI `--strict-fields`는 선택한 유형의
+명시적 필드에서 비어 있지 않은 값을 탐지 형식에 관계없이 가린다. 필드 스키마가
+정확하고 누락보다 과잉 가림이 더 허용되는 처리에 쓸 수 있다. `없음`, `미입력`
+같은 상태값도 가리므로 기본값은 꺼져 있다. [동일 소스 비교 도구](../benchmarks/strict_field_diagnostic.py)는
+속도 측정 없이 두 모드를 같은 로컬 주석 자료에 적용한다.
+
+위 2,903개 외부 합성 정답 필드를 유형 키로 옮긴 자료에서는 기본 모드의 전체
+가림 2,311/2,903이 엄격 모드에서 2,903/2,903으로 늘었다. 유형 없는
+`reference` 음성 필드 225개 중 변경된 42개는 양쪽에서 같았다.
+**이 자료는 유형이 붙은 음성 필드를 포함하지 않아 엄격 모드의 과잉 가림을
+평가하지 못한다.** [집계 보고서](../benchmarks/results/kiii-typed-fields-strict-comparison-2026-10-14.json)는
+원문 없는 수치와 입력·소스·채점 코드 해시를 남긴다.
+
+직접 만든 별도 작은 예시에서는 부분 마스킹된 `person_name` 정답 1개가
+기본 0→엄격 1로 가려졌지만, `phone_no: "없음"`, `phone_no: "미입력"`,
+`email: "없음"` 등 음성 필드 4개 중 가린 수도 0→3으로 늘었다. 이는
+실무 데이터의 오탐률 추정치가 아니라 정책 선택의 동작 예시다. 실제 자료에서
+비어 있지 않은 상태값·자리표시자를 `negative_paths`로 주석한 뒤 아래처럼
+양쪽을 비교해야 한다.
+
+```bash
+.venv/bin/python benchmarks/strict_field_diagnostic.py \
+  --input private-eval/structured-holdout.jsonl \
+  --development-input private-eval/structured-development.jsonl \
+  --entities KR_NAME PHONE_NUMBER EMAIL_ADDRESS \
+  --output private-eval/strict-comparison.json
+```

@@ -122,6 +122,7 @@ def main() -> None:
     parser.add_argument("--iterations", type=int, default=100_000)
     parser.add_argument("--seed", type=int, default=20261014)
     parser.add_argument("--progress-every", type=int, default=10_000)
+    parser.add_argument("--strict-fields", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.iterations < 1 or args.progress_every < 1:
@@ -139,9 +140,10 @@ def main() -> None:
         record = random_record(rng)
         before = json.dumps(record, ensure_ascii=False, sort_keys=True, allow_nan=False)
         try:
-            tag = guard.mask_json(record, style="tag")
-            stars = guard.mask_json(record, style="stars")
-            partial = guard.mask_json(record, style="partial")
+            tag = guard.mask_json(record, style="tag", strict_fields=args.strict_fields)
+            stars = guard.mask_json(record, style="stars", strict_fields=args.strict_fields)
+            partial = guard.mask_json(record, style="partial",
+                                      strict_fields=args.strict_fields)
             changes, keys = compare(record, tag, stars, partial)
             for output in (tag, stars, partial):
                 json.dumps(output, ensure_ascii=False, allow_nan=False)
@@ -168,6 +170,7 @@ def main() -> None:
     report = {
         "scope": "synthetic_nested_json_masking_invariants_not_accuracy",
         "seed": args.seed, "iterations": args.iterations,
+        "strict_fields": args.strict_fields,
         "source_commit": source_commit,
         "source_sha256": source_sha,
         "scorer_sha256": scorer_sha,
