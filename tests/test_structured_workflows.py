@@ -59,6 +59,14 @@ def test_json_bank_context_stays_with_its_own_object():
     ]
 
 
+def test_json_camel_case_bank_and_account_fields_preserve_account_type():
+    guard = KoreanPIIGuard()
+    value = "3333120145448"
+    assert guard.mask_json({"bankName": "카카오뱅크", "accountNumber": value}) == {
+        "bankName": "카카오뱅크", "accountNumber": "<KR_ACCOUNT>"
+    }
+
+
 def test_json_conflicting_bank_fields_do_not_override_card():
     guard = KoreanPIIGuard()
     source = {"bank": "신한", "bank_name": "카카오뱅크",
@@ -73,6 +81,9 @@ def test_json_phone_field_supplies_context_for_bare_country_code_number():
     }
     assert guard.mask_json({"order_number": "821012345678"}) == {
         "order_number": "821012345678"
+    }
+    assert guard.mask_json({"phoneNumber": "821012345678"}) == {
+        "phoneNumber": "<PHONE_NUMBER>"
     }
 
 
@@ -110,6 +121,12 @@ def test_json_card_fallback_handles_folded_fullwidth_digits():
     value = "４１１１-１１１１-１１１１-１１１２"
     assert KoreanPIIGuard().mask_json({"card_number": value}) == {
         "card_number": "<CREDIT_CARD>"
+    }
+
+
+def test_json_camel_case_card_field_masks_checksum_typo():
+    assert KoreanPIIGuard().mask_json({"creditCardNumber": "4111111111111112"}) == {
+        "creditCardNumber": "<CREDIT_CARD>"
     }
 
 

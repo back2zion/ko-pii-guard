@@ -110,6 +110,8 @@ uv run --frozen python benchmarks/account_collision_benchmark.py --check
 이 역시 유형 분류 회귀이며 실제 발급 계좌의 검증은 아니다.
 같은 고정 합성 600계좌를 JSON 필드로 검사하면 현재 유형은 600/600 `KR_ACCOUNT`였고,
 별도 16자리 카드 300개가 JSON 계좌로 오분류된 건수는 0이었다.
+같은 명시적 문맥은 JSON의 `bankName`·`accountNumber`처럼 흔한 camelCase 키에도
+적용한다. `phoneNumber`·`creditCardNumber` 등 명확한 유형별 키도 지원한다.
 
 `card_number`처럼 명시적인 JSON 카드 필드는 체크섬 오타 때문에 일반 카드 인식기에서
 빠져도, 값 전체가 [Visa의 PAN 길이 설명](https://developer.visa.com/capabilities/visa-secure-remote-commerce/glossary)에

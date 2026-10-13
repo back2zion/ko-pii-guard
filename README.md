@@ -386,10 +386,11 @@ For Korean usage and contribution guidance, see [개발·평가 안내](docs/dev
 To compare a baseline with this checkout on locally annotated business documents, see
 [비공개 실무 문서 평가](docs/private-evaluation.md). The evaluator keeps source text out of reports.
 
-For JSON objects, a sibling `bank` or `bank_name` field containing an explicit 농협 or
-카카오뱅크 name supplies account context to `account_number`. This resolves the documented
+For JSON objects, a sibling `bank`, `bank_name`, or `bankName` field containing an explicit 농협 or
+카카오뱅크 name supplies account context to `account_number` or `accountNumber`. This resolves the documented
 13-digit account/card checksum collision for those banks; it does not validate account ownership.
-Common schema keys such as `phone_number`, `mobile`, `email`, and `card_number` also supply
+Common snake_case and camelCase schema keys such as `phone_number`/`phoneNumber`, `email`,
+and `card_number`/`cardNumber` also supply
 their explicit type context to ambiguous values.
 An explicit `card_number` field containing a complete 13–19 digit card-shaped value is
 masked even if its check digit is mistyped; this fallback does not apply to ordinary text.
