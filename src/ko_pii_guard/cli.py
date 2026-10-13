@@ -37,6 +37,8 @@ def _process_text(input_stream: TextIO, output_stream: TextIO,
 def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
                    guard: KoreanPIIGuard, style: str) -> None:
     for number, line in enumerate(input_stream, 1):
+        if number == 1:
+            line = line.removeprefix("\ufeff")
         if not line.strip():
             raise ValueError(f"invalid JSON Lines record at line {number}: empty line")
         try:
@@ -52,8 +54,9 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
 def _process_json(input_stream: TextIO, output_stream: TextIO,
                   guard: KoreanPIIGuard, style: str) -> None:
     try:
-        value = json.load(input_stream, parse_constant=_reject_constant,
-                          object_pairs_hook=_unique_object)
+        contents = input_stream.read().removeprefix("\ufeff")
+        value = json.loads(contents, parse_constant=_reject_constant,
+                           object_pairs_hook=_unique_object)
         masked = guard.mask_json(value, style=style)
         output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
     except (ValueError, TypeError, RecursionError, json.JSONDecodeError) as exc:

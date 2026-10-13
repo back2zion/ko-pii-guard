@@ -106,7 +106,8 @@ numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
 JSON mode accepts one complete document, including pretty-printed multiline input;
-JSONL mode accepts one document per line for large collections.
+JSONL mode accepts one document per line for large collections. Both accept a UTF-8
+BOM at the start of the file.
 Explicit `email`/`emailAddress` fields mask their whole value when it contains
 an address on an internal or unlisted domain, including display names or lists;
 this does not broaden email matching in general prose.

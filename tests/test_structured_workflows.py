@@ -295,6 +295,24 @@ def test_cli_masks_multiline_json_with_field_context(tmp_path):
     assert target.stat().st_mode & 0o777 == 0o600
 
 
+@pytest.mark.parametrize("format_name,source", [
+    ("json", '\ufeff{\n "phone": "010-1234-5678"\n}\n'),
+    ("jsonl", '\ufeff{"phone":"010-1234-5678"}\n'),
+])
+def test_cli_json_formats_accept_utf8_bom_at_file_start(format_name, source):
+    result = run_cli("mask", "--format", format_name, input_text=source)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == {"phone": "<PHONE_NUMBER>"}
+
+
+def test_cli_jsonl_rejects_bom_inside_later_record_without_stdout():
+    source = ('{"phone":"010-1234-5678"}\n'
+              '\ufeff{"phone":"010-5678-1234"}\n')
+    result = run_cli("mask", "--format", "jsonl", input_text=source)
+    assert result.returncode == 2
+    assert result.stdout == ""
+
+
 @pytest.mark.parametrize("contents", [
     '{"phone":"010-1234-5678","phone":"010-5678-1234"}',
     '{"phone":"010-1234-5678","accountNumber":1e999}',
