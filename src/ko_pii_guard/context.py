@@ -12,6 +12,8 @@ import re
 
 from presidio_analyzer import RecognizerResult
 
+from ko_pii_guard.account_formats import documented_undelimited_bank
+
 KOREAN_CONTEXT: dict[str, tuple[str, ...]] = {
     "KR_RRN": ("주민등록번호", "주민번호", "주민등록", "생년월일"),
     "KR_FRN": ("외국인등록번호", "외국인등록", "외국인번호"),
@@ -40,6 +42,10 @@ _ACCOUNT_BLOCKERS = (
     "카드번호", "전화번호", "연락처", "운전면허번호", "날짜",
 )
 _AMBIGUOUS_BANK_WORDS = frozenset(("우리", "하나", "기업", "국민"))
+_BANK_LABELS = (
+    "농협", "국민", "신한", "우리", "하나", "기업", "카카오뱅크",
+    "토스뱅크", "새마을금고", "우체국",
+)
 
 
 def _before(text: str, start: int, window: int) -> str:
@@ -54,22 +60,43 @@ def has_korean_context(text: str, start: int, entity: str, window: int = WINDOW)
     return any(keyword in before for keyword in KOREAN_CONTEXT.get(entity, ()))
 
 
+def has_documented_account_evidence(text: str, start: int, value: str) -> bool:
+    """Use an exact documented layout and the nearest named bank/account label.
+
+    This resolves an incidental Luhn match only for an undelimited account
+    with a matching bank in the same short clause. A generic "은행 계좌" label
+    is intentionally insufficient evidence to override a valid card number.
+    """
+    bank = documented_undelimited_bank(value)
+    if bank is None:
+        return False
+    before = _before(text, start, WINDOW)
+    if "계좌" not in before or not _account_context(text, start, WINDOW)[0]:
+        return False
+    nearest_bank = max(_BANK_LABELS, key=before.rfind)
+    return before.rfind(nearest_bank) >= 0 and nearest_bank == bank
+
+
 def _account_context(text: str, start: int, window: int) -> tuple[bool, bool]:
     """Use the closest label; common bank words need label-like placement."""
     before = _before(text, start, window)
     positive = -1
     for keyword in KOREAN_CONTEXT["KR_ACCOUNT"]:
-        for match in re.finditer(re.escape(keyword), before):
-            index = match.start()
+        index = before.find(keyword)
+        while index >= 0:
             if index and (before[index - 1].isascii() and before[index - 1].isalnum()):
+                index = before.find(keyword, index + 1)
                 continue
             if keyword in _AMBIGUOUS_BANK_WORDS:
-                tail = before[match.end():]
+                tail = before[index + len(keyword):]
                 if index and before[index - 1].isalnum():
+                    index = before.find(keyword, index + 1)
                     continue
                 if not re.fullmatch(r"(?:은행)?[\s:：=\[\]()]*", tail):
+                    index = before.find(keyword, index + 1)
                     continue
             positive = max(positive, index)
+            index = before.find(keyword, index + 1)
     negative = max((before.rfind(k) for k in _ACCOUNT_BLOCKERS), default=-1)
     return positive >= 0 and positive > negative, negative >= 0 and negative > positive
 

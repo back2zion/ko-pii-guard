@@ -37,6 +37,9 @@ guardrails = ["guardrails-ai>=0.11"]
 dev = ["pytest>=8", "ruff>=0.6"]
 ner = ["torch>=2.6", "transformers>=4.45,<5", "huggingface-hub>=0.26"]
 
+[project.scripts]
+ko-pii-guard = "ko_pii_guard.cli:main"
+
 [[tool.uv.index]]
 name = "pytorch-cpu"
 url = "https://download.pytorch.org/whl/cpu"
@@ -52,9 +55,19 @@ Issues = "https://github.com/back2zion/ko-pii-guard/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ko_pii_guard"]
 
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src/ko_pii_guard",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/pyproject.toml",
+    "/docs/**/*.md",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 
 [tool.ruff]
 line-length = 100

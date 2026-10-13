@@ -1,0 +1,143 @@
+"""Offline command-line masking for UTF-8 text and JSON Lines files."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import shutil
+import sys
+import tempfile
+from contextlib import contextmanager
+from pathlib import Path
+from typing import TextIO
+
+from ko_pii_guard.analyzer import SUPPORTED_ENTITIES, KoreanPIIGuard
+
+
+def _reject_constant(value: str) -> None:
+    raise ValueError("non-finite JSON number")
+
+
+def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
+def _process_text(input_stream: TextIO, output_stream: TextIO,
+                  guard: KoreanPIIGuard, style: str) -> None:
+    output_stream.write(guard.mask(input_stream.read(), style=style))
+
+
+def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
+                   guard: KoreanPIIGuard, style: str) -> None:
+    for number, line in enumerate(input_stream, 1):
+        if not line.strip():
+            raise ValueError(f"invalid JSON Lines record at line {number}: empty line")
+        try:
+            value = json.loads(line, parse_constant=_reject_constant,
+                               object_pairs_hook=_unique_object)
+            masked = guard.mask_json(value, style=style)
+            output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
+        except (ValueError, TypeError, json.JSONDecodeError) as exc:
+            # Do not include exception strings: upstream errors can contain PII.
+            raise ValueError(f"invalid or unmaskable JSON Lines record at line {number}") from exc
+
+
+@contextmanager
+def _input(path: str):
+    if path == "-":
+        yield sys.stdin
+    else:
+        with open(path, encoding="utf-8", newline="") as stream:
+            yield stream
+
+
+def _output_path(input_path: str, output_path: str) -> Path:
+    path = Path(output_path)
+    if path.is_dir():
+        raise ValueError("output path is a directory")
+    if path.exists() and path.is_symlink():
+        raise ValueError("output path must not be a symlink")
+    if input_path != "-" and path.exists() and os.path.samefile(input_path, path):
+        raise ValueError("input and output must be different files")
+    return path
+
+
+def _write_masked(input_path: str, output_path: str, guard: KoreanPIIGuard,
+                  style: str, format_name: str) -> None:
+    process = _process_text if format_name == "text" else _process_jsonl
+    if output_path == "-":
+        # Do not send partially screened data to a downstream pipe when a
+        # later record fails. TemporaryFile is unlinked and mode 0600.
+        with tempfile.TemporaryFile(mode="w+t", encoding="utf-8", newline="") as staged:
+            with _input(input_path) as source:
+                process(source, staged, guard, style)
+            staged.seek(0)
+            shutil.copyfileobj(staged, sys.stdout)
+        return
+    path = _output_path(input_path, output_path)
+    temporary_name = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="", dir=path.parent,
+            prefix=f".{path.name}.", suffix=".tmp", delete=False,
+        ) as staged:
+            temporary_name = staged.name
+            with _input(input_path) as source:
+                process(source, staged, guard, style)
+            staged.flush()
+            os.fsync(staged.fileno())
+        os.replace(temporary_name, path)
+    finally:
+        if temporary_name and os.path.exists(temporary_name):
+            os.unlink(temporary_name)
+
+
+def _parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="ko-pii-guard", description="Detect and mask Korean PII in local UTF-8 data."
+    )
+    parser.add_argument("command", choices=("mask", "analyze", "check"))
+    parser.add_argument("input", nargs="?", default="-", help="input path (default: stdin)")
+    parser.add_argument("-o", "--output", default="-", help="output path (default: stdout)")
+    parser.add_argument("--format", choices=("text", "jsonl"), default="text")
+    parser.add_argument("--style", choices=("tag", "stars", "partial"), default="tag")
+    parser.add_argument("--entity", action="append", choices=SUPPORTED_ENTITIES,
+                        help="detect only these entities; repeat for multiple types")
+    parser.add_argument("--threshold", type=float, default=0.4)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = _parser()
+    args = parser.parse_args(argv)
+    if args.command != "mask" and args.format == "jsonl":
+        parser.error("analyze/check currently require --format text")
+    if args.command != "mask" and args.output != "-":
+        parser.error("analyze/check write to stdout only")
+    try:
+        guard = KoreanPIIGuard(entities=args.entity, score_threshold=args.threshold)
+        if args.command == "mask":
+            _write_masked(args.input, args.output, guard, args.style, args.format)
+            return 0
+        with _input(args.input) as source:
+            findings = guard.analyze(source.read())
+        if args.command == "check":
+            return 1 if findings else 0
+        # Findings.text contains raw PII; never include it in CLI reports.
+        json.dump([
+            {"entity": f.entity, "start": f.start, "end": f.end, "score": f.score}
+            for f in findings
+        ], sys.stdout, ensure_ascii=False)
+        sys.stdout.write("\n")
+        return 0
+    except (OSError, UnicodeError, ValueError, TypeError, TimeoutError):
+        # Do not echo arbitrary error strings or paths: a failure may include
+        # sensitive source data. Exit 2 distinguishes error from PII found.
+        print("ko-pii-guard: screening failed; no complete result was produced", file=sys.stderr)
+        return 2

@@ -34,7 +34,7 @@ class KoreanPII(Validator):
     The programmatic fix replaces each span with ``<ENTITY>`` tags.
 
     Args:
-        entities: Entity types to detect. Defaults to all supported types.
+        entities: Entity types to detect. Defaults to structured identifiers.
         score_threshold: Minimum confidence for a span to count as PII.
     """
 
@@ -51,13 +51,14 @@ class KoreanPII(Validator):
         self._guard = KoreanPIIGuard(entities=entities, score_threshold=score_threshold)
 
     def validate(self, value: Any, metadata: dict = {}) -> ValidationResult:  # noqa: B006
-        findings = self._guard.analyze(value)
+        result = self._guard.mask_with_details(value)
+        findings = result.redactions
         if not findings:
             return PassResult()
         entities = sorted({f.entity for f in findings})
         return FailResult(
             error_message=f"Korean PII detected: {', '.join(entities)}",
-            fix_value=self._guard.mask(value),
+            fix_value=result.text,
             error_spans=[
                 ErrorSpan(start=f.start, end=f.end, reason=f"{f.entity} detected") for f in findings
             ],

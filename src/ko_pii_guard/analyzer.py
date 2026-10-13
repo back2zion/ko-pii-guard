@@ -13,7 +13,7 @@ words. This module wires them together so they work in one line:
 from __future__ import annotations
 
 import re
-from collections.abc import Callable, Iterable, Sequence
+from collections.abc import Callable, Iterable, Iterator
 from dataclasses import dataclass
 from typing import Literal, Protocol
 
@@ -42,6 +42,7 @@ from ko_pii_guard.addresses import recognize_addresses
 from ko_pii_guard.context import (
     KOREAN_CONTEXT,
     boost_with_korean_context,
+    has_documented_account_evidence,
     has_korean_context,
     require_context_for_undelimited,
 )
@@ -79,7 +80,7 @@ _PARTIAL_KEEP = {
 class NameAddressNER(Protocol):
     """A local name/address recognizer returning spans in its input text."""
 
-    def analyze(self, text: str) -> list[RecognizerResult]: ...
+    def analyze(self, text: str) -> Iterable[RecognizerResult]: ...
 
 
 @dataclass(frozen=True)
@@ -91,6 +92,30 @@ class Finding:
     end: int
     score: float
     text: str
+
+
+@dataclass(frozen=True)
+class Redaction:
+    """Replacement coordinates, without retaining the detected PII value.
+
+    ``start``/``end`` index the original input; ``output_start``/``output_end``
+    index the masked output. All offsets are Python character indices.
+    """
+
+    entity: str
+    start: int
+    end: int
+    score: float
+    output_start: int
+    output_end: int
+
+
+@dataclass(frozen=True)
+class MaskResult:
+    """Masked output and the spans actually replaced in a single analysis."""
+
+    text: str
+    redactions: tuple[Redaction, ...]
 
 
 # python-phonenumbers treats some 010 ranges as invalid, but any
@@ -217,11 +242,17 @@ class KoreanPIIGuard:
         normalize_unicode: bool = True,
         ner: NameAddressNER | None = None,
     ):
-        if not 0.0 <= score_threshold <= 1.0:
+        if (isinstance(score_threshold, bool)
+                or not isinstance(score_threshold, (int, float))
+                or not 0.0 <= score_threshold <= 1.0):
             raise ValueError("score_threshold must be between 0 and 1")
+        if isinstance(entities, (str, bytes)):
+            raise TypeError("entities must be an iterable of entity names, not a string")
         self.entities: list[str] = list(DEFAULT_ENTITIES) if entities is None else list(entities)
         if not self.entities:
             raise ValueError("entities must not be empty; pass None for default types")
+        if any(not isinstance(entity, str) for entity in self.entities):
+            raise TypeError("entities must contain only strings")
         unknown = set(self.entities) - set(SUPPORTED_ENTITIES)
         if unknown:
             raise ValueError(f"Unsupported entities: {sorted(unknown)}")
@@ -231,6 +262,8 @@ class KoreanPIIGuard:
         self._analyzer = _build_analyzer()
 
     def _raw_results(self, text: str) -> list[RecognizerResult]:
+        if not isinstance(text, str):
+            raise TypeError("text must be a string")
         normalized = normalize_text(text) if self.normalize_unicode else NormalizedText(text)
         text = normalized.text
         requested = [e for e in self.entities if e in _STRUCTURED_ENTITIES]
@@ -247,6 +280,19 @@ class KoreanPIIGuard:
             has_valid_registration_date(r.entity_type, text[r.start:r.end])
             or has_korean_context(text, r.start, r.entity_type)
         )]
+        # A documented 13-digit bank layout can coincidentally pass Luhn.
+        # Resolve that collision only with a matching nearby bank and an
+        # explicit account label; ordinary card matches keep their priority.
+        account_evidence = {
+            (r.start, r.end) for r in boosted
+            if r.entity_type == "KR_ACCOUNT"
+            and r.score >= self.score_threshold
+            and has_documented_account_evidence(text, r.start, text[r.start:r.end])
+        } if "KR_ACCOUNT" in self.entities else set()
+        boosted = [
+            r for r in boosted
+            if r.entity_type != "CREDIT_CARD" or (r.start, r.end) not in account_evidence
+        ]
         protected = [r for r in boosted if r.entity_type != "KR_ACCOUNT" and r.score >= 0.4]
         protected_index = SpanIndex(protected)
         boosted = [
@@ -271,7 +317,14 @@ class KoreanPIIGuard:
         if "KR_ADDRESS" in self.entities:
             extra.extend(recognize_addresses(text))
         if self.ner is not None and {"KR_NAME", "KR_ADDRESS"}.intersection(self.entities):
-            model_results = self.ner.analyze(text)
+            # Materialize once: validation and selection must see identical
+            # spans, including when a custom backend returns a generator.
+            model_output = self.ner.analyze(text)
+            try:
+                model_iterator = iter(model_output)
+            except TypeError as exc:
+                raise ValueError("NER returned an invalid result collection") from exc
+            model_results = list(model_iterator)
             for result in model_results:
                 if (not isinstance(result, RecognizerResult)
                         or result.entity_type not in ("KR_NAME", "KR_ADDRESS")
@@ -336,6 +389,18 @@ class KoreanPIIGuard:
                 3 for account numbers, 1 for names, 0 for addresses,
                 and 2 for everything else
         """
+        return self.mask_with_details(text, style=style, should_mask=should_mask).text
+
+    def mask_with_details(
+        self, text: str, style: MaskStyle = "tag", *,
+        should_mask: Callable[[Finding], bool] | None = None,
+    ) -> MaskResult:
+        """Mask once and return original/output coordinates for replacements.
+
+        The metadata contains no raw PII values. Undetected text, partial
+        prefixes and spans excluded by ``should_mask`` remain in ``text``.
+        Model and callback errors propagate without returning a partial result.
+        """
         if style not in ("tag", "stars", "partial"):
             raise ValueError(f"Unknown mask style: {style}")
         results = self._raw_results(text)
@@ -344,37 +409,67 @@ class KoreanPIIGuard:
                 r.entity_type, r.start, r.end, round(r.score, 3), text[r.start:r.end]
             ))]
         if not results:
-            return text
-        if style == "partial":
-            return self._partial_mask(text, results)
+            return MaskResult(text, ())
         out: list[str] = []
+        redactions: list[Redaction] = []
         cursor = 0
+        output_cursor = 0
         for result in results:
-            out.append(text[cursor:result.start])
-            out.append(f"<{result.entity_type}>" if style == "tag"
-                       else "*" * (result.end - result.start))
+            prefix = text[cursor:result.start]
+            out.append(prefix)
+            output_cursor += len(prefix)
+            if style == "partial":
+                replacement = self._partial_value(text[result.start:result.end], result.entity_type)
+            elif style == "tag":
+                replacement = f"<{result.entity_type}>"
+            else:
+                replacement = "*" * (result.end - result.start)
+            out.append(replacement)
+            redactions.append(Redaction(
+                result.entity_type, result.start, result.end, round(result.score, 3),
+                output_cursor, output_cursor + len(replacement),
+            ))
+            output_cursor += len(replacement)
             cursor = result.end
         out.append(text[cursor:])
-        return "".join(out)
+        return MaskResult("".join(out), tuple(redactions))
+
+    def mask_many(
+        self, texts: Iterable[str], style: MaskStyle = "tag", *,
+        should_mask: Callable[[Finding], bool] | None = None,
+    ) -> Iterator[str]:
+        """Lazily mask documents in order, reusing this guard and its model.
+
+        Errors stop iteration; previously yielded documents remain available.
+        This is per-document screening, not a transaction over the iterable.
+        """
+        if isinstance(texts, (str, bytes)):
+            raise TypeError("texts must be an iterable of strings, not a string")
+        for text in texts:
+            yield self.mask(text, style=style, should_mask=should_mask)
+
+    def mask_json(self, value: object, style: MaskStyle = "tag") -> object:
+        """Mask JSON keys, string values and integer identifiers in a copy.
+
+        Explicit schema fields supply Korean label context; names/addresses
+        still require opt-in. Masked numbers become strings. Key collisions,
+        cycles and non-JSON values raise without returning partial data.
+        See :mod:`ko_pii_guard.structured` for supported field aliases.
+        """
+        from ko_pii_guard.structured import mask_json
+
+        return mask_json(self, value, style)
 
     @staticmethod
-    def _partial_mask(text: str, results: Sequence[RecognizerResult]) -> str:
-        out = []
-        cursor = 0
-        for r in results:
-            span = text[r.start : r.end]
-            keep = _PARTIAL_KEEP.get(r.entity_type, 2)
-            kept = 0
-            masked = []
-            for ch in span:
-                if ch.isalnum() and kept >= keep:
-                    masked.append("*")
-                else:
-                    if ch.isalnum():
-                        kept += 1
-                    masked.append(ch)
-            out.append(text[cursor : r.start])
-            out.append("".join(masked))
-            cursor = r.end
-        out.append(text[cursor:])
-        return "".join(out)
+    def _partial_value(span: str, entity: str) -> str:
+        keep = _PARTIAL_KEEP.get(entity, 2)
+        kept = 0
+        masked = []
+        for ch in span:
+            if ch.isalnum() and kept >= keep:
+                masked.append("*")
+            else:
+                if ch.isalnum():
+                    kept += 1
+                masked.append(ch)
+        return "".join(masked)

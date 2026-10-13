@@ -117,3 +117,17 @@ def matches_account_format(value: str) -> bool:
     may still be a real account. This function does not normalize Unicode.
     """
     return any(layout.compiled.fullmatch(value) for layout in ACCOUNT_FORMATS)
+
+
+def documented_undelimited_bank(value: str) -> str | None:
+    """Identify two source-backed 13-digit layouts when separators are absent.
+
+    This returns structural evidence, not proof of a valid account. The caller
+    must also check a matching nearby bank and an explicit account field before
+    it uses this evidence to resolve a card/account collision.
+    """
+    if re.fullmatch(r"(?:301|302|312|351|352|356)[0-9]{10}", value):
+        return "농협"
+    if re.fullmatch(r"3333[0-9]{9}", value):
+        return "카카오뱅크"
+    return None
