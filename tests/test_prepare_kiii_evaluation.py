@@ -19,10 +19,14 @@ def test_selection_is_stratified_and_label_blind(tmp_path):
     assert len(selected) == 60
     assert len(selected_rows(path, ("1k",))) == 20
     first_ids = {row["doc_id"] for row in selected}
+    reserved_ids = {row["doc_id"] for row in selected_rows(path, selection_rank=1)}
+    assert len(reserved_ids) == 60
+    assert first_ids.isdisjoint(reserved_ids)
     for row in rows:
         row["spans"] = [] if row["spans"] else [{"category": "rrn"}]
     path.write_text("\n".join(json.dumps(row) for row in reversed(rows)) + "\n")
     assert {row["doc_id"] for row in selected_rows(path)} == first_ids
+    assert {row["doc_id"] for row in selected_rows(path, selection_rank=1)} == reserved_ids
 
 
 def test_only_supported_gold_and_specific_unsupported_identifiers_are_scored():

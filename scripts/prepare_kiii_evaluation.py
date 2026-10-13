@@ -45,9 +45,12 @@ def digest_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def selected_rows(source: Path, lengths: tuple[str, ...] = LENGTHS) -> list[dict]:
-    """Choose one ID per document-type/level/length cell without reading labels."""
-    best: dict[tuple[str, str, str], tuple[str, dict]] = {}
+def selected_rows(source: Path, lengths: tuple[str, ...] = LENGTHS,
+                  selection_rank: int = 0) -> list[dict]:
+    """Choose a ranked ID per cell without using labels or document text."""
+    if selection_rank < 0:
+        raise ValueError("selection_rank must be nonnegative")
+    best: dict[tuple[str, str, str], list[tuple[str, dict]]] = {}
     seen_ids = set()
     with source.open(encoding="utf-8") as stream:
         for line in stream:
@@ -60,14 +63,17 @@ def selected_rows(source: Path, lengths: tuple[str, ...] = LENGTHS) -> list[dict
             if key[1] not in LEVELS or key[2] not in lengths:
                 continue
             rank = hashlib.sha256(identifier.encode()).hexdigest()
-            if key not in best or rank < best[key][0]:
-                best[key] = rank, row
+            candidates = best.setdefault(key, [])
+            candidates.append((rank, row))
+            candidates.sort(key=lambda item: item[0])
+            del candidates[selection_rank + 1:]
     doc_types = {key[0] for key in best}
     expected = {(kind, level, length) for kind in doc_types
                 for level in LEVELS for length in lengths}
-    if len(doc_types) != 10 or set(best) != expected:
+    if (len(doc_types) != 10 or set(best) != expected
+            or any(len(best[key]) <= selection_rank for key in expected)):
         raise ValueError("Pinned source is missing a selection stratum")
-    return [best[key][1] for key in sorted(best)]
+    return [best[key][selection_rank][1] for key in sorted(best)]
 
 
 def convert(row: dict, include_name_address: bool,
@@ -119,7 +125,11 @@ def main() -> None:
     parser.add_argument("--include-hard-negatives", action="store_true")
     parser.add_argument("--length", choices=LENGTHS, action="append",
                         help="select only these length buckets; default: all three")
+    parser.add_argument("--selection-rank", type=int, default=0,
+                        help="hash rank within each stratum (0: development, 1: reserve)")
     args = parser.parse_args()
+    if args.selection_rank < 0:
+        parser.error("--selection-rank must be nonnegative")
     try:
         from huggingface_hub import hf_hub_download
     except ImportError as error:
@@ -129,7 +139,7 @@ def main() -> None:
     if digest_file(source) != DATA_SHA256:
         raise ValueError("Pinned source SHA-256 changed")
     lengths = tuple(dict.fromkeys(args.length or LENGTHS))
-    rows = selected_rows(source, lengths)
+    rows = selected_rows(source, lengths, args.selection_rank)
     output = args.output.absolute()
     if (output.is_symlink() or output.is_dir()
             or (output.exists() and os.path.samefile(source, output))):
@@ -162,6 +172,7 @@ def main() -> None:
             os.unlink(temporary_name)
     print(json.dumps({"dataset_revision": REVISION, "dataset_sha256": DATA_SHA256,
                       "documents": len(rows), "lengths": lengths,
+                      "selection_rank": args.selection_rank,
                       "gold_spans_by_type": counts,
                       "output_sha256": digest_file(output)}, ensure_ascii=False))
 

@@ -118,6 +118,19 @@ test 자료의 **오류 진단**이며 새 독립 평가가 아니다. 아래 �
 로컬 캐시에 원본이 있을 때
 `python benchmarks/kiii_stratified_diagnostic.py --check-frozen`으로 재현할 수 있다.
 
+후속 규칙 변경을 시험할 때 사용할 별도 예약 표본은 같은 고정 소스의 각 층에서
+문서 ID SHA-256 순위 **두 번째**(`--selection-rank 1`)를 골라 미리 고정했다.
+60문서이며 기존 60문서와 ID 중복은 0건이다. 예약 입력 SHA-256은
+`834986b13fe599b4ad62cf046bd294527daaf44eaa77cbb354a020d995d97a38`이다.
+예약 표본의 정답이나 예측은 규칙 변경 전에 열람하지 않는다. 같은 합성 자료의
+별도 문서이므로 실제 업무 자료를 대신하지 않으며, 첫 결과를 확인한 후에는
+추가 튜닝을 위한 독립 표본으로 재사용하지 않는다.
+
+```bash
+uv run --frozen python scripts/prepare_kiii_evaluation.py \
+  --selection-rank 1 --output /tmp/ko-pii-kiii-reserve-60.jsonl
+```
+
 어려운 음성 주석을 추가한 동일 60문서(입력 SHA-256
 `cfb8655bbc7ab94d0be9992e53922ea62b28737cdb98d93c9e1fad027ee6e12d`)에서는
 기준·현재 버전 모두 **225구간 중 42구간(18.67%)**에 예측이 겹쳤다. 나머지
