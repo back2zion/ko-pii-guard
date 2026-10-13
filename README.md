@@ -65,21 +65,22 @@ guard.mask("주민번호 900101-1234567", style="partial")  # '주민번호 9001
 guard.mask("연락처 010-0000-0000", style="partial")  # '연락처 010-****-****'
 guard.mask("연락처 010-0000-0000", style="stars")  # '연락처 *************'
 
-    # Screen structured JSON-compatible records without losing field context.
-    record = {"name": "이상", "phone": "010-1234-5678", "count": 2}
-    name_guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER"])
-    name_guard.mask_json(record)
-    # {'name': '<KR_NAME>', 'phone': '<PHONE_NUMBER>', 'count': 2}
+# Screen structured records with field context.
+record = {"name": "이상", "phone": "010-1234-5678", "count": 2}
+name_guard = KoreanPIIGuard(entities=["KR_NAME", "PHONE_NUMBER"])
+name_guard.mask_json(record)
+# {'name': '<KR_NAME>', 'phone': '<PHONE_NUMBER>', 'count': 2}
 
-    # Obtain original and masked-output offsets from a single scan.
-    result = guard.mask_with_details("연락처 010-1234-5678")
-    # result.text == '연락처 <PHONE_NUMBER>'
-    # result.redactions[0].output_start / output_end locate the tag.
+# Obtain original and masked-output offsets from a single scan.
+result = guard.mask_with_details("연락처 010-1234-5678")
+# result.text == '연락처 <PHONE_NUMBER>'
+# result.redactions[0].output_start / output_end locate the tag.
 
-    # Reuse one guard for a lazy stream of independent documents.
-    list(guard.mask_many(["연락처 010-1234-5678", "개인정보 없음"]))
+# Reuse one guard for a lazy stream of independent documents.
+list(guard.mask_many(["연락처 010-1234-5678", "개인정보 없음"]))
 
 KoreanPIIGuard(entities=["PHONE_NUMBER", "EMAIL_ADDRESS"])  # detect only some types
+```
 
 ### Local files and JSON Lines
 
@@ -142,7 +143,6 @@ with `python -m ko_pii_guard.ner --download` after installing the `ner` extra.
 For an annotated local comparison of complete JSON fields, see the
 [structured corpus evaluator](docs/structured-evaluation.md). It reports masking
 accuracy without timing or exporting record values.
-```
 
 ### Guardrails AI
 
@@ -370,7 +370,10 @@ A separate collision probe (seed 20261009) prepends `은행 계좌 확인:` to s
 
 A separate **external synthetic slice** from K-PII-Bench contains 500 documents and 831 annotated spans across seven supported types (published test rows 10,000–10,499, zero-based; fixed revision and hashes in the [reports](benchmarks/results)). These documents were reserved until the detection changes were complete. Exact-span precision / recall / F1 changed from **97.67% / 65.70% / 78.56%** in v0.2.0 to **99.58% / 84.96% / 91.69%**. This is not a real-world false-positive rate, nor a comparison against other libraries. The authors' data includes format/checksum mismatches; all original labels remain in the denominator. See [methodology and limitations](docs/evaluation.md).
 
-A separate [finance-style synthetic sample](docs/kiii-evaluation.md) of 60 documents and 1,456 supported structured-identifier spans scored **74.89% exact-span F1** for both the pre-work baseline and this checkout. Fully masked gold spans were **951/1,456**; **45/60 documents** had at least one incompletely masked gold span. Predictions overlapped **42/225** annotated hard-negative spans, mainly example placeholders and public contacts. Its different document shapes and transformations expose material gaps; neither synthetic score establishes accuracy on private business records.
+A separate [finance-style synthetic development sample](docs/kiii-evaluation.md) of 60 documents and 1,456 supported structured-identifier spans scored **74.89% exact-span F1** for both the pre-work baseline and this checkout. Fully masked gold spans were **951/1,456**; **45/60 documents** had at least one incompletely masked gold span. Predictions overlapped **42/225** annotated hard-negative spans, mainly example placeholders and public contacts. On a different, reserved 60-document slice from the same public dataset (1,396 gold spans), baseline and current exact-span F1 were both **77.05%**; **940/1,396** spans were fully masked and **47/60** documents retained an incompletely masked gold span. Predictions overlapped **37/209** hard-negative spans. The reserved slice has since been inspected and is now a regression set. Neither synthetic score establishes accuracy on private business records.
+
+For the same reserved documents converted to explicit typed JSON fields, full-field masking rose from **1,025/3,020** at the structured-API baseline to **2,439/3,020** in the current default mode. `strict_fields=True` masked **3,020/3,020** positive fields, while both modes changed **37/209** untyped hard-negative fields. The sample does not measure overmasking of negative values inside typed fields. See the [structured evaluation](docs/structured-evaluation.md) for the different task and denominator. These accuracy figures contain no processing-time measurement.
+
 On a nested 20-document short-text slice, opt-in name/address NER scored **72.81% exact-span F1** and fully masked **161/233** annotated spans; **16/20 documents** still had an incompletely masked gold span. Rules alone scored **20.15% F1**. Both source versions produced the same results; see the [scope and per-type counts](docs/kiii-evaluation.md).
 
 On the [full public KDPII v1 conversational test diagnostic](docs/evaluation.md), one of 4,891 source sentences was excluded because its PII annotations overlap. With opt-in E5 NER, both the original baseline and this checkout scored **86.88% exact-name F1** on the remaining 4,890 sentences and 176 name spans. Actual stars fully masked **159/176** spans; **17/168** name-positive sentences retained an incompletely masked name. This public conversation set includes the earlier 500-sentence sample and is not an independent business-data evaluation.
@@ -430,7 +433,12 @@ Further reading: [CAPID (2026)](https://arxiv.org/abs/2602.10074) and [SPY (NAAC
 For Korean usage and contribution guidance, see [개발·평가 안내](docs/development.md).
 To compare a baseline with this checkout on locally annotated business documents, see
 [비공개 실무 문서 평가](docs/private-evaluation.md). The evaluator keeps source text out of reports.
-For a release decision, use the separate [business-data readiness checklist](docs/release-readiness.md).
+The local evaluation kit is under `ko-pii-guard-evaluation` in the user's Downloads
+folder; its templates, validation scripts and sampling matrix help prepare a private
+holdout without committing raw records. For a release decision, use the separate
+[business-data readiness checklist](docs/release-readiness.md). No annotated private
+business holdout has been supplied, so practical-data accuracy and readiness for
+automatic redaction remain unverified.
 
 For JSON objects, a sibling `bank`, `bank_name`, or `bankName` field containing an explicit 농협 or
 카카오뱅크 name supplies account context to `account_number` or `accountNumber`. This resolves the documented
@@ -466,4 +474,5 @@ guard.mask("주민번호 900101-1234567, 연락처 010-0000-0000")
 - 주소는 도로명/지번·건물번호·일부 상세주소를 탐지하며 전국 주소의 존재 여부를 검증하지 않습니다. 이름·주소 기능은 현재 작업 트리에 포함된 미배포 기능입니다. 건강보험증 번호는 지원하지 않습니다.
 - 계좌번호는 형식과 앞쪽 문맥으로 탐지하며 실제 계좌의 유효성을 검증하지 않습니다. 구분자 없는 숫자는 문맥이 필수이고, 기존 식별번호와 겹치면 기존 유형을 우선합니다.
 - 식별번호 정확도 표는 합성 데이터 기준이며, 규칙을 같은 데이터로 다듬었기 때문에 실제 환경에서는 더 낮을 수 있습니다. 이름·주소의 소규모 개발 회귀 결과는 [기술 평가 문서](docs/name-address-evaluation.md)에 기록하며 일반적인 정확도로 제시하지 않습니다.
+- 별도 예약한 공개 합성 60문서에서 문장형 정확 구간 F1은 기존·현재 모두 77.05%였고, 60문서 중 47문서에 미가림 정답이 남았습니다. 같은 문서를 명시적 유형 JSON 필드로 바꾸면 전체 가림이 기준 1,025/3,020에서 현재 기본 모드 2,439/3,020으로 늘었습니다. 엄격 모드는 3,020/3,020을 가렸지만 유형 필드 안의 음성값 과잉 가림은 이 자료에서 측정되지 않았습니다. 실무 원문 정확도는 별도 주석 평가가 없어 아직 검증되지 않았습니다.
 - 개인정보 보호법 준수를 보장하지 않습니다. 유출 위험을 줄이는 보조 도구로 사용하세요.
