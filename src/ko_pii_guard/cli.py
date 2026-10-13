@@ -46,7 +46,7 @@ def _process_jsonl(input_stream: TextIO, output_stream: TextIO,
                                object_pairs_hook=_unique_object)
             masked = guard.mask_json(value, style=style, strict_fields=strict_fields)
             output_stream.write(json.dumps(masked, ensure_ascii=False, allow_nan=False) + "\n")
-        except (ValueError, TypeError, json.JSONDecodeError) as exc:
+        except (ValueError, TypeError, RecursionError, json.JSONDecodeError) as exc:
             # Do not include exception strings: upstream errors can contain PII.
             raise ValueError(f"invalid or unmaskable JSON Lines record at line {number}") from exc
 

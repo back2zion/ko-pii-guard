@@ -77,6 +77,17 @@ def test_mask_coverage_needs_a_detection_even_for_existing_stars():
     assert covered_by_predictions(0, 4, {("PHONE_NUMBER", 0, 4)})
 
 
+@pytest.mark.parametrize("value", ["*****", "<KR_NAME>", "<PHONE_NUMBER>"])
+def test_preexisting_full_masks_cannot_be_gold_spans(tmp_path, value):
+    path = tmp_path / "private.jsonl"
+    path.write_text(json.dumps({
+        "id": "one", "text": value,
+        "entities": [{"type": "KR_NAME", "start": 0, "end": len(value)}],
+    }) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="already fully masked"):
+        read_cases(path, {"KR_NAME"})
+
+
 def test_ignore_only_covers_out_of_scope_non_gold_predictions(tmp_path):
     path = tmp_path / "input.jsonl"
     path.write_text(json.dumps({

@@ -385,6 +385,16 @@ def test_cli_jsonl_rejects_bom_inside_later_record_without_stdout():
     assert result.stdout == ""
 
 
+def test_cli_jsonl_rejects_excessive_nesting_without_traceback_or_partial_output():
+    source = ('{"phone":"010-1234-5678"}\n'
+              + '[' * 1100 + '"secret"' + ']' * 1100 + '\n')
+    result = run_cli("mask", "--format", "jsonl", input_text=source)
+    assert result.returncode == 2
+    assert result.stdout == ""
+    assert "Traceback" not in result.stderr
+    assert "secret" not in result.stderr
+
+
 @pytest.mark.parametrize("contents", [
     '{"phone":"010-1234-5678","phone":"010-5678-1234"}',
     '{"phone":"010-1234-5678","accountNumber":1e999}',

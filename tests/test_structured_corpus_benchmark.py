@@ -80,7 +80,7 @@ def test_split_overlap_rejects_reordered_identical_records_without_echoing_value
     assert "홍길동" not in str(error.value)
 
 
-@pytest.mark.parametrize("premasked", ["****", "<KR_NAME>"])
+@pytest.mark.parametrize("premasked", ["****", "<KR_NAME>", "<PHONE_NUMBER>"])
 def test_preexisting_masks_cannot_be_scored_as_new_redactions(tmp_path, premasked):
     path = tmp_path / "private.jsonl"
     path.write_text(json.dumps({

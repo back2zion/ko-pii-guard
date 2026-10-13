@@ -116,7 +116,7 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                     path_key = tuple(target["path"])
                     value = _leaf_at(record, target["path"])
                     if (str(value).strip("*") == ""
-                            or str(value) == f"<{target['type']}>"):
+                            or re.fullmatch(r"<[A-Z][A-Z0-9_]*>", str(value))):
                         raise ValueError("target field is already fully masked")
                     if path_key in gold:
                         raise ValueError("duplicate target path")

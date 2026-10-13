@@ -13,6 +13,7 @@ import json
 import math
 import os
 import platform
+import re
 import shutil
 import statistics
 import subprocess
@@ -96,6 +97,10 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                         raise ValueError("invalid entity type or character offsets")
                     if surface is not None and value[start:end] != surface:
                         raise ValueError("surface does not match character offsets")
+                    gold_text = value[start:end]
+                    if (not gold_text.strip("*")
+                            or re.fullmatch(r"<[A-Z][A-Z0-9_]*>", gold_text)):
+                        raise ValueError("gold span is already fully masked")
                     spans.add((kind, start, end))
                 if len(spans) != len(entities):
                     raise ValueError("duplicate entity span")
