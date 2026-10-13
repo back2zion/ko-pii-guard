@@ -102,6 +102,24 @@ def test_rejects_invalid_ignored_offsets(tmp_path):
     assert "secret" not in str(error.value)
 
 
+@pytest.mark.parametrize("ignored", [
+    [{"start": 0, "end": 3}, {"start": 0, "end": 3}],
+    [{"start": 0, "end": 4}, {"start": 3, "end": 5}],
+    [{"start": 0, "end": 5}],
+])
+def test_rejects_ignored_spans_that_duplicate_overlap_or_hide_gold(tmp_path, ignored):
+    path = tmp_path / "input.jsonl"
+    secret = "010-1234-5678"
+    path.write_text(json.dumps({
+        "id": "one", "text": "전화 " + secret,
+        "entities": [{"type": "PHONE_NUMBER", "start": 3, "end": 16}],
+        "ignore": ignored,
+    }, ensure_ascii=False) + "\n")
+    with pytest.raises(ValueError, match="ignored span") as error:
+        read_cases(path, {"PHONE_NUMBER"})
+    assert secret not in str(error.value)
+
+
 def test_rejects_negative_span_overlapping_gold_or_ignore(tmp_path):
     path = tmp_path / "input.jsonl"
     base = {"id": "one", "text": "전화 010-1234-5678",
@@ -215,6 +233,8 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["current"]["positive_documents_with_unmasked_gold"] == 0
     assert report["current"]["positive_document_leak_rate"] == 0.0
     assert report["current"]["ignored_spans"] == 1
+    assert report["current"]["ignored_characters"] == 13
+    assert report["current"]["max_ignored_span_characters"] == 13
     assert report["current"]["ignored_predictions"] == 1
     assert report["current"]["mask_coverage_by_entity"]["PHONE_NUMBER"]["fully_masked"] == 1
     assert report["current"]["wrong_type_same_span"] == []

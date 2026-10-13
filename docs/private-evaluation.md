@@ -23,7 +23,9 @@ UTF-8 JSONL 한 줄이 한 문서다. `start`와 `end`는 Python 문자열의 0-
 `{"start":0,"end":10}` 형태로 적을 수 있다. 정답과 겹치지 않고 제외 구간 안에
 **완전히 포함된** 예측만 오탐 분모에서 뺀다. 정답과 겹친 잘못된 구간·유형은 그대로
 오탐으로 센다. 넓은 문장·문단 전체를 `ignore`로 지정하면 오탐률을 왜곡하므로
-사용하지 않는다. 보고서의 `ignored_spans`와 `ignored_predictions`를 함께 확인한다.
+사용하지 않는다. 중복·겹친 `ignore` 구간과 정답에 겹친 구간은 입력 오류로 거절한다.
+보고서의 `ignored_spans`, `ignored_characters`, `max_ignored_span_characters`,
+`ignored_predictions`를 함께 확인한다.
 개인정보와 닮았지만 가리면 안 되는 값은 선택적으로 `negative_spans`에
 `{"start":0,"end":10}` 형태로 주석한다. 이 구간은 정답·`ignore` 구간과 겹치면
 안 된다. 보고서는 해당 구간에 예측이 한 번이라도 겹친 수와 비율을 별도로 기록한다.

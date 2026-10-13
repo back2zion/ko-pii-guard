@@ -105,6 +105,19 @@ def read_cases(path: Path, allowed: set[str]) -> list[dict]:
                     if "surface" in item and value[start:end] != item["surface"]:
                         raise ValueError("ignored surface does not match offsets")
                     ignored_spans.add((start, end))
+                if len(ignored_spans) != len(ignored):
+                    raise ValueError("duplicate ignored span")
+                ignored_ordered = sorted(ignored_spans)
+                if any(left[1] > right[0] for left, right in zip(
+                    ignored_ordered, ignored_ordered[1:], strict=False
+                )):
+                    raise ValueError("overlapping ignored spans")
+                if any(
+                    start < gold_end and gold_start < end
+                    for start, end in ignored_spans
+                    for _, gold_start, gold_end in spans
+                ):
+                    raise ValueError("ignored span overlaps gold")
                 negative_spans = set()
                 for item in negatives:
                     if not isinstance(item, dict):
@@ -339,6 +352,13 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
         ),
         "ignored_predictions": ignored_predictions,
         "ignored_spans": sum(len(c["ignore"]) for c in cases),
+        "ignored_characters": sum(
+            end - start for case in cases for start, end in case["ignore"]
+        ),
+        "max_ignored_span_characters": max(
+            (end - start for case in cases for start, end in case["ignore"]),
+            default=0,
+        ),
         "negative_spans": negative_spans_total,
         "negative_spans_with_prediction": negative_spans_with_prediction,
         "negative_span_hit_rate": (
@@ -517,6 +537,13 @@ def main() -> None:
             "gold_spans_by_entity": {kind: gold_counts[kind] for kind in entities},
             "negative_documents": sum(not case["gold"] for case in holdout),
             "ignored_spans": sum(len(case["ignore"]) for case in holdout),
+            "ignored_characters": sum(
+                end - start for case in holdout for start, end in case["ignore"]
+            ),
+            "max_ignored_span_characters": max(
+                (end - start for case in holdout for start, end in case["ignore"]),
+                default=0,
+            ),
             "negative_spans": sum(len(case["negative_spans"]) for case in holdout),
         }
         rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
