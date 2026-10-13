@@ -211,6 +211,7 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["score_threshold"] == 0.4
     assert report["normalize_unicode"] is True
     assert report["ner_enabled"] is False
+    assert report["ner_model_key"] is None
     assert report["ner_score_threshold"] is None
     assert report["ner_threads"] is None
     assert report["current"]["mask_stars_corpus_median_ms"] > 0

@@ -191,7 +191,7 @@ def is_ignored_prediction(prediction: tuple[str, int, int],
 
 def worker(path: Path, entities: list[str], repeats: int, threshold: float,
            normalize_unicode: bool, use_ner: bool, ner_threshold: float,
-           ner_threads: int) -> dict:
+           ner_threads: int, ner_model: str) -> dict:
     import ko_pii_guard
     from ko_pii_guard import KoreanPIIGuard
 
@@ -201,11 +201,12 @@ def worker(path: Path, entities: list[str], repeats: int, threshold: float,
     if use_ner:
         import torch
 
-        from ko_pii_guard.ner import MODEL_ID, MODEL_REVISION, KoreanNER
+        from ko_pii_guard.ner import MODELS, KoreanNER
 
         torch.set_num_threads(ner_threads)
-        ner = KoreanNER.from_pretrained(score_threshold=ner_threshold)
-        model = {"id": MODEL_ID, "revision": MODEL_REVISION}
+        ner = KoreanNER.from_pretrained(model=ner_model, score_threshold=ner_threshold)
+        model_id, revision = MODELS[ner_model]
+        model = {"id": model_id, "revision": revision}
     guard = KoreanPIIGuard(entities=entities, score_threshold=threshold,
                            normalize_unicode=normalize_unicode, ner=ner)
     counts = {kind: Counter() for kind in entities}
@@ -382,11 +383,12 @@ def write_report(path: Path, rendered: str) -> None:
 
 def measure(snapshot: Path, input_path: Path, entities: list[str], repeats: int,
             threshold: float, normalize_unicode: bool, use_ner: bool,
-            ner_threshold: float, ner_threads: int) -> dict:
+            ner_threshold: float, ner_threads: int, ner_model: str) -> dict:
     environment = dict(os.environ, PYTHONPATH=str(snapshot / "src"))
     command = [sys.executable, str(Path(__file__).resolve()), "--worker", "--input",
                str(input_path), "--repeats", str(repeats), "--threshold", str(threshold),
                "--ner-threshold", str(ner_threshold), "--ner-threads", str(ner_threads),
+               "--ner-model", ner_model,
                "--entities", *entities]
     if not normalize_unicode:
         command.append("--no-normalize-unicode")
@@ -419,6 +421,7 @@ def main() -> None:
                         help="load the pinned local name/address model")
     parser.add_argument("--ner-threshold", type=float, default=0.9)
     parser.add_argument("--ner-threads", type=int, default=2)
+    parser.add_argument("--ner-model", choices=("e5", "kcelectra"), default="e5")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.repeats < 0 or (args.repeats == 0 and not args.worker):
@@ -435,6 +438,8 @@ def main() -> None:
         parser.error("--entities must be unique supported entity names")
     if args.ner and not {"KR_NAME", "KR_ADDRESS"}.intersection(entities):
         parser.error("--ner requires KR_NAME or KR_ADDRESS in --entities")
+    if args.ner_model != "e5" and not args.ner:
+        parser.error("--ner-model kcelectra requires --ner")
     input_path = args.input.resolve(strict=True)
     if args.output and (args.output.is_symlink() or args.output.is_dir()):
         parser.error("--output must be a regular file path, not a symlink or directory")
@@ -450,7 +455,7 @@ def main() -> None:
         read_cases(input_path, set(entities))
         print(json.dumps(worker(input_path, entities, repeats, args.threshold,
                                 not args.no_normalize_unicode, args.ner,
-                                args.ner_threshold, args.ner_threads)))
+                                args.ner_threshold, args.ner_threads, args.ner_model)))
         return
     if development_path == input_path:
         parser.error("--development-input must differ from --input")
@@ -509,10 +514,10 @@ def main() -> None:
         baseline_hash, current_hash = source_hash(baseline_root), source_hash(current_root)
         baseline = measure(baseline_root, frozen_input, entities, repeats,
                            args.threshold, not args.no_normalize_unicode, args.ner,
-                           args.ner_threshold, args.ner_threads)
+                           args.ner_threshold, args.ner_threads, args.ner_model)
         current = measure(current_root, frozen_input, entities, repeats,
                           args.threshold, not args.no_normalize_unicode, args.ner,
-                          args.ner_threshold, args.ner_threads)
+                          args.ner_threshold, args.ner_threads, args.ner_model)
     if baseline["gold_spans"] != current["gold_spans"]:
         raise RuntimeError("Workers evaluated different inputs")
     if baseline["ner_model"] != current["ner_model"]:
@@ -536,6 +541,7 @@ def main() -> None:
         "score_threshold": args.threshold,
         "normalize_unicode": not args.no_normalize_unicode,
         "ner_enabled": args.ner,
+        "ner_model_key": args.ner_model if args.ner else None,
         "ner_score_threshold": args.ner_threshold if args.ner else None,
         "ner_threads": args.ner_threads if args.ner else None,
         "python": platform.python_version(), "platform": platform.platform(),
