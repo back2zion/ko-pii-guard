@@ -15,6 +15,7 @@ from benchmarks.private_corpus_benchmark import (
     is_ignored_prediction,
     overlapping_characters,
     read_cases,
+    source_hash,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -221,6 +222,7 @@ def test_report_contains_aggregates_without_document_values(tmp_path):
     assert report["scorer_sha256"] == hashlib.sha256(
         (ROOT / "benchmarks" / "private_corpus_benchmark.py").read_bytes()
     ).hexdigest()
+    assert report["current_source_sha256"] == source_hash(ROOT)
     assert report["score_threshold"] == 0.4
     assert report["normalize_unicode"] is True
     assert report["ner_enabled"] is False

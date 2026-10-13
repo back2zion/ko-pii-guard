@@ -528,8 +528,13 @@ def main() -> None:
         ["git", "rev-parse", f"{args.baseline_ref}^{{commit}}"], cwd=ROOT,
         check=True, capture_output=True, text=True,
     ).stdout.strip()
+    current_commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
     scorer_path = Path(__file__).resolve()
     scorer_hash = hashlib.sha256(scorer_path.read_bytes()).hexdigest()
+    working_source_hash = source_hash(ROOT)
     with tempfile.TemporaryDirectory(prefix="ko-pii-private-eval-") as directory:
         base = Path(directory)
         frozen_input = base / "holdout.jsonl"
@@ -546,6 +551,15 @@ def main() -> None:
         shutil.copytree(ROOT / "src" / "ko_pii_guard", current_root / "src" / "ko_pii_guard",
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         baseline_hash, current_hash = source_hash(baseline_root), source_hash(current_root)
+        if (current_hash != working_source_hash
+                or source_hash(ROOT) != working_source_hash):
+            raise RuntimeError("Working source changed while taking evaluation snapshot")
+        if current_commit == baseline_commit:
+            current_head_hash = baseline_hash
+        else:
+            current_head_root = base / "current_head"
+            archive_revision(current_commit, current_head_root)
+            current_head_hash = source_hash(current_head_root)
         baseline = measure(baseline_root, frozen_input, entities, repeats,
                            args.threshold, not args.no_normalize_unicode, args.ner,
                            args.ner_threshold, args.ner_threads, args.ner_model)
@@ -554,20 +568,19 @@ def main() -> None:
                           args.ner_threshold, args.ner_threads, args.ner_model)
     if hashlib.sha256(scorer_path.read_bytes()).hexdigest() != scorer_hash:
         raise RuntimeError("Scoring script changed during evaluation")
+    if subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip() != current_commit:
+        raise RuntimeError("HEAD changed during evaluation")
     if baseline["gold_spans"] != current["gold_spans"]:
         raise RuntimeError("Workers evaluated different inputs")
     if baseline["ner_model"] != current["ner_model"]:
         raise RuntimeError("Workers used different NER model revisions")
     report = {
         "baseline_commit": baseline_commit,
-        "current_commit": subprocess.run(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
-            capture_output=True, text=True,
-        ).stdout.strip(),
-        "current_source_has_uncommitted_changes": bool(subprocess.run(
-            ["git", "status", "--porcelain", "--", "src/ko_pii_guard"], cwd=ROOT,
-            check=True, capture_output=True, text=True,
-        ).stdout.strip()),
+        "current_commit": current_commit,
+        "current_source_has_uncommitted_changes": current_hash != current_head_hash,
         "baseline_source_sha256": baseline_hash,
         "current_source_sha256": current_hash,
         "scorer_sha256": scorer_hash,
