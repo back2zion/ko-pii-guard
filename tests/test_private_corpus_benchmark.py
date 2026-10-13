@@ -141,6 +141,33 @@ def test_report_path_cannot_overwrite_development_input(tmp_path):
     assert development.read_bytes() == original
 
 
+def test_validate_only_reports_private_annotation_counts(tmp_path):
+    secret = "010-1234-5678"
+    corpus, output = tmp_path / "input.jsonl", tmp_path / "validation.json"
+    corpus.write_text(json.dumps({
+        "id": "private-id", "text": "전화 " + secret,
+        "entities": [{"type": "PHONE_NUMBER", "start": 3, "end": 16}],
+        "negative_spans": [{"start": 0, "end": 2}],
+    }, ensure_ascii=False) + "\n" + json.dumps({
+        "id": "clean-id", "text": "처리 완료", "entities": [],
+    }, ensure_ascii=False) + "\n")
+    subprocess.run([
+        sys.executable, str(ROOT / "benchmarks" / "private_corpus_benchmark.py"),
+        "--input", str(corpus), "--output", str(output), "--validate-only",
+        "--baseline-ref", "does-not-exist",
+    ], cwd=ROOT, check=True, capture_output=True, text=True)
+    report = json.loads(output.read_text())
+    assert report["validation_only"] is True
+    assert report["documents"] == 2
+    assert report["gold_spans_by_entity"]["PHONE_NUMBER"] == 1
+    assert report["negative_documents"] == 1
+    assert report["negative_spans"] == 1
+    assert "baseline" not in report
+    assert secret not in output.read_text()
+    assert "private-id" not in output.read_text()
+    assert output.stat().st_mode & 0o777 == 0o600
+
+
 def test_report_contains_aggregates_without_document_values(tmp_path):
     secret = "010-1234-5678"
     corpus = tmp_path / "input.jsonl"

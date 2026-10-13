@@ -411,6 +411,8 @@ def main() -> None:
     parser.add_argument("--repeats", type=int, default=5)
     parser.add_argument("--accuracy-only", action="store_true",
                         help="skip warm-up and repeated timing passes")
+    parser.add_argument("--validate-only", action="store_true",
+                        help="check annotations and split overlap without loading detectors")
     parser.add_argument("--threshold", type=float, default=0.4)
     parser.add_argument("--no-normalize-unicode", action="store_true")
     parser.add_argument("--ner", action="store_true",
@@ -452,6 +454,39 @@ def main() -> None:
         return
     if development_path == input_path:
         parser.error("--development-input must differ from --input")
+    if args.validate_only:
+        with tempfile.TemporaryDirectory(prefix="ko-pii-private-validation-") as directory:
+            base = Path(directory)
+            frozen_input = base / "holdout.jsonl"
+            corpus_digest = freeze_input(input_path, frozen_input)
+            holdout = read_cases(frozen_input, set(entities))
+            development_digest = None
+            development_documents = None
+            if development_path:
+                frozen_development = base / "development.jsonl"
+                development_digest = freeze_input(development_path, frozen_development)
+                development = read_cases(frozen_development, set(entities))
+                check_split_overlap(holdout, development)
+                development_documents = len(development)
+        gold_counts = Counter(kind for case in holdout for kind, _, _ in case["gold"])
+        report = {
+            "validation_only": True,
+            "corpus_sha256": corpus_digest,
+            "development_corpus_sha256": development_digest,
+            "documents": len(holdout),
+            "development_documents": development_documents,
+            "characters": sum(len(case["text"]) for case in holdout),
+            "gold_spans": sum(gold_counts.values()),
+            "gold_spans_by_entity": {kind: gold_counts[kind] for kind in entities},
+            "negative_documents": sum(not case["gold"] for case in holdout),
+            "ignored_spans": sum(len(case["ignore"]) for case in holdout),
+            "negative_spans": sum(len(case["negative_spans"]) for case in holdout),
+        }
+        rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
+        if output_path:
+            write_report(output_path, rendered)
+        print(rendered, end="")
+        return
     baseline_commit = subprocess.run(
         ["git", "rev-parse", f"{args.baseline_ref}^{{commit}}"], cwd=ROOT,
         check=True, capture_output=True, text=True,
