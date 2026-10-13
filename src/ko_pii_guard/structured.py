@@ -48,6 +48,7 @@ _DOCUMENTED_BANK_VALUES = {
     "농협": "농협", "농협은행": "농협", "NH농협은행": "농협",
     "카카오뱅크": "카카오뱅크",
 }
+_EMAIL_TOKEN = re.compile(r"[^\s<>,;]+@[^\s<>,;]+")
 
 
 def _documented_bank_field(item: dict) -> str:
@@ -71,14 +72,13 @@ def _explicit_card_candidate(text: str) -> bool:
 
 
 def _explicit_email_candidate(text: str) -> bool:
-    """Accept a whole address in a typed field without depending on a TLD list."""
-    local, separator, domain = text.partition("@")
-    return bool(
-        separator and "@" not in domain
-        and any(char.isalnum() for char in local)
-        and any(char.isalnum() for char in domain)
-        and not any(char.isspace() or ord(char) < 32 for char in text)
-    )
+    """Find an address-like token in a typed field without a TLD allowlist."""
+    for match in _EMAIL_TOKEN.finditer(text):
+        local, _, domain = match.group().partition("@")
+        if ("@" not in domain and any(char.isalnum() for char in local)
+                and any(char.isalnum() for char in domain)):
+            return True
+    return False
 
 
 def transform_json(value: object, transform: Callable[[str, str], str]) -> object:

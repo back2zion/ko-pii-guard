@@ -102,8 +102,9 @@ produce exit code 2. Store identifiers as strings or integers; floating-point JS
 numbers can lose digits before screening. File output is replaced
 only after a full successful run, with permissions `0600`; stdout is buffered until
 screening completes. Keep an original backup if you subsequently move or replace it.
-Explicit `email`/`emailAddress` fields also mask whole addresses on internal or
-unlisted domains; this does not broaden email matching in general prose.
+Explicit `email`/`emailAddress` fields mask their whole value when it contains
+an address on an internal or unlisted domain, including display names or lists;
+this does not broaden email matching in general prose.
 With `KR_NAME` selected, explicit `firstName`/`lastName` and similar name-part
 fields provide name context. A single Hangul syllable in an explicit name field
 is fully masked, including with `partial` style.

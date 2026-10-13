@@ -180,6 +180,16 @@ def test_json_email_fallback_requires_explicit_field_and_selected_entity():
     }, style="partial") == {"email": "a@*"}
 
 
+def test_json_email_field_masks_display_names_and_multiple_internal_addresses():
+    guard = KoreanPIIGuard(entities=["EMAIL_ADDRESS"])
+    value = "홍길동 <hello@internal.local>; team@office.local"
+    assert guard.mask_json({"email": value}) == {"email": "<EMAIL_ADDRESS>"}
+    assert guard.mask_json({"email": value}, style="stars") == {
+        "email": "*" * len(value)
+    }
+    assert guard.mask_json({"note": value}) == {"note": value}
+
+
 def test_json_key_collision_fails_without_mutating_input():
     source = {"010-1234-5678": 1, "010-5678-1234": 2}
     with pytest.raises(ValueError, match="duplicate JSON object keys"):
