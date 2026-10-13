@@ -1,0 +1,181 @@
+{
+  "baseline_commit": "21be6b10503946e8f4b2a304f51f2b16613ac3e5",
+  "current_commit": "21be6b10503946e8f4b2a304f51f2b16613ac3e5",
+  "current_source_has_uncommitted_changes": false,
+  "baseline_source_sha256": "22f92ffb324bb3700eb8bfd62637da7e59bc7db3def3c6ae199033f8d25a4f8d",
+  "current_source_sha256": "22f92ffb324bb3700eb8bfd62637da7e59bc7db3def3c6ae199033f8d25a4f8d",
+  "scorer_sha256": "0c6f34f719ddbc2a3798a3b93b8dfc5bedfb2f4b8f1672689a3ea3f1b28a2296",
+  "corpus_sha256": "5f5cc0c8575c15d69a82b01a096848e07a99ddcc513d6470b9a711b042863990",
+  "development_corpus_sha256": null,
+  "entities": [
+    "KR_NAME",
+    "KR_ADDRESS"
+  ],
+  "repeats": 0,
+  "accuracy_only": true,
+  "score_threshold": 0.4,
+  "normalize_unicode": true,
+  "ner_enabled": true,
+  "ner_model_key": "e5",
+  "ner_score_threshold": 0.9,
+  "ner_threads": 2,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "dependencies": {
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0"
+  },
+  "baseline": {
+    "loaded_source": "/tmp/ko-pii-private-eval-eshee8rk/baseline/src/ko_pii_guard/__init__.py",
+    "ner_model": {
+      "id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818"
+    },
+    "documents": 20,
+    "characters": 41249,
+    "gold_spans": 233,
+    "total": {
+      "tp": 154,
+      "fp": 36,
+      "fn": 79,
+      "precision": 0.8105263157894737,
+      "recall": 0.6609442060085837,
+      "f1": 0.7281323877068558
+    },
+    "gold_characters": 1101,
+    "predicted_characters": 897,
+    "covered_gold_characters": 855,
+    "uncovered_gold_characters": 246,
+    "overmasked_characters": 42,
+    "character_precision": 0.9531772575250836,
+    "character_recall": 0.776566757493188,
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 141,
+        "fp": 32,
+        "fn": 75,
+        "precision": 0.815028901734104,
+        "recall": 0.6527777777777778,
+        "f1": 0.7249357326478149
+      },
+      "KR_ADDRESS": {
+        "tp": 13,
+        "fp": 4,
+        "fn": 4,
+        "precision": 0.7647058823529411,
+        "recall": 0.7647058823529411,
+        "f1": 0.7647058823529411
+      }
+    },
+    "fully_masked_gold_spans": 161,
+    "full_mask_coverage": 0.6909871244635193,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 216,
+        "fully_masked": 148,
+        "rate": 0.6851851851851852
+      },
+      "KR_ADDRESS": {
+        "gold": 17,
+        "fully_masked": 13,
+        "rate": 0.7647058823529411
+      }
+    },
+    "negative_documents": 0,
+    "negative_documents_with_false_positive": 0,
+    "positive_documents": 20,
+    "positive_documents_with_unmasked_gold": 16,
+    "positive_document_leak_rate": 0.8,
+    "ignored_predictions": 4,
+    "ignored_spans": 270,
+    "negative_spans": 0,
+    "negative_spans_with_prediction": 0,
+    "negative_span_hit_rate": null,
+    "negative_document_false_positive_rate": null,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "current": {
+    "loaded_source": "/tmp/ko-pii-private-eval-eshee8rk/current/src/ko_pii_guard/__init__.py",
+    "ner_model": {
+      "id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818"
+    },
+    "documents": 20,
+    "characters": 41249,
+    "gold_spans": 233,
+    "total": {
+      "tp": 154,
+      "fp": 36,
+      "fn": 79,
+      "precision": 0.8105263157894737,
+      "recall": 0.6609442060085837,
+      "f1": 0.7281323877068558
+    },
+    "gold_characters": 1101,
+    "predicted_characters": 897,
+    "covered_gold_characters": 855,
+    "uncovered_gold_characters": 246,
+    "overmasked_characters": 42,
+    "character_precision": 0.9531772575250836,
+    "character_recall": 0.776566757493188,
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 141,
+        "fp": 32,
+        "fn": 75,
+        "precision": 0.815028901734104,
+        "recall": 0.6527777777777778,
+        "f1": 0.7249357326478149
+      },
+      "KR_ADDRESS": {
+        "tp": 13,
+        "fp": 4,
+        "fn": 4,
+        "precision": 0.7647058823529411,
+        "recall": 0.7647058823529411,
+        "f1": 0.7647058823529411
+      }
+    },
+    "fully_masked_gold_spans": 161,
+    "full_mask_coverage": 0.6909871244635193,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 216,
+        "fully_masked": 148,
+        "rate": 0.6851851851851852
+      },
+      "KR_ADDRESS": {
+        "gold": 17,
+        "fully_masked": 13,
+        "rate": 0.7647058823529411
+      }
+    },
+    "negative_documents": 0,
+    "negative_documents_with_false_positive": 0,
+    "positive_documents": 20,
+    "positive_documents_with_unmasked_gold": 16,
+    "positive_document_leak_rate": 0.8,
+    "ignored_predictions": 4,
+    "ignored_spans": 270,
+    "negative_spans": 0,
+    "negative_spans_with_prediction": 0,
+    "negative_span_hit_rate": null,
+    "negative_document_false_positive_rate": null,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "scope": "exact type+character span; stars full-span coverage; warm analyze/mask time"
+}

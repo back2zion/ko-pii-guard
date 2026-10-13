@@ -154,3 +154,26 @@ KcELECTRA 66/53/150(F1 39.40%)와 E5 141/32/75(F1 72.49%)로
 [Kiii² E5](../benchmarks/results/kiii-name-address-e5-same-source-2026-10-13.json),
 [Kiii² KcELECTRA](../benchmarks/results/kiii-name-address-kcelectra-2026-10-13.json)에
 원문 없는 집계와 고정 모델 revision을 기록했다.
+
+2026-10-14에 채점 코드의 문자 교집합 지표를 추가하고 같은 입력·현재 소스·
+모델 기준으로 재실행했다. 각 자료에서 두 모델의 입력 해시, 소스 해시,
+채점 코드 해시가 일치한다. 정답 문자는 이름과 주소의 원문 구간 길이를 합한
+값이다. 정답 밖 가림은 `ignore`로 표시한 지원 범위 밖 구간의 예측을 제외한다.
+
+| 자료·정답 문자 | 모델 | 정답 문자 가림 | 미가림 문자 | 정답 밖 가림 문자 |
+|---|---|---:|---:|---:|
+| KDPII 46자 | E5 | 43 | 3 | 5 |
+| KDPII 46자 | KcELECTRA | 22 | 24 | 45 |
+| Kiii² 1,101자 | E5 | 855 | 246 | 42 |
+| Kiii² 1,101자 | KcELECTRA | 738 | 363 | 79 |
+
+정확한 구간 일치뿐 아니라 정답 문자 가림과 정답 밖 가림에서도 이 두 표본은
+E5가 낫다. 문자 수는 개인정보의 위험도를 가중하지 않으며, 주석 정책에 따라
+정답 밖 문자가 실제로 가리면 안 되는 값인지 달라질 수 있다. 같은 문서 안에
+지원 범위 밖 개인정보가 남아 있을 가능성도 있다. 따라서 정답 밖 가림을
+실무 오탐 문자 수라고 단정하지 않는다.
+
+[KDPII E5 문자 집계](../benchmarks/results/kdpii-names-e5-characters-2026-10-14.json),
+[KDPII KcELECTRA 문자 집계](../benchmarks/results/kdpii-names-kcelectra-characters-2026-10-14.json),
+[Kiii² E5 문자 집계](../benchmarks/results/kiii-name-address-e5-characters-2026-10-14.json),
+[Kiii² KcELECTRA 문자 집계](../benchmarks/results/kiii-name-address-kcelectra-characters-2026-10-14.json).

@@ -1,0 +1,154 @@
+{
+  "baseline_commit": "21be6b10503946e8f4b2a304f51f2b16613ac3e5",
+  "current_commit": "21be6b10503946e8f4b2a304f51f2b16613ac3e5",
+  "current_source_has_uncommitted_changes": false,
+  "baseline_source_sha256": "22f92ffb324bb3700eb8bfd62637da7e59bc7db3def3c6ae199033f8d25a4f8d",
+  "current_source_sha256": "22f92ffb324bb3700eb8bfd62637da7e59bc7db3def3c6ae199033f8d25a4f8d",
+  "scorer_sha256": "0c6f34f719ddbc2a3798a3b93b8dfc5bedfb2f4b8f1672689a3ea3f1b28a2296",
+  "corpus_sha256": "6b7c50f72e45c5ee804469065edd8fd4a85f23140f4cc1a6162dafa592404290",
+  "development_corpus_sha256": null,
+  "entities": [
+    "KR_NAME"
+  ],
+  "repeats": 0,
+  "accuracy_only": true,
+  "score_threshold": 0.4,
+  "normalize_unicode": true,
+  "ner_enabled": true,
+  "ner_model_key": "e5",
+  "ner_score_threshold": 0.9,
+  "ner_threads": 2,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "dependencies": {
+    "presidio-analyzer": "2.2.364",
+    "presidio-anonymizer": "2.2.364",
+    "phonenumbers": "9.0.41",
+    "tldextract": "5.4.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0"
+  },
+  "baseline": {
+    "loaded_source": "/tmp/ko-pii-private-eval-i7w67ndx/baseline/src/ko_pii_guard/__init__.py",
+    "ner_model": {
+      "id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818"
+    },
+    "documents": 500,
+    "characters": 12684,
+    "gold_spans": 18,
+    "total": {
+      "tp": 15,
+      "fp": 2,
+      "fn": 3,
+      "precision": 0.8823529411764706,
+      "recall": 0.8333333333333334,
+      "f1": 0.8571428571428571
+    },
+    "gold_characters": 46,
+    "predicted_characters": 48,
+    "covered_gold_characters": 43,
+    "uncovered_gold_characters": 3,
+    "overmasked_characters": 5,
+    "character_precision": 0.8958333333333334,
+    "character_recall": 0.9347826086956522,
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 3,
+        "precision": 0.8823529411764706,
+        "recall": 0.8333333333333334,
+        "f1": 0.8571428571428571
+      }
+    },
+    "fully_masked_gold_spans": 16,
+    "full_mask_coverage": 0.8888888888888888,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 18,
+        "fully_masked": 16,
+        "rate": 0.8888888888888888
+      }
+    },
+    "negative_documents": 482,
+    "negative_documents_with_false_positive": 1,
+    "positive_documents": 18,
+    "positive_documents_with_unmasked_gold": 2,
+    "positive_document_leak_rate": 0.1111111111111111,
+    "ignored_predictions": 0,
+    "ignored_spans": 0,
+    "negative_spans": 0,
+    "negative_spans_with_prediction": 0,
+    "negative_span_hit_rate": null,
+    "negative_document_false_positive_rate": 0.002074688796680498,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "current": {
+    "loaded_source": "/tmp/ko-pii-private-eval-i7w67ndx/current/src/ko_pii_guard/__init__.py",
+    "ner_model": {
+      "id": "FrameByFrame/korean-pii-e5-base",
+      "revision": "a308c54b4407819624a5661e31e162a269f39818"
+    },
+    "documents": 500,
+    "characters": 12684,
+    "gold_spans": 18,
+    "total": {
+      "tp": 15,
+      "fp": 2,
+      "fn": 3,
+      "precision": 0.8823529411764706,
+      "recall": 0.8333333333333334,
+      "f1": 0.8571428571428571
+    },
+    "gold_characters": 46,
+    "predicted_characters": 48,
+    "covered_gold_characters": 43,
+    "uncovered_gold_characters": 3,
+    "overmasked_characters": 5,
+    "character_precision": 0.8958333333333334,
+    "character_recall": 0.9347826086956522,
+    "per_entity": {
+      "KR_NAME": {
+        "tp": 15,
+        "fp": 2,
+        "fn": 3,
+        "precision": 0.8823529411764706,
+        "recall": 0.8333333333333334,
+        "f1": 0.8571428571428571
+      }
+    },
+    "fully_masked_gold_spans": 16,
+    "full_mask_coverage": 0.8888888888888888,
+    "wrong_type_same_span": [],
+    "mask_coverage_by_entity": {
+      "KR_NAME": {
+        "gold": 18,
+        "fully_masked": 16,
+        "rate": 0.8888888888888888
+      }
+    },
+    "negative_documents": 482,
+    "negative_documents_with_false_positive": 1,
+    "positive_documents": 18,
+    "positive_documents_with_unmasked_gold": 2,
+    "positive_document_leak_rate": 0.1111111111111111,
+    "ignored_predictions": 0,
+    "ignored_spans": 0,
+    "negative_spans": 0,
+    "negative_spans_with_prediction": 0,
+    "negative_span_hit_rate": null,
+    "negative_document_false_positive_rate": 0.002074688796680498,
+    "analyze_corpus_median_ms": null,
+    "analyze_corpus_samples_ms": [],
+    "mask_stars_corpus_median_ms": null,
+    "mask_stars_corpus_samples_ms": []
+  },
+  "scope": "exact type+character span; stars full-span coverage; warm analyze/mask time"
+}
