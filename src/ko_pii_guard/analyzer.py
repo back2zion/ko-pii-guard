@@ -463,6 +463,8 @@ class KoreanPIIGuard:
     @staticmethod
     def _partial_value(span: str, entity: str) -> str:
         keep = _PARTIAL_KEEP.get(entity, 2)
+        if entity == "KR_NAME" and sum(char.isalnum() for char in span) <= 1:
+            keep = 0
         kept = 0
         masked = []
         for ch in span:

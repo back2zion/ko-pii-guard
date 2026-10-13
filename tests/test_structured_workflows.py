@@ -43,6 +43,19 @@ def test_json_rejects_floating_point_pii_fields_instead_of_leaking_them():
     assert guard.mask_json({"amount": 1234.5}) == {"amount": 1234.5}
 
 
+def test_json_name_parts_mask_single_character_surname_when_selected():
+    guard = KoreanPIIGuard(entities=["KR_NAME"])
+    source = {"firstName": "길동", "lastName": "홍", "name": "김", "order": "김"}
+    assert guard.mask_json(source) == {
+        "firstName": "<KR_NAME>", "lastName": "<KR_NAME>",
+        "name": "<KR_NAME>", "order": "김",
+    }
+    assert guard.mask_json(source, style="partial") == {
+        "firstName": "길*", "lastName": "*", "name": "*", "order": "김",
+    }
+    assert KoreanPIIGuard().mask_json({"name": "김"}) == {"name": "김"}
+
+
 @pytest.mark.parametrize("bank,value", [
     ("카카오뱅크", "3333120145448"),
     ("농협", "3025382178204"),

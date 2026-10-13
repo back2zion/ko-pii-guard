@@ -104,6 +104,9 @@ only after a full successful run, with permissions `0600`; stdout is buffered un
 screening completes. Keep an original backup if you subsequently move or replace it.
 Explicit `email`/`emailAddress` fields also mask whole addresses on internal or
 unlisted domains; this does not broaden email matching in general prose.
+With `KR_NAME` selected, explicit `firstName`/`lastName` and similar name-part
+fields provide name context. A single Hangul syllable in an explicit name field
+is fully masked, including with `partial` style.
 CSV mode requires a unique, nonempty header for every column and the same field count
 in each row. Column names provide the same context as JSON field names; quoted
 multiline fields are supported. A UTF-8 BOM before the first header is accepted.

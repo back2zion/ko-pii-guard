@@ -17,6 +17,9 @@ if TYPE_CHECKING:
 _FIELD_LABELS = {
     "name": "성명", "full_name": "성명", "customer_name": "성명",
     "fullname": "성명", "customername": "성명",
+    "first_name": "성명", "firstname": "성명", "given_name": "성명",
+    "givenname": "성명", "last_name": "성명", "lastname": "성명",
+    "family_name": "성명", "familyname": "성명", "surname": "성명",
     "성명": "성명", "이름": "이름", "예금주": "예금주",
     "address": "주소", "shipping_address": "주소", "shippingaddress": "주소", "주소": "주소",
     "rrn": "주민번호", "주민번호": "주민번호", "주민등록번호": "주민등록번호",
@@ -160,6 +163,9 @@ def mask_json(guard: KoreanPIIGuard, value: object, style: MaskStyle = "tag") ->
             if style == "stars":
                 return "*" * len(text)
             return guard._partial_value(text, "EMAIL_ADDRESS")
+        if (label in {"성명", "이름", "예금주"} and "KR_NAME" in guard.entities
+                and not result.redactions and re.fullmatch(r"[가-힣]", text)):
+            return "<KR_NAME>" if style == "tag" else "*"
         return result.text[len(prefix):]
 
     return transform_json(value, mask_value)

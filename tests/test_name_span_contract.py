@@ -21,6 +21,12 @@ class AnnotatedNameBackend:
         return [RecognizerResult("KR_NAME", self.start, self.end, 0.97)]
 
 
+def test_single_character_name_is_not_exposed_by_partial_style():
+    guard = KoreanPIIGuard(entities=["KR_NAME"], ner=AnnotatedNameBackend("김", 0, 1))
+    assert guard.mask("김", style="partial") == "*"
+    assert guard.mask("김", style="tag") == "<KR_NAME>"
+
+
 @pytest.mark.parametrize("name,particle", [
     ("이상은", "의"),
     ("김하나", "가"),
