@@ -94,3 +94,16 @@ uv run --frozen python benchmarks/structured_corpus_benchmark.py \
              PHONE_NUMBER EMAIL_ADDRESS CREDIT_CARD KR_ACCOUNT \
   --baseline-ref 30bf0b0 --output /tmp/ko-pii-kiii-typed-dev-report.json
 ```
+
+이름·주소를 명시적으로 선택한 별도 프로필에서는 `--include-name-address`로
+입력을 만들고 평가 명령의 `--entities` 끝에 `KR_NAME KR_ADDRESS`를 붙인다.
+같은 개발 문서 60건에서 정답은 이름 1,330필드와 주소 117필드를 포함한
+2,903필드다. 기준 대비 현재의 정확한 유형 태그는 1,015→2,295,
+필드 전체 가림은 1,031→2,311이었다. 이름 필드는 0/1,330→1,214/1,330,
+주소 필드는 84/117→84/117로, 큰 차이는 `person_name` 키 문맥이 생긴 데서
+나왔다. 한 필드 이상 놓친 레코드는 현재도 **37/60**이며, 음성 필드 가림은
+42/225로 같다. [이름·주소 포함 집계](../benchmarks/results/kiii-typed-fields-name-address-development-2026-10-14.json)의
+입력 SHA-256은
+`10dce8a983bbd56030f6f2733b758af9c08d019fc939d94ca558fcc3e5bcd7ea`이다.
+이 결과도 외부 합성값을 정답 유형의 키로 옮긴 개발 진단이지 실무 원문이나
+독립 최종 평가가 아니다.

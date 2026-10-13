@@ -28,3 +28,18 @@ def test_conversion_rejects_misaligned_source_surface():
                       "surface": "010-1234-5678"}], "hard_negatives": []}
     with pytest.raises(ValueError, match="invalid supported span"):
         convert(row)
+
+
+def test_name_address_fields_are_explicitly_opted_in():
+    text = "홍길동 서울특별시 강남구 테헤란로 123"
+    row = {"doc_id": "name-address", "text": text,
+           "spans": [{"category": "person_name", "start": 0, "end": 3,
+                      "surface": "홍길동"},
+                     {"category": "address", "start": 4, "end": len(text),
+                      "surface": text[4:]}],
+           "hard_negatives": []}
+    assert convert(row)["targets"] == []
+    assert convert(row, include_name_address=True)["targets"] == [
+        {"path": ["fields", 0, "person_name"], "type": "KR_NAME"},
+        {"path": ["fields", 1, "address"], "type": "KR_ADDRESS"},
+    ]

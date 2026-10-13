@@ -18,6 +18,7 @@ if __package__:
     from .prepare_kiii_evaluation import (
         DATA_SHA256,
         DATASET_ID,
+        OPTIONAL_TYPES,
         REVISION,
         STRUCTURED_TYPES,
         digest_file,
@@ -27,6 +28,7 @@ else:
     from prepare_kiii_evaluation import (
         DATA_SHA256,
         DATASET_ID,
+        OPTIONAL_TYPES,
         REVISION,
         STRUCTURED_TYPES,
         digest_file,
@@ -34,14 +36,18 @@ else:
     )
 
 
-def convert(row: dict, include_hard_negatives: bool = True) -> dict:
+def convert(row: dict, include_hard_negatives: bool = True,
+            include_name_address: bool = False) -> dict:
     fields = []
     targets = []
     negative_paths = []
     text = row["text"]
+    mapped = dict(STRUCTURED_TYPES)
+    if include_name_address:
+        mapped.update(OPTIONAL_TYPES)
     for span in row["spans"]:
         category = span["category"]
-        if category not in STRUCTURED_TYPES:
+        if category not in mapped:
             continue
         start, end, surface = span["start"], span["end"], span["surface"]
         if (type(start) is not int or type(end) is not int
@@ -50,7 +56,7 @@ def convert(row: dict, include_hard_negatives: bool = True) -> dict:
             raise ValueError("Pinned source contains an invalid supported span")
         fields.append({category: surface})
         targets.append({"path": ["fields", len(fields) - 1, category],
-                        "type": STRUCTURED_TYPES[category]})
+                        "type": mapped[category]})
     if include_hard_negatives:
         for span in row["hard_negatives"]:
             start, end, surface = span["start"], span["end"], span["surface"]
@@ -69,6 +75,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--selection-rank", type=int, default=0)
     parser.add_argument("--no-hard-negatives", action="store_true")
+    parser.add_argument("--include-name-address", action="store_true")
     args = parser.parse_args()
     if args.selection_rank < 0:
         parser.error("--selection-rank must be nonnegative")
@@ -81,6 +88,9 @@ def main() -> None:
     if digest_file(source) != DATA_SHA256:
         raise ValueError("Pinned Kiii² source hash changed")
     rows = selected_rows(source, selection_rank=args.selection_rank)
+    mapped = dict(STRUCTURED_TYPES)
+    if args.include_name_address:
+        mapped.update(OPTIONAL_TYPES)
     output = args.output.absolute()
     if (output.is_symlink() or output.is_dir()
             or (output.exists() and os.path.samefile(source, output))):
@@ -94,7 +104,8 @@ def main() -> None:
                                          delete=False) as temporary:
             temporary_name = temporary.name
             for row in rows:
-                case = convert(row, include_hard_negatives=not args.no_hard_negatives)
+                case = convert(row, include_hard_negatives=not args.no_hard_negatives,
+                               include_name_address=args.include_name_address)
                 counts.update(target["type"] for target in case["targets"])
                 counts["hard_negative_fields"] += len(case["negative_paths"])
                 temporary.write(json.dumps(case, ensure_ascii=False) + "\n")
@@ -106,9 +117,9 @@ def main() -> None:
             os.unlink(temporary_name)
     print(json.dumps({"dataset_revision": REVISION, "dataset_sha256": DATA_SHA256,
                       "selection_rank": args.selection_rank, "documents": len(rows),
-                      "target_fields": sum(counts[kind] for kind in STRUCTURED_TYPES.values()),
+                      "target_fields": sum(counts[kind] for kind in mapped.values()),
                       "targets_by_entity": {
-                          kind: counts[kind] for kind in STRUCTURED_TYPES.values()
+                          kind: counts[kind] for kind in mapped.values()
                       },
                       "hard_negative_fields": counts["hard_negative_fields"],
                       "output_sha256": digest_file(output)}, ensure_ascii=False))
